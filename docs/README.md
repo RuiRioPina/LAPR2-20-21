@@ -6,10 +6,11 @@ The teams consists of students identified in the following table.
 
 | Student Number	| Name |
 |--------------|----------------------------|
-| **1190001**  | Name of student 1          |
-| **1190002**  | Name of student 2          |
-| **1190003**  | Name of student 3          |
-| **1190004**  | Name of student 4          |
+| **1201564**  | JORGE FILIPE CARVALHO FERREIRA          |
+| **1201566**  | RAFAEL MENDES LEITE          |
+| **1201568**  | RUI MIGUEL RIO DE PINA          |
+| **1201623**  | SANTIAGO DA SILVA LEITE FERREIRA DE AZEVEDO          |
+| **1190709**  | JOÃO GONÇALO CARVALHO MOREIRA          |
 
 
 
