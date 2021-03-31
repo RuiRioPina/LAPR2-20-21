@@ -35,9 +35,13 @@ documentation; consistency and standards._
 _Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
 
 Response time: Should be almost immediate so the wait time for user actions decreases, improving the application functionality.
+
 Start-up time: Should be quick but can be affected by serialization. 
+
 Memory consumption:	Can be pushed to store a big amount of tests, then consuming a good amount of memory.
+
 CPU usage: Need a intermediate CPU usage to support the use of JavaFX and some minor calcules.
+
 Application availability: Should be available any time because it needs to calculate the test and another functionalities.
 
 
@@ -50,7 +54,7 @@ The supportability requirements gathers several characteristics, such as:  testa
 The application must be subjected to various tests to verify its functionality so that, if an error is found, it is resolved.
 All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits.
 Only the specialist doctor is allowed to access all client data. 
-To register a client, the receptionist needs the client’s citizen card number and personal information( like NHS, TIF and phone number).
+To register a client, the receptionist needs the clients citizen card number and personal information( like NHS, TIF and phone number).
 The application must support the English language only.
 The application must be developed in Java language using the IntelliJ IDE or Netbeans, and the  graphical interface is to be developed in JavaFX 11.
 All the images/figures produced during the software development process should be recorded in SVG format.
