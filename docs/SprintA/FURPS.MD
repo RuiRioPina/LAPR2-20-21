@@ -15,9 +15,28 @@ _Specifies functionalities that:_
 
 ## Usability 
 
-_Evaluates the user interface. It has several subcategories,
-among them: error prevention; interface aesthetics and design; help and
-documentation; consistency and standards._
+The user interface
+Usability can be defined with five points:
+	Efficiency-How fast a user can perform after learning how to use a system.
+	Learnability-The user must be able to learn about the system, but faster and more easier than before.
+	Memorability-After the user learns about the system, how well can he remember the functions of that same system.
+	Errors-The user should make the least mistakes possible.
+	Satisfaction-How advantageous it was to use the system.
+
+Error prevention
+To prevent some errors:
+	Adopt best practices for identifying requirements and for OO software analysis and design
+	Adopt recognized coding standards
+
+Interface aesthetics and design:
+	The application graphical interface is to be developed in JavaFX 11
+
+Help and documentation
+	Glossary
+
+
+
+
 
 
 (fill in here )
