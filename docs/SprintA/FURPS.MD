@@ -34,8 +34,23 @@ documentation; consistency and standards._
 ## Performance
 _Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
 
+Response time: 
+	Should be almost immediate so the wait time for tests decreases, improving the application functionality.
+	"Therefore, the company wants to decrease the number of tests waiting for its result. It proceeds as following: for difference between the number of new tests and the number of results available to the client during each half an hour period is computed."
+Memory consumption:
+	Can be pushed to run two at the same time, then consuming a good amount of memory.
+	"The application should use object serialization to ensure data persistence between two runs of the 
+	application"
+CPU usage:
+	Need a high CPU usage to support the use of JavaFX.
+	"The application graphical interface is to be developed in JavaFX 11"
+Load capacity:
+	Could be available to load files in various format.
+	"The algorithm to be used by the application must be defined through a configuration file."
+Application availability:
+	Should be available any time because it needs to calculate the test and another functionalities.
+	"To evaluate this, it proceeds as following: for any interval of time, for example one week (6 working days with 12 working hours per day)"
 
-(fill in here )
 
 ## Supportability
 _The supportability requirements gathers several characteristics, such as:
