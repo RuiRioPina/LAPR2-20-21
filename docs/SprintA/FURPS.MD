@@ -59,7 +59,7 @@ configurability, installability, scalability and more._
 
 -Use of development tools: We will use an IDE for coding, in this case IntelliJ IDEA. Bitbucket for Version Control. PlantUML for UML diagrams.
 
--Class library: 
+-Class library: none
 
 
 ### Implementation Constraints
