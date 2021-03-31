@@ -97,6 +97,7 @@ Operating system: Every Unix operating system, as well as Windows.
 
 ### Interface Constraints
 
+Our application uses the NHS API to communicate externally, to provide information required by them.
 
 The NHS API is used to generated barcodes to identify each sample, what's more it is used on sending to the NHS automatically generated reports,on 
 a daily basis to the NHS.
