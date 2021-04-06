@@ -69,26 +69,40 @@ _The supportability requirements gathers several characteristics, such as:
 testability, adaptability, maintainability, compatibility,
 configurability, installability, scalability and more._ 
 
-The supportability requirements gathers several characteristics, such as:  testability, adaptability, maintainability, compatibility, configurability, installability, scalability and more.
+* Testability *
+
 The application must be subjected to various tests to verify its functionality so that, if an error is found, it is resolved.
-All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits.
-Only the specialist doctor is allowed to access all client data. 
-To register a client, the receptionist needs the clients citizen card number and personal information( like NHS, TIF and phone number).
-The application must support the English language only.
-The application must be developed in Java language using the IntelliJ IDE or Netbeans, and the  graphical interface is to be developed in JavaFX 11.
-All the images/figures produced during the software development process should be recorded in SVG format.
+
 Unit tests should be implemented, and a coverage report should be generated. 
+
 The development team must implement unit tests for all methods except methods that implement Input/Output operations.
-The application should use object serialization to ensure data persistence between two runs of the application. 
-The implemented algorithm should be analysed in terms of its worst-case time complexity, and it should be compared to a provided benchmark algorithm. 
-The algorithm to be used by the application must be defined through a configuration file.
-It is intended that the choice of the ordering algorithm is based on the algorithm complexity.
+
+* Configurability / Compatiblity *
+
+All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits.
+
+To register a client, the receptionist needs the client’s citizen card number and personal information( like NHS, TIF and phone number).
+
+Only the specialist doctor is allowed to access all client data. 
+
 To facilitate the access to the results, the application must allow ordering the clients by TIF and by name. 
+
+The application must support the English language only.
+
+The algorithm to be used by the application must be defined through a configuration file.
+
+The implemented algorithm should be analysed in terms of its worst-case time complexity, and it should be compared to a provided benchmark algorithm. 
+
+It is intended that the choice of the ordering algorithm is based on the algorithm complexity.
+
 At least two sorting algorithms should be evaluated and documented in the application user manual that must be delivered with the application.
 
+* Maintainabilty/ Installability *
 
+The application must be developed in Java language using the IntelliJ IDE or Netbeans, and the  graphical interface is to be developed in JavaFX 11.
 
-#+
+All the images/figures produced during the software development process should be recorded in SVG format.
+
 
 ### Design Constraints
   
