@@ -12,7 +12,7 @@ _Specifies functionalities that:_
 Security: all operators responsible for entering and editing data in the system must ensure the validity of the information entered. external customers should only have access to their data.    
 Email/SMS: when the test results are completed the customer will be notificated about it.    
 Audit: the data recorded should always be sign by the operator.  
-Licesing: the owner Many Labs controls the application.  
+Licensing: the owner Many Labs controls the application.  
 
 
 
