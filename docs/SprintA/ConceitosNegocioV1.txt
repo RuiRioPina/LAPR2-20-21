@@ -1,0 +1,38 @@
+Identificação de conceitos
+
+ClinicalAnalysisLaboratory
+ChemicalLaboratory
+Company (numberCovidTestPerformed, positiveCovidTest, covidCasesPerDay, covidCasesPerWeek, covidCasesPerMonth, covidCasesPerYear, forecast,NetworkOfLaboratories)
+Sample(code, description, nhsId)
+Test (code, nhsId, description, dateSamples, timeSamples, dateAnalysis, timeAnalysis, dateDiagnosis, timeDiagnosis, dateValidatedTest, timeValidatedTest, TypeOfTest)
+TypeOfTest
+Parameter
+Analysis
+Client(ccn,name,NHS number,birth date,sex,TIF,phone number, e-mail...)
+Prescription (typeOfTest, parameter)
+Doctor
+Receptionist
+LabOrder
+MedicalLabTechnician
+TestResults
+ClinicalChemistTechnologist
+Courier
+ChemicalAnalysisResults
+Report
+ResultsValidation
+TestReferenceValues
+SpecialistDoctor
+Diagnosis
+LaboratoryCoordinator
+TestVerification
+ClientNotification
+SortingClients(nameSorting,TIFSorting)
+SortingAlgorithmConfigurationFile(Algorithm1,Algorithm2)
+Test&ResultsComparison(NumberOfResults,NumberOfTestsProcessed,time interval,bruteforce algorithm)
+BenchmarkAlgorithm(time)
+Administrator
+Registration
+TestStatus(On ClinicalAnalysisLaboratory,On Transit,On ChemicalLaboratory)
+Algorithm (Brute-Force,Benchmark, ...)
+CentralApplication
+API
