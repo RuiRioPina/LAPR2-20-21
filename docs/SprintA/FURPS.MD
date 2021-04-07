@@ -25,14 +25,14 @@ Usability can be defined with five points:
 
 Error prevention
 To prevent some errors:
-	Adopt best practices for identifying requirements and for OO software analysis and design
-	Adopt recognized coding standards
+	Adopt best practices for identifying requirements and for OO software analysis and design.
+	Adopt recognized coding standards.
 
 Interface aesthetics and design:
-	The application graphical interface is to be developed in JavaFX 11
+	The application graphical interface is to be developed in JavaFX 11.
 
 Help and documentation
-	Glossary
+	Glossary.
 
 
 
@@ -53,15 +53,15 @@ Help and documentation
 ## Performance
 _Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
 
-Response time: Should be almost immediate so the wait time for user actions decreases, improving the application functionality.
+Response time: Should be almost immediate so that the wait time for user actions decreases, improving the application functionality.
 
-Start-up time: Should be quick but can be affected by serialization. 
+Start-up time: Should be quick, but can be affected by serialization. 
 
 Memory consumption:	Can be pushed to store a big amount of tests, then consuming a good amount of memory.
 
-CPU usage: Need a intermediate CPU usage to support the use of JavaFX and some minor calcules.
+CPU usage: It needs an intermediate CPU usage to support the use of JavaFX and some minor calculations.
 
-Application availability: Should be available any time because it needs to calculate the test and another functionalities.
+Application availability: Should be available at any time because it needs to calculate the test and other functionalities.
 
 
 ## Supportability
@@ -81,7 +81,7 @@ The development team must implement unit tests for all methods except methods th
 
 All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits.
 
-To register a client, the receptionist needs the clientâ€™s citizen card number and personal information( like NHS, TIF and phone number).
+To register a client, the receptionist needs the client’s citizen card number and personal information( like NHS, TIF and phone number).
 
 Only the specialist doctor is allowed to access all client data. 
 
@@ -106,9 +106,9 @@ All the images/figures produced during the software development process should b
 
 ### Design Constraints
   
--Programming language: JAVA
+-Programming language: JAVA.
 
--Software process: Iterative Incremental Model
+-Software process: Iterative Incremental Model.
 
 -Mandatory Standards/patterns: Best Practices for identifying requirements and for OO software analysis and design.
 
@@ -119,10 +119,10 @@ All the images/figures produced during the software development process should b
 
 ### Implementation Constraints
 
-Mandatory standards/patterns: Adopt recognized coding standards (e.g. CamelCase, Classes starting with uppercase letter...)
-Use Javadoc to generate useful documentation for Java code
+Mandatory standards/patterns: Adopt recognized coding standards (e.g. CamelCase, Classes starting with uppercase letter...).
+Use Javadoc to generate useful documentation for Java code.
 
-Implementation languages : The application must be developed in Java language using the IntelliJ IDE or Netbeans
+Implementation languages : The application must be developed in Java language using the IntelliJ IDE or Netbeans.
 
 Database integrity: There are certain restricts on data input that should take place such as: "All those who wish to use the
 application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits". If it is detected
@@ -130,7 +130,7 @@ an anomaly on this standard, the application should let the user know before ent
 message stating what happened.
 		    Furthermore, it should be guaranteed that only the specialist doctor is allowed to access all client data.
 					
-Resource limits: none
+Resource limits: None.
 
 Operating system: Every Unix operating system, as well as Windows.
 
