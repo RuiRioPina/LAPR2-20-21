@@ -9,7 +9,11 @@ _Specifies functionalities that:_
 
 
 
-(fill in here)
+Securaty: the information should always be validated by de respetive worker and could only be seen by the integrators to that part  
+Email/SMS: notification about the results for the test  
+Audit: record of Covid test to be used with the application  
+Reporting: the responsible alwyas report the work  
+Licesing: the owner Many Labs controls the application  
 
 
 
@@ -81,7 +85,7 @@ The development team must implement unit tests for all methods except methods th
 
 All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits.
 
-To register a client, the receptionist needs the clientâ€™s citizen card number and personal information( like NHS, TIF and phone number).
+To register a client, the receptionist needs the client’s citizen card number and personal information( like NHS, TIF and phone number).
 
 Only the specialist doctor is allowed to access all client data. 
 
