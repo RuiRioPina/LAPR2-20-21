@@ -1,7 +1,8 @@
 Identificação de conceitos
 
-ClinicalAnalysisLaboratory
-ChemicalLaboratory
+Many labs (Employee ID, Organization Role, Name, Address, Phone Number, E-Mail, Standard Occupational Classification (SOC) code)
+ClinicalAnalysisLaboratory (Laboratory ID, Name, Address, Phone Number, TIN number)
+ChemicalLaboratory (Name, Address, Phone Number, TIN number) 
 Company (numberCovidTestPerformed, positiveCovidTest, covidCasesPerDay, covidCasesPerWeek, covidCasesPerMonth, covidCasesPerYear, forecast,NetworkOfLaboratories)
 Sample(code, description, nhsId)
 Test (code, nhsId, description, dateSamples, timeSamples, dateAnalysis, timeAnalysis, dateDiagnosis, timeDiagnosis, dateValidatedTest, timeValidatedTest, TypeOfTest)
@@ -21,7 +22,7 @@ ChemicalAnalysisResults
 Report
 ResultsValidation
 TestReferenceValues
-SpecialistDoctor
+SpecialistDoctor (Doctor Index Number)
 Diagnosis
 LaboratoryCoordinator
 TestVerification
