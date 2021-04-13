@@ -1,5 +1,6 @@
 Identificação de conceitos
 
+Many Labs
 ClinicalAnalysisLaboratory (Laboratory ID, Name, Address, Phone Number, TIN number)
 ChemicalLaboratory (Name, Address, Phone Number, TIN number) 
 Company (numberCovidTestPerformed, positiveCovidTest, covidCasesPerDay, covidCasesPerWeek, covidCasesPerMonth, covidCasesPerYear, forecast,NetworkOfLaboratories)
