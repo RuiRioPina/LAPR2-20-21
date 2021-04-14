@@ -142,8 +142,10 @@ An association is a relationship between instances of objects that indicates a r
 
 | Concept (A) 		|  Association   	|  Concept (B) |
 |----------	   		|:-------------:		|------:       |
-| C1  	| verb1    		 	| C2  |
-| ...  	| ...    		 	| ...  |
+| Administrator  	| is part of    		 	| Company  |
+| Company  	| owns    		 	| ClinicalAnalysisLaboratories  |
+|   	| owns    		 	| ChemicalLaboratory  |
+| ClinicalAnalysisLaboratories  	| collects    		 	| Sample  |
 
 
 
