@@ -27,13 +27,11 @@ Diagnosis
 LaboratoryCoordinator (Employee ID, Organization Role, Name, Address, Phone Number, E-Mail, Standard Occupational Classification (SOC) code)
 TestVerification
 ClientNotification
-SortingClients(nameSorting,TIFSorting)
-SortingAlgorithmConfigurationFile(Algorithm1,Algorithm2)
+SortingAlgorithm(Algorithm1,Algorithm2)
 Test&ResultsComparison(NumberOfResults,NumberOfTestsProcessed,time interval,bruteforce algorithm)
 BenchmarkAlgorithm(time)
 Administrator (Employee ID, Organization Role, Name, Address, Phone Number, E-Mail, Standard Occupational Classification (SOC) code)
 Registration
-TestStatus(On ClinicalAnalysisLaboratory,On Transit,On ChemicalLaboratory)
 Algorithm (Brute-Force,Benchmark, ...)
 CentralApplication
 API
