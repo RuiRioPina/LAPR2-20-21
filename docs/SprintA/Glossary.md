@@ -44,7 +44,7 @@
 | **Module** | **Módulo** | One of a set of separate parts that, when combined, form a complete whole. |
 | **NHS** | **SNS** | Initials of National Health Service. |
 | **Network** | **Rede** | A large system consisting of many similar parts that are connected together to allow movement or communication between or along the parts, or between the parts and a control centre. |
-| **OO software** | **Software OO** | Object-Oriented Software. |
+| **OO Software** | **Software OO** | Object-Oriented Software. |
 | **Object Serialization** | **Serialização de Objetos** | The process of converting an object into a stream of bytes to store the object or transmit it to memory, a database, or a file. |
 | **Ordering Algorithm** | **Algoritmo de Ordenação** | Algorithm used by the application. It orders the client by TIF and name. It must be defined through a configuration file. |
 | **Other Tests Support** | **Suporte de Outros Testes** | The application's ability to create new test categories. |
