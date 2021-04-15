@@ -173,6 +173,24 @@ An association is a relationship between instances of objects that indicates a r
 | Company  	| owns    		 	| ClinicalAnalysisLaboratories  |
 |   	| owns    		 	| ChemicalLaboratory  |
 | ClinicalAnalysisLaboratories  	| collects    		 	| Sample  |
+| SpecialistDoctor  	| writes    		 	| Report  |
+|   	| are performed by    		 	| ResultsValidation  |
+|   	| reviews    		 	| TestResults  |
+|   	| can check    		 	| TestResultList  |
+| Report   	| is sent to client   		 	| Client  |
+|    	| contains   		 	| TestResults  |
+| Receptionist  	| registers    		 	| Client  |
+| MedicalLabTechnician  	| conducts    		 	| Test  |
+| Client  	| brings a    		 	| LabOrder  |
+|   	| performs a    		 	| Test  |
+|   	| performs a    		 	| Test  |
+| Sample  	| are sent to    		 	| ChemicalLaboratory  |
+|   	| is received by   		 	| ChemicalChemistTechnologist  |
+| ClinicalChemistTechnologist  	| produces    		 	| TestResults  |
+|   	| can check    		 	| TestResultList  |
+| Test Results  	| are used in    		 	| NHSReport  |
+|   	| must be validated by    		 	| LaboratoryCoordinator  |
+| LaboratoryCoordinator 	| can check   		 	| TestResultList  |
 
 
 
