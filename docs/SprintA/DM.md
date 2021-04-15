@@ -192,6 +192,8 @@ An association is a relationship between instances of objects that indicates a r
 | MedicalLabTechnician  	| conducts    		 	| Test  |
 | Client  	| brings    		 	| LabOrder  |
 |   	| performs a    		 	| Test  |
+| Test  	| is a   		 	| TypeOfTest  |
+|   	| produces a   		 	| Sample  |
 | Sample  	| are sent to    		 	| ChemicalLaboratory  |
 |   	| is received by   		 	| ChemicalChemistTechnologist  |
 | ClinicalChemistTechnologist  	| produces    		 	| TestResults  |
@@ -199,6 +201,7 @@ An association is a relationship between instances of objects that indicates a r
 | Test Results  	| are used in    		 	| NHSReport  |
 |   	| must be validated by    		 	| LaboratoryCoordinator  |
 | LaboratoryCoordinator 	| can check   		 	| TestResultList  |
+
 
 
 
