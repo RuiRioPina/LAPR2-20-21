@@ -87,15 +87,19 @@ _Evaluates the performance requirements of the software, namely: response time, 
 ___
 * Response time
 
-Should be almost immediate, so that the wait time for user actions decreases, improving the application functionality.
+Any interface between a user and the system shall have a maximum response time of 3 seconds.
 
 * Start-up time
 
-Should be quick but can be affected by serialization. 
+The system should start up in less than 10 seconds. 
+
+* Recovery time  
+
+The system should not fail more than 5 days in one year. Whenever the system fails, there should be no data loss.  
 
 * Memory consumption
 
-It can be pushed to store a big amount of tests, therefore it might consume a good amount of memory.
+The application will be deployed to a machine with 8GB of RAM.
 
 * CPU usage 
 
@@ -103,7 +107,7 @@ Needs an intermediate CPU usage to support the use of JavaFX and some minor calc
 
 * Application availability
 
-Should be available at any time, since it needs to calculate the tests and other functionalities.
+The application should run on all platforms for which there exists a Java Virtual Machine.
 
 ## Supportability
 _The supportability requirements gathers several characteristics, such as:
