@@ -9,124 +9,131 @@ To identify domain conceptual classes, start by making a list of candidate conce
 ### _Conceptual Class Category List_ ###
 
 **Business Transactions**
-Report
-*
+
+* Report
+
 
 ---
 
 **Transaction Line Itemss**
 
-*
+
 
 ---
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-*  
+
 
 ---
 
 
 **Transaction Records**
-TestResults
-ChemicalAnalysisResults
-ResultsValidation
-Test&ResultsComparison
-*  
+* TestResults
+* ChemicalAnalysisResults
+* ResultsValidation
+* Test&ResultsComparison
+ 
 
 ---  
 
 
 **Roles of People or Organizations**
 
-* 
-Client
-Doctor
-Receptionist
-MedicalLabTechnician
-ClinicalChemistTechnologist
-SpecialistDoctor
-LaboratoryCoordinator
-Courier
-Administrator
+
+* Client
+* Doctor
+* Receptionist
+* MedicalLabTechnician
+* ClinicalChemistTechnologist
+* SpecialistDoctor
+* LaboratoryCoordinator
+* Courier
+* Administrator
 
 ---
 
 
 **Places**
 
-*  
-ClinicalAnalysisLaboratory 
-ChemicalLaboratory
+  
+* ClinicalAnalysisLaboratory 
+* ChemicalLaboratory
 ---
 
-** Noteworthy Events**
-Analysis
-Diagnosis
-Registration
-TestVerification
-ClientNotification
-* 
+**Noteworthy Events**
+
+* Analysis
+* Diagnosis
+* Registration
+* TestVerification
+* ClientNotification
+
 
 ---
 
 
 **Physical Objects**
-Sample
-Test
-Prescription
-LabOrder
-*
+
+* Sample
+* Test
+* Prescription
+* LabOrder
+
 
 ---
 
 
 **Descriptions of Things**
-TypeOfTest
-TestReferenceValues
-*  
+
+* TypeOfTest
+* TestReferenceValues
 
 
 ---
 
 
 **Catalogs**
-Parameter
-*  
+
+* Parameter
+
 
 ---
 
 
 **Containers**
-TestResultList
 
-*  
+* TestResultList
+
 
 ---
 
 
 **Elements of Containers**
-TestResults
-*  
+
+* TestResults
+
 
 ---
 
 
 **Organizations**
-Many Labs
-Company
-*  
+
+* Many Labs
+* Company
+ 
 
 ---
 
 **Other External/Collaborating Systems**
-NHS
-API
-SortingAlgorithm
-Algorithm
-BenchmarkAlgorithm
-CentralApplication
-*  
+
+* NHS
+* API
+* SortingAlgorithm
+* Algorithm
+* BenchmarkAlgorithm
+* CentralApplication
+ 
 
 
 ---
@@ -134,21 +141,22 @@ CentralApplication
 
 **Records of finance, work, contracts, legal matters**
 
-* 
+
 
 ---
 
 
 **Financial Instruments**
 
-*  
+
 
 ---
 
 
 **Documents mentioned/used to perform some work/**
-ChemicalAnalysisResults
-* 
+
+* ChemicalAnalysisResults
+
 ---
 
 
@@ -174,15 +182,14 @@ An association is a relationship between instances of objects that indicates a r
 |   	| owns    		 	| ChemicalLaboratory  |
 | ClinicalAnalysisLaboratories  	| collects    		 	| Sample  |
 | SpecialistDoctor  	| writes    		 	| Report  |
-|   	| are performed by    		 	| ResultsValidation  |
+|   	| performs    		 	| ResultsValidation  |
 |   	| reviews    		 	| TestResults  |
 |   	| can check    		 	| TestResultList  |
 | Report   	| is sent to client   		 	| Client  |
 |    	| contains   		 	| TestResults  |
 | Receptionist  	| registers    		 	| Client  |
 | MedicalLabTechnician  	| conducts    		 	| Test  |
-| Client  	| brings a    		 	| LabOrder  |
-|   	| performs a    		 	| Test  |
+| Client  	| brings    		 	| LabOrder  |
 |   	| performs a    		 	| Test  |
 | Sample  	| are sent to    		 	| ChemicalLaboratory  |
 |   	| is received by   		 	| ChemicalChemistTechnologist  |
