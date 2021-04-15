@@ -29,6 +29,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 
 **Transaction Records**
+
 * TestResults
 * ChemicalAnalysisResults
 * ResultsValidation
