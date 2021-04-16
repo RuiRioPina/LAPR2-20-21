@@ -10,6 +10,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Business Transactions**
 
+* Test
 * Report
 
 
@@ -17,13 +18,13 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Transaction Line Itemss**
 
-
+* Sample
 
 ---
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-
+* Parameter
 
 ---
 
@@ -64,7 +65,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Noteworthy Events**
 
-* Analysis
+* Chemical Analysis
 * Diagnosis
 * Registration
 * TestVerification
@@ -76,8 +77,6 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Physical Objects**
 
-* Sample
-* Test
 * Prescription
 * LabOrder
 
@@ -96,7 +95,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Catalogs**
 
-* Parameter
+
 
 
 ---
