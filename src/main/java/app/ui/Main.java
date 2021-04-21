@@ -4,6 +4,7 @@ import app.ui.console.MainMenuUI;
 
 /**
  *
+ *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Main {
