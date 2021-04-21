@@ -40,15 +40,6 @@
 					<include>**/*.java</include>
 				</includes>
 			</configuration>
-			<!-- <dependencies>-->
-                        <!-- This dependency must be included, otherwise Maven Surefire will not recognise the test cases -->
-				<!-- <dependency>
-					<groupId>org.junit.platform</groupId>
-					<artifactId>junit-platform-surefire-provider</artifactId>
-					<version>1.2.0</version>
-				</dependency>
-			</dependencies>
-			-->
 	</plugin>
 		<!-- Required for generating coverage report -->
 	<plugin>
@@ -82,12 +73,10 @@
 			<targetClasses>
 				<param>app.domain.model.*</param>
 				<param>app.utils.*</param>
-				<param>app.controller.*</param>
 			</targetClasses>
 			<targetTests>
 				<param>app.domain.model.*</param>
 				<param>app.utils.*</param>
-				<param>app.controller.*</param>
 			</targetTests>
 			<outputFormats>
 				<outputFormat>XML</outputFormat>
