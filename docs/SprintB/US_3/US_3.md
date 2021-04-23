@@ -15,25 +15,22 @@
 
 **From the specifications document:**
 
->	When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application. To register a client, the
-receptionist needs the following information : client’s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name. 
+>	When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application.
 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+> To register a client, the
+receptionist needs the following information : client’s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name.  
 
 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** What parameter (asked by the receptionist) should the system use to create the password of the new client?
+
 >  
-> **Answer:** Duration is estimated in days.
+> **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
 
 -
 
-> **Question:** Monetary data is expressed in any particular currency?
->  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
 
 
 ### 1.3. Acceptance Criteria
@@ -47,6 +44,26 @@ receptionist needs the following information : client’s citizen card number, N
 ### 1.5 Input and Output Data
 
 *Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
+
+**Input Data:**
+
+* Typed data:
+	* Ccn, 
+	* NHS number, 
+	* Birth Date
+	* Sex
+	* Tax Identification number(TIF)
+	* Phone Number
+	* E-mail
+	* Name
+	
+* Selected data:
+	
+
+
+**Output Data:**
+
+* (In)Success of the operation
 
 
 ### 1.6. System Sequence Diagram (SSD)
