@@ -136,7 +136,7 @@ public class Utils {
     }
 
     public static List<Character> randomCharacter() {
-        int randomNumber;
+        int randomNumber, maxNumberOfDigits = 2, maxNumberOfUppercaseLetters = 3, maxNumberOfLowercaseLetters = 5;
         char numberCasted;
         List<Character> chars = new ArrayList<>();
         do {
@@ -147,7 +147,7 @@ public class Utils {
                 chars.add(numberCasted);
                 countDigits++;
             }
-        } while (countDigits != 2 || randomNumber > 9);
+        } while (countDigits != maxNumberOfDigits || randomNumber > 9);
 
         do {
             randomNumber = (int) (Math.random() * 62);
@@ -158,7 +158,7 @@ public class Utils {
                 chars.add(numberCasted);
                 countUppercase++;
             }
-        } while (countUppercase != 3 || randomNumber <= 9 || randomNumber > 35);
+        } while (countUppercase != maxNumberOfUppercaseLetters || randomNumber <= 9 || randomNumber > 35);
         do {
             randomNumber = (int) (Math.random() * 62);
 
@@ -168,7 +168,7 @@ public class Utils {
                 chars.add(numberCasted);
                 countLowerCase++;
             }
-        } while (countLowerCase != 5 || randomNumber < 36 || randomNumber > 61);
+        } while (countLowerCase != maxNumberOfLowercaseLetters || randomNumber < 36 || randomNumber > 61);
         return chars;
     }
 }
