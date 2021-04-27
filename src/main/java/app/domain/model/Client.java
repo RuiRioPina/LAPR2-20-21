@@ -1,23 +1,21 @@
 package app.domain.model;
 
-import app.controller.AuthController;
-
 public class Client {
     private int ccn;
     private int nhsNumber;
     private int birthDate;
     private String sex;
-    private int tif;
+    private int tin;
     private int phoneNumber;
     private String name;
 
 
-    public Client(int ccn, int nhsNumber, int birthDate, String sex, int tif, int phoneNumber, String name) {
+    public Client(int ccn, int nhsNumber, int birthDate, String sex, int tin, int phoneNumber, String name) {
         this.ccn = ccn;
         this.nhsNumber = nhsNumber;
         this.birthDate = birthDate;
         this.sex = sex;
-        this.tif = tif;
+        this.tin = tin;
         this.phoneNumber = phoneNumber;
         this.name = name;
     }
@@ -54,12 +52,12 @@ public class Client {
         this.sex = sex;
     }
 
-    public int getTif() {
-        return tif;
+    public int getTin() {
+        return tin;
     }
 
-    public void setTif(int tif) {
-        this.tif = tif;
+    public void setTin(int tin) {
+        this.tin = tin;
     }
 
     public int getPhoneNumber() {
