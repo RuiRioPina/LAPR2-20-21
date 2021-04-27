@@ -1,3 +1,5 @@
+package test.java;
+
 import auth.domain.model.Password;
 import org.junit.Test;
 

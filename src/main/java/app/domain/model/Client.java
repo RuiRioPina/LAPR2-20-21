@@ -101,7 +101,7 @@ public class Client {
         this.password = password;
     }
 
-    public void generatePassword() {
+    public String generatePassword() {
         password = "";
         List<Character> list = Utils.randomCharacter();
         Collections.shuffle(list);
@@ -109,7 +109,7 @@ public class Client {
         for (Character l : list) {
             password = String.valueOf(stringBuilder.append(l));
         }
-
+        return password;
     }
 
     public void addClientRole() {
