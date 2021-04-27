@@ -1,7 +1,11 @@
 package app.domain.model;
 
+import app.ui.console.utils.Utils;
 import auth.AuthFacade;
-import java.util.concurrent.ThreadLocalRandom;
+
+import java.util.Collections;
+import java.util.List;
+
 public class Client {
     private int ccn;
     private int nhsNumber;
@@ -98,25 +102,20 @@ public class Client {
     }
 
     public void generatePassword() {
-        password="";
-        char c='a';
-        int min = 0;
-        int max = 25;
-        int random;
+        password = "";
+        List<Character> list = Utils.randomCharacter();
+        Collections.shuffle(list);
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            random = ThreadLocalRandom.current().nextInt(min, max + 1);
-            c+=random;
-            password= String.valueOf(stringBuilder.append(c));
-            c='a';
+        for (Character l : list) {
+            password = String.valueOf(stringBuilder.append(l));
         }
 
-
     }
+
     public void addClientRole() {
         AuthFacade authFacade = new AuthFacade();
-        authFacade.addUserRole("Client","This is the Client that has access to his results");
-        authFacade.addUserWithRole(name,email,password,"Client");
+        authFacade.addUserRole("Client", "This is the Client that has access to his results");
+        authFacade.addUserWithRole(name, email, password, "Client");
     }
 
 

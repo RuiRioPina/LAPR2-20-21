@@ -6,15 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 /**
- *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Password {
 
-    private String password;
+    private final String password;
 
-    public Password(String password)
-    {
+    public Password(String password) {
         if (!validate(password))
             throw new IllegalArgumentException("Invalid Email Address.");
         this.password = createHash(password);
@@ -24,48 +22,43 @@ public class Password {
         if (StringUtils.isBlank(password))
             return false;
         // Check for other invalid criteria here
-        if (password.equals("123456")){
+        if (password.equals("123456")) {
             return true;
         }
-        if (password.length()!=7){
+
+        if (password.length() != 7 && password.length() != 10) {
             return false;
         }
         int upper = 0;
         int digits = 0;
-        for (int i=0;i<password.length();i++) {
+        for (int i = 0; i < password.length(); i++) {
 
 
             char ch = password.charAt(i);
             if (ch >= 'A' && ch <= 'Z') {
                 upper++;
             }
-            if (Character.isDigit(ch)){
+            if (Character.isDigit(ch)) {
                 digits++;
             }
         }
-            if (upper!=3 || digits!=2){
-                return false;
-        }
+        return upper == 3 && digits == 2;
         //
-        return true;
     }
 
-    private String createHash(String password)
-    {
-        return BCrypt.withDefaults().hashToString(BCrypt.MIN_COST,password.toCharArray());
+    private String createHash(String password) {
+        return BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
     }
 
-    public boolean checkPassword(String pwd)
-    {
+    public boolean checkPassword(String pwd) {
         if (StringUtils.isBlank(pwd))
             return false;
-        BCrypt.Result result = BCrypt.verifyer().verify(pwd.toCharArray(),this.password.toCharArray());
+        BCrypt.Result result = BCrypt.verifyer().verify(pwd.toCharArray(), this.password.toCharArray());
         return result.verified;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 7;
         hash = 7 * hash + this.password.hashCode();
         return hash;
