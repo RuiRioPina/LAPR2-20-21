@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class User {
+public class    User {
 
     private Email id;
     private Password password;

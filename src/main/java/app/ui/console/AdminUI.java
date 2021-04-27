@@ -21,6 +21,7 @@ public class AdminUI implements Runnable{
         options.add(new MenuItem("Option A ", new ShowTextUI("You have chosen Option A.")));
         options.add(new MenuItem("Option B ", new ShowTextUI("You have chosen Option B.")));
         options.add(new MenuItem("Option C ", new ShowTextUI("You have chosen Option C.")));
+        options.add(new MenuItem("Option D- Register New Employee", new ShowTextUI("Beginning to register a new employee")));
 
         int option = 0;
         do
