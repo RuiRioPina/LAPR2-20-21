@@ -15,27 +15,37 @@
 
 **From the specifications document:**
 
->	When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application.
+>	"When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
 
-> To register a client, the
-receptionist needs the following information : client’s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name.  
+> "To register a client, the
+receptionist needs the following information : client�s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
 
 
 
 **From the client clarifications:**
 
-> **Question:** What parameter (asked by the receptionist) should the system use to create the password of the new client?
 
->  
-> **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
+> **Question:** What parameter (asked by the receptionist) should the system use to create the password of the new client?  
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7462)
+> > **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
 
--
+> **Question:** After being registered by the receptionist, should the client receive some kind of confirmation e-mail in order to finish his registration?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7736)
+> > ** Answer:** The client only receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the client password.
+
+ 
+> **Question:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?                                          
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7744)
+> > ** Answer:** Please read carefully the acceptance criteria of user story number 3. Please study the "auth" component.
+
+
 
 
 
 ### 1.3. Acceptance Criteria
 
-*The client must become a system user. The "auth" component available on the repository must be reused (without modifications).*
+* AC1:The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
+* AC2:The password should have ten alphanumeric characters.
 
 ### 1.4. Found out Dependencies
 
@@ -58,7 +68,7 @@ receptionist needs the following information : client’s citizen card number, N
 	* Name
 	
 * Selected data:
-	
+	*(none)*
 
 
 **Output Data:**
