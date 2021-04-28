@@ -54,7 +54,7 @@
 
 ### 2.1. Relevant Domain Model Excerpt 
 
-![US9-MD](/docs/SprintB/US_9/US9_MD.svg)
+![US9-MD](https://bitbucket.org/lei-21-s2/lei-21-s2-1dh-g35/src/4f5895ce008d/docs/SprintB/US_9/UC9_MD.svg?at=master)
 
 ### 2.2. Other Remarks
 
