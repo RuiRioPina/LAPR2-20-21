@@ -1,0 +1,47 @@
+@startuml
+autonumber
+actor "Administrator" as ADMIN
+
+participant ":CreateTestTypeUI" as UI
+participant ":CreateTestTypeController" as CTRL
+participant ":Company" as CMP
+participant "tt:Test Type" as TET
+
+activate ADMIN
+ADMIN -> UI : starts new type of test
+activate UI
+UI --> ADMIN : request data(i.e., designation, collectingMethod)
+deactivate UI
+
+ADMIN -> UI : types requested data
+activate UI
+UI -> CTRL: createTestType(designation, collectingMethod)
+activate CTRL
+CTRL -> CMP : tt = createTestType(designation, collectingMethod)
+activate CMP
+CMP --> TET** : create(designation, collectingMethod)
+deactivate CMP
+CTRL -> CMP : validateTestType(tt)
+activate CMP
+deactivate CMP
+deactivate CTRL
+UI --> ADMIN : shows the data and request a confirmation
+deactivate UI
+
+ADMIN -> UI : confirms the data
+activate UI
+UI -> CTRL : saveTestType()
+activate CTRL
+CTRL -> CMP : saveTestType(tt)
+activate CMP
+CMP -> CMP++ : validateTestType(tt)
+CMP--
+CMP -> CMP++ : addTestType(tt)
+CMP--
+deactivate CMP
+deactivate CTRL
+UI --> ADMIN : informs operation succecs
+deactivate UI
+
+deactivate ADMIN
+@enduml
