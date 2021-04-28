@@ -42,7 +42,7 @@
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![US9-SSD](/docs/SprintB/US_9/US9-SSD.svg)
+![US9-SSD](/docs/SprintB/US_9/US9_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -54,7 +54,7 @@
 
 ### 2.1. Relevant Domain Model Excerpt 
 
-![US9-MD](/docs/SprintB/US_9/US9-MD.svg)
+![US9-MD](/docs/SprintB/US_9/US9_MD.svg)
 
 ### 2.2. Other Remarks
 
