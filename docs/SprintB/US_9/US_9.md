@@ -8,12 +8,12 @@ As an administrator, I want to specify a new type of test and its collecting met
 
 ### 1.2. Customer Specifications and Clarifications 
 
-###From the Specifications Document:
+### From the Specifications Document:
 
 * "Many Labs performs two types of tests. (…) (whether it is blood test or Covid test)."   
 * "Despite being out of scope, the system should be developed having in mind the need to easily support other kinds of tests (e.g., urine)."
 
-###From the client clarifications:
+### From the client clarifications:
 
 * Question: What are the data that characterize a parameter category?  
 	* Answer: Simply consider a code, a description and the collecting method.  
@@ -33,10 +33,10 @@ No dependencies were found.
 
 ### 1.5 Input and Output Data
 
-* ###Input Data
+* ### Input Data
 	* Typed data: code and description.
 	* Selected data: collecting method.
-* ###Output Data
+* ### Output Data
 	* (In)Success of the operation
 
 
