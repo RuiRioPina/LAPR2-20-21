@@ -2,53 +2,70 @@
 
 ## 1. Requirements Engineering
 
-*In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.*
-
-
 ### 1.1. User Story Description
 
-*Insert here the User Story as described by the client.*
+As an administrator, I want to register a new clinical  analysis laboratory stating which kind of test(s) it operates.
+
+### 1.2. Customer Specifications and Clarifications 
+
+**From the specifications document**
 
 "All the tests (clinical blood tests and Covid 19 tests) performed by the network of laboratories are
 registered locally by the medical lab technicians who collect the samples. The samples are sent
 daily to the chemical laboratory where the chemical analy se s are performed and results obtained."
 
-### 1.2. Customer Specifications and Clarifications 
+**From the client clarifications**
 
-*Insert here any related specification and/or clarification provided by the client together with **your interpretation**. When possible, provide a link to such specifications/clarifications.*
+* **Question:** Are the test types typed in or selected from those that the program has? 
+	* **Answer:** The test types are selected from a list.
 
-Question: Are the test types typed in or selected from those that the program has?
-Answer: The test types are selected from a list.
+* **Question:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
+	* **Answer:** Each Clinical Analysis Laboratory is characterized by the following attributes:
+		* Laboratory ID: five alphanumeric characters;
+		* Name: A string with no more than 20 characters;
+		* Address: A string with no more than 30 characters;
+		* Phone Number: 11 digit number;
+		* TIN number: 10 digit number;
+		* Type of tests performed by the lab.
+	 All information is required.
 
-Question: Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
-Answer: Each Clinical Analysis Laboratory is characterized by the following attributes:
-Laboratory ID: five alphanumeric characters;
-Name: A string with no more than 20 characters;
-Address: A string with no more than 30 characters;
-Phone Number: 11 digit number;
-TIN number: 10 digit number;
-Type of tests performed by the lab.
-All information is required.
+* **Question:** Is there a maximum limit of types of tests a clinical analysis laboratory can operate?
+	* **Answer:** No.
 
-Question: Is there a maximum limit of types of tests a clinical analysis laboratory can operate?
-Answer: No.
-
-Question: We know through the specifications document that "All Many Labs clinical analysis laboratories perform clinical blood tests".
+* **Question:** We know through the specifications document that "All Many Labs clinical analysis laboratories perform clinical blood tests".
 My question therefore is: When creating a new Clinical Analysis Laboratory, should the system automatically record that it operates that type of test or should the person who is creating it select it manually while selecting other types of tests? Or other option?
-Answer: The administrator should select, manually, all the types of tests to be performed by the Clinical Analysis Laboratory.
+	* **Answer:** The administrator should select, manually, all the types of tests to be performed by the Clinical Analysis Laboratory.
 
 
 ### 1.3. Acceptance Criteria
 
-*Insert here the client acceptance criteria.*
+* AC1: Laboratory ID should have five alphanumeric characters;
+* AC2: Name should be a string with no more than 20 characters;
+* AC3: Address should be a string with no more than 30 characters;
+* AC4: Phone Number should be a 11 digit number;
+* AC5: TIN number should be a 10 digit number;
+* AC6: Should refer the type of tests performed by the lab;
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+This US has dependency with the US9- As an administrator, I want to specify a new type of test and its collecting methods, because the administrator needs to know what type of test the clinical analysis laboratory performs in order to register it. 
 
 ### 1.5 Input and Output Data
 
-*Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
+**Input Data**
+
+* Typed data:
+	* Laboratory ID;
+	* Name;
+	* Adress;
+	* Phone Number;
+	* TIN number;
+	* Type of tests performed by the lab;
+* Selected data:
+
+**Output data:**
+
+* (In)Success of the operation.
 
 
 ### 1.6. System Sequence Diagram (SSD)
