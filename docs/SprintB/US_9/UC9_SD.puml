@@ -10,7 +10,7 @@ participant "tt:Test Type" as TET
 activate ADMIN
 ADMIN -> UI : starts new type of test
 activate UI
-UI --> ADMIN : request data(i.e., designation and collectingMethod)
+UI --> ADMIN : request data(i.e., designation, collectingMethod)
 deactivate UI
 
 ADMIN -> UI : types requested data
@@ -32,7 +32,7 @@ ADMIN -> UI : confirms the data
 activate UI
 UI -> CTRL : saveTestType()
 activate CTRL
-CTRL -> CMP : savaTestType(tt)
+CTRL -> CMP : saveTestType(tt)
 activate CMP
 CMP -> CMP++ : validateTestType(tt)
 CMP--
