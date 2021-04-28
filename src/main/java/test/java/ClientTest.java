@@ -12,10 +12,13 @@ public class ClientTest {
     public void generatePassword() {
         Client client = new Client(3123, 31231, 2302, "M",
                 "yau@sa.com", 1234, 123, "Ruo");
-        String password = client.generatePassword();
-        Password pass = new Password(password);
 
-        assertTrue(pass.checkPassword(password));
+        String actual = client.generatePassword();
+        String expected=client.getPassword();
+        Password pass = new Password(client.getPassword());
+        assertEquals(expected, actual);
+
+        assertTrue(pass.checkPassword(actual));
 
         assertFalse(pass.checkPassword("3123"));
         assertFalse(pass.checkPassword("31FEGakwqe"));
