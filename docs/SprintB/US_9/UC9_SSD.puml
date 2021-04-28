@@ -1,0 +1,22 @@
+@startuml
+autonumber
+actor "Administrator" as ADMIN
+
+activate ADMIN
+ADMIN-> ":System" : starts new type of test 
+activate ":System"
+":System" --> ADMIN : resquest data (i.e., code, description, collectingMethod)
+deactivate ":System"
+
+ADMIN -> ":System" : types requested data and selects collecting method
+activate ":System"
+":System" --> ADMIN : shows the data and requests a confirmation
+deactivate ":System"
+
+ADMIN -> ":System" : confirms the data
+activate ":System"
+":System" --> ADMIN : informs operation success
+deactivate ":System"
+
+deactivate ADMIN
+@enduml

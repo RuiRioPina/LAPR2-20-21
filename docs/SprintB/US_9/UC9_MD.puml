@@ -1,0 +1,31 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+enum CollectingMethod {
+  -blood
+  -urine
+  -swabTest
+}
+
+class TestType {
+  -int code
+  -String description
+  -CollectingMethod collectingMethod
+}
+
+class Company {
+  -designation
+}
+
+class Test {
+}
+
+class Administrator {
+}
+
+TestType "*" --> "1" CollectingMethod : have 
+Company "1" --> "*" TestType : conducts
+Test "*" --> "1" TestType : is of
+Company "1" --> "*" Test : performs
+TestType "*" --> "1" Administrator : created by
+@enduml
