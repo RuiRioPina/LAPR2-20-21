@@ -93,7 +93,7 @@ receptionist needs the following information : client's citizen card number, Nat
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![US03-MD.svg](docs/SprintB/Us_3/ImagesUsed/US03-MD.svg)
+![US03-MD.svg](docs/SprintB/US_3/ImagesUsed/US03-MD.svg)
 
 ### 2.2. Other Remarks
 
