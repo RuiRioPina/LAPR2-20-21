@@ -28,6 +28,15 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.name = name;
     }
+    public Client(int ccn, int nhsNumber, int birthDate, String email, int tin, int phoneNumber, String name) {
+        this.ccn = ccn;
+        this.nhsNumber = nhsNumber;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.tin = tin;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+    }
 
     public int getCcn() {
         return ccn;
@@ -103,7 +112,7 @@ public class Client {
 
     public String generatePassword() {
         password = "";
-        List<Character> list = Utils.randomCharacter();
+        List<Character> list = Utils.randomCharacter(10);
         Collections.shuffle(list);
         StringBuilder stringBuilder = new StringBuilder();
         for (Character l : list) {
