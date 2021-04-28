@@ -18,7 +18,7 @@
 >	"When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
 
 > "To register a client, the
-receptionist needs the following information : client’s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
+receptionist needs the following information : clientï¿½s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
 
 
 
@@ -34,7 +34,7 @@ receptionist needs the following information : client’s citizen card number, Nat
 > > ** Answer:** The client only receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the client password.
 
  
-> **Question:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?                                          
+> **Question:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7744)
 > > ** Answer:** Please read carefully the acceptance criteria of user story number 3. Please study the "auth" component.
 
