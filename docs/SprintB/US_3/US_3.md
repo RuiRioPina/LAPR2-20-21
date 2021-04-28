@@ -18,7 +18,7 @@
 >	"When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
 
 > "To register a client, the
-receptionist needs the following information : client�s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
+receptionist needs the following information : client's citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
 
 
 
@@ -93,7 +93,7 @@ receptionist needs the following information : client�s citizen card number, N
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](USXX-MD.svg)
+![US03-MD](docs/SprintB/ImagesUsed/US03-MD.svg)
 
 ### 2.2. Other Remarks
 
