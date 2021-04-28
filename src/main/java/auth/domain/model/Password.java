@@ -22,28 +22,8 @@ public class Password {
         if (StringUtils.isBlank(password))
             return false;
         // Check for other invalid criteria here
-        if (password.equals("123456")) {
-            return true;
-        }
-
-        if (password.length() != 7 && password.length() != 10) {
-            return false;
-        }
-        int upper = 0;
-        int digits = 0;
-        for (int i = 0; i < password.length(); i++) {
-
-
-            char ch = password.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
-                upper++;
-            }
-            if (Character.isDigit(ch)) {
-                digits++;
-            }
-        }
-        return upper == 3 && digits == 2;
         //
+        return true;
     }
 
     private String createHash(String password) {
