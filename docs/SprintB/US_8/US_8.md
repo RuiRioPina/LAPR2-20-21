@@ -60,8 +60,9 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 	* Adress;
 	* Phone Number;
 	* TIN number;
-	* Type of tests performed by the lab;
+	
 * Selected data:
+	* Type of tests;
 
 **Output data:**
 
