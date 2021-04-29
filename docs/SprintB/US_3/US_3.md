@@ -44,8 +44,16 @@ receptionist needs the following information : client's citizen card number, Nat
 
 ### 1.3. Acceptance Criteria
 
-* AC1:The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
-* AC2:The password should have ten alphanumeric characters.
+* AC1: The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
+* AC2: The password should have ten alphanumeric characters.
+* AC3: Citizen Card: 16 digit number
+* AC4: NHS: 10 digit number
+* AC5: TIN: 10 digit number
+* AC6: Birth day - in which format: DD/MM/YY
+* AC7: Sex - should only be Male/Female or include more options. Male/Female
+* AC8: Phone number: 11 digit number
+* AC9: The sex is opcional. All other fields are required.
+
 
 ### 1.4. Found out Dependencies
 
