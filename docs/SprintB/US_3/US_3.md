@@ -135,6 +135,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * ClientList
 
 Other software classes (i.e. Pure Fabrication) identified: 
+ 
  * RegisterClientUI  
  * RegisterClientController
 
