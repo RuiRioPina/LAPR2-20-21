@@ -1,4 +1,4 @@
-# US XXX - XXXX XXXX
+# US 8 - Register a new clinical analysis laboratory
 
 ## 1. Requirements Engineering
 
