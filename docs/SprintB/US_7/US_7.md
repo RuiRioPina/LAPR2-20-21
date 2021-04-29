@@ -1,9 +1,9 @@
-US 003 - Register Client
+
 1. Requirements Engineering
 In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.
 
 1.1. User Story Description
-US7:As an administrator, I want to register a new employee.
+US4:As an administrator, I want to register a new employee.
 
 1.2. Customer Specifications and Clarifications
 Insert here any related specification and/or clarification provided by the client together with your interpretation. When possible, provide a link to such specifications/clarifications.
@@ -73,21 +73,22 @@ Some questions sent by other users that have yet to be answered by the client sh
 3.1. Rationale
 The rationale grounds on the SSD interactions and the identified input/output data.
 
-Interaction ID	Question: Which class is responsible for...	Answer	Justification (with patterns)
-Step 1	Register a new Employee		
-Step 2			
-Step 3			
-Step 4			
-Step 5			
-Step 6			
+Interaction ID	                                   |Question: Which class is responsible for...	                           |Answer	 |Justification (with patterns)
+Step 1	Start Employee registration.		        Registering a new employee?                                             Company | Creator:R1/2
+Step 2	Request Data for Employee Registration		n/a
+Step 3	Types Requested data.		                Saving input data?                                                      Employee  IE: The employee object has its own data
+Step 4	Requests Confirmations		                … validating the datalocally (e.g.: mandatory vs.non-mandatory data)?   Employee | IE :knows its own data
+                                                    … validating the data globally (e.g.: duplicated)?                      EmployeeList| IE:knows all the Employee objects
+Step 5	Confirms Data	                            ... saving the created parameter category?                              EmployeeList| IE: contains all known Employee objects
+Step 6	Informs operation (in)success		        ... informing operation success ?                                       RegisterEmployeeUI| IE: Responsible for user interaction
 Systematization
 According to the taken rationale, the conceptual classes promoted to software classes are:
 
-Class1
-Class2
-Class3
-Other software classes (i.e. Pure Fabrication) identified: * xxxxUI
-* xxxxController
+Company
+Employee
+EmployeeList
+Other software classes (i.e. Pure Fabrication) identified: * RegisterEmployeeUI
+* RegisterEmployeeController
 
 3.2. Sequence Diagram (SD)
 In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.
