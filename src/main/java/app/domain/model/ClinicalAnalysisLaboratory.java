@@ -1,5 +1,8 @@
 package app.domain.model;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+
 public class ClinicalAnalysisLaboratory {
 
     private String laboratoryID;
@@ -9,6 +12,11 @@ public class ClinicalAnalysisLaboratory {
     private int tin;
 
     public ClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, int phoneNumber, int tin){
+        checklaboratoryID(laboratoryID);
+        checkname(name);
+        checkadress(adress);
+        checkphoneNumber(phoneNumber);
+        checkTIN(tin);
         this.laboratoryID=laboratoryID;
         this.name=name;
         this.adress=adress;
@@ -57,5 +65,42 @@ public class ClinicalAnalysisLaboratory {
         this.tin = tin;
     }
 
+    private void checkname(String name){
+        if ((name.length()) < 1 || name.length() > 20){
+            throw new IllegalArgumentException("Name must have 1 to 20 chars.");
+        }
+    }
 
+    private void checklaboratoryID(String laboratoryID){
+        if (laboratoryID.length() != 1 ){
+            throw new IllegalArgumentException("LaboratoryID must have 5 chars.");
+        }
+    }
+
+    private void checkadress(String adress){
+        if ((adress.length()) < 1 || adress.length() > 30){
+            throw new IllegalArgumentException("Adress must have 1 to 30 chars.");
+        }
+    }
+
+    private void checkphoneNumber(int phoneNumber){
+        if (digits(phoneNumber) != 11){
+            throw new IllegalArgumentException("Phone number must have 11 digits.");
+        }
+    }
+
+    private void checkTIN(int tin){
+        if (digits(tin) != 10){
+            throw new IllegalArgumentException("TIN number must have 10 digits.");
+        }
+    }
+
+    private int digits(int num){
+        int digits=0;
+        do {
+            num=num/10;
+            digits++;
+        }while (num!=0);
+        return digits;
+    }
 }
