@@ -3,9 +3,8 @@ skinparam classAttributeIconSize 0
 hide methods
 
 class ParameterCategory {
+  -name
   -code
-  -description
-  -nhsId
 }
 
 class Company {
