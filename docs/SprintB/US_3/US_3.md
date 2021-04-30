@@ -44,8 +44,15 @@ receptionist needs the following information : client�s citizen card number, N
 
 ### 1.3. Acceptance Criteria
 
-* AC1:The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
-* AC2:The password should have ten alphanumeric characters.
+* AC1: The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
+* AC2: The password should have ten alphanumeric characters.
+* AC3: Citizen Card: 16 digit number
+* AC4: NHS: 10 digit number
+* AC5: TIN: 10 digit number
+* AC6: Birth day - in which format: DD/MM/YY
+* AC7: Sex - should only be Male/Female or include more options. Male/Female
+* AC8: Phone number: 11 digit number
+* AC9: The sex is opcional. All other fields are required.
 
 ### 1.4. Found out Dependencies
 
@@ -109,24 +116,27 @@ receptionist needs the following information : client�s citizen card number, N
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 1  		 |	... interacting with the actor?						 | RegisterClientUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.          | 
+|   		 |	... coordinating the US?					 | RegisterClientController            | Controller          |
+| 			  		 | ... knowing the user using the system?  | UserSession  | IE: knows who is logged in.  |
+| Step 2  		 |	... requesting the needed data?						 | none            |                              |
+| Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data                             |
+| Step 4  		 |	... validating all data (local validation)(i.e the compliance with the acceptance criteria, the existance of the mandatory data)?						 | Client            | IE: knows about its data       |
+|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | ClientList            | IE: knows all its Clients         |
+| Step 5  		 |	... saving the created task?						 | ClientList            | IE: owns all its Clients                             |
+| Step 6  		 |	... informing operation success?						 | RegisterClientUI            | Has the responsability to interact with the actor                             |    
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * Client
+ * ClientList
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+
+ * RegisterClientUI  
+ * RegisterClientController
 
 ## 3.2. Sequence Diagram (SD)
 
