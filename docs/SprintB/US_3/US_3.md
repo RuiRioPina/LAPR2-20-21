@@ -18,7 +18,7 @@
 >	"When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
 
 > "To register a client, the
-receptionist needs the following information : client's citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
+receptionist needs the following information : client�s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
 
 
 
@@ -44,16 +44,8 @@ receptionist needs the following information : client's citizen card number, Nat
 
 ### 1.3. Acceptance Criteria
 
-* AC1: The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
-* AC2: The password should have ten alphanumeric characters.
-* AC3: Citizen Card: 16 digit number
-* AC4: NHS: 10 digit number
-* AC5: TIN: 10 digit number
-* AC6: Birth day - in which format: DD/MM/YY
-* AC7: Sex - should only be Male/Female or include more options. Male/Female
-* AC8: Phone number: 11 digit number
-* AC9: The sex is opcional. All other fields are required.
-
+* AC1:The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
+* AC2:The password should have ten alphanumeric characters.
 
 ### 1.4. Found out Dependencies
 
@@ -88,7 +80,7 @@ receptionist needs the following information : client's citizen card number, Nat
 
 *Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
 
-![USXX-SSD](USXX-SSD.svg)
+![US03-SSD](US03-SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -101,7 +93,7 @@ receptionist needs the following information : client's citizen card number, Nat
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![US03-MD.svg](docs/SprintB/US_3/ImagesUsed/US03-MD.svg)
+![USXX-MD](USXX-MD.svg)
 
 ### 2.2. Other Remarks
 
@@ -117,27 +109,24 @@ receptionist needs the following information : client's citizen card number, Nat
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |	... interacting with the actor?						 | RegisterClientUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.          | 
-|   		 |	... coordinating the US?					 | RegisterClientController            | Controller          |
-| 			  		 | ... knowing the user using the system?  | UserSession  | IE: knows who is logged in.  |
-| Step 2  		 |	... requesting the needed data?						 | none            |                              |
-| Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data                             |
-| Step 4  		 |	... validating all data (local validation)(i.e the compliance with the acceptance criteria, the existance of the mandatory data)?						 | Client            | IE: knows about its data       |
-|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | ClientList            | IE: knows all its Clients         |
-| Step 5  		 |	... saving the created task?						 | ClientList            | IE: owns all its Clients                             |
-| Step 6  		 |	... informing operation success?						 | RegisterClientUI            | Has the responsability to interact with the actor                             |              
+| Step 1  		 |							 |             |                              |
+| Step 2  		 |							 |             |                              |
+| Step 3  		 |							 |             |                              |
+| Step 4  		 |							 |             |                              |
+| Step 5  		 |							 |             |                              |
+| Step 6  		 |							 |             |                              |              
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Client
- * ClientList
+ * Class1
+ * Class2
+ * Class3
 
 Other software classes (i.e. Pure Fabrication) identified: 
- 
- * RegisterClientUI  
- * RegisterClientController
+ * xxxxUI  
+ * xxxxController
 
 ## 3.2. Sequence Diagram (SD)
 
