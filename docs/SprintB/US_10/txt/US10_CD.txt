@@ -1,0 +1,33 @@
+@startuml
+Class "Company"{
++getParameterStore()
+}
+Class "Parameter"{
+-String code
+-String shortname
+-String description
+-ParameterCategory pc
++Parameter(code, shortname, description, pc)
++checkcoderules(code)
++checkshortnamerules(shortname)
++checkdescriptionrules(description)
++toString()
+}
+Class "ParameterStore"{
++createParameter(code, shortname, description, pc)
++saveParameter(p)
++validateParameter(p)
+}
+
+Class "ParameterController"{
++ParameterController()
+}
+
+Class "ParameterUI"
+
+Company ..|> ParameterUI
+ParameterUI ..|> ParameterController
+ParameterController ..|> ParameterStore
+ParameterController ..|> Parameter
+ParameterStore ..|> Parameter
+@enduml
