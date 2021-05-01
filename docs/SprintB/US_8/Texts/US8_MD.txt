@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+
+
+class Administrator {
+-employeeID
+-organizationRole
+-name
+-address
+-phoneNumber
+-eMail
+-standardOcupationalClassificationCode
+}
+
+class ClinicalAnalysisLaboratory{
+-laboratoryID
+-name
+-adress
+-phoneNumber
+-TIN
+-TypeOfTests
+}
+
+
+Administrator "1" --> "*" ClinicalAnalysisLaboratory: registers
+@enduml
