@@ -71,7 +71,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![US8-SSD](US8_SSD.svg)
+![US8-SSD](ImagesUsed/US8_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -84,7 +84,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](USXX-MD.svg)
+![USXX-MD](ImagesUsed/US8_MD.svg)
 
 ### 2.2. Other Remarks
 
