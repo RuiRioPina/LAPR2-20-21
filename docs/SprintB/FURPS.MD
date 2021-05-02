@@ -2,65 +2,49 @@
 
 ## Functionality
 
-_Specifies functionalities that:_
-
-- _are common across several US/UC;_
-- _are not related to US/UC, namely: Audit, Reporting and Security._
 ____
-* Security 
-
-All operators responsible for entering and editing data in the system must ensure the validity of the information entered. external customers should only have access to their data.    
 
 * Email/SMS
 
-When the test results are completed the customer will be notificated about it.    
+When the test results are completed the customer will be notificated about it.
 
-* Audit
+Registers users shall received an email stating that the registration was completed and it shall contain the password of the user
 
-The data recorded should always be sign by the operator.  
+* Localization
 
-* Licensing
+The application is to be used in England, therefore it should be in English.
 
-The owner Many Labs controls the application.  
+* Reporting
+
+Many Labs is required by the NHS to report all Covid-19 related information, daily. Therefore the application needs to generate reports on the information required by the NHS.
+
+* Security
+
+Clients must only be able to access their Test Results.
+
+Only the Specialist Doctor is allowed to access all client data.
 
 ## Usability 
 
-_Evaluates the user interface. It has several subcategories,
-among them: error prevention; interface aesthetics and design; help and
-documentation; consistency and standards._
 ____
-* The user interface
 
-Usability can be defined with five points:
+* Prevention of errors entered by the user
 
-Efficiency - How fast a user can perform after learning how to use a system.
-	
-Learnability - The user must be able to learn about the system, but faster and more easier than before.
+  * Being always one step ahead of users helps us predict any mistakes they might make.
 
-Memorability - After the user learns about the system, how well can he remember the functions of that same system.
-	
-Errors -The user should make the least mistakes possible.
-	
-Satisfaction - How advantageous it was to use the system.
+  * We are all users, so we must think as one, to prevent the maximum number of possible errors that can occur.
 
-* Error prevention
+  * The weaknesses of the software should be flagged, in order to correct it as soon as possible. One example of this would be the user being confused with one piece of information he needs to input.
 
-To prevent some errors:
+* Aesthetics and design
 
-Adopt best practices for identifying requirements and for OO software analysis and design.
+The client hasn't any clear restriction for this. He stated that he wants to be impressed with it.
 
-Adopt recognized coding standards.
+* Interface consistency
 
-* Interface aesthetics and design
-
-The application graphical interface is to be developed in JavaFX 11.
-
-* Help and documentation
-
-Glossary.
+The interface shall be consistency, in order to reduce the learning curve of the application.
 
 ## Reliability
-_Refers to the integrity, compliance and interoperability of the software. The requirements to be considered are: frequency and severity of failure, possibility of recovery, possibility of prediction, accuracy, average time between failures._
 ____
 * Frequency and severity of failure
 
@@ -110,15 +94,14 @@ Needs an intermediate CPU usage to support the use of JavaFX and some minor calc
 The application should run on all platforms for which there exists a Java Virtual Machine.
 
 ## Supportability
-_The supportability requirements gathers several characteristics, such as:
-testability, adaptability, maintainability, compatibility,
-configurability, installability, scalability and more._ 
 _____
 * Testability
 
 The application must be subjected to various tests to verify its functionality so that, if an error is found, it is resolved.
 
 Unit tests should be implemented, and a coverage report should be generated. 
+
+Mutation tests should also be developed, in order to check if the tests cover every possibilities.
 
 The development team must implement unit tests for all methods except methods that implement Input/Output operations.
 
@@ -152,11 +135,10 @@ All the images/figures produced during the software development process should b
 
 ### Design Constraints
 
-_Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
 ____
 * Programming language
 
-JAVA.
+Java.
 
 * Software process
 
@@ -176,9 +158,6 @@ None.
 
 ### Implementation Constraints
 
-_Specifies or constraints the code or construction of a system such
-such as: mandatory standards/patterns, implementation languages,
-database integrity, resource limits, operating system._
 ____
 * Mandatory standards/patterns
 
@@ -197,23 +176,20 @@ message stating what happened. Furthermore, it should be guaranteed that only th
 					
 * Resource limits
 
-None.
+The machine where the application will be deployed will have 8GB of ram, therefore the application should be designed to not need more than those resources.
 
 * Operating system
 
 Every Unix operating system, as well as Windows.
 
 ### Interface Constraints
-_Specifies or constraints the features inherent to the interaction of the
-system being developed with other external systems._
 ____
 Our application uses the NHS API to communicate externally, to provide information required by them.
 
-The NHS API is used to generated barcodes to identify each sample, what's more it is used on sending to the NHS automatically generated reports,on 
+The NHS API is used to generat barcodes to identify each sample, what's more it is used on sending to the NHS automatically generated reports,on 
 a daily basis to the NHS.
 
 ### Physical Constraints
 
-_Specifies a limitation or physical requirement regarding the hardware used to house the system, as for example: material, shape, size or weight._
 ____
 None.
