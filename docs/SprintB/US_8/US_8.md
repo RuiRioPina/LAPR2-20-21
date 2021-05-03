@@ -84,7 +84,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 ### 2.1. Relevant Domain Model Excerpt 
 *In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
-![USXX-MD](ImagesUsed/US8_MD.svg)
+![US8-MD](ImagesUsed/US8_MD.svg)
 
 ### 2.2. Other Remarks
 
@@ -121,9 +121,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
-
-![USXX-SD](USXX-SD.svg)
+![US8-SD](ImagesUsed/US8_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
