@@ -31,10 +31,9 @@ class TestType {
 }
 
 class ParameterCategory {
+  -name
   -code
-  -description
-  -nshId
-  +ParameterCategory(code, description, nshId)
+  +ParameterCategory(name, code)
 }
 
 class CreateTestTypeUI {

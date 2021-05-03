@@ -28,9 +28,8 @@ class Administrator {
 }
 
 class ParameterCategory {
+  -name
   -code
-  -description
-  -nshId
 }
 Company "1" -- "*" TestType : conducts >
 Test "*" -- "1" TestType : is of >
