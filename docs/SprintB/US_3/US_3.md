@@ -2,8 +2,6 @@
 
 ## 1. Requirements Engineering
 
-*In this section, it is suggested to capture the requirement description and specifications as provided by the client as well as any further clarification on it. It is also suggested to capture the requirements acceptance criteria and existing dependencies to other requirements. At last, identfy the involved input and output data and depicted an Actor-System interaction in order to fulfill the requirement.*
-
 
 ### 1.1. User Story Description
 
@@ -15,11 +13,10 @@
 
 **From the specifications document:**
 
->	"When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
+>	When a new client arrives, there is the need to register them in the application.
 
-> "To register a client, the
-receptionist needs the following information : client�s citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
-
+> To make this registration, the
+receptionist needs the following information about the client : his citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification Number (TIN), phone number, e-mail and name.
 
 
 **From the client clarifications:**
@@ -60,8 +57,6 @@ receptionist needs the following information : client�s citizen card number, N
 
 ### 1.5 Input and Output Data
 
-*Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
-
 **Input Data:**
 
 * Typed data:
@@ -92,21 +87,18 @@ receptionist needs the following information : client�s citizen card number, N
 
 ### 1.7 Other Relevant Remarks
 
-*Use this section to capture other relevant information that is related with this US such as (i) special requirements ; (ii) data and/or technology variations; (iii) how often this US is held.* 
+* This US will be held quite frequently.
 
 
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
 ![US03-MD](US03-MD.svg)
 
 ### 2.2. Other Remarks
 
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
-
+none.
 
 ## 3. Design - User Story Realization 
 
@@ -140,13 +132,9 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
-
 ![US03-SD](US03-SD.svg)
 
 ## 3.3. Class Diagram (CD)
-
-*In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
 
 ![US03-CD](US03-CD.svg)
 
