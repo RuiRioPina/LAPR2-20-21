@@ -1,0 +1,53 @@
+@startuml
+autonumber
+actor "Administrator" as ADMIN
+
+participant ":RegisterClinicalAnalysisLaboratoryUI" as UI
+participant ":RegisterClinicalAnalysisLaboratoryController" as CTRL
+participant ":Company" as CMP
+participant "cal:ClinicalAnalysisLaboratory" as CAL
+
+activate ADMIN
+ADMIN -> UI : asks to register new clinical analysis laboratory
+activate UI
+UI --> ADMIN : requests data (Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+deactivate UI
+
+ADMIN -> UI : types requested data
+activate UI
+UI -> CTRL: registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+activate CTRL
+CTRL -> CMP : cal = registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+activate CMP
+deactivate CMP
+CMP --> CAL** : register(cal)
+CTRL -> CMP : validateClinicalAnalysisLaboratory(cal)
+activate CMP
+deactivate CMP
+deactivate CTRL
+
+UI --> ADMIN : shows the data and request a confirmation
+deactivate UI
+
+ADMIN -> UI : confirms the data
+activate UI
+
+UI -> CTRL : saveClinicalAnalysisLaboratory()
+activate CTRL
+
+CTRL -> CMP : saveClinicalAnalysisLaboratory(cal)
+activate CMP
+CMP -> CMP : validateClinicalAnalysisLaboratory(cal)
+activate CMP
+CMP--
+CMP -> CMP : addClinicalAnalysisLaboratory(cal)
+activate CMP
+CMP--
+deactivate CMP
+deactivate CTRL
+
+UI --> ADMIN : informs operation succecs
+deactivate UI
+
+deactivate ADMIN
+@enduml
