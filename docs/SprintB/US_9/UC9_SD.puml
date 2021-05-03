@@ -5,42 +5,58 @@ actor "Administrator" as ADMIN
 participant ":CreateTestTypeUI" as UI
 participant ":CreateTestTypeController" as CTRL
 participant ":Company" as CMP
-participant "tt:Test Type" as TET
+participant "ttStore:\nTestTypeStore" as ttStore
+participant "pcStore:\nParameterCategoryStore" as pcStore
+participant "tt:\nTest Type" as TET
+participant "pc:\nParameterCategory" as pc
+participant "lp:\nList<ParameterCategory>" as lp
 
 activate ADMIN
 ADMIN -> UI : starts new type of test
 activate UI
-UI --> ADMIN : request data(i.e., designation, collectingMethod)
+UI --> ADMIN : request data(i.e., code, description, collectingMethod)
 deactivate UI
 
 ADMIN -> UI : types requested data
 activate UI
-UI -> CTRL: createTestType(designation, collectingMethod)
+UI -> CTRL : lp=getParameterCategory()
 activate CTRL
-CTRL -> CMP : tt = createTestType(designation, collectingMethod)
+CTRL -> pcStore : lp=getParameterCategory()
+activate pcStore
+deactivate pcStore
+deactivate CTRL
+loop until no more categories are selected
+	UI --> ADMIN : shows parameter categories list and ask to select one
+	ADMIN -> UI : selects a parameter category
+end
+UI -> CTRL: createTestType(code, description, collectingMethod, parameterCategory)
+activate CTRL
+CTRL -> CMP : createTestType(code, description, collectingMethod, parameterCategory)
 activate CMP
-CMP --> TET** : create(designation, collectingMethod)
-deactivate CMP
-CTRL -> CMP : validateTestType(tt)
-activate CMP
+CMP -> ttStore : tt = createTestType(code, description, collectingMethod, parameterCategory)
+activate ttStore
+ttStore -> TET** : create(code, description, collectingMethod, parameterCategory)
+ttStore -> ttStore : validateTestType(tt)
+CTRL -->  UI : result
+deactivate ttStore
 deactivate CMP
 deactivate CTRL
-UI --> ADMIN : shows the data and request a confirmation
+UI --> ADMIN : shows all the data and request a confirmation
 deactivate UI
 
 ADMIN -> UI : confirms the data
 activate UI
 UI -> CTRL : saveTestType()
 activate CTRL
-CTRL -> CMP : saveTestType(tt)
+CTRL -> CMP : saveTestType()
 activate CMP
-CMP -> CMP++ : validateTestType(tt)
-CMP--
-CMP -> CMP++ : addTestType(tt)
-CMP--
+CMP -> ttStore : saveTestType(tt)
+activate ttStore
+ttStore -> ttStore : validateTestType(tt)
+ttStore -> ttStore : addTestType(tt)
+UI --> ADMIN : informs operation succecs
 deactivate CMP
 deactivate CTRL
-UI --> ADMIN : informs operation succecs
 deactivate UI
 
 deactivate ADMIN
