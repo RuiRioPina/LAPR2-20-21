@@ -3,45 +3,43 @@ skinparam classAttributeIconSize 0
 
 class Company
 {
-  -designation
-  +getTestTypeStore()
+  -String designation
   +getParameterCategoryStore()
+  +getTestTypeStore()
 }
 
 class TestTypeStore {
-  +createTestType(code, description, collectingMethod, parameterCategory)
+  +createTestType(code, description, collectingMethod, parameterCategories)
   +validateTestType(tt)
   +saveTestType(tt)
-  +getTestType(tt)
+  -addTestType(tt)
 }
 
 class ParameterCategoryStore {
-  +createParameterCategory(code, designation, nshId)
-  +validateParameterCategory(pc)
-  +saveParameterCategory(pc)
-  +getParameterCategory(pc)
+  +getParameterCategories()
+  +getParameterCategoryByCode(parameterCategoryCode)
 }
 
 class TestType {
-  -code
-  -description
-  -collectingMethod
-  -parameterCategory
-  +TestType(code, description, collectingMethod, parameterCategory)
+  -String code
+  -String description
+  -String collectingMethod
+  -List<ParameterCategory> parameterCategories
+  +TestType(code, description, collectingMethod, parameterCategories)
 }
 
 class ParameterCategory {
-  -name
-  -code
-  +ParameterCategory(name, code)
+  -String code
+  -String name
+  +ParameterCategory(code, name)
 }
 
 class CreateTestTypeUI {
 }
 
 class CreateTestTypeController {
-  +getTestType()
-  +createTestType(code, description, collectingMethod, parameterCategory)
+  +getParameterCategories()
+  +createTestType(code, description, collectingMethod, parameterCategoryCodes)
   +saveTestType()
 }
 

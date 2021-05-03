@@ -5,13 +5,13 @@ actor "Administrator" as ADMIN
 activate ADMIN
 ADMIN-> ":System" : starts new type of test 
 activate ":System"
-":System" --> ADMIN : resquest data (i.e., designition, decription, collectingMethod)
+":System" --> ADMIN : resquest data (i.e., code, description, collectingMethod)
 deactivate ":System"
 
 ADMIN -> ":System" : types requested data
 activate ":System"
 loop until no more categories are selected
-	":System" --> ADMIN : shows the parameter category list and to select one
+	":System" --> ADMIN : shows parameter category list and ask to select one
 	deactivate ":System"
 
 	ADMIN -> ":System" : selects the parameter category

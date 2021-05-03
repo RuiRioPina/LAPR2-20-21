@@ -5,11 +5,11 @@ actor "Administrator" as ADMIN
 participant ":CreateTestTypeUI" as UI
 participant ":CreateTestTypeController" as CTRL
 participant ":Company" as CMP
-participant "ttStore:\nTestTypeStore" as ttStore
 participant "pcStore:\nParameterCategoryStore" as pcStore
+participant "ttStore:\nTestTypeStore" as ttStore
 participant "tt:\nTest Type" as TET
 participant "pc:\nParameterCategory" as pc
-participant "lp:\nList<ParameterCategory>" as lp
+participant "lc:\nList<ParameterCategory>" as lc
 
 activate ADMIN
 ADMIN -> UI : starts new type of test
@@ -19,24 +19,38 @@ deactivate UI
 
 ADMIN -> UI : types requested data
 activate UI
-UI -> CTRL : lp=getParameterCategory()
+UI -> CTRL : lc=getParameterCategories()
 activate CTRL
-CTRL -> pcStore : lp=getParameterCategory()
+CTRL -> CMP : cs=getParameterCategoryStore()
+activate CMP	
+deactivate CMP
+CTRL -> pcStore : lc=cs.getParameterCategories()
 activate pcStore
 deactivate pcStore
 deactivate CTRL
 loop until no more categories are selected
 	UI --> ADMIN : shows parameter categories list and ask to select one
+	deactivate UI
 	ADMIN -> UI : selects a parameter category
+	activate UI
 end
-UI -> CTRL: createTestType(code, description, collectingMethod, parameterCategory)
+UI -> CTRL: createTestType(code, description, collectingMethod, parameterCategoryCodes)
 activate CTRL
-CTRL -> CMP : createTestType(code, description, collectingMethod, parameterCategory)
+loop until get all parameter categories by code
+        CTRL -> pcStore : pc=cs.getParameterCategoryByCode(parameterCategoryCode)
+        activate pcStore
+        deactivate pcStore
+end
+CTRL -> CMP : ts=getTestTypeStore()
 activate CMP
-CMP -> ttStore : tt = createTestType(code, description, collectingMethod, parameterCategory)
+deactivate CMP
+CTRL -> ttStore: tt=ts.createTestType(code, description, collectingMethod, parameterCategories)
 activate ttStore
-ttStore -> TET** : create(code, description, collectingMethod, parameterCategory)
-ttStore -> ttStore : validateTestType(tt)
+ttStore -> TET** : create(code, description, collectingMethod, parameterCategories)
+deactivate ttStore
+CTRL -> ttStore : validateTestType(tt)
+activate ttStore
+deactivate ttStore
 CTRL -->  UI : result
 deactivate ttStore
 deactivate CMP
@@ -48,14 +62,12 @@ ADMIN -> UI : confirms the data
 activate UI
 UI -> CTRL : saveTestType()
 activate CTRL
-CTRL -> CMP : saveTestType()
-activate CMP
-CMP -> ttStore : saveTestType(tt)
+CTRL -> ttStore : ts.saveTestType(tt)
 activate ttStore
 ttStore -> ttStore : validateTestType(tt)
 ttStore -> ttStore : addTestType(tt)
-UI --> ADMIN : informs operation succecs
-deactivate CMP
+UI --> ADMIN : informs operation success
+deactivate ttStore
 deactivate CTRL
 deactivate UI
 
