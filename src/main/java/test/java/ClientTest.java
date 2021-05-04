@@ -1,7 +1,6 @@
 package test.java;
 
 import app.domain.model.Client;
-import auth.domain.model.Password;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,24 +9,15 @@ public class ClientTest {
 
     @Test
     public void generatePassword() {
-        Client client = new Client(3123, 31231, 2302, "M",
-                "yau@sa.com", 1234, 123, "Ruo");
-
+        //Arrange
+        Client client = new Client(9999999999L,99999999999L,10,10,10,"M","ruiriopina02@mail.com",99999999999L,999999999999L,"Rui Pina");
+        //Act
         String actual = client.generatePassword();
-        String expected=client.getPassword();
-        Password pass = new Password(client.getPassword());
-        assertEquals(expected, actual);
-
-        assertTrue(pass.checkPassword(actual));
-
-        assertFalse(pass.checkPassword("3123"));
-        assertFalse(pass.checkPassword("31FEGakwqe"));
-        assertFalse(pass.checkPassword("31235akwqe"));
+        int expected=10;
+        //Assert
+        assertEquals(expected, actual.length(),0.01);
+        assertFalse( actual.length()!=10);
 
     }
 
-    @Test
-    public void addClientRole() {
-        //TODO
-    }
 }
