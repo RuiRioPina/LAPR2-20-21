@@ -1,7 +1,9 @@
 package app.controller;
 
 import app.domain.model.Company;
+import app.domain.model.ParameterCategory;
 import app.domain.shared.Constants;
+import app.domain.store.ParameterCategoryStore;
 import auth.AuthFacade;
 import auth.UserSession;
 
@@ -78,6 +80,11 @@ public class App {
 
         this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456",Constants.ROLE_ADMIN);
         this.authFacade.addUserWithRole("jorge","yau@yau.pt","1312512",Constants.ROLE_CLIENT);
+        
+        ParameterCategoryStore cs = this.company.getParameterCategoryStore();
+        cs.saveParameterCategory(new ParameterCategory("X21", "Hemogram"));
+        cs.saveParameterCategory(new ParameterCategory("X22", "BCC"));
+        cs.saveParameterCategory(new ParameterCategory("X23", "WCC"));
     }
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
