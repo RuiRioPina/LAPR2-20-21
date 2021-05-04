@@ -9,11 +9,9 @@
 
 ### 1.2. Customer Specifications and Clarifications 
 
-*Insert here any related specification and/or clarification provided by the client together with **your interpretation**. When possible, provide a link to such specifications/clarifications.*
-
 **From the specifications document:**
 
->	When a new client arrives, there is the need to register them in the application.
+>	For new clients that arrive at the  that has not been registered yet, there is the need to register them in the application.
 
 > To make this registration, the
 receptionist needs the following information about the client : his citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification Number (TIN), phone number, e-mail and name.
@@ -22,18 +20,49 @@ receptionist needs the following information about the client : his citizen card
 **From the client clarifications:**
 
 
-> **Question:** What parameter (asked by the receptionist) should the system use to create the password of the new client?  
+> **Question1:** What parameter (asked by the receptionist) should the system use to create the password of the new client?  
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7462)
 > > **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
 
-> **Question:** After being registered by the receptionist, should the client receive some kind of confirmation e-mail in order to finish his registration?
+> **Question2:** After being registered by the receptionist, should the client receive some kind of confirmation e-mail in order to finish his registration?
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7736)
 > > ** Answer:** The client only receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the client password.
 
- 
-> **Question:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?
+> **Question3:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7744)
 > > ** Answer:** Please read carefully the acceptance criteria of user story number 3. Please study the "auth" component.
+
+> **Question4:**: Do clients have to change their password after registration? (first login)
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7849)
+> > ** Answer:** No.
+
+> **Question5:**: Can they change their password whenever they want?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7849)
+> > ** Answer:** No. For now, there are no user story or use case to update the password.
+
+> **Question6:**: What are exactly the optional attributes when creating a client? In a previous post you've stated that it was only the phone number, and in another that it was only the sex.
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7906)
+> > ** Answer:** The sex is optional. All other fields are required.
+
+> **Question7:**: Does the email have to be validated as a valid address or do we just accept whatever input the receptionist writes?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7906)
+> > ** Answer:** You should use a regular expression to validate the e-mail address.
+
+> **Question8:**: Also, does the phone number has to be validated as a valid phone number? And can it be registered with a prefix (+44) or just the number?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7906)
+> > ** Answer:** This lab only operates in England, there is no need to use the prefix.
+
+> **Question9:**: Is there any restrictions to the client age?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7918)
+> > ** Answer:** A client should not have more than 150 years of age. Although there are important developments in the pursuit of eternal youth, for now this value is ok.
+
+> **Question10:**: What should be the maximum length of the String with the name of the Client?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7945)
+> > ** Answer:** A string with no more than 35 characters.
+
+> **Question11:**: Does the client need to tell his age to the recepcionist. Im asking because before you didnt especified that that would be a parameter?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7954)
+> > ** Answer:** No, only needs to tell the birth day (from a previous post). The application must validate and should not accept clients who have more than 150 years of age.
 
 
 
@@ -60,8 +89,8 @@ receptionist needs the following information about the client : his citizen card
 **Input Data:**
 
 * Typed data:
-	* Ccn, 
-	* NHS number, 
+	* ccn, 
+	* NHS Number, 
 	* Birth Date
 	* Sex
 	* Tax Identification number(TIF)
@@ -114,7 +143,7 @@ none.
 | Step 2  		 |	... requesting the needed data?						 | none            |                              |
 | Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data                             |
 | Step 4  		 |	... validating all data (local validation)(i.e the compliance with the acceptance criteria, the existance of the mandatory data)?						 | Client            | IE: knows about its data       |
-|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | ClientList            | IE: knows all its Clients         |
+|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | Company           | IE: knows all its validation criteria         |
 | Step 5  		 |	... saving the created task?						 | ClientList            | IE: owns all its Clients                             |
 | Step 6  		 |	... informing operation success?						 | RegisterClientUI            | Has the responsability to interact with the actor                             |    
 
@@ -124,6 +153,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
  * Client
  * ClientList
+ * Company
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
@@ -143,12 +173,21 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+**Class Client:**
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+**Test 1:** Check if the password contains exactly 10 characters.
+
+	@Test
+    public void generatePassword() {
+        //Arrange
+        Client client = new Client(9999999999L,99999999999L,10,10,10,"M","ruiriopina02@mail.com",99999999999L,999999999999L,"Rui Pina");
+        //Act
+        String actual = client.generatePassword();
+        int expected=10;
+        //Assert
+        assertEquals(expected, actual.length(),0.01);
+        assertFalse( actual.length()!=10);
+    }
 
 *It is also recommended to organize this content by subsections.* 
 
