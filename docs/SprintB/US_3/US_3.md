@@ -286,11 +286,31 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
 
+## Class Parameter
+	
+	
+	
+		public String toString() {
+     		return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his tin is %d, he is %s, and his email is %s",
+        		this.name, this.ccn, this.nhsNumber, this.tin, this.sex, this.email);
+   		 }
+    
+  
+  
+
+  *(working...)*
+   
+
+
 *It is also recommended to organize this content by subsections.* 
 
 # 6. Integration and Demo 
 
 *In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+
+  It is linked with the Auth package since it makes the Client an active User of the system
+
+  For now it isn't represented but when there's a Receptionist UI it will have to be guaranteed that it is the Receptionist that is managing the System.
 
 
 # 7. Observations
@@ -299,5 +319,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 
 
+This User Story will have to be adapted to be fitted into a GUI.
 
 
