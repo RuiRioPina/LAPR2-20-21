@@ -45,6 +45,10 @@ public class TestTypeStore {
         if (!code.matches("^[a-zA-Z0-9]*$")) {
         	throw new IllegalArgumentException("Code must be an alphanumeric.");
         }
+        
+        if (this.getTestTypeByCode(code) != null) {
+        	throw new IllegalArgumentException("Code already exist.");
+        }
     }
 	
 	private void checkDescriptionRules(String description) throws IllegalArgumentException {
@@ -63,5 +67,14 @@ public class TestTypeStore {
 		if (parameterCategories.isEmpty()) {
 			throw new IllegalArgumentException("Parameter categories cannot be empty.");
 		}
+	}
+	
+	public TestType getTestTypeByCode(String testTypeCode) {
+		for(TestType tt : this.testTypes) {
+			if(tt.getCode().equals(testTypeCode)) {
+				return tt;
+			}
+		}
+		return null;
 	}
 }

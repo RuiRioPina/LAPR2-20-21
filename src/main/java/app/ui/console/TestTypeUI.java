@@ -41,7 +41,7 @@ public class TestTypeUI implements Runnable {
                 list.remove(option);
             }
         }
-        while (option != -1 );
+        while (option != -1 && !list.isEmpty());
         
         TestType tt;
         try {
