@@ -125,9 +125,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.3. Class Diagram (CD)
 
-*In this section, it is suggested to present an UML static view representing the main domain related software classes that are involved in fulfilling the requirement as well as and their relations, attributes and methods.*
-
-![USXX-CD](USXX-CD.svg)
+![US8-CD](ImagesUsed/US8_CD.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
