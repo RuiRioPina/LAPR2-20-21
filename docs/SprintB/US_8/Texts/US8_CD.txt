@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class RegisterClinicalAnalysisLaboratoryUI {
+}
+
+class RegisterClinicalAnalysisLaboratoryController {
+  +registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+  +saveClinicalAnalysisLaboratory()
+}
+
+class Company
+{
+  +registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+  +validateClinicalAnalysisLaboratory(cal)
+  +saveClinicalAnalysisLaboratory(cal)
+  -addClinicalAnalysisLaboratory(cal)
+}
+
+class ClinicalAnalysisLaboratory {
+  -laboratoryID
+  -name
+  -adress
+  -phoneNumber
+  -tin
+  -typeOfTest
+  +ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, typeOfTest)
+}
+
+RegisterClinicalAnalysisLaboratoryUI ..> RegisterClinicalAnalysisLaboratoryController
+RegisterClinicalAnalysisLaboratoryController ..> Company
+RegisterClinicalAnalysisLaboratoryController ..> ClinicalAnalysisLaboratory
+Company "1" --> "*" ClinicalAnalysisLaboratory : adopts
+@enduml

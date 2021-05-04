@@ -1,10 +1,12 @@
 @startuml
 skinparam classAttributeIconSize 0
 hide methods
+left to right direction
 
 class TestType {
-  -String designation
-  -String collectingMethod
+  -code
+  -description
+  -collectingMethod
 }
 
 class Company {
@@ -15,10 +17,23 @@ class Test {
 }
 
 class Administrator {
+  -employeeID
+  -organizationRole
+  -name
+  -address
+  -phoneNumber
+  -eMail
+  -standardOcupationalClassificationCode
 }
 
-Company "1" --> "*" TestType : conducts
-Test "*" --> "1" TestType : is of
-Company "1" --> "*" Test : performs
-TestType "*" --> "1" Administrator : created by
+class ParameterCategory {
+  -name
+  -code
+}
+Company "1" -- "*" TestType : conducts >
+Company "1" -- "*" ParameterCategory : defines >
+Test "*" -- "1" TestType : is of >
+Company "1" -- "*" Test : performs >
+TestType "*" -- "1" Administrator : created by >
+TestType "*" -- "1..*" ParameterCategory : have >
 @enduml

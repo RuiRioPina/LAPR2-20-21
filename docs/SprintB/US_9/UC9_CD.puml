@@ -1,0 +1,53 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Company
+{
+  -String designation
+  +getParameterCategoryStore()
+  +getTestTypeStore()
+}
+
+class TestTypeStore {
+  +createTestType(code, description, collectingMethod, parameterCategories)
+  +validateTestType(tt)
+  +saveTestType(tt)
+  -addTestType(tt)
+}
+
+class ParameterCategoryStore {
+  +getParameterCategories()
+  +getParameterCategoryByCode(parameterCategoryCode)
+}
+
+class TestType {
+  -String code
+  -String description
+  -String collectingMethod
+  -List<ParameterCategory> parameterCategories
+  +TestType(code, description, collectingMethod, parameterCategories)
+}
+
+class ParameterCategory {
+  -String code
+  -String name
+  +ParameterCategory(code, name)
+}
+
+class CreateTestTypeUI {
+}
+
+class CreateTestTypeController {
+  +getParameterCategories()
+  +createTestType(code, description, collectingMethod, parameterCategoryCodes)
+  +saveTestType()
+}
+
+CreateTestTypeUI ..> CreateTestTypeController
+CreateTestTypeController ..> Company
+Company "1" --> "1" TestTypeStore : uses
+Company "1" --> "1" ParameterCategoryStore : uses
+TestTypeStore "1" --> "*" TestType : conducts
+ParameterCategoryStore "1" --> "1" ParameterCategory : adopts
+TestType "*" --> "1..*" ParameterCategory : have
+@enduml
