@@ -4,16 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 //FROM ESOFT SLIDES
 public class ParameterCategory {
 
+	private String name;
     private String code;
-    private String description;
-    private String nhsId;
 
-    public ParameterCategory(String code, String description, String nhsId) {
+    public ParameterCategory(String name, String code) {
         checkCodeRules(code);
-        checkDescriptionRules(description);
+        this.name = name;
         this.code = code;
-        this.description = description;
-        this.nhsId = nhsId;
     }
 
     private void checkCodeRules(String code) {
@@ -22,9 +19,4 @@ public class ParameterCategory {
         if ( (code.length() < 4) || (code.length() > 8))
             throw new IllegalArgumentException("Code must have 4 to 8 chars.");
     }
-
-    private void checkDescriptionRules(String description){
-        //
-    }
-
 }
