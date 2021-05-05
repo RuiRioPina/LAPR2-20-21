@@ -7,15 +7,17 @@ public class Utils {
     private static int countDigits;
     private static int countUppercase;
     private static int countLowerCase;
-    public static long digits(long num){
-        long digits=0;
+
+    public static long digits(long num) {
+        long digits = 0;
         do {
-            num=num/10;
+            num = num / 10;
             digits++;
-        }while (num!=0);
+        } while (num != 0);
         return digits;
     }
-    public static boolean isLeapYear(int year){
+
+    public static boolean isLeapYear(int year) {
         if (year % 4 != 0) {
             return false;
         } else if (year % 400 == 0) {
@@ -25,6 +27,47 @@ public class Utils {
         } else {
             return true;
         }
+    }
+
+    public static boolean dateValidate(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+        if (yearOfBirth < 0 || yearOfBirth > 99) {
+            return false;
+        }
+        if (monthOfBirth <= 0 || monthOfBirth > 12) {
+            return false;
+        }
+        if (dayOfBirth <= 0) {
+            return false;
+        }
+        switch (monthOfBirth) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                if (dayOfBirth > 31) {
+                    return false;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (dayOfBirth > 30) {
+                    return false;
+                }
+                break;
+            case 2:
+                if (dayOfBirth > 29) {
+                    return false;
+                } else if (dayOfBirth == 29 && !isLeapYear(yearOfBirth)) {
+                    return false;
+                }
+                break;
+        }
+        return true;
     }
 
     public static List<Character> randomCharacter(int maxNumberOfDigits, int maxNumberOfUppercaseLetters, int maxNumberOfLowercaseLetters) {
