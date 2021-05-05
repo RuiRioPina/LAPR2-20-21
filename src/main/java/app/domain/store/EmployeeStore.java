@@ -6,7 +6,10 @@ import app.domain.model.Role;
 import java.util.ArrayList;
 
 public class EmployeeStore {
-    private ArrayList<Employee> lEmployee = new ArrayList<>();
+    private ArrayList<Employee> lEmployee ;
+    public EmployeeStore(){
+        this.lEmployee=new ArrayList<>();
+    }
 public Employee create(String name, String adress, long SOC, long phoneNumber, String email, String userName,int nEmployee, Role role){
     return new Employee(name,adress,SOC,phoneNumber,email,userName,nEmployee,role);
 }

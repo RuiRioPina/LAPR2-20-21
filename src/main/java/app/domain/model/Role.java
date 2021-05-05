@@ -38,4 +38,8 @@ public class Role {
         Role role= (Role) o;
         return Objects.equals(roleID,role.roleID) && Objects.equals(roleDescription,role.roleDescription);
     }
+    @Override
+    public String toString(){
+        return String.format(roleID+". "+roleDescription);
+    }
 }

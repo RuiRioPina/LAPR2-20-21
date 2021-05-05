@@ -6,11 +6,25 @@ import app.domain.model.Role;
 import java.util.ArrayList;
 
 public class RoleStore {
-    private ArrayList<Role> lRole= new ArrayList<>();
+    private ArrayList<Role> lRole;
+    public RoleStore(){
+        this.lRole= new ArrayList<Role>();
+    }
 
     public  Role create (String roleDescription,String roleID){
         return new Role(roleDescription,roleID);
     }
+
+    public ArrayList<Role> getlRole() {
+        ArrayList<Role> lRole= new ArrayList<>();
+        lRole.addAll(this.lRole);
+        return lRole;
+    }
+
+    public void setlRole(ArrayList<Role> lRole) {
+        this.lRole = lRole;
+    }
+
     public boolean add(Role r){
         if (r!=null){
             if (!exists(r)){

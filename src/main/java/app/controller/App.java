@@ -4,6 +4,7 @@ import app.domain.model.Company;
 import app.domain.model.ParameterCategory;
 import app.domain.shared.Constants;
 import app.domain.store.ParameterCategoryStore;
+import app.domain.store.RoleStore;
 import auth.AuthFacade;
 import auth.UserSession;
 
@@ -90,6 +91,12 @@ public class App {
         cs.saveParameterCategory(new ParameterCategory("X21", "Hemogram"));
         cs.saveParameterCategory(new ParameterCategory("X22", "BCC"));
         cs.saveParameterCategory(new ParameterCategory("X23", "WCC"));
+        RoleStore lRole = this.company.getRoleStore();
+        lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST));
+        lRole.add(lRole.create("Performs Chemical Analysis and records results",Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST));
+        lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level",Constants.ROLE_MEDICAL_LAB_TECHNICIAN));
+        lRole.add(lRole.create("Coordinates the activity on the laboratory",Constants.ROLE_LABORATORY_COORDINATOR));
+        lRole.add(lRole.create("Responsible for interacting with the client and their tests",Constants.ROLE_SPECIALIST_DOCTOR));
     }
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
