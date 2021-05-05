@@ -1,10 +1,8 @@
 package app.domain.model;
 
-import app.ui.console.utils.Utils;
 import auth.domain.model.Email;
 import auth.domain.model.Password;
 import auth.domain.model.User;
-import auth.domain.model.UserRole;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,19 +10,19 @@ import java.util.Objects;
 
 public class Employee {
 
-    private User employee;
+    private String userName;
+    private String password;
+    private String email;
     private String name;
     private String ID;
     private String adress;
-    private long SOC;
+    private String SOC;
     private long phoneNumber;
     private Role role;
     private long specialistDoctorIndexNumber;
 
 
-    public void setSOC(long SOC) {
-        this.SOC = SOC;
-    }
+
 
     public Role getRole() {
         return role;
@@ -33,20 +31,23 @@ public class Employee {
     public void setRole(Role role) {
         this.role = role;
     }
-    public Employee(String name, String adress, long SOC, long phoneNumber, String email, String userName, int nEmployees,Role role){
+    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role){
 
         this.name=name;
         this.adress=adress;
         this.SOC = SOC;
         this.phoneNumber=phoneNumber;
-        employee= new User(new Email(email),new Password(generateEmployeePassword()),userName);
+        this.userName=userName;
+        this.email=email;
+        this.password=generateEmployeePassword();
+        User employee= new User(new Email(email),new Password(password),userName);
         this.ID=generateID(nEmployees);
         this.role= role;
 
     }
     public String generateEmployeePassword() {
         String password = "";
-        List<Character> list = app.domain.shared.Utils.randomCharacter(7);
+        List<Character> list = app.domain.shared.Utils.randomCharacter(3);
         Collections.shuffle(list);
         StringBuilder stringBuilder = new StringBuilder();
         for (Character l : list) {
@@ -63,11 +64,11 @@ public class Employee {
         this.ID = ID;
     }
 
-    public long getSOC() {
+    public String getSOC() {
         return SOC;
     }
 
-    public void setSOC(int SOC) {
+    public void setSOC(String SOC) {
         this.SOC = SOC;
     }
 
@@ -77,7 +78,12 @@ public class Employee {
 
     public void setPhoneNumber(long phoneNumber) { this.phoneNumber = phoneNumber; }
 
+    public void validateSOC(){
+        if (SOC.length()!=4 && SOC.matches("[0-9]+")){
+            throw new IllegalArgumentException("SOC must have 4 digits and only numbers");
+        }
 
+    }
 
 
 
@@ -89,13 +95,7 @@ public class Employee {
         this.name = name;
     }
 
-    public User getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(User employee) {
-        this.employee = employee;
-    }
 
     public String getAdress() {
         return adress;
@@ -130,7 +130,40 @@ return true;
      }
         return id+ nEmployees;
 }
-@Override
+
+    public long getSpecialistDoctorIndexNumber() {
+        return specialistDoctorIndexNumber;
+    }
+
+    public void setSpecialistDoctorIndexNumber(long specialistDoctorIndexNumber) {
+        this.specialistDoctorIndexNumber = specialistDoctorIndexNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
 public boolean equals(Object o){
     if (this == o) {
         return true;
@@ -142,7 +175,7 @@ public boolean equals(Object o){
         return false;
     }
     Employee e = (Employee) o;
-    return Objects.equals(name,e.name) && Objects.equals(ID,e.ID) && Objects.equals(adress,e.adress) && Objects.equals(SOC,e.SOC) && Objects.equals(phoneNumber,e.phoneNumber)&& Objects.equals(employee,e.employee)&& Objects.equals(role,e.role);
+    return Objects.equals(name,e.name) && Objects.equals(ID,e.ID) && Objects.equals(adress,e.adress) && Objects.equals(SOC,e.SOC) && Objects.equals(phoneNumber,e.phoneNumber)&& Objects.equals(userName,e.userName)&& Objects.equals(role,e.role)&&Objects.equals(email,e.email)&&Objects.equals(password,e.password);
 
 }
 
@@ -150,7 +183,7 @@ public boolean equals(Object o){
 
 @Override
     public String toString(){
-        return String.format("This employee is named "+ name+". Their ID is "+ ID +". Their adress is "+ adress+". Their phone number is "+ phoneNumber+".");
+        return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is"+this.password+". Their role is "+ role.getRoleID()+".");
 }
 
 

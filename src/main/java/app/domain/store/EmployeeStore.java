@@ -10,11 +10,11 @@ public class EmployeeStore {
     public EmployeeStore(){
         this.lEmployee=new ArrayList<>();
     }
-public Employee create(String name, String adress, long SOC, long phoneNumber, String email, String userName,int nEmployee, Role role){
+public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployee, Role role){
     return new Employee(name,adress,SOC,phoneNumber,email,userName,nEmployee,role);
 }
 
-    public boolean add(Employee e){
+    public boolean addEmployee(Employee e){
         if (e!=null){
             if (!exists(e)){
                 return this.lEmployee.add(e);
@@ -23,7 +23,7 @@ public Employee create(String name, String adress, long SOC, long phoneNumber, S
         return false;
 
     }
-    public boolean remove(Employee e)
+    public boolean removeEmployee(Employee e)
     {
         if (e != null)
             return this.lEmployee.remove(e);
@@ -34,5 +34,10 @@ public Employee create(String name, String adress, long SOC, long phoneNumber, S
     }
     public boolean exists(Employee e){
     return this.lEmployee.contains(e);
+    }
+    public void validateEmployee(Employee e){
+        if (exists(e)){
+            throw new IllegalArgumentException("The employee you are trying to add is already registered.");
+        }
     }
 }
