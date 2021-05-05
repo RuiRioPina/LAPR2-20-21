@@ -9,11 +9,9 @@
 
 ### 1.2. Customer Specifications and Clarifications 
 
-*Insert here any related specification and/or clarification provided by the client together with **your interpretation**. When possible, provide a link to such specifications/clarifications.*
-
 **From the specifications document:**
 
->	When a new client arrives, there is the need to register them in the application.
+>	For new clients that arrive at the  that has not been registered yet, there is the need to register them in the application.
 
 > To make this registration, the
 receptionist needs the following information about the client : his citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification Number (TIN), phone number, e-mail and name.
@@ -22,18 +20,49 @@ receptionist needs the following information about the client : his citizen card
 **From the client clarifications:**
 
 
-> **Question:** What parameter (asked by the receptionist) should the system use to create the password of the new client?  
+> **Question1:** What parameter (asked by the receptionist) should the system use to create the password of the new client?  
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7462)
 > > **Answer:** The password should be randomly generated. It should have ten alphanumeric characters.
 
-> **Question:** After being registered by the receptionist, should the client receive some kind of confirmation e-mail in order to finish his registration?
+> **Question2:** After being registered by the receptionist, should the client receive some kind of confirmation e-mail in order to finish his registration?
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7736)
 > > ** Answer:** The client only receives an e-mail informing that the registration was successful and that he can start to use the system. The e-mail includes the client password.
 
- 
-> **Question:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?
+> **Question3:** When it comes to the registry of a client, the number for log in should be sequential (first client number 1, etc) or should it be one of the numbers he had to give in order to register (Citizenship Number, NHSid, TIF, etc) in order to be easier to later client memorize?
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7744)
 > > ** Answer:** Please read carefully the acceptance criteria of user story number 3. Please study the "auth" component.
+
+> **Question4:**: Do clients have to change their password after registration? (first login)
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7849)
+> > ** Answer:** No.
+
+> **Question5:**: Can they change their password whenever they want?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7849)
+> > ** Answer:** No. For now, there are no user story or use case to update the password.
+
+> **Question6:**: What are exactly the optional attributes when creating a client? In a previous post you've stated that it was only the phone number, and in another that it was only the sex.
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7906)
+> > ** Answer:** The sex is optional. All other fields are required.
+
+> **Question7:**: Does the email have to be validated as a valid address or do we just accept whatever input the receptionist writes?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7906)
+> > ** Answer:** You should use a regular expression to validate the e-mail address.
+
+> **Question8:**: Also, does the phone number has to be validated as a valid phone number? And can it be registered with a prefix (+44) or just the number?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7906)
+> > ** Answer:** This lab only operates in England, there is no need to use the prefix.
+
+> **Question9:**: Is there any restrictions to the client age?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7918)
+> > ** Answer:** A client should not have more than 150 years of age. Although there are important developments in the pursuit of eternal youth, for now this value is ok.
+
+> **Question10:**: What should be the maximum length of the String with the name of the Client?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7945)
+> > ** Answer:** A string with no more than 35 characters.
+
+> **Question11:**: Does the client need to tell his age to the recepcionist. Im asking because before you didnt especified that that would be a parameter?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7954)
+> > ** Answer:** No, only needs to tell the birth day (from a previous post). The application must validate and should not accept clients who have more than 150 years of age.
 
 
 
@@ -44,12 +73,14 @@ receptionist needs the following information about the client : his citizen card
 * AC1: The client must become a system user. The "auth" component available on the repository must be reused (without modifications).
 * AC2: The password should have ten alphanumeric characters.
 * AC3: Citizen Card: 16 digit number
-* AC4: NHS: 10 digit number
+* AC4: NHS number: 10 digit number
 * AC5: TIN: 10 digit number
 * AC6: Birth day - in which format: DD/MM/YY
-* AC7: Sex - should only be Male/Female or include more options. Male/Female
+* AC7: Sex - Male/Female.
 * AC8: Phone number: 11 digit number
-* AC9: The sex is opcional. All other fields are required.
+* AC9: The sex is optional. All other fields are required.
+* AC10: The name has at maximum 35 characters.
+* AC11: The client can't be 150 years old.
 
 ### 1.4. Found out Dependencies
 
@@ -60,8 +91,8 @@ receptionist needs the following information about the client : his citizen card
 **Input Data:**
 
 * Typed data:
-	* Ccn, 
-	* NHS number, 
+	* ccn, 
+	* NHS Number, 
 	* Birth Date
 	* Sex
 	* Tax Identification number(TIF)
@@ -114,7 +145,7 @@ none.
 | Step 2  		 |	... requesting the needed data?						 | none            |                              |
 | Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data                             |
 | Step 4  		 |	... validating all data (local validation)(i.e the compliance with the acceptance criteria, the existance of the mandatory data)?						 | Client            | IE: knows about its data       |
-|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | ClientList            | IE: knows all its Clients         |
+|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | Company           | IE: knows all its validation criteria         |
 | Step 5  		 |	... saving the created task?						 | ClientList            | IE: owns all its Clients                             |
 | Step 6  		 |	... informing operation success?						 | RegisterClientUI            | Has the responsability to interact with the actor                             |    
 
@@ -124,6 +155,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
 
  * Client
  * ClientList
+ * Company
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
@@ -143,12 +175,110 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 **_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+**Class Client:**
 
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+     **Test 1:** Check that the Client has been become a system user. AC-1
+
+    @Test(expected = true)
+    public void checkClientAuthenticated(){
+    AuthFacade authFacade = new AuthFacade();
+        Client client = new Client(987654321092,1234567890,10-02-02,"Male","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        authFacade.existsUser("jorgesousa@gmail.com");
+    }	
+    
+    
+    **Test 2:** Check that the password created has always 10 characters. AC-2
+
+    @Test(expected = true)
+    public void checkPasswordRules(){
+        Client client = new Client(ccn,1234567890,10-02-02,"Male","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa")
+        client.generatePassword().length()==10;
+    }	
+	
+    
+    **Test 3:** Check that it is not possible to create a CCN that has less/more characters than 16. AC-3
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkCcnRules(){
+        long ccn = 987654321092;
+        Client client = new Client(ccn,1234567890,10-02-02,"Male","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        
+    }	
+    
+    **Test 4:** Check that it is not possible to create a  NHS number that has less/more characters than 10. AC-4
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkNhsNumberRules(){
+        long nhsNumber = 35123;
+        Client client = new Client(123456789012345678,nhsNumber,10-02-02,"Male","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        
+    }
+    
+    **Test 5:** Check that it is not possible to create a Tax Identification Number that less/more characters than 10. AC-5
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkTifRules(){
+        long tin = 5783219;
+        Client client = new Client(123456789012345678,1234567890,"10-02-02","Male","jorgesousa@gmail.com",tin,99876543941,"Jorge Sousa");
+        
+    }	
+    
+    **Test 6:** Check that it is not possible to create birth date that is not in the order DD-MM-YY. AC-6
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkBirthDateRules(){
+        String birthDate = "13-02";
+        Client client = new Client(123456789012345678,1234567890,birthDate,"Male","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        
+    }
+    
+    **Test 7:** Check that it is not possible to create a sex that is not male nor female. AC-7
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkSexRules(){
+        String sex = "Table"
+        
+        Client client = new Client(123456789012345678,1234567890,"10-02-02",sex,"jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        
+    }
+    
+    **Test 8:** Check that it is impossible to create a phone Number with more/less than 10 integers. AC-8
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkPhoneNumberRules(){
+        long phoneNumber = 1302;
+        Client client = new Client(123456789012345678,1234567890,"10-02-02","Male","jorgesousa@gmail.com",7658490321,phoneNumber,"Jorge Sousa");
+        
+    }
+    **Test 9:** Check that it is possible to create a Client without the sex. AC-9
+
+     @Test(expected = true)
+    public void checkWithoutSex(){
+        Client client = new Client(123456789012345678,1234567890,"07-02-12","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        
+    }
+    
+    **Test 10:** Check that it is impossible to create a name with more tham 35 characters. AC-9
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkNameRules(){
+        String name = "Hippopotomonstrosesquippedaliophobia";
+        Client client = new Client(123456789012345678,1234567890,"07-02-12","jorgesousa@gmail.com",7658490321,99876543941,name);
+        
+    }
+    
+    **Test 11:** Check that it is impossible to create a Client more than 150 years. AC-11
+
+     @Test(expected = IllegalArgumentException.class)
+    public void checkAgeRules(){
+        String birthDate = "04-05-1820"  // Awaiting Client's response on the DD/MM/YY format since a person with more 150 years can be confused with the most recent century.
+        
+        Client client = new Client(123456789012345678,1234567890,birthDate,"jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa);
+        
+    }
+
+
+	
 
 *It is also recommended to organize this content by subsections.* 
 
@@ -156,11 +286,31 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
 
+## Class Parameter
+	
+	
+	
+		public String toString() {
+     		return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his tin is %d, he is %s, and his email is %s",
+        		this.name, this.ccn, this.nhsNumber, this.tin, this.sex, this.email);
+   		 }
+    
+  
+  
+
+  *(working...)*
+   
+
+
 *It is also recommended to organize this content by subsections.* 
 
 # 6. Integration and Demo 
 
 *In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+
+  It is linked with the Auth package since it makes the Client an active User of the system
+
+  For now it isn't represented but when there's a Receptionist UI it will have to be guaranteed that it is the Receptionist that is managing the System.
 
 
 # 7. Observations
@@ -169,5 +319,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 
 
+This User Story will have to be adapted to be fitted into a GUI.
 
 

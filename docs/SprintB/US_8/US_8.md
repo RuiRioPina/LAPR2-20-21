@@ -16,11 +16,27 @@ daily to the chemical laboratory where the chemical analy se s are performed and
 
 **From the client clarifications**
 
-* **Question:** Are the test types typed in or selected from those that the program has? 
-	* **Answer:** The test types are selected from a list.
+* **Question1:** Of all the information that we have about the CLA, what would be the bare minimum to be able to successfully register a new CLA?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7536)
+	* **Answer:** All information is required.
 
-* **Question:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
-	* **Answer:** Each Clinical Analysis Laboratory is characterized by the following attributes:
+* **Question2:** Should information regarding the execution or not of covid-19 tests in the CLA be recorded or is it preferable that it is by default that it does not?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7536)
+	* **Answer2:** From the Project Description we get: "All Many Labs clinical analysis laboratories perform clinical blood tests, and a subset of these laboratories also performs Covid-19 tests".
+From Sprint B requirements we get: "US8: As an administrator, I want to register a new clinical analysis laboratory stating which kind of test(s) it operates."
+
+* **Question3:** Is there a maximum limit of types of tests a clinical analysis laboratory can operate?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7553)
+	* **Answer3:** No.
+
+* **Question4:** We know through the specifications document that "All Many Labs clinical analysis laboratories perform clinical blood tests".
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7553)
+My question therefore is: When creating a new Clinical Analysis Laboratory, should the system automatically record that it operates that type of test or should the person who is creating it select it manually while selecting other types of tests? Or other option?
+	* **Answer4:** The administrator should select, manually, all the types of tests to be performed by the Clinical Analysis Laboratory.
+
+* **Question5:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7636)
+	* **Answer5:** Each Clinical Analysis Laboratory is characterized by the following attributes:
 		* Laboratory ID: five alphanumeric characters;
 		* Name: A string with no more than 20 characters;
 		* Address: A string with no more than 30 characters;
@@ -29,12 +45,64 @@ daily to the chemical laboratory where the chemical analy se s are performed and
 		* Type of tests performed by the lab.
 	 All information is required.
 
-* **Question:** Is there a maximum limit of types of tests a clinical analysis laboratory can operate?
-	* **Answer:** No.
+* **Question6:** Does Chemical Laboratory have the same type/format of the attributes of Clinical Analysis Laboratory?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7636)
+	* **Answer6:** For the Chemical Laboratory there is no need to specify the type of tests to be performed. Other than this, the attributes and their type/format are the ones presented in my previous answer.
 
-* **Question:** We know through the specifications document that "All Many Labs clinical analysis laboratories perform clinical blood tests".
-My question therefore is: When creating a new Clinical Analysis Laboratory, should the system automatically record that it operates that type of test or should the person who is creating it select it manually while selecting other types of tests? Or other option?
-	* **Answer:** The administrator should select, manually, all the types of tests to be performed by the Clinical Analysis Laboratory.
+* **Question7:** Are the test types typed in or selected from those that the program has? 
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7707)
+	* **Answer7:** The test types are selected from a list.
+
+* **Question8:** The creation of new parameters, parameter categories, test types, the client data introduced during the client registration and basically all the data that is registered in the application has to remain after the closing of the application (saved on the disk)?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7707)
+	* **Answer8:** For now there is no need to save the data. In the following sprints we will introduce new requirements that will clarify this point.
+
+* **Question9:** What information is associated with a clinical Analysis laboratory?(e.g. designation, localization...)What rules are applicable to such data?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7749)
+	* **Answer9:** I already answered this question. It is not a good approach to ask the same question two times.
+
+		"Each Clinical Analysis Laboratory is characterized by the following attributes:
+
+		* Laboratory ID;
+		* Name;
+		* Address;
+		* Phone Number;
+		* TIN number.
+
+		The Chemical Laboratory is characterized by the following attributes:
+
+		* Name;
+		* Address;
+		* Phone Number;
+		* TIN number.
+
+		Many Labs company has only one chemical lab."
+
+* **Question10:** When registering a new laboratory does the administrator selects or write the type of tests performed by a clinical Analysis laboratory?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7749)
+	* **Answer10:** Yes. In Sprint B requirements we get: "US8: As an administrator, I want to register a new clinical analysis laboratory stating which kind of test(s) it operates".
+
+* **Question11:** According to US8 "As an administrator, I want to register a new clinical analysis laboratory stating which kind of test(s) it operates" its supposed to create a new clinical analysis laboratory. However, in several previous posts awnsers you mentioned the Chemical Laboratory. Are both of labs connected to this sprint?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7859)
+	* **Answer11:** Please read carefully the Project Description and Sprint B requirements.
+
+* **Question12:** When the administrator is registering a Clinical Analysis Laboratory and typing the information does he type the laboratory ID or is it generated by the system afterwards?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7862)
+	* **Answer12:** The Laboratory ID is introduced manually.
+
+* **Question13:** When starting a new clinical analysis laboratory registration, should the entered requested data be showed to the user for confirmation purposes?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7873)
+	* **Answer13:** It is always a good practice to validate and ask for confirmation.
+
+* **Question14:** Are two Clinical Analysis Laboratories with the same:
+	a) Laboratory ID OR
+	b) name OR
+	c) address OR
+	d) phone Number OR
+	e) TIN number
+allowed to exist?
+[Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7911)
+	* **Answer14:** Only the name of two CAL can be same.
 
 
 ### 1.3. Acceptance Criteria
@@ -100,7 +168,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
+| Step 1: asks to register new clinical analysis laboratory 		 |							 |             |                              |
 | Step 2  		 |							 |             |                              |
 | Step 3  		 |							 |             |                              |
 | Step 4  		 |							 |             |                              |
@@ -111,13 +179,12 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
+ * ClinicalAnalysisLaboratory
+
 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * RegisterClinicalAnalysisLaboratoryUI  
+ * RegisterClinicalAnalysisLaboratoryController
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -136,10 +203,16 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
+		Exemplo instance = new Exemplo(null, null, null, null, null, null);
 	}
 
-*It is also recommended to organize this content by subsections.* 
+**Test 2:** Check that it is not possible to create an instance of the Example class with the same attributes as other instance (exept name).
+
+	@Test(expected = IllegalArgumentException.class)
+		public void ensureSameAttributesIsNotAllowed() {
+		Exemplo instance1 = new Exemplo(laboratoryID, name, adress, phoneNumber, tin, typeOfTest)
+		Exemplo instance2 = new Exemplo(laboratoryID, name, adress, phoneNumber, tin, typeOfTest)
+ 		instance1==instance2
 
 # 5. Construction (Implementation)
 
