@@ -254,7 +254,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
      @Test(expected = true)
     public void checkWithoutSex(){
-        Client client = new Client(123456789012345678,1234567890,birthDate,"jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
+        Client client = new Client(123456789012345678,1234567890,"07-02-12","jorgesousa@gmail.com",7658490321,99876543941,"Jorge Sousa");
         
     }
     
@@ -263,7 +263,7 @@ Other software classes (i.e. Pure Fabrication) identified:
      @Test(expected = IllegalArgumentException.class)
     public void checkNameRules(){
         String name = "Hippopotomonstrosesquippedaliophobia";
-        Client client = new Client(123456789012345678,1234567890,birthDate,"jorgesousa@gmail.com",7658490321,99876543941,name);
+        Client client = new Client(123456789012345678,1234567890,"07-02-12","jorgesousa@gmail.com",7658490321,99876543941,name);
         
     }
     
