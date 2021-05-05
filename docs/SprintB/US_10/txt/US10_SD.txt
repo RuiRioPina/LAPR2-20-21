@@ -5,49 +5,71 @@ actor "Administrator" as ADMIN
 participant ":ParameterUI" as UI
 participant ":ParameterController" as CTRL
 participant ":Company" as CMP
-participant "store :ParameterStore" as STORE
-participant "p:Parameter" as TET
+participant "pcStore:\nParameterCategoryStore" as pcStore
+participant "pStore:\nParameterStore" as ttStore
+participant "p:\nParameter" as TET
+participant "pc:\nParameterCategory" as pc
+participant "lc:\nList<ParameterCategory>" as lc
 
 activate ADMIN
-ADMIN -> UI : specifies a new parameter and categorize it
+ADMIN -> UI : specifies a new Parameter
 activate UI
-UI --> ADMIN : request data (code, shortname, description) and parametercategory
+UI --> ADMIN : request data(code, shortname, description)
 deactivate UI
 
-ADMIN -> UI : types/selects requested data
+ADMIN -> UI : types requested data
 activate UI
-UI -> CTRL: createParameter(code, shortname, description)
+UI -> CTRL : lc=getParameterCategories()
 activate CTRL
-CTRL -> CMP : store = getParameterStore()
+CTRL -> CMP : cs=getParameterCategoryStore()
+activate CMP	
 deactivate CMP
-CTRL -> STORE : P = createParameter (code, shortname, description)
-deactivate 
- STORE --> TET** : create(code,shortname,description)
-deactivate CMP
-CTRL -> STORE : validateParameter(p)
-activate CMP
-deactivate CMP
+CTRL -> pcStore : lc=cs.getParameterCategories()
+activate pcStore
+deactivate pcStore
 deactivate CTRL
 
-UI --> ADMIN : shows the data and request a confirmation
+
+UI --> ADMIN : shows parameter categories list and ask to select one
+deactivate UI
+ADMIN -> UI : selects a parameter category
+activate UI
+
+UI -> CTRL: createParameter(code, shortname, description, category)
+activate CTRL
+
+CTRL -> pcStore : pc=cs.getParameterCategoryByCode(parameterCategoryCode)
+activate pcStore
+deactivate pcStore
+
+CTRL -> CMP : ps=getParameterStore()
+activate CMP
+deactivate CMP
+CTRL -> ttStore: p=ps.createParameter(code, shortname, description, category)
+activate ttStore
+ttStore -> TET** : create(code, shortname, description, category)
+deactivate ttStore
+CTRL -> ttStore : validateParameter(p)
+activate ttStore
+deactivate ttStore
+CTRL -->  UI : result
+deactivate ttStore
+deactivate CMP
+deactivate CTRL
+UI --> ADMIN : shows all the data and request a confirmation
 deactivate UI
 
 ADMIN -> UI : confirms the data
 activate UI
-
 UI -> CTRL : saveParameter()
 activate CTRL
-
-CTRL -> STORE : saveParameter(p)
-activate CMP
-
-STORE -> STORE++ : validateParameter(p)
-CMP--
-STORE -> STORE++ : save.addParameter(p)
-CMP--
-deactivate CMP
+CTRL -> ttStore : ps.saveParameter(p)
+activate ttStore
+ttStore -> ttStore : validateParameter(p)
+ttStore -> ttStore : addParameter(p)
+UI --> ADMIN : informs operation success
+deactivate ttStore
 deactivate CTRL
-UI --> ADMIN : informs operation succecs
 deactivate UI
 
 deactivate ADMIN

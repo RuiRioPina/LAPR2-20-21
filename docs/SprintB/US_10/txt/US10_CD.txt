@@ -1,33 +1,53 @@
 @startuml
-Class "Company"{
-+getParameterStore()
-}
-Class "Parameter"{
--String code
--String shortname
--String description
--ParameterCategory pc
-+Parameter(code, shortname, description, pc)
-+checkcoderules(code)
-+checkshortnamerules(shortname)
-+checkdescriptionrules(description)
-+toString()
-}
-Class "ParameterStore"{
-+createParameter(code, shortname, description, pc)
-+saveParameter(p)
-+validateParameter(p)
+skinparam classAttributeIconSize 0
+
+class Company
+{
+  -String designation
+  +getParameterCategoryStore()
+  +getParameterStore()
 }
 
-Class "ParameterController"{
-+ParameterController()
+class ParameterStore {
+  +createParameter(code, shortname, description, category)
+  +validateParameter(p)
+  +saveParameter(p)
+  -addTestType(p)
 }
 
-Class "ParameterUI"
+class ParameterCategoryStore {
+  +getParameterCategories()
+  +getParameterCategoryByCode(category)
+}
 
-Company ..|> ParameterUI
-ParameterUI ..|> ParameterController
-ParameterController ..|> ParameterStore
-ParameterController ..|> Parameter
-ParameterStore ..|> Parameter
+class Parameter {
+  -String code
+  -String shortname
+  -String description
+  -List<ParameterCategory> category
+  +Parameter(code, shortname, description, category)
+}
+
+class ParameterCategory {
+  -String code
+  -String name
+  +ParameterCategory(code, name)
+}
+
+class ParameterUI {
+}
+
+class ParameterController {
+  +createParameter(code, shortname, description, category)
+  +saveParameter()
+  +getParameterCategories()
+}
+
+ParameterUI ..> ParameterController
+ParameterController ..> Company
+Company "1" --> "1" ParameterStore
+Company "1" --> "1" ParameterCategoryStore
+ParameterStore "1" --> "*" Parameter 
+ParameterCategoryStore "1" --> "1" ParameterCategory
+Parameter "*" --> "1..*" ParameterCategory
 @enduml
