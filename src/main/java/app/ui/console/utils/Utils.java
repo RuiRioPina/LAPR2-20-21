@@ -14,11 +14,6 @@ import java.util.logging.Logger;
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Utils {
-
-    private static int countDigits;
-    private static int countUppercase;
-    private static int countLowerCase;
-
     static public String readLineFromConsole(String prompt) {
         try {
             System.out.println("\n" + prompt);
@@ -133,71 +128,5 @@ public class Utils {
         } while (value < 0 || value > list.size());
 
         return value - 1;
-    }
-
-    public static List<Character> randomCharacter(int maxNumberOfDigits, int maxNumberOfUppercaseLetters, int maxNumberOfLowercaseLetters) {
-        int randomNumber;
-
-        char numberCasted;
-        List<Character> chars = new ArrayList<>();
-        do {
-            randomNumber = (int) (Math.random() * 62);
-            int number = randomNumber + 48;
-            numberCasted = (char) number;
-            if (randomNumber <= 9) {
-                chars.add(numberCasted);
-                countDigits++;
-            }
-        } while (countDigits != maxNumberOfDigits || randomNumber > 9);
-
-        do {
-            randomNumber = (int) (Math.random() * 62);
-            int uppercase = randomNumber + 55;
-
-            if (randomNumber > 9 && randomNumber <= 35) {
-                numberCasted = (char) uppercase;
-                chars.add(numberCasted);
-                countUppercase++;
-            }
-        } while (countUppercase != maxNumberOfUppercaseLetters || randomNumber <= 9 || randomNumber > 35);
-        do {
-            randomNumber = (int) (Math.random() * 62);
-
-            int lowercase = randomNumber + 61;
-            if (randomNumber >= 36 && randomNumber <= 61) {
-                numberCasted = (char) lowercase;
-                chars.add(numberCasted);
-                countLowerCase++;
-            }
-        } while (countLowerCase != maxNumberOfLowercaseLetters || randomNumber < 36 || randomNumber > 61);
-        return chars;
-    }
-
-    public static List<Character> randomCharacter(int numberOfDigits) {
-        int randomNumber, count = 0;
-
-        char numberCasted;
-        List<Character> chars = new ArrayList<>();
-        do {
-            randomNumber = (int) (Math.random() * 62);
-
-            if (randomNumber <= 9) {
-                int number = randomNumber + 48;
-                numberCasted = (char) number;
-                chars.add(numberCasted);
-                count++;
-            } else if (randomNumber <= 35) {
-                int uppercase = randomNumber + 55;
-                numberCasted = (char) uppercase;
-                chars.add(numberCasted);
-                count++;
-            } else {
-                int lowercase = randomNumber + 61;
-                numberCasted = (char) lowercase;
-                chars.add(numberCasted);
-                count++;
-            }
-        } while (count != numberOfDigits);
-        return chars;
     }
 }
