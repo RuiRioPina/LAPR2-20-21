@@ -1,83 +1,85 @@
 package app.domain.model;
 
+import app.ui.console.utils.Utils;
 import auth.domain.model.Email;
 import auth.domain.model.Password;
 import auth.domain.model.User;
 import auth.domain.model.UserRole;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
 public class Employee {
 
     private User employee;
     private String name;
-    private int tin;
-    private static final int TINSIZE=9;
+    private String ID;
     private String adress;
-    private int dayOfBirth;
-    private int monthOfBirth;
-    private int yearOfBirth;
-    private int sex;
-    private int phoneNumber;
-    public Employee(String name, int tin, String adress, int dayOfBirth,int monthOfBirth, int yearOfBirth, int sex, int phoneNumber,Email email,Password password,String userName,String roleID,String roleDescription){
+    private long SOC;
+    private long phoneNumber;
+    private Role role;
+    private long specialistDoctorIndexNumber;
+
+
+    public void setSOC(long SOC) {
+        this.SOC = SOC;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    public Employee(String name, String adress, long SOC, long phoneNumber, String email, String userName, int nEmployees,Role role){
+
         this.name=name;
         this.adress=adress;
-        this.tin=tin;
-        this.dayOfBirth=dayOfBirth;
-        this.monthOfBirth=monthOfBirth;
-        this.yearOfBirth=yearOfBirth;
-        this.sex=sex;
+        this.SOC = SOC;
         this.phoneNumber=phoneNumber;
-        employee= new User(email,password,userName);
-        employee.addRole(new UserRole(roleID,roleDescription));
+        employee= new User(new Email(email),new Password(generateEmployeePassword()),userName);
+        this.ID=generateID(nEmployees);
+        this.role= role;
 
     }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
+    public String generateEmployeePassword() {
+        String password = "";
+        List<Character> list = app.domain.shared.Utils.randomCharacter(7);
+        Collections.shuffle(list);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Character l : list) {
+            password = String.valueOf(stringBuilder.append(l));
+        }
+        return password;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public String getID() {
+        return ID;
     }
 
-    public int getTim() {
-        return tin;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public void setTim(int tim) {
-        this.tin = tim;
+    public long getSOC() {
+        return SOC;
     }
 
-    public int getSex() {
-        return sex;
+    public void setSOC(int SOC) {
+        this.SOC = SOC;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public void setPhoneNumber(long phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public int getMonthOfBirth() {
-        return monthOfBirth;
-    }
 
-    public void setMonthOfBirth(int monthOfBirth) {
-        this.monthOfBirth = monthOfBirth;
-    }
 
-    public int getDayOfBirth() {
-        return dayOfBirth;
-    }
 
-    public void setDayOfBirth(int dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
-    }
 
     public String getName() {
         return name;
@@ -103,16 +105,7 @@ public class Employee {
         this.adress = adress;
     }
 
-    public String sexToString(){
-        if (sex==0){
-            return "other";
-        }else if (sex==1){
-            return "male";
-        }else if (sex==2){
-            return "female";
-        }else return "invalidSex";
 
-    }
     private int digits(int num){
         int digits=0;
         do {
@@ -121,67 +114,44 @@ public class Employee {
         }while (num!=0);
         return digits;
     }
-    private boolean isLeapYear(int year){
-        if (year % 4 != 0) {
-            return false;
-        } else if (year % 400 == 0) {
-            return true;
-        } else if (year % 100 == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    public boolean validateEmployee(){
-        if (digits(tin)!=TINSIZE){
-            return false;
-        }
-        if (yearOfBirth<=0){
-            return false;
-        }
-        if (monthOfBirth<=0 || monthOfBirth >12){
-            return false;
-        }
-        if (dayOfBirth<=0){
-            return false;
-        }
-        switch (monthOfBirth){
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                if (dayOfBirth>31){
-                    return false;
-                }
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                if (dayOfBirth>30){
-                    return false;
-                }
-                break;
-            case 2:
-                if (dayOfBirth>29){
-                    return false;
-                }else if (dayOfBirth==29 && !isLeapYear(yearOfBirth)){
-                    return false;
-                }
-                break;
-        }
-        if (sex<0||sex>2){
-            return false;
-        }
 
-
+    public boolean validateEmployee() {
 return true;
-
     }
 
+
+ private String generateID(int nEmployees){
+        String id="";
+        String name = this.name;
+        name.trim();
+        String[] nameWords = name.split(" ");
+     for (String nameWord : nameWords) {
+         id = id + nameWord.charAt(0);
+     }
+        return id+ nEmployees;
+}
+@Override
+public boolean equals(Object o){
+    if (this == o) {
+        return true;
+    }
+    if (o==null){
+        return false;
+    }
+    if (getClass() !=o.getClass()){
+        return false;
+    }
+    Employee e = (Employee) o;
+    return Objects.equals(name,e.name) && Objects.equals(ID,e.ID) && Objects.equals(adress,e.adress) && Objects.equals(SOC,e.SOC) && Objects.equals(phoneNumber,e.phoneNumber)&& Objects.equals(employee,e.employee)&& Objects.equals(role,e.role);
+
+}
+
+
+
+@Override
+    public String toString(){
+        return String.format("This employee is named "+ name+". Their ID is "+ ID +". Their adress is "+ adress+". Their phone number is "+ phoneNumber+".");
+}
 
 
 }

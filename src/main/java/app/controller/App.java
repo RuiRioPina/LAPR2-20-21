@@ -77,9 +77,14 @@ public class App {
     {
         this.authFacade.addUserRole(Constants.ROLE_ADMIN,Constants.ROLE_ADMIN);
         this.authFacade.addUserRole(Constants.ROLE_CLIENT,Constants.ROLE_CLIENT);
+        this.authFacade.addUserRole(Constants.ROLE_RECEPTIONIST,Constants.ROLE_RECEPTIONIST);
+        this.authFacade.addUserRole(Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST);
+        this.authFacade.addUserRole(Constants.ROLE_MEDICAL_LAB_TECHNICIAN,Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
+        this.authFacade.addUserRole(Constants.ROLE_LABORATORY_COORDINATOR,Constants.ROLE_LABORATORY_COORDINATOR);
+        this.authFacade.addUserRole(Constants.ROLE_SPECIALIST_DOCTOR,Constants.ROLE_SPECIALIST_DOCTOR);
 
         this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456",Constants.ROLE_ADMIN);
-        this.authFacade.addUserWithRole("jorge","yau@yau.pt","1312512",Constants.ROLE_CLIENT);
+
         
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
         cs.saveParameterCategory(new ParameterCategory("X21", "Hemogram"));
