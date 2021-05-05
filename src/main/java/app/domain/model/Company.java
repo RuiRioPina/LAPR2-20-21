@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.domain.store.ParameterStore;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,6 +17,7 @@ public class Company {
     private AuthFacade authFacade;
     private ParameterCategoryStore parameterCategoryStore;
     private TestTypeStore testTypeStore;
+    private ParameterStore parameterStore;
 
     public Company(String designation)
     {
@@ -26,6 +28,7 @@ public class Company {
         this.authFacade = new AuthFacade();
         this.parameterCategoryStore = new ParameterCategoryStore();
         this.testTypeStore = new TestTypeStore();
+        this.parameterStore = new ParameterStore();
     }
 
     public String getDesignation() {
@@ -43,4 +46,7 @@ public class Company {
 	public TestTypeStore getTestTypeStore() {
 		return this.testTypeStore;
 	}
+	public ParameterStore getParameterStore(){
+        return this.parameterStore;
+    }
 }
