@@ -95,11 +95,11 @@ My question therefore is: When creating a new Clinical Analysis Laboratory, shou
 	* **Answer13:** It is always a good practice to validate and ask for confirmation.
 
 * **Question14:** Are two Clinical Analysis Laboratories with the same:
-	a) Laboratory ID OR
-	b) name OR
-	c) address OR
-	d) phone Number OR
-	e) TIN number
+	* Laboratory ID OR
+	* name OR
+	* address OR
+	* phone Number OR
+	* TIN number
 allowed to exist?
 [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7911)
 	* **Answer14:** Only the name of two CAL can be same.
@@ -112,7 +112,7 @@ allowed to exist?
 * AC3: Address should be a string with no more than 30 characters;
 * AC4: Phone Number should be a 11 digit number;
 * AC5: TIN number should be a 10 digit number;
-* AC6: Should refer the type of tests performed by the lab;
+* AC6: Two Clinical Analysis Laboratories can't have the same data (except the name).
 
 ### 1.4. Found out Dependencies
 
@@ -150,7 +150,6 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 ## 2. OO Analysis
 
 ### 2.1. Relevant Domain Model Excerpt 
-*In this section, it is suggested to present an excerpt of the domain model that is seen as relevant to fulfill this requirement.* 
 
 ![US8-MD](ImagesUsed/US8_MD.svg)
 
@@ -168,7 +167,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1: asks to register new clinical analysis laboratory 		 |							 |             |                              |
+| Step 1		 |							 |             |                              |
 | Step 2  		 |							 |             |                              |
 | Step 3  		 |							 |             |                              |
 | Step 4  		 |							 |             |                              |
@@ -202,17 +201,20 @@ Other software classes (i.e. Pure Fabrication) identified:
 **Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null, null, null, null, null);
+	public void ensureNullIsNotAllowed() {
+		ClinicalAnalysisLaboratory cal = new ClinicalAnalysisLaboratory(null, null, null, null, null, null);
 	}
 
-**Test 2:** Check that it is not possible to create an instance of the Example class with the same attributes as other instance (exept name).
+**Test 2:** Check that laboratoryID should have five alphanumeric characters AC-1
 
 	@Test(expected = IllegalArgumentException.class)
-		public void ensureSameAttributesIsNotAllowed() {
-		Exemplo instance1 = new Exemplo(laboratoryID, name, adress, phoneNumber, tin, typeOfTest)
-		Exemplo instance2 = new Exemplo(laboratoryID, name, adress, phoneNumber, tin, typeOfTest)
- 		instance1==instance2
+	public void checkLaboratoryIDRules() {
+		String laboratoryID = a23w
+		ClinicalAnalysisLaboratory cal = new ClinicalAnalysisLaboratory(laboratoryID, "name", "adress", 12345678901, 1234567890)
+	}
+
+		
+
 
 # 5. Construction (Implementation)
 
