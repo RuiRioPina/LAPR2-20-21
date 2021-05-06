@@ -7,7 +7,7 @@ import app.domain.shared.Utils;
 import app.domain.store.EmployeeStore;
 import app.domain.store.RoleStore;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class RegisterEmployeeController {
@@ -19,7 +19,7 @@ public class RegisterEmployeeController {
         this.company = App.getInstance().getCompany();
     }
 
-    public ArrayList<Role> getlRole() {
+    public List<Role> getlRole() {
         RoleStore lRole = this.company.getRoleStore();
         return lRole.getlRole();
     }

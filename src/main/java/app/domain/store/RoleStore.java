@@ -1,21 +1,22 @@
 package app.domain.store;
 
-import app.domain.model.Employee;
+
 import app.domain.model.Role;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoleStore {
     private ArrayList<Role> lRole;
     public RoleStore(){
-        this.lRole= new ArrayList<Role>();
+        this.lRole= new ArrayList<>();
     }
 
     public  Role create (String roleDescription,String roleID){
         return new Role(roleDescription,roleID);
     }
 
-    public ArrayList<Role> getlRole() {
+    public List<Role> getlRole() {
         ArrayList<Role> lRole= new ArrayList<>();
         lRole.addAll(this.lRole);
         return lRole;

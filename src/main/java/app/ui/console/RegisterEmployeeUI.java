@@ -6,7 +6,7 @@ import app.controller.RegisterEmployeeController;
 import app.domain.model.Employee;
 import app.domain.model.Role;
 
-import app.ui.console.utils.Utils;
+
 
 
 import java.util.ArrayList;
@@ -28,7 +28,6 @@ public class RegisterEmployeeUI implements Runnable {
         App.getInstance().getCompany().setNumberOfEmployees(nEmployees);
         String specialistDoctorIndexNumber=null;
         Scanner sc = new Scanner(System.in);
-        ArrayList<Role> lRole = registerEmployeeController.getlRole();
         System.out.println("What type of Employee do you wish to register?\n Write RECEPTIONIST to register a receptionist.\n Write CLINICAL CHEMISTRY TECHNOLOGIST to register a clinical chemistry technologist\n Write MEDICAL LAB TECHNICIAN to register a medical lab technician\n Write LABORATORY COORDINATOR to register a laboratory coordinator\n Write SPECIALIST DOCTOR to register a specialist doctor");
         String employeeRole=sc.nextLine();
 
