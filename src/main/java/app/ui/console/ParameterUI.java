@@ -1,10 +1,9 @@
 package app.ui.console;
 
-import app.controller.TestTypeController;
+
 import app.controller.ParameterController;
 import app.domain.model.Parameter;
 import app.domain.model.ParameterCategory;
-import app.domain.model.TestType;
 
 import app.ui.console.utils.Utils;
 
@@ -15,7 +14,6 @@ import java.util.Scanner;
 public class ParameterUI implements Runnable{
 
     private ParameterController parameterController;
-    private TestTypeController testTypeController;
 
     public ParameterUI() {
         this.parameterController = new ParameterController();

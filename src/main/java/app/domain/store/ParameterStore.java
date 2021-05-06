@@ -3,9 +3,6 @@ package app.domain.store;
 import app.domain.model.Parameter;
 import app.domain.model.ParameterCategory;
 
-import app.domain.shared.Utils;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +11,7 @@ public class ParameterStore {
     private List <Parameter> parameter;
 
     public ParameterStore() {
-        this.parameter = new ArrayList<Parameter>();
+        this.parameter = new ArrayList<>();
     }
 
     public Parameter createParameter(String code, String shortname, String description, List<ParameterCategory> parameterCategories) {
@@ -62,19 +59,5 @@ public class ParameterStore {
         }
     }
 
-    public Parameter getParameterByCode(String parameterCode) {
-        for(Parameter p : this.parameter) {
-            if(p.getCode().equals(parameterCode)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public void printCategoryList() {
-        for (Parameter parameterList : parameter) {
-            System.out.println(parameterList);
-        }
-    }
 }
 
