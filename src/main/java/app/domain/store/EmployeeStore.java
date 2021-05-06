@@ -7,12 +7,20 @@ import java.util.ArrayList;
 
 public class EmployeeStore {
     private ArrayList<Employee> lEmployee ;
+
+    public ArrayList<Employee> getlEmployee() {
+        return lEmployee;
+    }
+
     public EmployeeStore(){
         this.lEmployee=new ArrayList<>();
     }
 public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployee, Role role){
     return new Employee(name,adress,SOC,phoneNumber,email,userName,nEmployee,role);
 }
+    public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployee, Role role,String specialistDoctorIndexNumber){
+        return new Employee(name,adress,SOC,phoneNumber,email,userName,nEmployee,role,specialistDoctorIndexNumber);
+    }
 
     public boolean addEmployee(Employee e){
         if (e!=null){
@@ -35,9 +43,18 @@ public Employee createEmployee(String name, String adress, String SOC, long phon
     public boolean exists(Employee e){
     return this.lEmployee.contains(e);
     }
-    public void validateEmployee(Employee e){
-        if (exists(e)){
-            throw new IllegalArgumentException("The employee you are trying to add is already registered.");
+    public void saveEmployee(Employee e){
+        if (e.validateEmployee()==true){
+            addEmployee(e);
         }
+
+    }
+    public static void printStore(EmployeeStore lEmployee){
+        for (Employee employee:lEmployee.lEmployee
+             ) {
+            System.out.println(employee);
+
+        }
+
     }
 }

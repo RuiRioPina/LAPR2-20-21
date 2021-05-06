@@ -19,7 +19,7 @@ public class Employee {
     private String SOC;
     private long phoneNumber;
     private Role role;
-    private long specialistDoctorIndexNumber;
+    private String specialistDoctorIndexNumber;
 
 
 
@@ -32,7 +32,6 @@ public class Employee {
         this.role = role;
     }
     public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role){
-
         this.name=name;
         this.adress=adress;
         this.SOC = SOC;
@@ -43,7 +42,20 @@ public class Employee {
         User employee= new User(new Email(email),new Password(password),userName);
         this.ID=generateID(nEmployees);
         this.role= role;
-
+        this.specialistDoctorIndexNumber=null;
+    }
+    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role,String specialistDoctorIndexNumber){
+        this.name=name;
+        this.adress=adress;
+        this.SOC = SOC;
+        this.phoneNumber=phoneNumber;
+        this.userName=userName;
+        this.email=email;
+        this.password=generateEmployeePassword();
+        User employee= new User(new Email(email),new Password(password),userName);
+        this.ID=generateID(nEmployees);
+        this.role= role;
+        this.specialistDoctorIndexNumber=specialistDoctorIndexNumber;
     }
     public String generateEmployeePassword() {
         String password = "";
@@ -115,9 +127,7 @@ public class Employee {
         return digits;
     }
 
-    public boolean validateEmployee() {
-return true;
-    }
+
 
 
  private String generateID(int nEmployees){
@@ -131,11 +141,11 @@ return true;
         return id+ nEmployees;
 }
 
-    public long getSpecialistDoctorIndexNumber() {
+    public String getSpecialistDoctorIndexNumber() {
         return specialistDoctorIndexNumber;
     }
 
-    public void setSpecialistDoctorIndexNumber(long specialistDoctorIndexNumber) {
+    public void setSpecialistDoctorIndexNumber(String specialistDoctorIndexNumber) {
         this.specialistDoctorIndexNumber = specialistDoctorIndexNumber;
     }
 
@@ -183,7 +193,19 @@ public boolean equals(Object o){
 
 @Override
     public String toString(){
-        return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is"+this.password+". Their role is "+ role.getRoleID()+".");
+        if (specialistDoctorIndexNumber==null){
+            return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+".");
+        }else
+        return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
+}
+public  boolean validateEmployee(){
+        if ((name.matches(".*\\d.*"))){
+            return false;
+    }
+    if (SOC.length()!=4 && SOC.matches("[0-9]+")==false){
+        return false;
+    }
+    return true;
 }
 
 
