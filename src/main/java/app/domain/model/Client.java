@@ -19,6 +19,10 @@ public class Client {
     private String name;
     private String password;
 
+    public String getPassword() {
+        return password;
+    }
+
     LocalDate currentDate = LocalDate.now();
 
     public Client() {
@@ -81,7 +85,7 @@ public class Client {
                 && Objects.equals(this.name, c.name);
     }
 
-
+    @Override
     public String toString() {
         if (this.sex == null || this.sex.equals(".")) {
             return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s, his tin is %d, and his email is %s",
@@ -133,12 +137,15 @@ public class Client {
             throw new IllegalArgumentException("You have introduced an invalid day.Please try again");
         }
         if (month < 0 || month > 12) {
-            throw new IllegalArgumentException("The month can only be in the format MM. Please try again");
+            throw new IllegalArgumentException("The month be from 01 to 12. Please try again");
         }
-        if (year < 0 || year > 9999) {
-            throw new IllegalArgumentException("The year can only be in the format YYYY. Please try again");
-        } else if (year <= (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth()) {
+        if(year<0 || year>currentDate.getYear()){
+            throw new IllegalArgumentException("The client can not be born after " + currentDate.getYear() +". Please try again with a different birth date");
+        }
+        if ((year <= (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
             throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
+        } else if ((year == (currentDate.getYear()) && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
+            throw new IllegalArgumentException("The client can not be born in the future! Please try again with a different birth date");
         }
     }
 
@@ -166,7 +173,7 @@ public class Client {
 
     public void validateEmail(String email) {
 
-            new Email(email);
+        new Email(email);
 
     }
 
