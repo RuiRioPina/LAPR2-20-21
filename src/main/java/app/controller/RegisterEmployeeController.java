@@ -26,8 +26,7 @@ public class RegisterEmployeeController {
 
     public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber) {
         EmployeeStore lEmployee = this.company.getEmployeeStore();
-        Employee e = lEmployee.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role,specialistDoctorIndexNumber);
-        return e;
+        return lEmployee.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role,specialistDoctorIndexNumber);
     }
 
     public void validateSOCInput(String SOC){
