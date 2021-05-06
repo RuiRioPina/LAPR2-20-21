@@ -1,16 +1,22 @@
 package app.controller;
 
 import app.domain.model.Client;
+import app.domain.model.Company;
 import app.domain.shared.Constants;
 import app.domain.store.ClientList;
 import auth.AuthFacade;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class RegisterClientController {
 
     ClientList clientList = new ClientList();
     Client clt = new Client();
+    Company cmp = new Company("ManyLabs");
     AuthFacade authFacade = new AuthFacade();
 
     public RegisterClientController() {
@@ -79,6 +85,10 @@ public class RegisterClientController {
 
     public boolean isClientInList(Client c) {
         return clientList.isClientInList(c);
+    }
+
+    public void sendEmailToClient(Client c) throws IOException, InterruptedException {
+        cmp.sendEmailToClient(c);
     }
 
 
