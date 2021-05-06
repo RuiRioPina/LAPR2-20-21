@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import app.domain.shared.Utils;
+import auth.domain.model.Email;
 
 public class Client {
     private long ccn;
@@ -161,6 +162,12 @@ public class Client {
         if (phoneNumber < 10000000000L || phoneNumber > 99999999999L) {
             throw new IllegalArgumentException("The number of the Phone number has to have 11 digits. Please try again");
         }
+    }
+
+    public void validateEmail(String email) {
+
+            new Email(email);
+
     }
 
     public void validateName(String name) {
