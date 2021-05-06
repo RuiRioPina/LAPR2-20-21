@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RegisterEmployeeController {
     private Company company;
-    private Employee employee;
+
 
 
     public RegisterEmployeeController() {
@@ -27,7 +27,6 @@ public class RegisterEmployeeController {
     public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber) {
         EmployeeStore lEmployee = this.company.getEmployeeStore();
         Employee e = lEmployee.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role,specialistDoctorIndexNumber);
-        this.employee = e;
         return e;
     }
 
