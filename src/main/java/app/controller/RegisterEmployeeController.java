@@ -21,12 +21,6 @@ public class RegisterEmployeeController {
         return lRole.getlRole();
     }
 
-    public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role) {
-        EmployeeStore lEmployee = this.company.getEmployeeStore();
-        Employee e = lEmployee.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role);
-        this.employee = e;
-        return e;
-    }
     public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber) {
         EmployeeStore lEmployee = this.company.getEmployeeStore();
         Employee e = lEmployee.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role,specialistDoctorIndexNumber);

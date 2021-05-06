@@ -65,7 +65,7 @@ public class RegisterEmployeeUI implements Runnable {
             System.out.println("Please type the doctor index number of your Employee:");
             specialistDoctorIndexNumber=sc.nextLine();
         }
-        Employee e = registerEmployeeController.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role);
+        Employee e = registerEmployeeController.createEmployee(name, adress, SOC, phoneNumber, email, userName, nEmployees, role,specialistDoctorIndexNumber);
         System.out.println(e);
         System.out.println("Do you wish to add the Employee you've registered? (S/N)");
         String confirmation=sc.nextLine();

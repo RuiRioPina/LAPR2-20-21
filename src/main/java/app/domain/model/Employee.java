@@ -24,6 +24,7 @@ public class Employee {
 
 
 
+
     public Role getRole() {
         return role;
     }
@@ -31,7 +32,9 @@ public class Employee {
     public void setRole(Role role) {
         this.role = role;
     }
-    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role){
+
+
+    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber){
         this.name=name;
         this.adress=adress;
         this.SOC = SOC;
@@ -39,20 +42,6 @@ public class Employee {
         this.userName=userName;
         this.email=email;
         this.password=generateEmployeePassword();
-        User employee= new User(new Email(email),new Password(password),userName);
-        this.ID=generateID(nEmployees);
-        this.role= role;
-        this.specialistDoctorIndexNumber=null;
-    }
-    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role,String specialistDoctorIndexNumber){
-        this.name=name;
-        this.adress=adress;
-        this.SOC = SOC;
-        this.phoneNumber=phoneNumber;
-        this.userName=userName;
-        this.email=email;
-        this.password=generateEmployeePassword();
-        User employee= new User(new Email(email),new Password(password),userName);
         this.ID=generateID(nEmployees);
         this.role= role;
         this.specialistDoctorIndexNumber=specialistDoctorIndexNumber;
