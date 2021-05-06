@@ -5,10 +5,13 @@
 
 package app.ui.console;
 
+import app.controller.App;
 import app.controller.RegisterClientController;
 import app.domain.model.Client;
+import app.domain.store.ClientList;
 import auth.AuthFacade;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -162,26 +165,31 @@ public class RegisterClientUI implements Runnable {
             result = true;
             System.out.println("Do you confirm this data? (y/n)");
             String response = sc.nextLine();
-            if (!response.equalsIgnoreCase("y") && !response.equalsIgnoreCase("yes")) {
-                if (!response.equalsIgnoreCase("n") && !response.equalsIgnoreCase("no")) {
-                    System.out.println("Please insert a valid option (Y/N)");
-                    result = false;
+            if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
+                try {
+                    registerClientController.saveClient(clt);
+                    registerClientController.sendEmailToClient(clt);
+                } catch (IOException | InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
+                if (registerClientController.isClientInList(clt)) {
+                    System.out.println("The Client was sucessfully added!");
                 } else {
-                    clt = new Client();
+                    System.out.println("You either didn't confirm it or there was an error!");
                 }
             } else if (clt != null) {
                 registerClientController.saveClient(clt);
+            } else if (response.equalsIgnoreCase("n") || response.equalsIgnoreCase("no")) {
+                clt = new Client();
             } else {
-                System.out.println("It was impossible to save it since there was an empty field.");
+                System.out.println("Please insert a valid option (Y/N)");
+                result = false;
+
             }
         } while (!result);
 
-        System.out.println();
-        if (registerClientController.isClientInList(clt)) {
-            System.out.println("The Client was sucessfully added!");
-        } else {
-            System.out.println("You either didn't confirm it or there was an error!");
-        }
+        ClientList.printList(App.getInstance().getCompany().getClientList());
+
 
     }
 }
