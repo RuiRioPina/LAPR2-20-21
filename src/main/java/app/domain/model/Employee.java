@@ -202,7 +202,7 @@ public  boolean validateEmployee(){
         if ((name.matches(".*\\d.*"))){
             return false;
     }
-    if (SOC.length()!=4 && SOC.matches("[0-9]+")==false){
+    if (SOC.length()!=4 && !SOC.matches("[0-9]+")){
         return false;
     }
     return true;

@@ -52,7 +52,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
                 System.out.println(e.getMessage());
                 SOC = sc.nextLine();
-            } while (SOC.length()!=4 && SOC.matches("[0-9]+")==false);
+            } while (SOC.length()!=4 && !SOC.matches("[0-9]+"));
         }
         System.out.println("Please type the phone Number of your employee:");
         long phoneNumber = sc.nextLong();

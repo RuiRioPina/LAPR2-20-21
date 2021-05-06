@@ -35,7 +35,7 @@ public class RegisterEmployeeController {
     }
 
     public void validateSOCInput(String SOC){
-        if (SOC.length()!=4 && SOC.matches("[0-9]+")==false){
+        if (SOC.length()!=4 && !SOC.matches("[0-9]+")){
             throw new IllegalArgumentException("SOC must have 4 digits and only numbers");
 
         }
