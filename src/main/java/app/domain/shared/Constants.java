@@ -13,6 +13,10 @@ public class Constants {
     public static final String ROLE_LABORATORY_COORDINATOR = "LABORATORY COORDINATOR";
     public static final String ROLE_SPECIALIST_DOCTOR = "SPECIALIST DOCTOR";
 
+    public static final long CCN_NUMBER_OF_DIGITS = 16;
+    public static final long NHS_NUMBER_OF_DIGITS = 10;
+    public static final long TIN_NUMBER_OF_DIGITS = 10;
+    public static final long PHONE_NUMBER_OF_DIGITS = 11;
 
     public static final String PARAMS_FILENAME = "config.properties";
     public static final String PARAMS_COMPANY_DESIGNATION = "Company.Designation";
