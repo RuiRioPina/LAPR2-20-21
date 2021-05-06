@@ -4,8 +4,13 @@ import app.domain.store.*;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
- *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Company {
@@ -17,10 +22,10 @@ public class Company {
     private ParameterStore parameterStore;
     private EmployeeStore employeeStore;
     private RoleStore roleStore;
-    private int numberOfEmployees;
+    private ClientList clientList;
+    private Client client;
 
-    public Company(String designation)
-    {
+    public Company(String designation) {
         if (StringUtils.isBlank(designation))
             throw new IllegalArgumentException("Designation cannot be blank.");
 
@@ -29,16 +34,9 @@ public class Company {
         this.parameterCategoryStore = new ParameterCategoryStore();
         this.testTypeStore = new TestTypeStore();
         this.parameterStore = new ParameterStore();
-        this.employeeStore= new EmployeeStore();
-        this.roleStore= new RoleStore();
-        this.numberOfEmployees=0;
-    }
-    public int getNumberOfEmployees() {
-        return numberOfEmployees;
-    }
-
-    public void setNumberOfEmployees(int numberOfEmployees) {
-        this.numberOfEmployees = numberOfEmployees;
+        this.clientList = new ClientList();
+        this.employeeStore = new EmployeeStore();
+        this.roleStore = new RoleStore();
     }
 
     public String getDesignation() {
@@ -49,16 +47,47 @@ public class Company {
         return authFacade;
     }
 
-	public ParameterCategoryStore getParameterCategoryStore() {
-		return this.parameterCategoryStore;
-	}
+    public ParameterCategoryStore getParameterCategoryStore() {
+        return this.parameterCategoryStore;
+    }
 
-	public TestTypeStore getTestTypeStore() {
-		return this.testTypeStore;
-	}
-	public ParameterStore getParameterStore(){
+    public TestTypeStore getTestTypeStore() {
+        return this.testTypeStore;
+    }
+
+    public ParameterStore getParameterStore() {
         return this.parameterStore;
     }
-    public EmployeeStore getEmployeeStore(){return this.employeeStore;}
-    public RoleStore getRoleStore(){return this.roleStore;}
+
+    public EmployeeStore getEmployeeStore() {
+        return this.employeeStore;
+    }
+
+    public ClientList getClientList() {
+        return this.clientList;
+    }
+
+    public RoleStore getRoleStore() {
+        return this.roleStore;
+    }
+
+
+    public void sendEmailToClient(Client c) throws IOException, InterruptedException {
+        String nomeficheiro = "emailAndSMSMessages.txt";
+        try (PrintWriter out = new PrintWriter(nomeficheiro)) {
+            out.println("Welcome to the Application");
+            out.println("You have been sucessfully registered");
+            out.println();
+            out.println("Your password to be used in the application is : " + c.getPassword());
+        } catch (IOException e) {
+            System.out.println("The file has not been created since there was an error. Please try again.");
+        }
+        File file = new File(nomeficheiro);
+        if (file.createNewFile()) {
+            System.out.println("Email sent!");
+        }
+        Desktop desktop = Desktop.getDesktop();
+        Thread.sleep(500); // Faz com que o java tenha tempo de criar o ficheiro antes de o ler.
+        desktop.open(file);
+    }
 }
