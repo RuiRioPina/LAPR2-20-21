@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,8 @@ public class Client {
     private String name;
     private String password;
 
+    LocalDate currentDate = LocalDate.now();
+
     public Client() {
 
     }
@@ -30,6 +33,7 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.name = name;
+        this.password = generatePassword();
     }
 
     public Client(long ccn, long nhsNumber, String birthDate, String email, long tin, long phoneNumber, String name) {
@@ -40,6 +44,7 @@ public class Client {
         this.tin = tin;
         this.phoneNumber = phoneNumber;
         this.name = name;
+        this.password = generatePassword();
     }
 
     public String generatePassword() {
@@ -77,6 +82,10 @@ public class Client {
 
 
     public String toString() {
+        if (this.sex == null || this.sex.equals(".")) {
+            return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s, his tin is %d, and his email is %s",
+                    this.name, this.ccn, this.nhsNumber, this.birthDate, this.tin, this.email);
+        }
         return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s , his sex is %s, his tin is %d, and his email is %s",
                 this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.email);
     }
@@ -101,21 +110,35 @@ public class Client {
         String[] dateParts = birthDate.split("-");
         int[] checkParts = new int[dateParts.length];
         if (checkParts.length == 0) {
-            throw new NumberFormatException("The date must be in the format DD/MM/YY. Please try again");
+            throw new NumberFormatException("The date must be in the format DD/MM/YYYY. Please try again");
         }
         day = Integer.parseInt(dateParts[0]);
         month = Integer.parseInt(dateParts[1]);
-        year = Integer.parseInt(dateParts[1]);
+        year = Integer.parseInt(dateParts[2]);
 
-        if (!Utils.dateValidate(year, month, day)) {
-            throw new IllegalArgumentException("Something went wrong with it please try again.");
+        if (dateParts[0].length() != 2) {
+            throw new IllegalArgumentException("You have inserted the day incorrectly. Please insert the day as DD!");
         }
-//        if(month<0 || month>12){
-//            throw new IllegalArgumentException("The month can only be in the format MM. Please try again");
-//        }
-//        if(year<0 || year>99){
-//            throw new IllegalArgumentException("The year can only be in the format YY. Please try again");
-//        }
+
+        if (dateParts[1].length() != 2) {
+            throw new IllegalArgumentException("You have inserted the month incorrectly. Please insert the month as MM!");
+        }
+
+        if (dateParts[2].length() != 4) {
+            throw new IllegalArgumentException("You have inserted the year incorrectly. Please insert the day as YYYY!");
+        }
+
+        if (!Utils.dayValidation(year, month, day)) {
+            throw new IllegalArgumentException("You have introduced an invalid day.Please try again");
+        }
+        if (month < 0 || month > 12) {
+            throw new IllegalArgumentException("The month can only be in the format MM. Please try again");
+        }
+        if (year < 0 || year > 9999) {
+            throw new IllegalArgumentException("The year can only be in the format YYYY. Please try again");
+        } else if (year <= (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth()) {
+            throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
+        }
     }
 
     public void validateTin(long tin) {

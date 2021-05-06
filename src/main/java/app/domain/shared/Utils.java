@@ -8,37 +8,16 @@ public class Utils {
     private static int countUppercase;
     private static int countLowerCase;
 
-    public static long digits(long num) {
-        long digits = 0;
-        do {
-            num = num / 10;
-            digits++;
-        } while (num != 0);
-        return digits;
-    }
 
     public static boolean isLeapYear(int year) {
         if (year % 4 != 0) {
             return false;
         } else if (year % 400 == 0) {
             return true;
-        } else if (year % 100 == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        } else return year % 100 != 0;
     }
 
-    public static boolean dateValidate(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-        if (yearOfBirth < 0 || yearOfBirth > 99) {
-            return false;
-        }
-        if (monthOfBirth <= 0 || monthOfBirth > 12) {
-            return false;
-        }
-        if (dayOfBirth <= 0) {
-            return false;
-        }
+    public static boolean dayValidation(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
         switch (monthOfBirth) {
             case 1:
             case 3:
