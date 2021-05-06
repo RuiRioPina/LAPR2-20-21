@@ -3,6 +3,7 @@ package app.domain.store;
 import app.domain.model.Parameter;
 import app.domain.model.ParameterCategory;
 
+import app.domain.shared.Utils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class ParameterStore {
     }
 
     private void checkCodeRules(String code) {
+        if (!code.matches("[A-Za-z0-9]+")) {
+            throw new IllegalArgumentException("Code must be alphanumeric.");
+        }
         if (code.length() != 5)
             throw new IllegalArgumentException("Code must have 5 chars.");
     }
