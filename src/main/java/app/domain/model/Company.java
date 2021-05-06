@@ -15,6 +15,7 @@ import java.io.PrintWriter;
  */
 public class Company {
 
+    private int numberOfEmployees;
     private String designation;
     private AuthFacade authFacade;
     private ParameterCategoryStore parameterCategoryStore;
@@ -24,6 +25,7 @@ public class Company {
     private RoleStore roleStore;
     private ClientList clientList;
     private Client client;
+
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -37,7 +39,20 @@ public class Company {
         this.clientList = new ClientList();
         this.employeeStore = new EmployeeStore();
         this.roleStore = new RoleStore();
+        this.employeeStore = new EmployeeStore();
+        this.roleStore = new RoleStore();
+        this.numberOfEmployees = 0;
     }
+
+    public int getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+
+    }
+
 
     public String getDesignation() {
         return designation;
