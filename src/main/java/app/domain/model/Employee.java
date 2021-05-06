@@ -181,6 +181,9 @@ public  boolean validateEmployee(){
     if (Utils.validateSOC(SOC)){
         return false;
     }
+    if (role==null){
+        return false;
+    }
     return true;
 }
 

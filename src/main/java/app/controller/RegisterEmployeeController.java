@@ -46,4 +46,21 @@ public class RegisterEmployeeController {
        lEmployee.saveEmployee(e);
 
     }
+    public  int getRoleIndex(String s){
+        switch (s){
+            case "RECEPTIONIST":
+                return 0;
+            case "CLINICAL CHEMISTRY TECHNOLOGIST":
+                return 1;
+            case "MEDICAL LAB TECHNICIAN":
+                return 2;
+            case "LABORATORY COORDINATOR":
+                return 3;
+            case "SPECIALIST DOCTOR":
+                return 4;
+            default:return -1;
+        }
+
+
+    }
 }
