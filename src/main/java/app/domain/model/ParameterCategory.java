@@ -23,10 +23,4 @@ public class ParameterCategory {
 	public String toString() {
 		return String.format("%s - %s", this.code, this.name);
 	}
-//    private void checkCodeRules(String code) {
-//        if (StringUtils.isBlank(code))
-//            throw new IllegalArgumentException("Code cannot be blank.");
-//        if ( (code.length() < 4) || (code.length() > 8))
-//            throw new IllegalArgumentException("Code must have 4 to 8 chars.");
-//    }
 }
