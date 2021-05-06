@@ -59,7 +59,7 @@ public class Employee {
     }
     public String generateEmployeePassword() {
         String password = "";
-        List<Character> list = app.domain.shared.Utils.randomCharacter(3);
+        List<Character> list = app.domain.shared.Utils.randomCharacter(7,2,3);
         Collections.shuffle(list);
         StringBuilder stringBuilder = new StringBuilder();
         for (Character l : list) {
