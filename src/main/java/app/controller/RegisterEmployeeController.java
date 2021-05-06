@@ -3,14 +3,17 @@ package app.controller;
 import app.domain.model.Company;
 import app.domain.model.Employee;
 import app.domain.model.Role;
+import app.domain.shared.Utils;
 import app.domain.store.EmployeeStore;
 import app.domain.store.RoleStore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterEmployeeController {
     private Company company;
     private Employee employee;
+
 
     public RegisterEmployeeController() {
         this.company = App.getInstance().getCompany();
@@ -29,14 +32,13 @@ public class RegisterEmployeeController {
     }
 
     public void validateSOCInput(String SOC){
-        if (SOC.length()!=4 && !SOC.matches("[0-9]+")){
+        if (Utils.validateSOC(SOC)){
             throw new IllegalArgumentException("SOC must have 4 digits and only numbers");
-
         }
-
     }
+
     public void validateNameInput(String name){
-        if (name.matches(".*\\d.*")){
+        if (Utils.nameContainsDigits(name)){
             throw new IllegalArgumentException("The name shouldn't have numbers");
         }
 

@@ -2,10 +2,10 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.RegisterEmployeeController;
-import app.domain.model.Company;
+
 import app.domain.model.Employee;
 import app.domain.model.Role;
-import app.domain.store.EmployeeStore;
+
 import app.ui.console.utils.Utils;
 
 
@@ -40,7 +40,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
                 System.out.println(e.getMessage());
                 name=sc.nextLine();
-            }while (name.matches(".*\\d.*"));
+            }while (app.domain.shared.Utils.nameContainsDigits(name));
         }
         System.out.println("Please type the adress of your employee:");
         String adress = sc.nextLine();
@@ -52,7 +52,7 @@ public class RegisterEmployeeUI implements Runnable {
             do {
                 System.out.println(e.getMessage());
                 SOC = sc.nextLine();
-            } while (SOC.length()!=4 && !SOC.matches("[0-9]+"));
+            } while (app.domain.shared.Utils.validateSOC(SOC));
         }
         System.out.println("Please type the phone Number of your employee:");
         long phoneNumber = sc.nextLong();
