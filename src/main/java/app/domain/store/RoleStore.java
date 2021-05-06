@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoleStore {
-    private ArrayList<Role> lRole;
+    private List<Role> lRole;
     public RoleStore(){
         this.lRole= new ArrayList<>();
     }
@@ -22,7 +22,7 @@ public class RoleStore {
         return lRole;
     }
 
-    public void setlRole(ArrayList<Role> lRole) {
+    public void setlRole(List<Role> lRole) {
         this.lRole = lRole;
     }
 
