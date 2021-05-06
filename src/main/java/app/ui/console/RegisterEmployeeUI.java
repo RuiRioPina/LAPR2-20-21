@@ -74,7 +74,6 @@ if (confirmation.equals("S")||confirmation.equals("s")){
     System.out.println("The employee has been created");
 }else System.out.println("The employee was not created.");
 
-        // method for debugging purposes.EmployeeStore.printStore(App.getInstance().getCompany().getEmployeeStore());
     }
 
 }

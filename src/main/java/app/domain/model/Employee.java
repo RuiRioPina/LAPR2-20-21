@@ -1,9 +1,7 @@
 package app.domain.model;
 
 import app.domain.shared.Utils;
-import auth.domain.model.Email;
-import auth.domain.model.Password;
-import auth.domain.model.User;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +47,7 @@ public class Employee {
     }
     public String generateEmployeePassword() {
         String password = "";
-        List<Character> list = app.domain.shared.Utils.randomCharacter(7,2,3);
+        List<Character> list = app.domain.shared.Utils.randomCharacter(10);
         Collections.shuffle(list);
         StringBuilder stringBuilder = new StringBuilder();
         for (Character l : list) {
@@ -109,12 +107,12 @@ public class Employee {
 
  private String generateID(int nEmployees){
         String id="";
-        String name = this.name;
-        name.trim();
-        String[] nameWords = name.split(" ");
+        String employeeName = this.name;
+        employeeName=employeeName.trim();
+        String[] nameWords = employeeName.split(" ");
      for (String nameWord : nameWords) {
          id = id + nameWord.charAt(0);
-         id.toUpperCase();
+         id=id.toUpperCase();
      }
         return id+ nEmployees;
 }
