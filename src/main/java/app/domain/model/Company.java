@@ -17,6 +17,7 @@ public class Company {
     private ParameterStore parameterStore;
     private EmployeeStore employeeStore;
     private RoleStore roleStore;
+    private int numberOfEmployees;
 
     public Company(String designation)
     {
@@ -30,6 +31,14 @@ public class Company {
         this.parameterStore = new ParameterStore();
         this.employeeStore= new EmployeeStore();
         this.roleStore= new RoleStore();
+        this.numberOfEmployees=0;
+    }
+    public int getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public String getDesignation() {
