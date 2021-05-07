@@ -5,25 +5,50 @@ actor "Administrator" as ADMIN
 participant ":RegisterClinicalAnalysisLaboratoryUI" as UI
 participant ":RegisterClinicalAnalysisLaboratoryController" as CTRL
 participant ":Company" as CMP
+participant "ttStore:\nTestTypeStore" as TTSTORE
+participant "calStore:\nClinicalAnalysisLaboratory" as STORE
 participant "cal:ClinicalAnalysisLaboratory" as CAL
+participant "lc:\nList<TestType>" as lc
+
 
 activate ADMIN
 ADMIN -> UI : asks to register new clinical analysis laboratory
 activate UI
-UI --> ADMIN : requests data (Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+UI --> ADMIN : requests data (Laboratory ID, name, adrress, phone number, TIN)
 deactivate UI
-
 ADMIN -> UI : types requested data
 activate UI
-UI -> CTRL: registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+UI -> CTRL : lt=getTestTypes()
 activate CTRL
-CTRL -> CMP : cal = registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+CTRL -> CMP : ts=getTestTypeStore()
+activate CMP	
+deactivate CMP
+CTRL -> TTSTORE : lt=ts.getTestTypes()
+activate TTSTORE
+deactivate TTSTORE
+deactivate CTRL
+loop until no more test types are selected
+	UI --> ADMIN : shows test types list and ask to select one
+	deactivate UI
+	ADMIN -> UI : selects a test type
+	activate UI
+end
+UI -> CTRL: registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, TestType)
+activate CTRL
+CTRL -> TTSTORE : tt=ts.getTestType(testType)
+activate TTSTORE
+deactivate TTSTORE
+CTRL -> CMP : cs=getClinicalAnalysisLaboratoryStore()
 activate CMP
 deactivate CMP
-CMP --> CAL** : register(cal)
-CTRL -> CMP : validateClinicalAnalysisLaboratory(cal)
-activate CMP
-deactivate CMP
+CTRL -> STORE : cal=cs.register(Laboratory ID, name, adrress, phone number, TIN, TestType)
+activate STORE
+STORE --> CAL** : register(Laboratory ID, name, adrress, phone number, TIN, TestType)
+deactivate STORE
+CTRL -> STORE : validateClinicalAnalysisLaboratory(cal)
+activate STORE
+deactivate STORE
+CTRL -> UI : result
 deactivate CTRL
 
 UI --> ADMIN : shows the data and request a confirmation
@@ -35,15 +60,15 @@ activate UI
 UI -> CTRL : saveClinicalAnalysisLaboratory()
 activate CTRL
 
-CTRL -> CMP : saveClinicalAnalysisLaboratory(cal)
-activate CMP
-CMP -> CMP : validateClinicalAnalysisLaboratory(cal)
-activate CMP
-CMP--
-CMP -> CMP : addClinicalAnalysisLaboratory(cal)
-activate CMP
-CMP--
-deactivate CMP
+CTRL -> STORE : saveClinicalAnalysisLaboratory(cal)
+activate STORE
+STORE -> STORE : validateClinicalAnalysisLaboratory(cal)
+activate STORE
+STORE--
+STORE -> STORE : addClinicalAnalysisLaboratory(cal)
+activate STORE
+STORE--
+deactivate STORE
 deactivate CTRL
 
 UI --> ADMIN : informs operation succecs
