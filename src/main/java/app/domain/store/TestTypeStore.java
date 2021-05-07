@@ -20,6 +20,12 @@ public class TestTypeStore {
 			List<ParameterCategory> parameterCategories) {
 		return new TestType(code, description, collectingMethod, parameterCategories);
 	}
+
+	public List<TestType> getTestTypes() {
+		List<TestType> ts = new ArrayList<TestType>();
+		ts.addAll(this.testTypes);
+		return ts;
+	}
 	
 	public void validateTestType(TestType tt) throws IllegalArgumentException {
 		checkCodeRules(tt.getCode());
