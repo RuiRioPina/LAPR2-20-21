@@ -202,8 +202,7 @@ public  boolean validateEmployee(){
 private Character randomCharacter(String s){
     Random randomNumber= new Random();
     int randomNo=randomNumber.nextInt(s.length());
-    Character c =s.charAt(randomNo);
-    return c;
+    return s.charAt(randomNo);
 }
 
 
