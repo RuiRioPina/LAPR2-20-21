@@ -30,4 +30,15 @@ public class EmployeeTest {
         assertEquals(e1,e2);
         assertEquals(e1,e1);
     }
+    @Test
+    public void getPhoneNumber(){
+        Role r1=new Role("Receives Clients","Receptionist","Rec");
+        long expected=937845773;
+        long notExpected=937845774;
+        Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",937845773,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
+        long actual=e1.getPhoneNumber();
+assertEquals(expected,actual);
+assertNotEquals(notExpected,actual);
+
+    }
 }
