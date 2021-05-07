@@ -27,7 +27,7 @@ public class ParameterController {
 
         ParameterCategoryStore pcs = this.company.getParameterCategoryStore();
 
-        List<ParameterCategory> parameterCategories = new ArrayList<ParameterCategory>();
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
         for(String parameterCategoryCode : parameterCategoryCodes) {
             parameterCategories.add(pcs.getParameterCategoryByCode(parameterCategoryCode));
         }
@@ -35,7 +35,6 @@ public class ParameterController {
         ParameterStore ps = this.company.getParameterStore();
         Parameter p = ps.createParameter(code, shortname,description, parameterCategories);
         ps.validateParameter(p);
-        ps.printCategoryList();
 
         this.parameter = p;
         return this.parameter;

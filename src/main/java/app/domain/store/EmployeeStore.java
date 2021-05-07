@@ -1,5 +1,6 @@
 package app.domain.store;
 
+import app.controller.App;
 import app.domain.model.Employee;
 import app.domain.model.Role;
 
@@ -15,9 +16,7 @@ public class EmployeeStore {
     public EmployeeStore(){
         this.lEmployee=new ArrayList<>();
     }
-public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployee, Role role){
-    return new Employee(name,adress,SOC,phoneNumber,email,userName,nEmployee,role);
-}
+
     public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployee, Role role,String specialistDoctorIndexNumber){
         return new Employee(name,adress,SOC,phoneNumber,email,userName,nEmployee,role,specialistDoctorIndexNumber);
     }
@@ -46,7 +45,8 @@ public Employee createEmployee(String name, String adress, String SOC, long phon
     public void saveEmployee(Employee e){
         if (e.validateEmployee()==true){
             addEmployee(e);
-        }
+            App.getInstance().getCompany().getAuthFacade().addUserWithRole(e.getUserName(),e.getEmail(),e.getPassword(),e.getRole().getRoleID());
+        }else throw new IllegalArgumentException("You have made a mistake in typing your employee's data.The employee was not added.");
 
     }
     public static void printStore(EmployeeStore lEmployee){
@@ -57,4 +57,5 @@ public Employee createEmployee(String name, String adress, String SOC, long phon
         }
 
     }
+
 }

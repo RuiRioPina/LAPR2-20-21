@@ -1,8 +1,7 @@
 package app.domain.model;
 
-import auth.domain.model.Email;
-import auth.domain.model.Password;
-import auth.domain.model.User;
+import app.domain.shared.Utils;
+
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +23,7 @@ public class Employee {
 
 
 
+
     public Role getRole() {
         return role;
     }
@@ -31,7 +31,9 @@ public class Employee {
     public void setRole(Role role) {
         this.role = role;
     }
-    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role){
+
+
+    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber){
         this.name=name;
         this.adress=adress;
         this.SOC = SOC;
@@ -39,27 +41,13 @@ public class Employee {
         this.userName=userName;
         this.email=email;
         this.password=generateEmployeePassword();
-        User employee= new User(new Email(email),new Password(password),userName);
-        this.ID=generateID(nEmployees);
-        this.role= role;
-        this.specialistDoctorIndexNumber=null;
-    }
-    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role,String specialistDoctorIndexNumber){
-        this.name=name;
-        this.adress=adress;
-        this.SOC = SOC;
-        this.phoneNumber=phoneNumber;
-        this.userName=userName;
-        this.email=email;
-        this.password=generateEmployeePassword();
-        User employee= new User(new Email(email),new Password(password),userName);
         this.ID=generateID(nEmployees);
         this.role= role;
         this.specialistDoctorIndexNumber=specialistDoctorIndexNumber;
     }
     public String generateEmployeePassword() {
         String password = "";
-        List<Character> list = app.domain.shared.Utils.randomCharacter(7,2,3);
+        List<Character> list = app.domain.shared.Utils.randomCharacter(10);
         Collections.shuffle(list);
         StringBuilder stringBuilder = new StringBuilder();
         for (Character l : list) {
@@ -117,26 +105,14 @@ public class Employee {
         this.adress = adress;
     }
 
-
-    private int digits(int num){
-        int digits=0;
-        do {
-            num=num/10;
-            digits++;
-        }while (num!=0);
-        return digits;
-    }
-
-
-
-
  private String generateID(int nEmployees){
         String id="";
-        String name = this.name;
-        name.trim();
-        String[] nameWords = name.split(" ");
+        String employeeName = this.name;
+        employeeName=employeeName.trim();
+        String[] nameWords = employeeName.split(" ");
      for (String nameWord : nameWords) {
          id = id + nameWord.charAt(0);
+         id=id.toUpperCase();
      }
         return id+ nEmployees;
 }
@@ -199,10 +175,13 @@ public boolean equals(Object o){
         return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
 }
 public  boolean validateEmployee(){
-        if ((name.matches(".*\\d.*"))){
+        if (Utils.nameContainsDigits(name)){
             return false;
     }
-    if (SOC.length()!=4 && !SOC.matches("[0-9]+")){
+    if (Utils.validateSOC(SOC)){
+        return false;
+    }
+    if (role==null){
         return false;
     }
     return true;

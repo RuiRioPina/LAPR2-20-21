@@ -10,11 +10,13 @@ deactivate ":System"
 
 ADMIN -> ":System" : types requested data
 activate ":System"
-":System" --> ADMIN : requests type of tests 
-deactivate ":System"
+loop until no more test types are selected
+    ":System" --> ADMIN : shows test type list and ask to select 
+    deactivate ":System"
+    ADMIN -> ":System" : chooses test types
+    activate ":System"
+end
 
-ADMIN -> ":System" : chooses type of tests
-activate ":System"
 ":System" --> ADMIN : shows the data and requests a confirmation
 deactivate ":System"
 
