@@ -25,6 +25,7 @@ public class Company {
     private RoleStore roleStore;
     private ClientList clientList;
     private Client client;
+    private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
 
 
     public Company(String designation) {
@@ -41,6 +42,7 @@ public class Company {
         this.roleStore = new RoleStore();
         this.employeeStore = new EmployeeStore();
         this.roleStore = new RoleStore();
+        this.clinicalAnalysisLaboratoryStore = new ClinicalAnalysisLaboratoryStore();
         this.numberOfEmployees = 0;
     }
 
@@ -85,6 +87,8 @@ public class Company {
     public RoleStore getRoleStore() {
         return this.roleStore;
     }
+
+    public ClinicalAnalysisLaboratoryStore getClinicalAnalysisLaboratoryStore() {return this.clinicalAnalysisLaboratoryStore;}
 
 
     public void sendEmailToClient(Client c) throws IOException, InterruptedException {
