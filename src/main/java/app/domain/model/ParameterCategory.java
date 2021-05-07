@@ -1,7 +1,5 @@
 package app.domain.model;
 
-import org.apache.commons.lang3.StringUtils;
-//FROM ESOFT SLIDES
 public class ParameterCategory {
 
     private String code;

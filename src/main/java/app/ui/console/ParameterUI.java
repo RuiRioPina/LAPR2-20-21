@@ -30,7 +30,7 @@ public class ParameterUI implements Runnable{
         System.out.println("Insert the description of the parameter.");
         String description = sc.nextLine();
 
-        List<String> parameterCategoryCodes = new ArrayList<String>();
+        List<String> parameterCategoryCodes = new ArrayList<>();
 
         List<ParameterCategory> list = this.parameterController.getParameterCategories();
 
