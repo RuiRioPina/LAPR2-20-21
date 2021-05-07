@@ -12,7 +12,7 @@ public class ClientTest {
     @Test
     public void generatePassword() {
         //Arrange
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-10", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-10", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         //Act
         String actual = client.generatePassword();
         int expected = 10;
@@ -24,10 +24,10 @@ public class ClientTest {
 
     @Test
     public void testEquals() {
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client3 = new Client(1111111111111111L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client4 = new Client(9999999999999999L, 9999999L, "10-10-2010", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client3 = new Client(1111111111111111L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client4 = new Client(9999999999999999L, 9999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client5 = new Client();
         Object obj = new Object();
         Assert.assertNotEquals(client1, obj);
@@ -44,8 +44,8 @@ public class ClientTest {
     public void validateCcn() {
 
         ExpectedException exceptionRule = ExpectedException.none();
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client = new Client(999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         try {
             client1.validateCcn(client1.getCcn());
             client.validateCcn(client.getCcn());
@@ -59,8 +59,8 @@ public class ClientTest {
     @Test
     public void validateNhsNumber() {
         ExpectedException exceptionRule = ExpectedException.none();
-        Client client1 = new Client(9999999999999999L, 1000000000L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client = new Client(9999999999999999L, 9999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 1000000000L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         try {
             client1.validateNhsNumber(client1.getNhsNumber());
             client.validateNhsNumber(client.getNhsNumber());
@@ -73,16 +73,16 @@ public class ClientTest {
     public void validateBirthDate() {
         ExpectedException exceptionRule = ExpectedException.none();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client2 = new Client(999999999999999L, 9999999999L, "10-03-1871", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client3 = new Client(999999999999999L, 9999999999L, "10-0-1890", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client4 = new Client(999999999999999L, 9999999999L, "10-03-187", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client5 = new Client(999999999999999L, 9999999999L, "1-03-1990", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client6 = new Client(999999999999999L, 9999999999L, "38-12-1880", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client7 = new Client(999999999999999L, 9999999999L, "10-13-1880", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client8 = new Client(999999999999999L, 9999999999L, "", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client9 = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client10 = new Client(9999999999999999L, 9999999999L, "10/10/1921", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client2 = new Client(999999999999999L, 9999999999L, "10-03-1871", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client3 = new Client(999999999999999L, 9999999999L, "10-0-1890", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client4 = new Client(999999999999999L, 9999999999L, "10-03-187", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client5 = new Client(999999999999999L, 9999999999L, "1-03-1990", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client6 = new Client(999999999999999L, 9999999999L, "38-12-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client7 = new Client(999999999999999L, 9999999999L, "10-13-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client8 = new Client(999999999999999L, 9999999999L, "", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client9 = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client10 = new Client(9999999999999999L, 9999999999L, "10/10/1921", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         try {
             client.validateBirthDate(client.getBirthDate());
             client2.validateBirthDate(client2.getBirthDate());
@@ -106,8 +106,8 @@ public class ClientTest {
     @Test
     public void validateTin() {
         ExpectedException exceptionRule = ExpectedException.none();
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 999999999992L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 999999999992L, 99999999999L, "Rui Pina");
         try {
             client1.validateTin(client1.getTin());
             client2.validateTin(client2.getTin());
@@ -120,8 +120,8 @@ public class ClientTest {
     public void validateSex() {
         ExpectedException exceptionRule = ExpectedException.none();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "F", "ruiriopina02@mail.com", 999999999L, 99999999999L, "Rui Pina");
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "True", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "F", "ruipina@mail.com", 999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "True", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         try {
             client.validateSex(client.getSex());
             client1.validateSex(client1.getSex());
@@ -134,7 +134,7 @@ public class ClientTest {
     public void validatePhoneNumber() {
         ExpectedException exceptionRule = ExpectedException.none();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         try {
             client.validatePhoneNumber(client.getPhoneNumber());
         } catch (IllegalArgumentException e) {
@@ -146,8 +146,8 @@ public class ClientTest {
     public void validateEmail() {
         ExpectedException exceptionRule = ExpectedException.none();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         try {
             client.validateEmail(client.getEmail());
             client1.validateEmail(client1.getEmail());
@@ -160,9 +160,9 @@ public class ClientTest {
     public void validateName() {
         ExpectedException exceptionRule = ExpectedException.none();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina312312");
-        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "       ");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina312312");
+        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "       ");
         try {
             client.validateName(client.getName());
             client1.validateName(client1.getName());
@@ -174,7 +174,7 @@ public class ClientTest {
 
     @Test
     public void getCcn() {
-        Client client = new Client(9999919999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999919999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
         long expected = 9999919999999999L;
         long notExpected = 1111111111111111L;
@@ -187,7 +187,7 @@ public class ClientTest {
 
     @Test
     public void getNhsNumber() {
-        Client client = new Client(9999999999999989L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999989L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
         long expected = 9999999999L;
         long notExpected = 1111111111L;
@@ -200,7 +200,7 @@ public class ClientTest {
 
     @Test
     public void getBirthDate() {
-        Client client = new Client(9993999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9993999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
         String expected = "10-10-2010";
         String notExpected = "10-10-2009";
@@ -214,11 +214,11 @@ public class ClientTest {
 
     @Test
     public void getTin() {
-        Client client = new Client(9999999999199999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999199999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
-        long expected = 99999999999L;
-        long notExpected = 11111111111L;
-        long actual = client.getPhoneNumber();
+        long expected = 9999999999L;
+        long notExpected = 1111111111L;
+        long actual = client.getTin();
 
         assertEquals(expected, actual);
         assertNotEquals(notExpected, actual);
@@ -227,7 +227,7 @@ public class ClientTest {
 
     @Test
     public void getPhoneNumber() {
-        Client client = new Client(9992999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9992999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
         long expected = 99999999999L;
         long notExpected = 11111111111L;
@@ -240,7 +240,7 @@ public class ClientTest {
 
     @Test
     public void getSex() {
-        Client client = new Client(9999999999939999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999939999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
         String expected = "M";
         String notExpected = "F";
@@ -266,7 +266,7 @@ public class ClientTest {
 
     @Test
     public void getName() {
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruiriopina02@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
         String expected = "Rui Pina";
         String notExpected = "Rui ";
