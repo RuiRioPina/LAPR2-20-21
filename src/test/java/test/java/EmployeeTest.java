@@ -33,9 +33,9 @@ public class EmployeeTest {
     @Test
     public void getPhoneNumber(){
         Role r1=new Role("Receives Clients","Receptionist","Rec");
-        long expected=937845773;
-        long notExpected=937845774;
-        Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",937845773,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
+        long expected=999999999L;
+        long notExpected=111111111L;
+        Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         long actual=e1.getPhoneNumber();
 assertEquals(expected,actual);
 assertNotEquals(notExpected,actual);
