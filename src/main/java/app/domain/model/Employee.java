@@ -3,12 +3,15 @@ package app.domain.model;
 import app.domain.shared.Utils;
 
 
-import java.util.Collections;
-import java.util.List;
+
 import java.util.Objects;
+import java.util.Random;
 
 public class Employee {
 
+    private static final int PASSWORD_DIGIT_AMOUNT=2;
+    private static final int PASSWORD_UPPERCASE_AMOUNT=3;
+    private static final int PASSWORD_LOWERCASE_AMOUNT=2;
     private String userName;
     private String password;
     private String email;
@@ -47,11 +50,17 @@ public class Employee {
     }
     public String generateEmployeePassword() {
         String password = "";
-        List<Character> list = app.domain.shared.Utils.randomCharacter(10);
-        Collections.shuffle(list);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Character l : list) {
-            password = String.valueOf(stringBuilder.append(l));
+        for (int i=0;i<PASSWORD_DIGIT_AMOUNT;i++){
+            Character c=randomCharacter("0123456789");
+            password+=c;
+        }
+        for (int i=0;i<PASSWORD_UPPERCASE_AMOUNT;i++){
+            Character c=randomCharacter("ABCDEFGHIJKLMNOPQRSTUVXYZ");
+            password+=c;
+        }
+        for (int i=0;i<PASSWORD_LOWERCASE_AMOUNT;i++){
+            Character c=randomCharacter("abcdefghijklmnopqrstuvxyz");
+            password+=c;
         }
         return password;
     }
@@ -112,9 +121,10 @@ public class Employee {
         String[] nameWords = employeeName.split(" ");
      for (String nameWord : nameWords) {
          id = id + nameWord.charAt(0);
-         id=id.toUpperCase();
      }
-        return id+ nEmployees;
+     id=id.toUpperCase();
+     id=String.format(id+"%05d",nEmployees);
+        return id;
 }
 
     public String getSpecialistDoctorIndexNumber() {
@@ -170,12 +180,12 @@ public boolean equals(Object o){
 @Override
     public String toString(){
         if (specialistDoctorIndexNumber==null){
-            return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+".");
+            return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their email adress is "+ this.email+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+".");
         }else
-        return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
+        return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their email adress is " +this.email + ". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
 }
 public  boolean validateEmployee(){
-        if (Utils.nameContainsDigits(name)){
+        if (name.length()>35){
             return false;
     }
     if (Utils.validateSOC(SOC)){
@@ -184,7 +194,16 @@ public  boolean validateEmployee(){
     if (role==null){
         return false;
     }
+    if (specialistDoctorIndexNumber!= null && specialistDoctorIndexNumber.length()!=6){
+        return false;
+    }
     return true;
+}
+private Character randomCharacter(String s){
+    Random randomNumber= new Random();
+    int randomNo=randomNumber.nextInt(s.length());
+    Character c =s.charAt(randomNo);
+    return c;
 }
 
 

@@ -12,8 +12,8 @@ public class RoleStore {
         this.lRole= new ArrayList<>();
     }
 
-    public  Role create (String roleDescription,String roleID){
-        return new Role(roleDescription,roleID);
+    public  Role create (String roleDescription,String roleID,String roleShortname){
+        return new Role(roleDescription,roleID,roleShortname);
     }
 
     public List<Role> getlRole() {
@@ -28,7 +28,7 @@ public class RoleStore {
 
     public boolean add(Role r){
         if (r!=null){
-            if (!exists(r)){
+            if (!exists(r)&&r.validateRole()){
                 return this.lRole.add(r);
             }
         }
