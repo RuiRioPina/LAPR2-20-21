@@ -95,11 +95,11 @@ My question therefore is: When creating a new Clinical Analysis Laboratory, shou
 	* **Answer13:** It is always a good practice to validate and ask for confirmation.
 
 * **Question14:** Are two Clinical Analysis Laboratories with the same:
-	* Laboratory ID OR
-	* name OR
-	* address OR
-	* phone Number OR
-	* TIN number
+		* Laboratory ID OR
+		* name OR
+		* address OR
+		* phone Number OR
+		* TIN number
 allowed to exist?
 [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7911)
 	* **Answer14:** Only the name of two CAL can be same.
@@ -167,12 +167,18 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 | Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
 |:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 1		 |...interacting with the actor |RegisterClinicalAnalysisLaboratoryUI |Pure Fabrication: there is no reason to assign this responsability to any existing class in the Domain Model. |
+|			 |...coordenating the US        |RegisterClinicalAnalysisLaboratoryController |Controller |
+| 			  		 | ... knowing the user using the system?  | UserSession  | IE: knows who is logged in.  |
+| Step 2  		 |...requesting the needed data? |RegisterClinicalAnalysisLaboratoryUI |IE: run method |
+| Step 3  		 |	...saving the inputted data? | ClinicalAnalysisLaboratory| IE: object created in step 1 has its own data.  |
+| Step 4  		 |	...knowing the task categories to show? | TestYpe| IE: Test types are defined by the TestType. |
+| Step 5  		 |	... saving the test types? | ClinicalAnalysisLaboratory  | IE: object created in step 1 is classified in one or more test types.  |
+| Step 6  		 |	... asking for a confirmation	|RegisterClinicalAnalysisLaboratoryUI              |IE: is responsible for user interactions.                              |              
+| Step 7  		 |	... validating all data (local validation)? | ClinicalAnalysisLaboratory | IE: owns its data.| 
+| 			  		 |	... validating all data (global validation)? | ClinicalAnalysisLaboratoryStore | IE: knows all its tasks.| 
+| 			  		 |	... saving the created task? | ClinicalAnalysisLaboratoryStore | IE: owns all its tasks.| 
+| Step 8  		 |	... informing operation success?| RegisterClinicalAnalysisLaboratoryUI | IE: is responsible for user interactions.  |             
 
 ### Systematization ##
 

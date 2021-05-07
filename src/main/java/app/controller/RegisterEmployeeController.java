@@ -48,15 +48,15 @@ public class RegisterEmployeeController {
     }
     public  int getRoleIndex(String s){
         switch (s){
-            case "RECEPTIONIST":
+            case "REC":
                 return 0;
-            case "CLINICAL CHEMISTRY TECHNOLOGIST":
+            case "CCT":
                 return 1;
-            case "MEDICAL LAB TECHNICIAN":
+            case "MLT":
                 return 2;
-            case "LABORATORY COORDINATOR":
+            case "LC":
                 return 3;
-            case "SPECIALIST DOCTOR":
+            case "SD":
                 return 4;
             default:return -1;
         }

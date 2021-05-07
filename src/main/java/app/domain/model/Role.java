@@ -5,9 +5,11 @@ import java.util.Objects;
 public class Role {
     private String roleDescription;
     private String roleID;
-    public Role( String roleDescription, String roleID){
+    private String roleShortname;
+    public Role( String roleDescription, String roleID,String roleShortname){
         this.roleDescription=roleDescription;
         this.roleID=roleID;
+        this.roleShortname=roleShortname;
     }
     public String getRoleID() {
         return roleID;
@@ -41,5 +43,20 @@ public class Role {
     @Override
     public String toString(){
         return String.format(roleID+". "+roleDescription+".");
+    }
+
+    public String getRoleShortname() {
+        return roleShortname;
+    }
+
+    public void setRoleShortname(String roleShortname) {
+        this.roleShortname = roleShortname;
+    }
+
+    public boolean validateRole(){
+        if (this.roleShortname.length()>15){
+            return false;
+        }
+        return true;
     }
 }
