@@ -7,6 +7,8 @@ import app.domain.model.Role;
 import org.junit.Test;
 
 
+import java.security.PublicKey;
+
 import static org.junit.Assert.*;
 public class EmployeeTest2 {
 
@@ -38,6 +40,17 @@ public class EmployeeTest2 {
         long notExpected=111111111L;
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         long actual=e1.getPhoneNumber();
+        assertEquals(expected,actual);
+        assertNotEquals(notExpected,actual);
+
+    }
+    @Test
+    public void  getID(){
+        Role r1=new Role("Receives Clients","Receptionist","Rec");
+        String expected = "TSC00002";
+        String notExpected="TSC00001";
+        Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
+        String actual=e1.getID();
         assertEquals(expected,actual);
         assertNotEquals(notExpected,actual);
 
