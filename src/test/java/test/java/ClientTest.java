@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 
 public class ClientTest {
@@ -11,13 +13,13 @@ public class ClientTest {
     @Test
     public void generatePassword() {
         //Arrange
-        Client client = new Client(9999999999999999L,99999999999L,"10-10-10","M","ruiriopina02@mail.com",99999999999L,999999999999L,"Rui Pina");
+        Client client = new Client(9999999999999999L, 99999999999L, "10-10-10", "M", "ruiriopina02@mail.com", 99999999999L, 999999999999L, "Rui Pina");
         //Act
         String actual = client.generatePassword();
-        int expected=10;
+        int expected = 10;
         //Assert
-        assertEquals(expected, actual.length(),0.01);
-        assertFalse( actual.length()!=10);
+        assertEquals(expected, actual.length(), 0.01);
+        assertFalse(actual.length() != 10);
 
     }
 
