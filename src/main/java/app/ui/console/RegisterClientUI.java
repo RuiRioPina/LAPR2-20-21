@@ -13,6 +13,7 @@ import auth.AuthFacade;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class RegisterClientUI implements Runnable {
@@ -188,7 +189,10 @@ public class RegisterClientUI implements Runnable {
             }
         } while (!result);
 
-        ClientList.printList(App.getInstance().getCompany().getClientList());
+        ClientList clientList=App.getInstance().getCompany().getClientList();
+        List<Client> clientList1=clientList.getClientList();
+        clientList.printList();
+
 
 
     }

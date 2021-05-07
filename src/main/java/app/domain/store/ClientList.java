@@ -1,13 +1,20 @@
 package app.domain.store;
 
 import app.domain.model.Client;
-import app.domain.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientList {
-    private List<Client> clientList = new ArrayList<>();
+    private List<Client> clientList;
+
+    public ClientList() {
+        this.clientList = new ArrayList<>();
+    }
+
+    public List<Client> getClientList() {
+        return this.clientList;
+    }
 
 
     public Client createClient(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
@@ -26,9 +33,9 @@ public class ClientList {
         this.add(c);
     }
 
-    public static void printList(ClientList c) {
-        for (Client clientlist : c.clientList) {
-            System.out.println(clientlist);
+    public void printList() {
+        for (Client c : clientList) {
+            System.out.println(c);
         }
     }
 
