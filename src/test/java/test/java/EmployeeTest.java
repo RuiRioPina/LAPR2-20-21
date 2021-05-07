@@ -22,7 +22,7 @@ public class EmployeeTest {
         Role r1=new Role("Receives Clients","Receptionist","Rec");
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",937845773,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         Employee e2= new Employee("Tiago Santa Cruz","Porto","1234",937845773,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
-        Employee e3= new Employee("Tiago Santos","Porto","1234",937845763,"tiagosantos@gmail.com","TiagoS",3,r1,null);
+        Employee e3= new Employee("Tiago Santoss","Porto","1234",937845763,"tiagosantos@gmail.com","TiagoS",3,r1,null);
         Object obj= new Object();
         assertNotEquals(e1,obj);
         assertNotEquals(e1,e3);
