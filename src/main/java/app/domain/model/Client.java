@@ -19,17 +19,13 @@ public class Client {
     private String name;
     private String password;
 
-    public String getPassword() {
-        return password;
-    }
-
     LocalDate currentDate = LocalDate.now();
 
     public Client() {
 
     }
 
-    public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
+	public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
         this.ccn = ccn;
         this.tin = tin;
         this.nhsNumber = nhsNumber;
@@ -187,5 +183,43 @@ public class Client {
         }
     }
 
+    public long getCcn() {
+		return ccn;
+	}
 
+	public long getNhsNumber() {
+		return nhsNumber;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public long getTin() {
+		return tin;
+	}
+
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public LocalDate getCurrentDate() {
+		return currentDate;
+	}
+
+	public String getPassword() {
+        return password;
+    }
 }

@@ -8,6 +8,7 @@ package app.ui.console;
 import app.controller.App;
 import app.controller.RegisterClientController;
 import app.domain.model.Client;
+import app.domain.model.ParameterCategory;
 import app.domain.store.ClientList;
 import auth.AuthFacade;
 
@@ -170,6 +171,10 @@ public class RegisterClientUI implements Runnable {
                 try {
                     registerClientController.saveClient(clt);
                     registerClientController.sendEmailToClient(clt);
+                    ClientList clientList= App.getInstance().getCompany().getClientList();
+                    for(Client c : clientList.getClients()) {
+                    	System.out.println(c);
+                    }
                 } catch (IOException | InterruptedException e) {
                     System.out.println(e.getMessage());
                 }
@@ -188,12 +193,5 @@ public class RegisterClientUI implements Runnable {
 
             }
         } while (!result);
-
-        ClientList clientList=App.getInstance().getCompany().getClientList();
-        List<Client> clientList1=clientList.getClientList();
-        clientList.printList();
-
-
-
     }
 }
