@@ -1,11 +1,8 @@
 package app.controller;
 
-import app.domain.model.Company;
 import app.domain.model.Parameter;
 
-
 import app.domain.model.ParameterCategory;
-import app.domain.store.ParameterCategoryStore;
 import app.domain.store.ParameterStore;
 import org.junit.Test;
 
@@ -25,8 +22,8 @@ public class ParameterControllerTest {
         parameterCategories.add(pc);
 
         Parameter p1 = parameterController.createParameter("54345", "RBC", "RED BLOOD CELLS", parameterCategories);
-
-        assertEquals(p1, p1);
+        Parameter p2 = parameterController.createParameter("abcde", "RBC", "RED BLOOD CELLS", parameterCategories);
+        assertNotEquals(p1, p2);
     }
 
     @Test
