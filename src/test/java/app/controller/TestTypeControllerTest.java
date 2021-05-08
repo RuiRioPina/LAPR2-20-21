@@ -38,7 +38,7 @@ public class TestTypeControllerTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "54321";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "colheita";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
@@ -50,7 +50,7 @@ public class TestTypeControllerTest {
     	
 		List<TestType> testTypes = tsStore.getTestTypes();
 		
-        assertEquals(1, testTypes.size());
+        assertEquals(2, testTypes.size());
         
         TestType tt = testTypes.get(0);        
         assertEquals(code, tt.getCode());
@@ -68,7 +68,7 @@ public class TestTypeControllerTest {
 		TestTypeStore tsStore = cmp.getTestTypeStore();
 		
 		String code = "54321";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "colheita";
 		String categoryCode = "aaaaa";
 		List<String> parameterCategoryCodes = new ArrayList<String>();
