@@ -46,11 +46,16 @@ public class ClientTest {
     public void validateCcn() {
 
         ExpectedException exceptionRule = ExpectedException.none();
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client = new Client(999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client2 = new Client(1000000000000000L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client3 = new Client(1008003090000000L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+
         try {
-            client1.validateCcn(client1.getCcn());
             client.validateCcn(client.getCcn());
+            client1.validateCcn(client1.getCcn());
+            client2.validateCcn(client2.getCcn());
+            client3.validateCcn(client3.getCcn());
         } catch (IllegalArgumentException e) {
             exceptionRule.expect(IllegalArgumentException.class);
         }
