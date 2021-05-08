@@ -1,13 +1,9 @@
 package app.controller;
 
 import app.domain.model.Company;
-import app.domain.model.Parameter;
-
-
 import app.domain.model.ParameterCategory;
 import app.domain.model.TestType;
 import app.domain.store.ParameterCategoryStore;
-import app.domain.store.ParameterStore;
 import app.domain.store.TestTypeStore;
 
 import org.junit.Test;
@@ -38,11 +34,13 @@ public class TestTypeControllerTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "54321";
-		String description = "uma descri��o";
+		String description = "uma descricao";
 		String collectingMethod = "colheita";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
 		parameterCategoryCodes.add(categoryCode);
+		
+		int count = tsStore.getTestTypes().size();
 		
 		TestTypeController ttController = new TestTypeController();
 		ttController.createTestType(code, description, collectingMethod, parameterCategoryCodes);
@@ -50,7 +48,7 @@ public class TestTypeControllerTest {
     	
 		List<TestType> testTypes = tsStore.getTestTypes();
 		
-        assertEquals(1, testTypes.size());
+        assertEquals(count + 1, testTypes.size());
         
         TestType tt = testTypes.get(0);        
         assertEquals(code, tt.getCode());
@@ -68,7 +66,7 @@ public class TestTypeControllerTest {
 		TestTypeStore tsStore = cmp.getTestTypeStore();
 		
 		String code = "54321";
-		String description = "uma descri��o";
+		String description = "uma descricao";
 		String collectingMethod = "colheita";
 		String categoryCode = "aaaaa";
 		List<String> parameterCategoryCodes = new ArrayList<String>();
