@@ -153,15 +153,6 @@ public class RegisterClientControllerTest {
     }
 
     @Test
-    public void sendEmailToClient() throws IOException, InterruptedException {
-        RegisterClientController registerClientController = new RegisterClientController();
-        Client c = new Client(9999999999999999L, 9919999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        boolean expected = true;
-        boolean actual = registerClientController.sendEmailToClient(c);
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void getClientList() {
         RegisterClientController registerClientController = new RegisterClientController();
         ClientList clientList = new ClientList();
