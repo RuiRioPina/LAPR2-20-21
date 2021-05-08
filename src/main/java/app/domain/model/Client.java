@@ -105,11 +105,12 @@ public class Client {
                 this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.email);
     }
 
-    public void validateCcn(long ccn) {
+    public boolean validateCcn(long ccn) {
         long length = (int) (Math.log10(ccn) + 1);
         if (length == 16) {
             throw new IllegalArgumentException("The number of the ccn has to have 16 digits");
         }
+        return true;
     }
 
     public void validateNhsNumber(long nhsNumber) {
