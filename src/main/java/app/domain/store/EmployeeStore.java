@@ -49,13 +49,6 @@ public class EmployeeStore {
         }else throw new IllegalArgumentException("You have made a mistake in typing your employee's data.The employee was not added.");
 
     }
-    public static void printStore(EmployeeStore lEmployee){
-        for (Employee employee:lEmployee.lEmployee
-             ) {
-            System.out.println(employee);
 
-        }
-
-    }
 
 }
