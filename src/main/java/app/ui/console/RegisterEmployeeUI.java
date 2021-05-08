@@ -32,7 +32,7 @@ public class RegisterEmployeeUI implements Runnable {
         String employeeRole=sc.nextLine();
 
         Role role = this.registerEmployeeController.getlRole().get(this.registerEmployeeController.getRoleIndex(employeeRole));
-        System.out.println("Please type the name of your employee:");
+        System.out.println("Please type the name of your employee(Less than 35 characters):");
         String name = sc.nextLine();
         System.out.println("Please type the adress of your employee:");
         String adress = sc.nextLine();

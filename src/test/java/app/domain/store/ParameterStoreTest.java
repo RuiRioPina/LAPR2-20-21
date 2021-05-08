@@ -114,5 +114,78 @@ public class ParameterStoreTest {
         assertNotEquals(expected,actual2);
         assertNotEquals(null,actual1);
     }
+
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkCodeRules() {
+        ParameterStore ps = new ParameterStore();
+
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("5421","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        Parameter p1 = ps.createParameter("1234","RBC","RED BLOOD CELLS",parameterCategories);
+
+        ps.checkCodeRules(p1.getCode());
+
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkShortnameRules() {
+        ParameterStore ps = new ParameterStore();
+
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("5421","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        Parameter p1 = ps.createParameter("12345","","RED BLOOD CELLS",parameterCategories);
+
+        ps.checkShortnameRules(p1.getShortname());
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkDescriptionRules() {
+        ParameterStore ps = new ParameterStore();
+
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("5421","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        Parameter p1 = ps.createParameter("12345","RBC","",parameterCategories);
+
+        ps.checkDescriptionRules(p1.getDescription());
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void checkParameterCategoryRules() {
+        ParameterStore ps = new ParameterStore();
+
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+
+        Parameter p1 = ps.createParameter("12345","RBC","RED BLOOD CELLS",parameterCategories);
+
+        ps.checkParameterCategoryRules(p1.getPc());
+    }
+
+    @Test
+    public void testGetParameterByCode() {
+        ParameterStore ps = new ParameterStore();
+
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("5421","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        Parameter p1 = ps.createParameter("12345","RBC","RED BLOOD CELLS",parameterCategories);
+
+        List <Parameter> parameter = new ArrayList<>();
+
+        parameter.add(p1);
+
+        ps.getParameterByCode("12345");
+
+        String s = "12345";
+        assertEquals(ps.getParameterByCode("12345"), ps.getParameterByCode(s));
+    }
 }
+
 

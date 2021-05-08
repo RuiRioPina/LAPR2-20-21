@@ -118,6 +118,6 @@ public class Utils {
     public static boolean isAlpha(String name) {
         return name.matches("^[\\p{L} .'-]+$");
     }
-    public static boolean validateSOC(String SOC){return SOC.length()!=4 && !SOC.matches("[0-9]+");}
+    public static boolean validateSOC(String SOC){return SOC.length()!=4 || !SOC.matches("[0-9]+");}
     public static boolean nameContainsDigits(String name){return  name.matches(".*\\d.*");}
 }
