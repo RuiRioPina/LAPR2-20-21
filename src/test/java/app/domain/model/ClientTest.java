@@ -59,6 +59,8 @@ public class ClientTest {
             client3.validateCcn(client3.getCcn());
             client4.validateCcn(1000000000000000L);
             client4.validateCcn(9999999999999999L);
+            client4.validateCcn(999999999999999L);
+            client4.validateCcn(99999999999999999L);
         } catch (IllegalArgumentException e) {
             exceptionRule.expect(IllegalArgumentException.class);
         }
