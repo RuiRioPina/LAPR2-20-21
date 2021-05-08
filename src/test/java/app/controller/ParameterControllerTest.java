@@ -47,4 +47,14 @@ public class ParameterControllerTest {
         assertEquals(expected, actual1);
         assertNotEquals(unexpected, actual1);
     }
+
+    @Test
+    public void getParameterCategories() {
+        List<ParameterCategory> pc = App.getInstance().getCompany().getParameterCategoryStore().getParameterCategories();
+        ParameterController parameterController = new ParameterController();
+
+        List<ParameterCategory> pcList = parameterController.getParameterCategories();
+
+        assertArrayEquals(pc.toArray(), pcList.toArray());
+    }
 }
