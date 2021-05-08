@@ -106,13 +106,15 @@ public class Client {
     }
 
     public void validateCcn(long ccn) {
-        if (ccn < 1000000000000000L || ccn > 9999999999999999L) {
+        long length = (int) (Math.log10(ccn) + 1);
+        if (length == 16) {
             throw new IllegalArgumentException("The number of the ccn has to have 16 digits");
         }
     }
 
     public void validateNhsNumber(long nhsNumber) {
-        if (nhsNumber < 1000000000L || nhsNumber > 9999999999L) {
+        long length = (int) (Math.log10(nhsNumber) + 1);
+        if (length == 10) {
             throw new IllegalArgumentException("The number of the NHS number has to have 10 digits");
         }
     }
@@ -159,7 +161,8 @@ public class Client {
     }
 
     public void validateTin(long tin) {
-        if (tin < 1000000000L || tin > 9999999999L) {
+        long length = (int) (Math.log10(tin) + 1);
+        if (length == 10) {
             throw new IllegalArgumentException("The number of the TIN has to have 10 digits");
         }
     }
@@ -175,7 +178,8 @@ public class Client {
     }
 
     public void validatePhoneNumber(long phoneNumber) {
-        if (phoneNumber < 10000000000L || phoneNumber > 99999999999L) {
+        long length = (int) (Math.log10(ccn) + 1);
+        if (length == 11) {
             throw new IllegalArgumentException("The number of the Phone number has to have 11 digits. Please try again");
         }
     }
