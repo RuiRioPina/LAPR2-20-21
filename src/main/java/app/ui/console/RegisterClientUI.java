@@ -1,20 +1,13 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
 
 package app.ui.console;
 
-import app.controller.App;
 import app.controller.RegisterClientController;
 import app.domain.model.Client;
-import app.domain.model.ParameterCategory;
 import app.domain.store.ClientList;
 import auth.AuthFacade;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class RegisterClientUI implements Runnable {
@@ -40,15 +33,17 @@ public class RegisterClientUI implements Runnable {
         System.out.println();
 
         do {
-
+            try {
                 System.out.println("Enter the Client's Citizen's card number (16 digits):");
                 ccn = sc.nextLong();
-                registerClientController.validateCcn(ccn);
                 result = registerClientController.validateCcn(ccn);
-                if(!result){
-                    System.out.println("The CCN must have 16 digits. Please try again.");
+                if (!result) {
+                    System.out.println("The Client's Citizen's card number needs to have 16 digits. Please try again.");
                 }
-
+            } catch (InputMismatchException e) {
+                System.out.println("The CCN can only have numbers. Please try again.");
+                sc.nextLine();
+            }
         } while (!result);
 
         result = false;
@@ -57,10 +52,14 @@ public class RegisterClientUI implements Runnable {
             try {
                 System.out.println("Enter the Client's NHS Number(10 digits): ");
                 nhsNumber = sc.nextLong();
-                registerClientController.validateNhsNumber(nhsNumber);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println("The NHS number has to have 10 digits");
+
+                result = registerClientController.validateNhsNumber(nhsNumber);
+
+                if (!result) {
+                    System.out.println("The NHS number needs to have 10 digits. Please try again.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("The NHS number can only have numbers. Please try again.");
             }
         } while (!result);
 
@@ -86,10 +85,10 @@ public class RegisterClientUI implements Runnable {
             try {
                 System.out.println("Enter the Client's sex (optional: write .): ");
                 sex = sc.nextLine();
-                registerClientController.validateSex(sex);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                result = registerClientController.validateSex(sex);
+                if (!result) {
+                    System.out.println("You have introduced an invalid sex. Please try again");
+                }
             } catch (InputMismatchException e) {
                 System.out.println("The Sex can only have letters. Please try again.");
                 sc.nextLine();
@@ -102,10 +101,11 @@ public class RegisterClientUI implements Runnable {
             try {
                 System.out.println("Enter the Client's Tax Identification Number (10 digits): ");
                 tin = sc.nextLong();
-                registerClientController.validateTin(tin);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                result = registerClientController.validateTin(tin);
+                if (!result) {
+                    System.out.println("The TIN needs to have 10 digits. Please try again");
+                }
+
             } catch (InputMismatchException e) {
                 System.out.println("The TIN can only have numbers. Please try again.");
                 sc.nextLine();
@@ -118,10 +118,13 @@ public class RegisterClientUI implements Runnable {
             try {
                 System.out.println("Enter the Client's phone number (11 digits): ");
                 phoneNumber = sc.nextLong();
-                registerClientController.validatePhoneNumber(phoneNumber);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+
+                result = registerClientController.validatePhoneNumber(phoneNumber);
+
+                if (!result) {
+                    System.out.println("The phone number needs to have 11 digits. Please try again");
+
+                }
             } catch (Exception e) {
                 System.out.println("The phone number can only have numbers. Please try again.");
             }

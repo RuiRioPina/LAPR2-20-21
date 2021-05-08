@@ -110,11 +110,9 @@ public class Client {
         return length == 16;
     }
 
-    public void validateNhsNumber(long nhsNumber) {
+    public boolean validateNhsNumber(long nhsNumber) {
         long length = (int) (Math.log10(nhsNumber) + 1);
-        if (length != 10) {
-            throw new IllegalArgumentException("The number of the NHS number has to have 10 digits");
-        }
+        return length == 10;
     }
 
     public void validateBirthDate(String birthDate) {
@@ -151,35 +149,33 @@ public class Client {
         if (year < 0 || year > currentDate.getYear()) {
             throw new IllegalArgumentException("The client can not be born after " + currentDate.getYear() + ". Please try again with a different birth date");
         }
-        if ((year <= (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
+        if ((year == (currentDate.getYear() - 150) && month == currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
+            throw new IllegalArgumentException("The client can not born be older than 150 years old. Please try again with a different birth date");
+        }else if((year == (currentDate.getYear() - 150) && month < currentDate.getMonthValue())) {
             throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
-        } else if ((year == (currentDate.getYear()) && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
+        }
+        else if(year<(currentDate.getYear() - 150)) {
+            throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
+        }
+        else if ((year == (currentDate.getYear()) && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
             throw new IllegalArgumentException("The client can not be born in the future! Please try again with a different birth date");
         }
     }
 
-    public void validateTin(long tin) {
+    public boolean validateTin(long tin) {
         long length = (int) (Math.log10(tin) + 1);
-        if (length != 10) {
-            throw new IllegalArgumentException("The number of the TIN has to have 10 digits");
-        }
+        return length == 10;
     }
 
-    public void validateSex(String sex) {
-        if (sex.equals(".")) {
+    public boolean validateSex(String sex) {
 
-        } else if (!sex.equalsIgnoreCase("M") && !sex.equalsIgnoreCase("F") && !sex.equalsIgnoreCase("male") && !sex.equalsIgnoreCase("female")) {
-            throw new IllegalArgumentException("You have introduced a wrong sex. Please try again!");
-        }
-
+        return sex.equals(".") || sex.equalsIgnoreCase("M") || sex.equalsIgnoreCase("F") || sex.equalsIgnoreCase("male") || sex.equalsIgnoreCase("female");
 
     }
 
-    public void validatePhoneNumber(long phoneNumber) {
+    public boolean validatePhoneNumber(long phoneNumber) {
         long length = (int) (Math.log10(phoneNumber) + 1);
-        if (length != 11) {
-            throw new IllegalArgumentException("The number of the Phone number has to have 11 digits. Please try again");
-        }
+        return length == 11;
     }
 
     public void validateEmail(String email) {
