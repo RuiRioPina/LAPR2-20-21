@@ -20,19 +20,27 @@ public class TestType {
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public String getCollectingMethod() {
-		return collectingMethod;
+		return this.collectingMethod;
 	}
 
 	public List<ParameterCategory> getParameterCategories() {
-		return parameterCategories;
+		return this.parameterCategories;
+	}
+
+	public String toString() {
+		String result = String.format("%s - %s - %s", this.code, this.description, this.collectingMethod);
+		for(ParameterCategory pc : this.parameterCategories) {
+			result += String.format(" - %s", pc);
+		}
+		return result;
 	}
 	
 }

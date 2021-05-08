@@ -11,11 +11,11 @@ public class ParameterCategory {
     }
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	public String toString() {

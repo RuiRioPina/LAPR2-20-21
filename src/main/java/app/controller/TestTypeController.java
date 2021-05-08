@@ -29,7 +29,11 @@ public class TestTypeController {
 		
 		List<ParameterCategory> parameterCategories = new ArrayList<ParameterCategory>();
 		for(String parameterCategoryCode : parameterCategoryCodes) {
-			parameterCategories.add(cs.getParameterCategoryByCode(parameterCategoryCode));
+			ParameterCategory pc = cs.getParameterCategoryByCode(parameterCategoryCode);
+			if(pc==null) {
+				throw new IllegalArgumentException("Parameter category code not found.");
+			}
+			parameterCategories.add(pc);
 		}
 		
 		TestTypeStore ts = this.company.getTestTypeStore();
