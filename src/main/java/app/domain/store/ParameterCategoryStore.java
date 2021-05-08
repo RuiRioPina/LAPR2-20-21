@@ -3,7 +3,6 @@ package app.domain.store;
 import java.util.ArrayList;
 import java.util.List;
 import app.domain.model.ParameterCategory;
-import app.domain.model.TestType;
 
 public class ParameterCategoryStore {
 
@@ -18,7 +17,7 @@ public class ParameterCategoryStore {
 	}
 	
 	public List<ParameterCategory> getParameterCategories() {
-		List<ParameterCategory> pc = new ArrayList<ParameterCategory>();
+		List<ParameterCategory> pc = new ArrayList<>();
 		pc.addAll(this.parameterCategories);
 		return pc;
 	}

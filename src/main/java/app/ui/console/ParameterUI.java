@@ -66,7 +66,7 @@ public class ParameterUI implements Runnable{
         }
 
         try {
-            this.parameterController.saveParameter();
+            this.parameterController.saveParameter(p);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }

@@ -40,8 +40,8 @@ public class ParameterController {
         return this.parameter;
     }
 
-    public void saveParameter() throws IllegalArgumentException {
+    public void saveParameter(Parameter p) throws IllegalArgumentException {
         ParameterStore ps = this.company.getParameterStore();
-        ps.saveParameter(this.parameter);
+        ps.saveParameter(p);
     }
 }
