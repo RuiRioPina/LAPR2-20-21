@@ -5,8 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import app.domain.shared.Constants;
 import app.domain.shared.Utils;
+import auth.AuthFacade;
 import auth.domain.model.Email;
+import auth.domain.model.Password;
+import auth.domain.model.User;
 import auth.domain.store.UserStore;
 
 public class Client {
@@ -21,6 +25,10 @@ public class Client {
     private String password;
 
     UserStore userStore = new UserStore();
+
+    AuthFacade authFacade = new AuthFacade();
+
+    User user;
 
     LocalDate currentDate = LocalDate.now();
 
@@ -38,11 +46,7 @@ public class Client {
         this.email = email;
         this.name = name;
         this.password = generatePassword();
-        try {
-            userStore.add(userStore.create(this.name, this.email, this.password));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 
     public Client(long ccn, long nhsNumber, String birthDate, String email, long tin, long phoneNumber, String name) {
@@ -54,12 +58,7 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.password = generatePassword();
-        try {
 
-            userStore.add(userStore.create(this.name, this.email, this.password));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public String generatePassword() {
@@ -177,9 +176,11 @@ public class Client {
                 i = 1;
             }
         } catch (NumberFormatException e) {
-            System.out.println("Só pode introduzir a data entre " + "-" + ". Por favor tente novamente. ");
+            System.out.println("Só pode introduzir a data entre " + "\"-\"." + "Por favor tente novamente. ");
+            i = 1;
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Houve um erro! Tente novamente com outros valores");
+            i = 1;
         }
         return i != 1;
     }

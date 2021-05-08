@@ -1,7 +1,9 @@
 package app.domain.store;
 
+import app.controller.App;
 import app.domain.model.Client;
 import app.domain.model.ParameterCategory;
+import app.domain.shared.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class ClientList {
 
     public void saveClient(Client c) {
         this.add(c);
+        App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
 
     public List<Client> getClients() {
