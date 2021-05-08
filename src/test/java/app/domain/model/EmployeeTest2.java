@@ -219,11 +219,13 @@ assertNotEquals(e1.generateEmployeePassword().length(),notExpectedLength);
         Employee e2= new Employee("Tiago Santa Cruz Com Nome Muito Grande","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         Employee e3= new Employee("Tiago Santa Cruz","Porto","12345",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         Employee e4= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,"1");
-
+        Employee e5= new Employee("Tiago Santa Cruzaxczvbnmgfdsdddddddd","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,"123456");
+        Employee e6= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,null,null);
         assertTrue(e1.validateEmployee());
         assertFalse(e2.validateEmployee());
         assertFalse(e3.validateEmployee());
         assertFalse(e4.validateEmployee());
+        assertFalse(e5.validateEmployee());
 
     }
 
