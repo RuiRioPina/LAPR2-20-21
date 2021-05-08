@@ -38,7 +38,7 @@ public class Role {
             return false;
         }
         Role role= (Role) o;
-        return Objects.equals(roleID,role.roleID) && Objects.equals(roleDescription,role.roleDescription);
+        return Objects.equals(roleID,role.roleID) && Objects.equals(roleDescription,role.roleDescription)&& Objects.equals(roleShortname,role.roleShortname);
     }
     @Override
     public String toString(){
