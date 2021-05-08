@@ -94,10 +94,10 @@ public class Company {
     public boolean sendEmailToClient(Client c) throws IOException, InterruptedException {
         String nomeficheiro = "emailAndSMSMessages.txt";
         try (PrintWriter out = new PrintWriter(nomeficheiro)) {
-            out.println("Welcome to the Application");
-            out.println("You have been sucessfully registered");
+            out.println("Welcome to the Application.");
+            out.println("You have been sucessfully registered.");
             out.println();
-            out.println("Your password to be used in the application is : " + c.getPassword());
+            out.println("Your password to be used in the application is :" + c.getPassword());
         } catch (IOException e) {
             System.out.println("The file has not been created since there was an error. Please try again.");
         }
