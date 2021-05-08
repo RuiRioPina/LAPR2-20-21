@@ -50,7 +50,7 @@ public class TestTypeControllerTest {
 		
         assertEquals(count + 1, testTypes.size());
         
-        TestType tt = testTypes.get(0);        
+        TestType tt = testTypes.get(count);        
         assertEquals(code, tt.getCode());
         assertEquals(description, tt.getDescription());
         assertEquals(collectingMethod, tt.getCollectingMethod());
