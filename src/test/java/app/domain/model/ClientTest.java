@@ -4,12 +4,17 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.time.LocalDate;
+
 import static org.junit.Assert.*;
 
 
 public class ClientTest {
-
-
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    LocalDate currentDate = LocalDate.now();
 
     @Test
     public void generatePassword() {
@@ -19,7 +24,6 @@ public class ClientTest {
         String actual = client.generatePassword();
         int expected = 10;
         //Assert
-
         assertEquals(expected, actual.length(), 0.01);
         assertFalse(actual.length() != 10);
 
@@ -77,14 +81,13 @@ public class ClientTest {
 
     @Test
     public void validateBirthDate() {
-        ExpectedException exceptionRule = ExpectedException.none();
 
         Client client = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client2 = new Client(999999999999999L, 9999999999L, "10-03-1871", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client3 = new Client(999999999999999L, 9999999999L, "10-0-1890", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client4 = new Client(999999999999999L, 9999999999L, "10-03-187", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client5 = new Client(999999999999999L, 9999999999L, "1-03-1990", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client6 = new Client(999999999999999L, 9999999999L, "38-12-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client6 = new Client(999999999999999L, 9999999999L, "38-11-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client7 = new Client(999999999999999L, 9999999999L, "10-13-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client8 = new Client(999999999999999L, 9999999999L, "", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client9 = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
@@ -103,6 +106,14 @@ public class ClientTest {
         boolean actual10 = client10.validateBirthDate(client10.getBirthDate());
         boolean actual11 = client.validateBirthDate("04-05-1871");
         boolean actual12 = client.validateBirthDate("              ");
+        boolean actual13 = client.validateBirthDate("10-12-1999");
+        boolean actual14 = client.validateBirthDate("10--1-1999");
+        boolean actual15 = client.validateBirthDate("10-13-1999");
+        boolean actual16 = client.validateBirthDate("-");
+        boolean actual17 = client.validateBirthDate("");
+        boolean actual18 = client.validateBirthDate("12-01-2070");
+        boolean actual19 = client.validateBirthDate("12-01-1300");
+        boolean actual20 = client.validateBirthDate(currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() - 150));
 
 
         assertFalse(actual1);
@@ -117,6 +128,14 @@ public class ClientTest {
         assertTrue(actual10);
         assertFalse(actual11);
         assertTrue(actual12);
+        assertTrue(actual13);
+        assertTrue(actual14);
+        assertFalse(actual15);
+        assertFalse(actual16);
+        assertFalse(actual17);
+        assertFalse(actual18);
+        assertFalse(actual19);
+        assertTrue(actual20);
 
 
     }
@@ -180,7 +199,6 @@ public class ClientTest {
 
     @Test
     public void validateName() {
-        ExpectedException exceptionRule = ExpectedException.none();
 
         Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina312312");

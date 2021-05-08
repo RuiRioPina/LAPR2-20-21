@@ -117,9 +117,9 @@ public class Client {
 
     public boolean validateBirthDate(String birthDate) {
         int i = 0;
-        int day;
-        int month;
-        int year;
+        int day = 0;
+        int month = 0;
+        int year = 0;
         if (birthDate.equals("")) {
             return false;
         }
@@ -131,9 +131,11 @@ public class Client {
                 System.out.println("The date must be in the format DD/MM/YYYY. Please try again");
                 i = 1;
             }
-            day = Integer.parseInt(dateParts[0]);
-            month = Integer.parseInt(dateParts[1]);
-            year = Integer.parseInt(dateParts[2]);
+            if (dateParts[0].length() != 0 || dateParts[1].length() != 0 || dateParts[2].length() != 0) {
+                day = Integer.parseInt(dateParts[0]);
+                month = Integer.parseInt(dateParts[1]);
+                year = Integer.parseInt(dateParts[2]);
+            }
 
             if (dateParts[0].length() != 2) {
                 System.out.println("You have inserted the day incorrectly. Please insert the day as DD!");
@@ -176,6 +178,8 @@ public class Client {
             }
         } catch (NumberFormatException e) {
             System.out.println("Só pode introduzir a data entre " + "-" + ". Por favor tente novamente. ");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Houve um erro! Tente novamente com outros valores");
         }
         return i != 1;
     }
