@@ -59,5 +59,8 @@ public class ParameterStore {
         }
     }
 
+    public boolean isParameterInList(Parameter p) {
+        return this.parameter.contains(p);
+    }
 }
 
