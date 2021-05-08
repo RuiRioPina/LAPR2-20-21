@@ -55,8 +55,8 @@ public class RegisterClientController {
         System.out.println(c);
     }
 
-    public void validateCcn(long ccn) {
-        clt.validateCcn(ccn);
+    public boolean validateCcn(long ccn) {
+        return clt.validateCcn(ccn);
     }
 
     public void validateNhsNumber(long nhsNumber) {

@@ -45,17 +45,16 @@ public class ClientTest {
     @Test
     public void validateCcn() {
 
-        ExpectedException exceptionRule = ExpectedException.none();
         Client client4 = new Client();
 
-        try {
-            client4.validateCcn(1000000000000000L);
-            client4.validateCcn(9999999999999999L);
-            client4.validateCcn(999999999999999L);
-            client4.validateCcn(99999999999999999L);
-        } catch (IllegalArgumentException e) {
-            exceptionRule.expect(IllegalArgumentException.class);
-        }
+        boolean actual1 = client4.validateCcn(1000000000000000L);
+        boolean actual2 = client4.validateCcn(9999999999999999L);
+        boolean actual3 = client4.validateCcn(999999999999999L);
+        boolean actual4 = client4.validateCcn(99999999999999999L);
+        assertTrue(actual1);
+        assertFalse(actual2);
+        assertTrue(actual3);
+        assertFalse(actual4);
 
 
     }

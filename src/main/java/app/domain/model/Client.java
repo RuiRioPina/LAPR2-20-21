@@ -107,10 +107,7 @@ public class Client {
 
     public boolean validateCcn(long ccn) {
         long length = (int) (Math.log10(ccn) + 1);
-        if (length != 16) {
-            throw new IllegalArgumentException("The number of the ccn has to have 16 digits");
-        }
-        return true;
+        return length == 16;
     }
 
     public void validateNhsNumber(long nhsNumber) {

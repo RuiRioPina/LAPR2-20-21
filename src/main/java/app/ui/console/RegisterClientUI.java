@@ -40,17 +40,15 @@ public class RegisterClientUI implements Runnable {
         System.out.println();
 
         do {
-            try {
+
                 System.out.println("Enter the Client's Citizen's card number (16 digits):");
                 ccn = sc.nextLong();
                 registerClientController.validateCcn(ccn);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (InputMismatchException e) {
-                System.out.println("The CCN can only have numbers. Please try again.");
-                sc.nextLine();
-            }
+                result = registerClientController.validateCcn(ccn);
+                if(!result){
+                    System.out.println("The CCN must have 16 digits. Please try again.");
+                }
+
         } while (!result);
 
         result = false;
