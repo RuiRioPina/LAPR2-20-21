@@ -47,9 +47,9 @@ public class ClientTest {
 
         ExpectedException exceptionRule = ExpectedException.none();
         Client client4 = new Client();
-        boolean expected = true;
-        boolean actual = client4.validateCcn(1000000000000000L);
+
         try {
+            boolean actual = client4.validateCcn(1000000000000000L);
             client4.validateCcn(1000000000000000L);
             client4.validateCcn(9999999999999999L);
             client4.validateCcn(999999999999999L);
