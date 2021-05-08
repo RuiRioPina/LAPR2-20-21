@@ -23,6 +23,7 @@ public class RegisterClientUI implements Runnable {
 
     public void run() {
         RegisterClientController registerClientController = new RegisterClientController();
+        ClientList clientList;
         long tin = 0L;
         long phoneNumber = 0L;
         long nhsNumber = 0L;
@@ -171,9 +172,9 @@ public class RegisterClientUI implements Runnable {
                 try {
                     registerClientController.saveClient(clt);
                     registerClientController.sendEmailToClient(clt);
-                    ClientList clientList= App.getInstance().getCompany().getClientList();
-                    for(Client c : clientList.getClients()) {
-                    	System.out.println(c);
+                    clientList = registerClientController.getClientList();
+                    for (Client c : clientList.getClients()) {
+                        System.out.println(c);
                     }
                 } catch (IOException | InterruptedException e) {
                     System.out.println(e.getMessage());

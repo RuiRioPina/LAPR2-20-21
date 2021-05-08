@@ -22,7 +22,11 @@ public class ClientList {
     }
 
     private void add(Client c) {
-        this.clientList.add(c);
+        if (!clientList.contains(c)) {
+            this.clientList.add(c);
+        } else {
+            System.out.println("At least one attribute needs to be unique. Please try again");
+        }
     }
 
     public void saveClient(Client c) {
@@ -30,17 +34,10 @@ public class ClientList {
     }
 
     public List<Client> getClients() {
-		List<Client> c = new ArrayList<Client>();
-		c.addAll(this.clientList);
-		return c;
-	}
-    
-    public void printList() {
-        for (Client c : clientList) {
-            System.out.println(c);
-        }
+        List<Client> c = new ArrayList<Client>();
+        c.addAll(this.clientList);
+        return c;
     }
-
 
     public boolean isClientInList(Client c) {
         return this.clientList.contains(c);

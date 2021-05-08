@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import app.domain.shared.Utils;
 import auth.domain.model.Email;
+import auth.domain.store.UserStore;
 
 public class Client {
     private long ccn;
@@ -19,13 +20,15 @@ public class Client {
     private String name;
     private String password;
 
+    UserStore userStore = new UserStore();
+
     LocalDate currentDate = LocalDate.now();
 
     public Client() {
 
     }
 
-	public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
+    public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
         this.ccn = ccn;
         this.tin = tin;
         this.nhsNumber = nhsNumber;
@@ -35,6 +38,11 @@ public class Client {
         this.email = email;
         this.name = name;
         this.password = generatePassword();
+        try {
+            userStore.add(userStore.create(this.name, this.email, this.password));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public Client(long ccn, long nhsNumber, String birthDate, String email, long tin, long phoneNumber, String name) {
@@ -46,6 +54,12 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.password = generatePassword();
+        try {
+
+            userStore.add(userStore.create(this.name, this.email, this.password));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String generatePassword() {
@@ -95,7 +109,6 @@ public class Client {
         if (ccn < 1000000000000000L || ccn > 9999999999999999L) {
             throw new IllegalArgumentException("The number of the ccn has to have 16 digits");
         }
-
     }
 
     public void validateNhsNumber(long nhsNumber) {
@@ -108,7 +121,7 @@ public class Client {
         int day;
         int month;
         int year;
-        String[] dateParts = birthDate.split("-");
+        String[] dateParts = birthDate.trim().split("-");
         int[] checkParts = new int[dateParts.length];
         if (checkParts.length == 0) {
             throw new NumberFormatException("The date must be in the format DD/MM/YYYY. Please try again");
@@ -135,8 +148,8 @@ public class Client {
         if (month < 0 || month > 12) {
             throw new IllegalArgumentException("The month be from 01 to 12. Please try again");
         }
-        if(year<0 || year>currentDate.getYear()){
-            throw new IllegalArgumentException("The client can not be born after " + currentDate.getYear() +". Please try again with a different birth date");
+        if (year < 0 || year > currentDate.getYear()) {
+            throw new IllegalArgumentException("The client can not be born after " + currentDate.getYear() + ". Please try again with a different birth date");
         }
         if ((year <= (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
             throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
@@ -184,42 +197,38 @@ public class Client {
     }
 
     public long getCcn() {
-		return ccn;
-	}
+        return ccn;
+    }
 
-	public long getNhsNumber() {
-		return nhsNumber;
-	}
+    public long getNhsNumber() {
+        return nhsNumber;
+    }
 
-	public String getBirthDate() {
-		return birthDate;
-	}
+    public String getBirthDate() {
+        return birthDate;
+    }
 
-	public long getTin() {
-		return tin;
-	}
+    public long getTin() {
+        return tin;
+    }
 
-	public long getPhoneNumber() {
-		return phoneNumber;
-	}
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public String getSex() {
-		return sex;
-	}
+    public String getSex() {
+        return sex;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public LocalDate getCurrentDate() {
-		return currentDate;
-	}
-
-	public String getPassword() {
+    public String getPassword() {
         return password;
     }
 }
