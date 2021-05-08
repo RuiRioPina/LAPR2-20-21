@@ -2,9 +2,10 @@ package app.controller;
 
 import app.domain.model.Client;
 import app.domain.store.ClientList;
-import auth.domain.model.Email;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -143,13 +144,32 @@ public class RegisterClientControllerTest {
 
     @Test
     public void isClientInList() {
+        RegisterClientController registerClientController = new RegisterClientController();
+        Client client = new Client(9999999999999999L, 7999999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        registerClientController.saveClient(client);
+        boolean expected = true;
+        boolean actual = registerClientController.isClientInList(client);
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void sendEmailToClient() {
+    public void sendEmailToClient() throws IOException, InterruptedException {
+        RegisterClientController registerClientController = new RegisterClientController();
+        Client c = new Client(9999999999999999L, 9919999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        boolean expected = true;
+        boolean actual = registerClientController.sendEmailToClient(c);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void getClientList() {
+        RegisterClientController registerClientController = new RegisterClientController();
+        ClientList clientList = new ClientList();
+        Client c = new Client(9999999999999999L, 9999399999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        registerClientController.saveClient(c);
+        clientList.saveClient(c);
+        ClientList expected = App.getInstance().getCompany().getClientList();
+        ClientList actual = registerClientController.getClientList();
+        assertEquals(expected, actual);
     }
 }
