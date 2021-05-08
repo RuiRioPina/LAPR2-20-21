@@ -8,8 +8,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class ParameterStoreTest {
 
@@ -115,6 +114,19 @@ public class ParameterStoreTest {
         assertNotEquals(null,actual1);
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void checkCodeRulesAlpha() {
+        ParameterStore ps = new ParameterStore();
+
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        Parameter p1 = ps.createParameter("%%%%%%","RBC","RED BLOOD CELLS",parameterCategories);
+
+        ps.checkCodeRules(p1.getCode());
+
+    }
 
     @Test (expected = IllegalArgumentException.class)
     public void checkCodeRules() {
