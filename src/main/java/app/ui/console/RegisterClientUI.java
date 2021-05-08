@@ -60,6 +60,7 @@ public class RegisterClientUI implements Runnable {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("The NHS number can only have numbers. Please try again.");
+                sc.nextLine();
             }
         } while (!result);
 
@@ -125,8 +126,9 @@ public class RegisterClientUI implements Runnable {
                     System.out.println("The phone number needs to have 11 digits. Please try again");
 
                 }
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("The phone number can only have numbers. Please try again.");
+                sc.nextLine();
             }
         } while (!result);
 
