@@ -49,20 +49,21 @@ public class Employee {
         this.specialistDoctorIndexNumber=specialistDoctorIndexNumber;
     }
     public String generateEmployeePassword() {
-        String password = "";
+        StringBuilder s = new StringBuilder();
         for (int i=0;i<PASSWORD_DIGIT_AMOUNT;i++){
             Character c=randomCharacter("0123456789");
-            password+=c;
+           s.append(c);
         }
         for (int i=0;i<PASSWORD_UPPERCASE_AMOUNT;i++){
             Character c=randomCharacter("ABCDEFGHIJKLMNOPQRSTUVXYZ");
-            password+=c;
+            s.append(c);
         }
         for (int i=0;i<PASSWORD_LOWERCASE_AMOUNT;i++){
             Character c=randomCharacter("abcdefghijklmnopqrstuvxyz");
-            password+=c;
+            s.append(c);
         }
-        return password;
+        String str= s.toString();
+        return str;
     }
 
     public String getID() {
@@ -86,15 +87,6 @@ public class Employee {
     }
 
     public void setPhoneNumber(long phoneNumber) { this.phoneNumber = phoneNumber; }
-
-    public void validateSOC(){
-        if (SOC.length()!=4 && SOC.matches("[0-9]+")){
-            throw new IllegalArgumentException("SOC must have 4 digits and only numbers");
-        }
-
-    }
-
-
 
     public String getName() {
         return name;
