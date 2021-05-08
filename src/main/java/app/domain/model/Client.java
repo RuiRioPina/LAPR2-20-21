@@ -146,18 +146,12 @@ public class Client {
         if (month < 0 || month > 12) {
             throw new IllegalArgumentException("The month be from 01 to 12. Please try again");
         }
-        if (year < 0 || year > currentDate.getYear()) {
-            throw new IllegalArgumentException("The client can not be born after " + currentDate.getYear() + ". Please try again with a different birth date");
+        if (year < (currentDate.getYear() - 150) || year > currentDate.getYear()) {
+            throw new IllegalArgumentException("The client can't be born in that year. Please try again with a different birth date");
         }
-        if ((year == (currentDate.getYear() - 150) && month == currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
+        if ((year == (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
             throw new IllegalArgumentException("The client can not born be older than 150 years old. Please try again with a different birth date");
-        }else if((year == (currentDate.getYear() - 150) && month < currentDate.getMonthValue())) {
-            throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
-        }
-        else if(year<(currentDate.getYear() - 150)) {
-            throw new IllegalArgumentException("The client can not be older than 150 years old. Please try again with a different birth date");
-        }
-        else if ((year == (currentDate.getYear()) && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
+        } else if ((year == currentDate.getYear() && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
             throw new IllegalArgumentException("The client can not be born in the future! Please try again with a different birth date");
         }
     }
