@@ -233,6 +233,15 @@ assertNotEquals(e1.generateEmployeePassword().length(),notExpectedLength);
         assertFalse(e8.validateEmployee());
 
     }
+    @Test
+    public void getRole(){
+        Role r1=new Role("Receives Clients","Receptionist","Rec");
+        Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
+        Role expected = new Role("Receives Clients","Receptionist","Rec");
+        Role notExpected = new Role("Receives Clients","Receptionist","Rec");
+        assertEquals(e1.getRole(),expected);
+        assertNotEquals(e1.getRole(),notExpected);
+    }
 
 
 }
