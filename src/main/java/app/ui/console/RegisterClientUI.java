@@ -26,7 +26,7 @@ public class RegisterClientUI implements Runnable {
         String sex = "";
         String birthDate = "";
         String email = "";
-        String name = "";
+        String name;
         Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.println("Welcome to the Client Registration Page!");
@@ -71,12 +71,12 @@ public class RegisterClientUI implements Runnable {
             try {
                 System.out.println("Enter the Client's birth date(DD-MM-YYYY): ");
                 birthDate = sc.nextLine();
-                registerClientController.validateBirthDate(birthDate);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                result = registerClientController.validateBirthDate(birthDate);
+
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("All information asked must be inputted. Please insert a day of birth, month and year asked in the format (DD-MM-YYYY).");
+            } catch (NumberFormatException e) {
+                System.out.println("Houve um problema com a introdução dos dados. Por favor tente novamente");
             }
         } while (!result);
 
@@ -145,17 +145,13 @@ public class RegisterClientUI implements Runnable {
             }
         } while (!result);
 
-        result = false;
 
         do {
-            try {
-                System.out.println("Enter the Client's name: ");
-                name = sc.nextLine();
-                registerClientController.validateName(name);
-                result = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            System.out.println("Enter the Client's name: ");
+            name = sc.nextLine();
+
+            result = registerClientController.validateName(name);
+
         } while (!result);
 
         Client clt;

@@ -115,45 +115,69 @@ public class Client {
         return length == 10;
     }
 
-    public void validateBirthDate(String birthDate) {
+    public boolean validateBirthDate(String birthDate) {
+        int i = 0;
         int day;
         int month;
         int year;
-        String[] dateParts = birthDate.trim().split("-");
-        int[] checkParts = new int[dateParts.length];
-        if (checkParts.length == 0) {
-            throw new NumberFormatException("The date must be in the format DD/MM/YYYY. Please try again");
+        if (birthDate.equals("")) {
+            return false;
         }
-        day = Integer.parseInt(dateParts[0]);
-        month = Integer.parseInt(dateParts[1]);
-        year = Integer.parseInt(dateParts[2]);
+        try {
+            String[] dateParts;
+            dateParts = birthDate.trim().split("-");
+            int[] checkParts = new int[dateParts.length];
+            if (checkParts.length == 0) {
+                System.out.println("The date must be in the format DD/MM/YYYY. Please try again");
+                i = 1;
+            }
+            day = Integer.parseInt(dateParts[0]);
+            month = Integer.parseInt(dateParts[1]);
+            year = Integer.parseInt(dateParts[2]);
 
-        if (dateParts[0].length() != 2) {
-            throw new IllegalArgumentException("You have inserted the day incorrectly. Please insert the day as DD!");
-        }
+            if (dateParts[0].length() != 2) {
+                System.out.println("You have inserted the day incorrectly. Please insert the day as DD!");
+                i = 1;
+            }
 
-        if (dateParts[1].length() != 2) {
-            throw new IllegalArgumentException("You have inserted the month incorrectly. Please insert the month as MM!");
-        }
+            if (dateParts[1].length() != 2) {
+                System.out.println("You have inserted the month incorrectly. Please insert the month as MM!");
+                i = 1;
+            }
 
-        if (dateParts[2].length() != 4) {
-            throw new IllegalArgumentException("You have inserted the year incorrectly. Please insert the day as YYYY!");
-        }
+            if (dateParts[2].length() != 4) {
+                System.out.println("You have inserted the year incorrectly. Please insert the day as YYYY!");
+                i = 1;
+            }
 
-        if (!Utils.dayValidation(year, month, day)) {
-            throw new IllegalArgumentException("You have introduced an invalid day.Please try again");
+            if (!Utils.dayValidation(year, month, day)) {
+                System.out.println("You have introduced an invalid day.Please try again");
+                i = 1;
+            }
+            if (month < 0 || month > 12) {
+                System.out.println("The month be from 01 to 12. Please try again");
+                i = 1;
+            }
+            if (year < (currentDate.getYear() - 150) || year > currentDate.getYear()) {
+                System.out.println("The client can't be born in that year. Please try again with a different birth date");
+                i = 1;
+            }
+            if ((year == (currentDate.getYear() - 150) && month < currentDate.getMonthValue())) {
+                System.out.println("The client can not born be older than 150 years old. Please try again with a different birth date");
+                i = 1;
+            } else if ((month == currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
+                System.out.println("The client can not born be older than 150 years old. Please try again with a different birth date");
+                i = 1;
+            }
+
+            if ((year == currentDate.getYear() && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
+                System.out.println("The client can not be born in the future! Please try again with a different birth date");
+                i = 1;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Só pode introduzir a data entre " + "-" + ". Por favor tente novamente. ");
         }
-        if (month < 0 || month > 12) {
-            throw new IllegalArgumentException("The month be from 01 to 12. Please try again");
-        }
-        if (year < (currentDate.getYear() - 150) || year > currentDate.getYear()) {
-            throw new IllegalArgumentException("The client can't be born in that year. Please try again with a different birth date");
-        }
-        if ((year == (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
-            throw new IllegalArgumentException("The client can not born be older than 150 years old. Please try again with a different birth date");
-        } else if ((year == currentDate.getYear() && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
-            throw new IllegalArgumentException("The client can not be born in the future! Please try again with a different birth date");
-        }
+        return i != 1;
     }
 
     public boolean validateTin(long tin) {
@@ -178,14 +202,19 @@ public class Client {
 
     }
 
-    public void validateName(String name) {
+    public boolean validateName(String name) {
+        int i = 0;
         if (name.trim().length() > 35) {
-            throw new IllegalArgumentException("The name can have at max 35 characters. Please try again");
+            System.out.println("The name can have at max 35 characters. Please try again");
+            i = 1;
         } else if (name.trim().isEmpty()) {
-            throw new IllegalArgumentException("The name can't be empty. Please try again with a max of 35 characters.");
+            System.out.println("The name can't be empty. Please try again with a max of 35 characters.");
+            i = 1;
         } else if (!Utils.isAlpha(name)) {
-            throw new IllegalArgumentException("The name can only contain letters. Please try again with a max of 35 characters.");
+            System.out.println("The name can only contain letters. Please try again with a max of 35 characters.");
+            i = 1;
         }
+        return i != 1;
     }
 
     public long getCcn() {

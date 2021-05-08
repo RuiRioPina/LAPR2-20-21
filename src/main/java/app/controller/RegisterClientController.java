@@ -63,8 +63,8 @@ public class RegisterClientController {
         return clt.validateNhsNumber(nhsNumber);
     }
 
-    public void validateBirthDate(String birthDate) {
-        clt.validateBirthDate(birthDate);
+    public boolean validateBirthDate(String birthDate) {
+         return clt.validateBirthDate(birthDate);
     }
 
     public boolean validateTin(long tin) {
@@ -79,8 +79,8 @@ public class RegisterClientController {
         return clt.validatePhoneNumber(phoneNumber);
     }
 
-    public void validateName(String name) {
-        clt.validateName(name);
+    public boolean validateName(String name) {
+        return clt.validateName(name);
     }
 
     public void validateEmail(String email) {
