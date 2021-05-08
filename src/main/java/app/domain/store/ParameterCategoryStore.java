@@ -51,8 +51,8 @@ public class ParameterCategoryStore {
     }
 	
 	private void checkNameRules(String name) throws IllegalArgumentException {
-	    if ((name.length()) < 1 || name.length() > 15) {
-	        throw new IllegalArgumentException("Name must have 1 to 15 chars.");
+	    if ((name.length()) < 1 || name.length() > 10) {
+	        throw new IllegalArgumentException("Name must have 1 to 10 chars.");
 	    }
 	}
 	
