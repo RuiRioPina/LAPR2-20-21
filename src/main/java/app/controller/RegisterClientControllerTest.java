@@ -46,20 +46,28 @@ public class RegisterClientControllerTest {
 
     @Test
     public void validateCcn() {
+        ExpectedException exceptionRule = ExpectedException.none();
         RegisterClientController registerClientController = new RegisterClientController();
-
-        registerClientController.validateCcn(9999999999999999L);
-        registerClientController.validateCcn(9999299999999999L);
-        registerClientController.validateCcn(1000000000000000L);
+        try {
+            registerClientController.validateCcn(9999999999999999L);
+            registerClientController.validateCcn(9999299999999999L);
+            registerClientController.validateCcn(1000000000000000L);
+        } catch (IllegalArgumentException e) {
+            exceptionRule.expect(IllegalArgumentException.class);
+        }
     }
 
     @Test
     public void validateNhsNumber() {
+        ExpectedException exceptionRule = ExpectedException.none();
         RegisterClientController registerClientController = new RegisterClientController();
-
-        registerClientController.validateNhsNumber(9999999999L);
-        registerClientController.validateNhsNumber(9999299999L);
-        registerClientController.validateNhsNumber(1000000000L);
+        try {
+            registerClientController.validateNhsNumber(9999999999L);
+            registerClientController.validateNhsNumber(9999299999L);
+            registerClientController.validateNhsNumber(1000000000L);
+        } catch (IllegalArgumentException e) {
+            exceptionRule.expect(IllegalArgumentException.class);
+        }
     }
 
     @Test
@@ -83,11 +91,15 @@ public class RegisterClientControllerTest {
 
     @Test
     public void validateTin() {
+        ExpectedException exceptionRule = ExpectedException.none();
         RegisterClientController registerClientController = new RegisterClientController();
-
-        registerClientController.validateTin(9999999999L);
-        registerClientController.validateTin(9999299999L);
-        registerClientController.validateTin(1000000000L);
+        try {
+            registerClientController.validateTin(9999999999L);
+            registerClientController.validateTin(9999299999L);
+            registerClientController.validateTin(1000000000L);
+        } catch (IllegalArgumentException e) {
+            exceptionRule.expect(IllegalArgumentException.class);
+        }
     }
 
     @Test
@@ -108,11 +120,15 @@ public class RegisterClientControllerTest {
 
     @Test
     public void validatePhoneNumber() {
+        ExpectedException exceptionRule = ExpectedException.none();
         RegisterClientController registerClientController = new RegisterClientController();
-
-        registerClientController.validatePhoneNumber(99999999999L);
-        registerClientController.validatePhoneNumber(99992999999L);
-        registerClientController.validatePhoneNumber(10000000000L);
+        try {
+            registerClientController.validatePhoneNumber(99999999999L);
+            registerClientController.validatePhoneNumber(99992999999L);
+            registerClientController.validatePhoneNumber(10000000000L);
+        } catch (IllegalArgumentException e) {
+            exceptionRule.expect(IllegalArgumentException.class);
+        }
     }
 
     @Test
