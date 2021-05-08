@@ -91,8 +91,9 @@ public class RegisterClientController {
         return cmp.getClientList().isClientInList(c);
     }
 
-    public void sendEmailToClient(Client c) throws IOException, InterruptedException {
+    public boolean sendEmailToClient(Client c) throws IOException, InterruptedException {
         cmp.sendEmailToClient(c);
+        return true;
     }
 
     public ClientList getClientList() {

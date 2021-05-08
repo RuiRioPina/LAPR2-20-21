@@ -6,7 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -24,7 +23,6 @@ public class Company {
     private EmployeeStore employeeStore;
     private RoleStore roleStore;
     private ClientList clientList;
-    private Client client;
     private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
 
 
@@ -88,10 +86,12 @@ public class Company {
         return this.roleStore;
     }
 
-    public ClinicalAnalysisLaboratoryStore getClinicalAnalysisLaboratoryStore() {return this.clinicalAnalysisLaboratoryStore;}
+    public ClinicalAnalysisLaboratoryStore getClinicalAnalysisLaboratoryStore() {
+        return this.clinicalAnalysisLaboratoryStore;
+    }
 
 
-    public void sendEmailToClient(Client c) throws IOException, InterruptedException {
+    public boolean sendEmailToClient(Client c) throws IOException, InterruptedException {
         String nomeficheiro = "emailAndSMSMessages.txt";
         try (PrintWriter out = new PrintWriter(nomeficheiro)) {
             out.println("Welcome to the Application");
@@ -108,5 +108,6 @@ public class Company {
         Desktop desktop = Desktop.getDesktop();
         Thread.sleep(500); // Faz com que o java tenha tempo de criar o ficheiro antes de o ler.
         desktop.open(file);
+        return true;
     }
 }
