@@ -50,7 +50,7 @@ public class TestTypeControllerTest {
     	
 		List<TestType> testTypes = tsStore.getTestTypes();
 		
-        assertEquals(2, testTypes.size());
+        assertEquals(1, testTypes.size());
         
         TestType tt = testTypes.get(0);        
         assertEquals(code, tt.getCode());
