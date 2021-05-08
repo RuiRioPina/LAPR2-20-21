@@ -42,7 +42,7 @@ public class Role {
     }
     @Override
     public String toString(){
-        return String.format(roleID+". "+roleDescription+".");
+        return String.format(roleID+". "+roleDescription+". "+roleShortname+".");
     }
 
     public String getRoleShortname() {
