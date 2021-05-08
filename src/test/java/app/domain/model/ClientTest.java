@@ -61,15 +61,16 @@ public class ClientTest {
 
     @Test
     public void validateNhsNumber() {
-        ExpectedException exceptionRule = ExpectedException.none();
-        Client client1 = new Client(9999999999999999L, 1000000000L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client = new Client(9999999999999999L, 9999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        try {
-            client1.validateNhsNumber(client1.getNhsNumber());
-            client.validateNhsNumber(client.getNhsNumber());
-        } catch (IllegalArgumentException e) {
-            exceptionRule.expect(IllegalArgumentException.class);
-        }
+        Client client4 = new Client();
+
+        boolean actual1 = client4.validateNhsNumber(1000000000L);
+        boolean actual2 = client4.validateNhsNumber(99999999999L);
+        boolean actual3 = client4.validateNhsNumber(9999999999L);
+        boolean actual4 = client4.validateNhsNumber(99999999999999999L);
+        assertTrue(actual1);
+        assertFalse(actual2);
+        assertTrue(actual3);
+        assertFalse(actual4);
     }
 
     @Test
@@ -108,41 +109,44 @@ public class ClientTest {
 
     @Test
     public void validateTin() {
-        ExpectedException exceptionRule = ExpectedException.none();
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 999999999992L, 99999999999L, "Rui Pina");
-        try {
-            client1.validateTin(client1.getTin());
-            client2.validateTin(client2.getTin());
-        } catch (IllegalArgumentException e) {
-            exceptionRule.expect(IllegalArgumentException.class);
-        }
+        Client client4 = new Client();
+
+        boolean actual1 = client4.validateTin(1000000000L);
+        boolean actual2 = client4.validateTin(99999999999L);
+        boolean actual3 = client4.validateTin(9999999999L);
+        boolean actual4 = client4.validateTin(99999999999999999L);
+        assertTrue(actual1);
+        assertFalse(actual2);
+        assertTrue(actual3);
+        assertFalse(actual4);
     }
 
     @Test
     public void validateSex() {
-        ExpectedException exceptionRule = ExpectedException.none();
+        Client client4 = new Client();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "F", "ruipina@mail.com", 999999999L, 99999999999L, "Rui Pina");
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "True", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        try {
-            client.validateSex(client.getSex());
-            client1.validateSex(client1.getSex());
-        } catch (IllegalArgumentException e) {
-            exceptionRule.expect(IllegalArgumentException.class);
-        }
+        boolean actual1 = client4.validateSex("M");
+        boolean actual2 = client4.validateSex("table");
+        boolean actual3 = client4.validateSex(".");
+        boolean actual4 = client4.validateSex("Jorge");
+        assertTrue(actual1);
+        assertFalse(actual2);
+        assertTrue(actual3);
+        assertFalse(actual4);
     }
 
     @Test
     public void validatePhoneNumber() {
-        ExpectedException exceptionRule = ExpectedException.none();
+        Client client4 = new Client();
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        try {
-            client.validatePhoneNumber(client.getPhoneNumber());
-        } catch (IllegalArgumentException e) {
-            exceptionRule.expect(IllegalArgumentException.class);
-        }
+        boolean actual1 = client4.validatePhoneNumber(10000000000L);
+        boolean actual2 = client4.validatePhoneNumber(999999999999L);
+        boolean actual3 = client4.validatePhoneNumber(99999999999L);
+        boolean actual4 = client4.validatePhoneNumber(999999999999999999L);
+        assertTrue(actual1);
+        assertFalse(actual2);
+        assertTrue(actual3);
+        assertFalse(actual4);
     }
 
     @Test

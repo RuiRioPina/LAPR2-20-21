@@ -59,24 +59,24 @@ public class RegisterClientController {
         return clt.validateCcn(ccn);
     }
 
-    public void validateNhsNumber(long nhsNumber) {
-        clt.validateNhsNumber(nhsNumber);
+    public boolean validateNhsNumber(long nhsNumber) {
+        return clt.validateNhsNumber(nhsNumber);
     }
 
     public void validateBirthDate(String birthDate) {
         clt.validateBirthDate(birthDate);
     }
 
-    public void validateTin(long tin) {
-        clt.validateTin(tin);
+    public boolean validateTin(long tin) {
+        return clt.validateTin(tin);
     }
 
-    public void validateSex(String sex) {
-        clt.validateSex(sex);
+    public boolean validateSex(String sex) {
+        return clt.validateSex(sex);
     }
 
-    public void validatePhoneNumber(long phoneNumber) {
-        clt.validatePhoneNumber(phoneNumber);
+    public boolean validatePhoneNumber(long phoneNumber) {
+        return clt.validatePhoneNumber(phoneNumber);
     }
 
     public void validateName(String name) {
