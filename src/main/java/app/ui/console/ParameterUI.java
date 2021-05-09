@@ -12,13 +12,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ParameterUI implements Runnable{
-
+    /**
+     * Class to create the UI used to specify a new Parameter and categorize it.
+     */
     private ParameterController parameterController;
 
+    /**
+     * Constructor for the UI to create the corresponding controller.
+     */
     public ParameterUI() {
         this.parameterController = new ParameterController();
     }
 
+    /**
+     * Run method that presents the UI to the user.
+     */
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
