@@ -12,7 +12,7 @@ _________________
 |:----|:------------------------------------------------------------------------|                                                                    
 | UC1/US1 | [Register test to be performed / As a receptionist, I want to register a test that will be performed](UC_1/US1.md)   |
 | UC2/US2 | [Register a Lab Order / As a receptionist, I want to register a Lab Order](UC_2/US2.md)  |
-| UC3/US3 | [Register Client / As a receptionist, I want to register a client](UC_3/US3.md)   |
+| UC3/US3 | [Register Client / As a receptionist, I want to register a client](docs/SprintB/US_3/US_3.md)   |
 | UC4/US4 | [Register Test / As a Medical Lab Technician, I want to register a test that was performed](UC_4/US4.md)  |
 | UC5/US5 | [Record Test Results / As a Chemistry Technologist, I want to record the test results](UC_5/US5.md)  |
 | UC6/US6 | [Write a report about test result / As a Specialist Doctor, I want to report about the test results](UC_6/US6.md)  |
