@@ -23,13 +23,28 @@ public class Client {
     private String password;
 
 
-
-
     LocalDate currentDate = LocalDate.now();
 
+    /**
+     * Creates an empty Client.
+     */
     public Client() {
 
     }
+
+    /**
+     * Another constructor for class Client
+     * It is here that is generated the password.
+     *
+     * @param ccn         The Citizen card number of the client
+     * @param nhsNumber   National Health Service number of the client
+     * @param birthDate   The birth date of the client
+     * @param sex         The sex of the client
+     * @param email       The email of the client
+     * @param tin         The tax identification number of the client
+     * @param phoneNumber Phone number of the client
+     * @param name        The name of the client
+     */
 
     public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
         this.ccn = ccn;
@@ -44,6 +59,19 @@ public class Client {
 
     }
 
+    /**
+     * Another constructor for class Client
+     * It is here that is generated the password.
+     *
+     * @param ccn         The client's Citizen card number
+     * @param nhsNumber   National Health Service number of the client
+     * @param birthDate   The birth date of the client
+     * @param email       The email of the client
+     * @param tin         The tax identification number of the client
+     * @param phoneNumber Phone number of the client
+     * @param name        The name of the client
+     */
+
     public Client(long ccn, long nhsNumber, String birthDate, String email, long tin, long phoneNumber, String name) {
         this.ccn = ccn;
         this.nhsNumber = nhsNumber;
@@ -56,6 +84,10 @@ public class Client {
 
     }
 
+    /**
+     * This method generates a random password containing 10 alphanumeric characters
+     */
+
     public String generatePassword() {
         password = "";
         List<Character> list = Utils.randomCharacter(10);
@@ -67,11 +99,16 @@ public class Client {
         return password;
     }
 
-
+    /**
+     * @return true if <i>this client</i> is compared with itself
+     * false if <i>the client</i> is equal to <i>null</i>
+     * false if <i>this client</i> is different to <i>the other client</i>
+     * false if <i>this client</i> is different to <i>the other client</i>
+     * true if <i>this client</i> is equal to <i>other client</i>
+     */
     @Override
     public boolean equals(Object o) {
 
-        // If the object is compared with itself then return true
         if (o == this) {
             return true;
         }
@@ -89,6 +126,11 @@ public class Client {
                 && Objects.equals(this.name, c.name);
     }
 
+    /**
+     * Present in the console the output contain all the information about the client
+     *
+     * @return the phrase with all the information about the client
+     */
     @Override
     public String toString() {
         if (this.sex == null || this.sex.equals(".")) {
@@ -99,15 +141,37 @@ public class Client {
                 this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.email);
     }
 
+    /**
+     * Validates the ccn of the Client checking if it has 16 digits
+     *
+     * @param ccn The Citizen card number of the client
+     * @return true if <i>the ccn</i> has <i>16 digits</i>
+     */
+
     public boolean validateCcn(long ccn) {
         long length = (int) (Math.log10(ccn) + 1);
         return length == 16;
     }
 
+    /**
+     * Validates the nhs Number of the Client checking if it has 10 digits
+     *
+     * @param nhsNumber The NHS number of the client
+     * @return true if <i>the nhsNumber</i> has <i>10 digits</i>
+     */
+
     public boolean validateNhsNumber(long nhsNumber) {
         long length = (int) (Math.log10(nhsNumber) + 1);
         return length == 10;
     }
+
+    /**
+     * Validates the birth date of the Client checking if it is in the DD-MM-YYYY format and if it doesn't represent a
+     * date in future or a date that would make the client be more than 150 years.
+     *
+     * @param birthDate The birth date of the client
+     * @return true if <i>the birthDate</i> has <i>no error, accordingly to the criteria</i>
+     */
 
     public boolean validateBirthDate(String birthDate) {
         int i = 0;
@@ -180,10 +244,24 @@ public class Client {
         return i != 1;
     }
 
+    /**
+     * Validates the tin of the Client checking if it has 10 digits
+     *
+     * @param tin The tax identification number of the client
+     * @return true if <i>the nhsNumber</i> has <i>10 digits</i>
+     */
+
     public boolean validateTin(long tin) {
         long length = (int) (Math.log10(tin) + 1);
         return length == 10;
     }
+
+    /**
+     * Validates the sex of the Client checking if it is one of the possible options
+     *
+     * @param sex The sex of the client
+     * @return true if <i>the sex</i> is either <i>"."/"M"/"Male"/"F"/"Female"</i>
+     */
 
     public boolean validateSex(String sex) {
 
@@ -191,10 +269,23 @@ public class Client {
 
     }
 
+    /**
+     * Validates the phone Number of the Client checking if it has 11 digits
+     *
+     * @param phoneNumber The phone number of the client
+     * @return true if <i>the phone number</i> has <i>11 digits</i>
+     */
+
     public boolean validatePhoneNumber(long phoneNumber) {
         long length = (int) (Math.log10(phoneNumber) + 1);
         return length == 11;
     }
+
+    /**
+     * Validates the email of the Client using the class Email.
+     *
+     * @param email The email of the client
+     */
 
     public void validateEmail(String email) {
 
@@ -202,6 +293,14 @@ public class Client {
 
     }
 
+    /**
+     * Validates the name of the Client.
+     *
+     * @param name The name of the client
+     * @return false if name has more than 35 characters
+     * false if name is empty
+     * false if name hasn't only letters.
+     */
     public boolean validateName(String name) {
         int i = 0;
         if (name.trim().length() > 35) {
@@ -217,38 +316,65 @@ public class Client {
         return i != 1;
     }
 
+    /**
+     * @return current ccn
+     */
     public long getCcn() {
         return ccn;
     }
 
+    /**
+     * @return current NHS number
+     */
     public long getNhsNumber() {
         return nhsNumber;
     }
 
+    /**
+     * @return current birth date
+     */
     public String getBirthDate() {
         return birthDate;
     }
 
+    /**
+     * @return current tin
+     */
     public long getTin() {
         return tin;
     }
 
+    /**
+     * @return current phone number
+     */
     public long getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * @return current sex
+     */
     public String getSex() {
         return sex;
     }
 
+    /**
+     * @return current email address
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @return current name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return current password
+     */
     public String getPassword() {
         return password;
     }

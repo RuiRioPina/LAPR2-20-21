@@ -108,7 +108,14 @@ public class Company {
         return this.clinicalAnalysisLaboratoryStore;
     }
 
-
+    /**
+     * Simulates sending an email to the Client by writing the password and some other information to a txt file.
+     *
+     * @param c instance of the Client class
+     * @return true if it was able to create and write to the file
+     * @throws IOException          if the file to be written to doesn't exist
+     * @throws InterruptedException if the thread that is sleeping is interrupted
+     */
     public boolean sendEmailToClient(Client c) throws IOException, InterruptedException {
         String nomeficheiro = "emailAndSMSMessages.txt";
         try (PrintWriter out = new PrintWriter(nomeficheiro)) {
@@ -129,10 +136,21 @@ public class Company {
         return true;
     }
 
+    /**
+     * Checks whether an object passed by parameter already exists in the database.
+     *
+     * @param c instance of the class Client
+     * @return true if the Client already exists in the ArrayList on the Class ClientList.
+     */
     private boolean validateClient(Client c) {
         return !clientList.isClientInList(c);
     }
 
+    /**
+     * Saves the Client to the doing verifications beforehand
+     *
+     * @param c instance of the class Client
+     */
     public void saveClient(Client c) {
         if (validateClient(c)) {
             ClientList cl = this.getClientList();
@@ -143,6 +161,10 @@ public class Company {
         addClientToSystem(c);
     }
 
+    /**Adds the Client instance to the platform, so that he can login with the credentials given.
+     *
+     * @param c instance of the class Client
+     */
     private void addClientToSystem(Client c) {
         App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
