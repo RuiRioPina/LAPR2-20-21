@@ -67,14 +67,16 @@ if (confirmation.equals("S")||confirmation.equals("s")){
         registerEmployeeController.saveEmployee(e);
     }catch (IllegalArgumentException exc){
         System.out.println(exc.getMessage());
-        System.out.println("Ignore the next message.");
+//        System.out.println("Ignore the next message.");
         nEmployees--;
         App.getInstance().getCompany().setNumberOfEmployees(nEmployees);
 
     }
 
-
-    System.out.println("The employee has been created");
+    String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    if(email.matches(regex)) {
+    	System.out.println("The employee has been created");
+    }
 }else {
 
     System.out.println("The employee was not created.");
