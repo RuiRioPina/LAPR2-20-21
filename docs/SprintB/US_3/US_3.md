@@ -168,7 +168,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.3. Class Diagram (CD)
 
-![US03-CD](US03-CD_v2.svg)
+![US03-CD](US03-CD_v3.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
