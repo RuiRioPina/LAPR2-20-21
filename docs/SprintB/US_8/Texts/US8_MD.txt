@@ -22,6 +22,18 @@ class ClinicalAnalysisLaboratory{
 -TypeOfTests
 }
 
+class Company{
+-designation
+}
+
+class TypeOfTests{
+-category
+-measuredParameters
+}
+
 
 Administrator "1" --> "*" ClinicalAnalysisLaboratory: registers
+Company "1" --> "*" Administrator: knows
+Company "1" --> "*" ClinicalAnalysisLaboratory: owns
+Company "1" --> "*" TypeOfTests: specifies
 @enduml

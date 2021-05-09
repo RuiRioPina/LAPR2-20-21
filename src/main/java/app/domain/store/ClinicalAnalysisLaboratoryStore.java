@@ -37,19 +37,22 @@ public class ClinicalAnalysisLaboratoryStore {
 
 
 
-    private void checkNameRules(String name) throws IllegalArgumentException{
+    public void checkNameRules(String name) throws IllegalArgumentException{
         if ((name.length()) < 1 || name.length() > 20){
             throw new IllegalArgumentException("Name must have 1 to 20 chars.");
+        }
+        if (!name.matches("[A-Za-z]+")) {
+            throw new IllegalArgumentException("Name must be a string.");
         }
 
     }
 
-    private void checkLaboratoryIDRules(String laboratoryID) throws IllegalArgumentException{
+    public void checkLaboratoryIDRules(String laboratoryID) throws IllegalArgumentException{
         if (laboratoryID.length() != 5 ){
             throw new IllegalArgumentException("LaboratoryID must have 5 chars.");
         }
         if (!laboratoryID.matches("[A-Za-z0-9]+")) {
-            throw new IllegalArgumentException("Code must be alphanumeric.");
+            throw new IllegalArgumentException("LaboratoryID must be alphanumeric.");
         }
         if (this.getRepeatedLabID(laboratoryID) != null) {
             throw new IllegalArgumentException("LaboratoryID already exist.");
@@ -57,16 +60,19 @@ public class ClinicalAnalysisLaboratoryStore {
 
     }
 
-    private void checkAdressRules(String adress) throws IllegalArgumentException{
+    public void checkAdressRules(String adress) throws IllegalArgumentException{
         if ((adress.length()) < 1 || adress.length() > 30){
             throw new IllegalArgumentException("Adress must have 1 to 30 chars.");
+        }
+        if (!adress.matches("[A-Za-z]+")) {
+            throw new IllegalArgumentException("Adress must be a string.");
         }
         if (this.getRepeatedAdress(adress) != null) {
             throw new IllegalArgumentException("Adress already exist.");
         }
     }
 
-    private void checkPhoneNumberRules(long phoneNumber) throws IllegalArgumentException{
+    public void checkPhoneNumberRules(long phoneNumber) throws IllegalArgumentException{
         if (digits(phoneNumber) != 11) {
             throw new IllegalArgumentException("Phone number must have 11 digits.");
         }
@@ -75,7 +81,7 @@ public class ClinicalAnalysisLaboratoryStore {
         }
     }
 
-    private void checkTINRules(long tin) throws IllegalArgumentException{
+    public void checkTINRules(long tin) throws IllegalArgumentException{
         if (digits(tin) != 10){
             throw new IllegalArgumentException("TIN number must have 10 digits.");
             }
@@ -84,7 +90,7 @@ public class ClinicalAnalysisLaboratoryStore {
         }
      }
 
-    private void checkTestTypesRules(List<TestType> testTypes) throws IllegalArgumentException {
+    public void checkTestTypesRules(List<TestType> testTypes) throws IllegalArgumentException {
         if (testTypes.isEmpty()) {
             throw new IllegalArgumentException("Test types cannot be empty.");
         }
@@ -135,4 +141,7 @@ public class ClinicalAnalysisLaboratoryStore {
         return null;
     }
 
+    public boolean isClinicalAnalysisLaboratoryInList(ClinicalAnalysisLaboratory cal){
+        return this.clinicalAnalysisLaboratories.contains(cal);
+    }
 }

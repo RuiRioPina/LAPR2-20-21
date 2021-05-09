@@ -36,8 +36,8 @@ My question therefore is: When creating a new Clinical Analysis Laboratory, shou
 
 * **Question5:** Which type/format has LaboratoryID, address, name, phone number, and TIN number on Clinical Analysis Laboratory?
 [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7636)
-	* **Answer5:** Each Clinical Analysis Laboratory is characterized by the following attributes:
-		* Laboratory ID: five alphanumeric characters;
+	* **Answer5:** Each Clinical Analysis Laboratory is characterized by the following attributes: 
+		* Laboratory ID: five alphanumeric characters; 
 		* Name: A string with no more than 20 characters;
 		* Address: A string with no more than 30 characters;
 		* Phone Number: 11 digit number;
@@ -116,21 +116,15 @@ allowed to exist?
 
 ### 1.4. Found out Dependencies
 
-This US has dependency with the US9- As an administrator, I want to specify a new type of test and its collecting methods, because the administrator needs to know what type of test the clinical analysis laboratory performs in order to register it. 
+This US has dependency with the US9- As an administrator, I want to specify a new type of test and its collecting methods, because the administrator needs to know what type of tests the clinical analysis laboratory performs in order to register it. 
 
 ### 1.5 Input and Output Data
 
 **Input Data**
 
-* Typed data:
-	* Laboratory ID;
-	* Name;
-	* Adress;
-	* Phone Number;
-	* TIN number;
+* Typed data (Laboratory ID, Name, Adress, Phone Number, TIN number)
 	
-* Selected data:
-	* Type of tests;
+* Selected data(Test types)
 
 **Output data:**
 

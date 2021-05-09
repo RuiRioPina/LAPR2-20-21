@@ -72,7 +72,7 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
         }
 
         try {
-            this.clinicalAnalysisLaboratoryController.saveClinicalAnalysisLaboratory();
+            this.clinicalAnalysisLaboratoryController.saveClinicalAnalysisLaboratory(cal);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
