@@ -64,7 +64,7 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
         System.out.println("-Test types: ");
 
         for(TestType tt : cal.getTestTypes()) {
-            System.out.printf("\t%s - %s\n", tt.getCode(), tt.getParameterCategories());
+            System.out.printf("\t%s - %s - %s - %s\n", tt.getCode(),tt.getDescription(),tt.getCollectingMethod(), tt.getParameterCategories());
         }
 
         if(!Utils.confirm("Confirm test type creation (s/n)?")){
