@@ -8,7 +8,7 @@ ____
 
 When the test results are completed the customer will be notificated about it.
 
-Registers users shall received an email stating that the registration was completed and it shall contain the password of the user
+Registered users shall received an email stating that the registration was completed and it shall contain the password of the user
 
 * Localization
 
