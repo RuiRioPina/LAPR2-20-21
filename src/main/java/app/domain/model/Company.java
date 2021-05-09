@@ -46,10 +46,18 @@ public class Company {
         this.numberOfEmployees = 0;
     }
 
+    /**
+     * Getter for the number of Employees in the company.
+     * @return number of employees.
+     */
     public int getNumberOfEmployees() {
         return numberOfEmployees;
     }
 
+    /**
+     * Setter for the number of Employees in the company
+     * @param numberOfEmployees- new number of Employees.
+     */
     public void setNumberOfEmployees(int numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
 
@@ -76,6 +84,10 @@ public class Company {
         return this.parameterStore;
     }
 
+    /**
+     * Getter for the Employee Store that the company is using.
+     * @return Employee Store that contains the Employees in the company.
+     */
     public EmployeeStore getEmployeeStore() {
         return this.employeeStore;
     }
@@ -84,6 +96,10 @@ public class Company {
         return this.clientList;
     }
 
+    /**
+     * Getter for the Role Store that the company is using.
+     * @return Role Store that contains the Roles in the company.
+     */
     public RoleStore getRoleStore() {
         return this.roleStore;
     }
