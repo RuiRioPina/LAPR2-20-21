@@ -110,4 +110,17 @@ public class Company {
         desktop.open(file);
         return true;
     }
+
+    private boolean validateClient(Client c) {
+        return !clientList.isClientInList(c);
+    }
+
+    public void saveClient(Client c) {
+        if (validateClient(c)) {
+            ClientList cl = this.getClientList();
+            cl.saveClient(c);
+        } else {
+            System.out.println("The client needs to have at least one unique attribute. Please try again.");
+        }
+    }
 }

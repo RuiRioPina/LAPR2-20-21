@@ -11,10 +11,17 @@
 
 **From the specifications document:**
 
->	For new clients that arrive at the  that has not been registered yet, there is the need to register them in the application.
+>   "When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
 
-> To make this registration, the
-receptionist needs the following information about the client : his citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification Number (TIN), phone number, e-mail and name.
+>    "To register a client, the receptionist needs the following information : client's citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
+
+
+
+>   My interpretation:
+
+>	For non registered clients that arrive at a clinical analysis laboratories, there is the need to register them in the application.
+
+> 	To make this registration, the receptionist needs all the information described above.
 
 
 **From the client clarifications:**
@@ -141,13 +148,13 @@ none.
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1  		 |	... interacting with the actor?						 | RegisterClientUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.          | 
 |   		 |	... coordinating the US?					 | RegisterClientController            | Controller          |
-| 			  		 | ... knowing the user using the system?  | UserSession  | IE: knows who is logged in.  |
+|   		 |	... knowing the user using the system?					 | AuthFacade            | IE: User Authentication & Authorization Documentation       |
 | Step 2  		 |	... requesting the needed data?						 | none            |                              |
-| Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data                             |
+| Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data   .                          |
 | Step 4  		 |	... validating all data (local validation)(i.e the compliance with the acceptance criteria, the existance of the mandatory data)?						 | Client            | IE: knows about its data       |
-|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | Company           | IE: knows all its validation criteria         |
-| Step 5  		 |	... saving the created task?						 | ClientList            | IE: owns all its Clients                             |
-| Step 6  		 |	... informing operation success?						 | RegisterClientUI            | Has the responsability to interact with the actor                             |    
+|   		 |	... validating all data (global validation)?)(i.e Duplicated information)						 | Company           | IE: knows all its global validation criteria         |
+| Step 5  		 |	... saving the created client?						 | ClientList            | IE: owns all its Clients                             |
+| Step 6  		 |	... informing operation success?						 | RegisterClientUI            | Has the responsability to interact with the actor                             |  
 
 ### Systematization ##
 
@@ -164,11 +171,11 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## 3.2. Sequence Diagram (SD)
 
-![US03-SD](US03-SD_v2.svg)
+![US03-SD](US03-SD_v3.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![US03-CD](US03-CD_v2.svg)
+![US03-CD](US03-CD_v3.svg)
 
 # 4. Tests 
 *In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
@@ -286,7 +293,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
 
-## Class Parameter
+## Class Client
 	
 	
 	
@@ -306,18 +313,16 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+  It is linked with the Auth package since it makes the Client an active User of the system.
+  
+  To register a new Client it is necessary to have at least one receptionist, therefore it is tightly related to the creation of receptionists.
 
-  It is linked with the Auth package since it makes the Client an active User of the system
-
-  For now it isn't represented but when there's a Receptionist UI it will have to be guaranteed that it is the Receptionist that is managing the System.
+  When in the RegisterClient UI it has to be guaranteed that it is the Receptionist that is managing the System.
 
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
-
+In this sprint it wasn't used the DTOs yet, since there isn't a complete understanding of the topic yet. It is imperative to implement it in the next Sprint, as it ensures low coupling.
 
 This User Story will have to be adapted to be fitted into a GUI.
 

@@ -3,19 +3,25 @@ package app.controller;
 import app.domain.model.Company;
 import app.domain.model.Employee;
 import app.domain.model.Role;
+import app.domain.shared.Constants;
 import app.domain.shared.Utils;
 import app.domain.store.EmployeeStore;
 import app.domain.store.RoleStore;
+import auth.AuthFacade;
 
 
 import java.util.List;
 
 public class RegisterEmployeeController {
     private Company company;
+    private AuthFacade authFacade = new AuthFacade();
 
 
 
     public RegisterEmployeeController() {
+        if (!isUserLoggedInAdmin()){
+            System.out.println("You do not have admin permissions.");
+        }
         this.company = App.getInstance().getCompany();
     }
 
@@ -61,6 +67,11 @@ public class RegisterEmployeeController {
             default:return -1;
         }
 
+
+    }
+    private boolean isUserLoggedInAdmin() {
+
+        return !authFacade.getCurrentUserSession().isLoggedInWithRole(Constants.ROLE_ADMIN);
 
     }
 }

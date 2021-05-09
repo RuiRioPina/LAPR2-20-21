@@ -206,11 +206,15 @@ public class ClientTest {
         boolean actual1 = client.validateName(client.getName());
         boolean actual2 = client1.validateName(client1.getName());
         boolean actual3 = client2.validateName(client2.getName());
-        boolean actual4 = client2.validateName("Hippopotomonstrosesquippedaliophobias      ");
+        boolean actual4 = client2.validateName("Hippopotomonstrosesquippedaliophob      ");
+        boolean actual5 = client2.validateName("Hippopotomonstrosesquippedaliophobia");
+        boolean actual6 = client2.validateName("Hippopotomonstrosesquippedaliophobi");
         assertTrue(actual1);
         assertFalse(actual2);
         assertFalse(actual3);
-        assertFalse(actual4);
+        assertTrue(actual4);
+        assertFalse(actual5);
+        assertTrue(actual6);
 
 
     }
