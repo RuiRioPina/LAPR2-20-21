@@ -28,7 +28,7 @@ public class RegisterEmployeeUI implements Runnable {
         App.getInstance().getCompany().setNumberOfEmployees(nEmployees);
         String specialistDoctorIndexNumber=null;
         Scanner sc = new Scanner(System.in);
-        System.out.println("What type of Employee do you wish to register?\n Write REC to register a receptionist.\n Write CCT to register a clinical chemistry technologist\n Write MDT to register a medical lab technician\n Write LC to register a laboratory coordinator\n Write SD to register a specialist doctor");
+        System.out.println("What type of Employee do you wish to register?\n Write REC to register a receptionist.\n Write CCT to register a clinical chemistry technologist\n Write MLT to register a medical lab technician\n Write LC to register a laboratory coordinator\n Write SD to register a specialist doctor");
         String employeeRole=sc.nextLine();
 
         Role role = this.registerEmployeeController.getlRole().get(this.registerEmployeeController.getRoleIndex(employeeRole));
@@ -59,12 +59,16 @@ if (confirmation.equals("S")||confirmation.equals("s")){
     }catch (IllegalArgumentException exc){
         System.out.println(exc.getMessage());
         System.out.println("Ignore the next message.");
+        nEmployees--;
 
     }
 
 
     System.out.println("The employee has been created");
-}else System.out.println("The employee was not created.");
+}else {
+    System.out.println("The employee was not created.");
+    nEmployees--;
+}
 
     }
 
