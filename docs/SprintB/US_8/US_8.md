@@ -10,9 +10,7 @@ As an administrator, I want to register a new clinical  analysis laboratory stat
 
 **From the specifications document**
 
-"All the tests (clinical blood tests and Covid 19 tests) performed by the network of laboratories are
-registered locally by the medical lab technicians who collect the samples. The samples are sent
-daily to the chemical laboratory where the chemical analy se s are performed and results obtained."
+"Many Labs...has a network of clinical analysis laboratories in England where analysis of blood (samples are collected) are performed, as well as Covid 19 tests."
 
 **From the client clarifications**
 
@@ -95,11 +93,11 @@ My question therefore is: When creating a new Clinical Analysis Laboratory, shou
 	* **Answer13:** It is always a good practice to validate and ask for confirmation.
 
 * **Question14:** Are two Clinical Analysis Laboratories with the same:
-		* Laboratory ID OR
-		* name OR
-		* address OR
-		* phone Number OR
-		* TIN number
+	* Laboratory ID OR
+	* name OR
+	* address OR
+	* phone Number OR
+	* TIN number
 allowed to exist?
 [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7911)
 	* **Answer14:** Only the name of two CAL can be same.
@@ -149,8 +147,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 ### 2.2. Other Remarks
 
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
+There is no other remarks.
 
 
 ## 3. Design - User Story Realization 
@@ -177,13 +174,19 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
+	
+* ClinicalAnalysisLaboratory
+* ClinicalAnalysisLaboratoryStore
+* TestType
+* TestTypeStore
+* Company
 
- * ClinicalAnalysisLaboratory
 
 
-Other software classes (i.e. Pure Fabrication) identified: 
- * RegisterClinicalAnalysisLaboratoryUI  
- * RegisterClinicalAnalysisLaboratoryController
+Other software classes (i.e. Pure Fabrication) identified:
+
+* ClinicalAnalysisLaboratoryUI  
+* ClinicalAnalysisLaboratoryController
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -194,42 +197,169 @@ Other software classes (i.e. Pure Fabrication) identified:
 ![US8-CD](ImagesUsed/US8_CD.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
 
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+**Test 1:** Check that it's possible to get the name of a Clinical analysis laboratory introduced by the Admin.
+	
+	@Test
+    	 public void getName() {
+         List<ParameterCategory> parameterCategories = new ArrayList<>();
+         ParameterCategory p1 = new ParameterCategory("54321","HEMOGRAM");
+         parameterCategories.add(p1);
+
+         List<TestType> testTypes = new ArrayList<>();
+         TestType t1 = new TestType("13579","TESTDESCRIPTION", "abcde", parameterCategories);
+         testTypes.add(t1);
+
+         ClinicalAnalysisLaboratory cal= new ClinicalAnalysisLaboratory("123ab", "LABORATORY",
+                                "LabADRESS", 99999999999L, 1234567890L, testTypes);
+
+         String name = "LABORATORY";
+         String wrongName = "LAB";
+
+         assertEquals(name,cal.getName());
+         assertNotEquals(wrongName, cal.getName());
+
+    }
+
+**Test 2:** Check if laboratoryID follows the rules indicated by the Client. (AC-1)
 
 	@Test(expected = IllegalArgumentException.class)
-	public void ensureNullIsNotAllowed() {
-		ClinicalAnalysisLaboratory cal = new ClinicalAnalysisLaboratory(null, null, null, null, null, null);
-	}
+         public void checkLaboratoryIDRules() {
+         List<ParameterCategory> parameterCategories = new ArrayList<>();
+         ParameterCategory p1 = new ParameterCategory("54321", "HEMOGRAM");
+         parameterCategories.add(p1);
 
-**Test 2:** Check that laboratoryID should have five alphanumeric characters AC-1
+         List<TestType> testTypes = new ArrayList<>();
+         TestType t1 = new TestType("13579", "TESTDESCRIPTION", "abcde", parameterCategories);
+         testTypes.add(t1);
 
-	@Test(expected = IllegalArgumentException.class)
-	public void checkLaboratoryIDRules() {
-		String laboratoryID = a23w
-		ClinicalAnalysisLaboratory cal = new ClinicalAnalysisLaboratory(laboratoryID, "name", "adress", 12345678901, 1234567890)
-	}
+         ClinicalAnalysisLaboratoryStore calStore = new ClinicalAnalysisLaboratoryStore();
+
+         ClinicalAnalysisLaboratory cal = calStore.registerClinicalAnalysisLaboratory("", "LABORATORY",
+                "LabADRESS", 99999999999L, 1234567890L, testTypes);
+
+         calStore.checkLaboratoryIDRules(cal.getLaboratoryID());
+
+    }
+
+**Test 3:** Check that it's possible to get all type of tests registered in the application.
+
+	@Test
+         public void getTestTypes() {
+         List<TestType> tt = App.getInstance().getCompany().getTestTypeStore().getTestTypes();
+         ClinicalAnalysisLaboratoryController clinicalAnalysisLaboratoryController = new ClinicalAnalysisLaboratoryController();
+
+         List<TestType> ts = clinicalAnalysisLaboratoryController.getTestTypes();
+
+         assertArrayEquals(tt.toArray(), ts.toArray());
+    }
 
 		
 
-
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
+## Class ClinicalAnalysisLaboratory
 
-*It is also recommended to organize this content by subsections.* 
+	public class ClinicalAnalysisLaboratory {
+	private String laboratoryID;
+   	private String name;
+    	private String adress;
+    	private long phoneNumber;
+    	private long tin;
+    	private List<TestType> testTypes;
+
+    	public ClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
+        	this.laboratoryID = laboratoryID;
+        	this.name = name;
+        	this.adress = adress;
+        	this.tin = tin;
+        	this.phoneNumber = phoneNumber;
+        	this.testTypes = testTypes;
+
+    		}
+	...
+	}
+
+
+## Class ClinicalAnalysisLaboratoryStore
+
+	public class ClinicalAnalysisLaboratoryStore {
+    	private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratories;
+
+    	public ClinicalAnalysisLaboratoryStore() {
+        	this.clinicalAnalysisLaboratories = new ArrayList<>();
+    	}
+
+    	public ClinicalAnalysisLaboratory registerClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
+        	return new ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testTypes);
+    	}
+
+    	public void validateClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
+        	checkNameRules(cal.getName());
+        	checkLaboratoryIDRules(cal.getLaboratoryID());
+        	checkAdressRules(cal.getAdress());
+        	checkPhoneNumberRules(cal.getPhoneNumber());
+        	checkTINRules(cal.getTin());
+        	checkTestTypesRules(cal.getTestTypes());
+    		}
+	...
+	}
+
+## Class ClinicalAnalysisLaboratoryController
+
+	public class ClinicalAnalysisLaboratoryController {
+    	private Company company;
+    	private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
+
+    	public ClinicalAnalysisLaboratoryController(){
+        	this.company =App.getInstance().getCompany();
+    	}
+
+    	public List<TestType> getTestTypes() {
+        	TestTypeStore ts = this.company.getTestTypeStore();
+        	return ts.getTestTypes();
+    		}
+	...
+	}
+
+## Class ClinicalAnalysisLaboratoryUI
+
+	public class ClinicalAnalysisLaboratoryUI implements Runnable {
+
+    	private ClinicalAnalysisLaboratoryController clinicalAnalysisLaboratoryController;
+
+    	public ClinicalAnalysisLaboratoryUI() {
+        	this.clinicalAnalysisLaboratoryController = new ClinicalAnalysisLaboratoryController();
+    	}
+
+    	public void run() {
+        	Scanner x = new Scanner(System.in);
+        	System.out.println("Beginning to register a new clinical analysis laboratory.\n");
+        	System.out.println("Insert the laboratoryID.");
+        	String laboratoryID=x.nextLine();
+        	System.out.println("Insert name.");
+        	String name=x.nextLine();
+        	System.out.println("Insert adress.");
+        	String adress=x.nextLine();
+        	System.out.println("Insert phone number.");
+        	long phoneNumber=x.nextLong();
+        	System.out.println("Insert TIN number.");
+        	long tin=x.nextLong();
+		...
+		}
+	}
+	
 
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+A new option was added to the Admin menu.
 
+This option works if any type fo tests is registered in the application
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
+In the next sprint, due to the implementation of javaFx, there will certainly be changes in this user story.
 
 
 

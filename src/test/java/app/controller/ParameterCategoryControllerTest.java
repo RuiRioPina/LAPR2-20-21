@@ -16,7 +16,7 @@ import app.domain.store.TestTypeStore;
 public class ParameterCategoryControllerTest {
 
 	@Test
-    public void createAndSaveTestType() {
+    public void createAndSaveParameterCategory() {
 		Company cmp = App.getInstance().getCompany();
 		ParameterCategoryStore csStore = cmp.getParameterCategoryStore();
 		

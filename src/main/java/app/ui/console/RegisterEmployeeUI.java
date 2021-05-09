@@ -13,13 +13,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegisterEmployeeUI implements Runnable {
+    /**
+     * Class to create the UI used to register an Employee.
+     */
     private RegisterEmployeeController registerEmployeeController;
 
+    /**
+     * Constructor for the UI to create the corresponding controller.
+     */
     public RegisterEmployeeUI() {
         this.registerEmployeeController = new RegisterEmployeeController();
 
     }
 
+    /**
+     * Run method that presents the UI to the user.
+     */
     @Override
     public void run() {
         int nEmployees= App.getInstance().getCompany().getNumberOfEmployees();
@@ -60,14 +69,17 @@ if (confirmation.equals("S")||confirmation.equals("s")){
         System.out.println(exc.getMessage());
         System.out.println("Ignore the next message.");
         nEmployees--;
+        App.getInstance().getCompany().setNumberOfEmployees(nEmployees);
 
     }
 
 
     System.out.println("The employee has been created");
 }else {
+
     System.out.println("The employee was not created.");
     nEmployees--;
+    App.getInstance().getCompany().setNumberOfEmployees(nEmployees);
 }
 
     }

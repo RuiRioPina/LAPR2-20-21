@@ -1,20 +1,30 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class RegisterClinicalAnalysisLaboratoryUI {
+class ClinicalAnalysisLaboratoryUI {
 }
 
-class RegisterClinicalAnalysisLaboratoryController {
-  +registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
+class ClinicalAnalysisLaboratoryController {
+  +registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, TestTypes)
   +saveClinicalAnalysisLaboratory()
+  +getTestTypes()
 }
 
 class Company
 {
-  +registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, Type of tests)
-  +validateClinicalAnalysisLaboratory(cal)
-  +saveClinicalAnalysisLaboratory(cal)
-  -addClinicalAnalysisLaboratory(cal)
+  -String designation
+  +getClinicalAnalysisLaboratoryStore()
+}
+
+class TestTypeStore{
+  +getTestTypes()
+}
+
+class TestType{
+  -code
+  -desgisnation
+  -CollectingMethod
+  -ParameterCategory
 }
 
 class ClinicalAnalysisLaboratory {
@@ -23,12 +33,21 @@ class ClinicalAnalysisLaboratory {
   -adress
   -phoneNumber
   -tin
-  -typeOfTest
-  +ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, typeOfTest)
+  -TestTypes
+  +ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testtTypes)
 }
 
-RegisterClinicalAnalysisLaboratoryUI ..> RegisterClinicalAnalysisLaboratoryController
-RegisterClinicalAnalysisLaboratoryController ..> Company
-RegisterClinicalAnalysisLaboratoryController ..> ClinicalAnalysisLaboratory
-Company "1" --> "*" ClinicalAnalysisLaboratory : adopts
+class ClinicalAnalysisLaboratoryStore{
+  +validateClinicalAnalysisLaboratory
+  +saveClinicalAnalysisLaboratory
+  +addClinicalAnalysisLaboratory
+}
+
+ClinicalAnalysisLaboratoryUI ..> ClinicalAnalysisLaboratoryController
+ClinicalAnalysisLaboratoryController..> Company
+Company "1" --> "1" ClinicalAnalysisLaboratoryStore: uses
+Company "1" --> "1" TestTypeStore: uses
+ClinicalAnalysisLaboratoryStore"1" --> "*" ClinicalAnalysisLaboratory: conducts
+TestTypeStore"1" --> "1" TestType: adopts
+ClinicalAnalysisLaboratory"*" --> "1..*" TestType: have
 @enduml

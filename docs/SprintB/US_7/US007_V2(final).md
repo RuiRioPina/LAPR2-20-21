@@ -43,6 +43,26 @@ The Doctor Index Number should be introduced by the administrator.
 > **Question:** What kind of information does the company store about their employees and owned laboratories?
 >  
 > **Answer:** All the roles that exist in the Many Labs company are characterized by the following attributes:
+
+-
+
+>**Question:** Is there any size limit to the employee's name?
+>
+> **Answer:** I already answered this question. Employee Name: "a string with no more than 35 characters".
+
+-
+
+>**Question:** I read in a previous post that " The doctor Index Number is introduced by the administrator " , I searched in Goolge and i understood that is lenght is 6 digits . So i want to know if we need to do any validation .
+>
+> **Answer:**  It is always a good practice to validate data introduced by the user. For now, it is not necessary to confirm that the code really exists.
+
+-
+
+>**Question:** Regarding the registration of a new employee, which is the organization role's format?
+>
+> **Answer:** Organization Role: a string with no more than 15 characters.
+
+
 Employee ID;
 Organization Role;
 Name;
@@ -172,7 +192,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 ![US007_SD](US7_SD_V3.svg)
 
 **Alternative 4**
-![US007_SD](US7_SD_V4.svg)
+![US007_SD](US7_SD_V5.svg)
 
 ## 3.3. Class Diagram (CD)
 
@@ -349,6 +369,7 @@ public class RegisterEmployeeController {
 # 7. Observations
 
 I attempted to use DTOs, however i did not manage to understand how to use them properly.
+The alternatives for the SD and the CD #4 are the design alternatives that I ended up using as they were easier for me to using during the developement of the UC.
 
 
 
