@@ -137,7 +137,7 @@ public class ClinicalAnalysisLaboratoryStoreTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void checkLaboratoryID() {
+    public void checkLaboratoryIDRules() {
         List<ParameterCategory> parameterCategories = new ArrayList<>();
         ParameterCategory p1 = new ParameterCategory("54321", "HEMOGRAM");
         parameterCategories.add(p1);
@@ -156,7 +156,7 @@ public class ClinicalAnalysisLaboratoryStoreTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void checkName() {
+    public void checkNameRules() {
         List<ParameterCategory> parameterCategories = new ArrayList<>();
         ParameterCategory p1 = new ParameterCategory("54321", "HEMOGRAM");
         parameterCategories.add(p1);
