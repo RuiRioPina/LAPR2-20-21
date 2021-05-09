@@ -93,11 +93,11 @@ My question therefore is: When creating a new Clinical Analysis Laboratory, shou
 	* **Answer13:** It is always a good practice to validate and ask for confirmation.
 
 * **Question14:** Are two Clinical Analysis Laboratories with the same:
-		* Laboratory ID OR
-		* name OR
-		* address OR
-		* phone Number OR
-		* TIN number
+	* Laboratory ID OR
+	* name OR
+	* address OR
+	* phone Number OR
+	* TIN number
 allowed to exist?
 [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7911)
 	* **Answer14:** Only the name of two CAL can be same.
@@ -147,8 +147,7 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 
 ### 2.2. Other Remarks
 
-*Use this section to capture some aditional notes/remarks that must be taken into consideration into the design activity. In some case, it might be usefull to add other analysis artifacts (e.g. activity or state diagrams).* 
-
+There is no other remarks.
 
 
 ## 3. Design - User Story Realization 
@@ -175,18 +174,19 @@ This US has dependency with the US9- As an administrator, I want to specify a ne
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
+	
+* ClinicalAnalysisLaboratory
+* ClinicalAnalysisLaboratoryStore
+* TestType
+* TestTypeStore
+* Company
 
-	* ClinicalAnalysisLaboratory
-	* ClinicalAnalysisLaboratoryStore
-	* TestType
-	* TestTypeStore
-	* Company
 
 
+Other software classes (i.e. Pure Fabrication) identified:
 
-Other software classes (i.e. Pure Fabrication) identified: 
-	* ClinicalAnalysisLaboratoryUI  
-	* ClinicalAnalysisLaboratoryController
+* ClinicalAnalysisLaboratoryUI  
+* ClinicalAnalysisLaboratoryController
 
 ## 3.2. Sequence Diagram (SD)
 
@@ -197,29 +197,29 @@ Other software classes (i.e. Pure Fabrication) identified:
 ![US8-CD](ImagesUsed/US8_CD.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
 
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
 
-**Test 1:** Check if it's possible to get the name of a Clinical analysis laboratory introduced by the Admin.
+**Test 1:** Check that it's possible to get the name of a Clinical analysis laboratory introduced by the Admin.
+	
 	@Test
-          public void getName() {
-          List<ParameterCategory> parameterCategories = new ArrayList<>();
-          ParameterCategory p1 = new ParameterCategory("54321","HEMOGRAM");
-          parameterCategories.add(p1);
+    	 public void getName() {
+         List<ParameterCategory> parameterCategories = new ArrayList<>();
+         ParameterCategory p1 = new ParameterCategory("54321","HEMOGRAM");
+         parameterCategories.add(p1);
 
-          List<TestType> testTypes = new ArrayList<>();
-          TestType t1 = new TestType("13579","TESTDESCRIPTION", "abcde", parameterCategories);
-          testTypes.add(t1);
+         List<TestType> testTypes = new ArrayList<>();
+         TestType t1 = new TestType("13579","TESTDESCRIPTION", "abcde", parameterCategories);
+         testTypes.add(t1);
 
-          ClinicalAnalysisLaboratory cal= new ClinicalAnalysisLaboratory("123ab", "LABORATORY",
+         ClinicalAnalysisLaboratory cal= new ClinicalAnalysisLaboratory("123ab", "LABORATORY",
                                 "LabADRESS", 99999999999L, 1234567890L, testTypes);
 
-          String name = "LABORATORY";
-          String wrongName = "LAB";
+         String name = "LABORATORY";
+         String wrongName = "LAB";
 
-          assertEquals(name,cal.getName());
-          assertNotEquals(wrongName, cal.getName());
+         assertEquals(name,cal.getName());
+         assertNotEquals(wrongName, cal.getName());
+
     }
 
 **Test 2:** Check if laboratoryID follows the rules indicated by the Client. (AC-1)
@@ -243,7 +243,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
     }
 
-**Test 3:** Check if it's possible to get all type of tests registered in the application.
+**Test 3:** Check that it's possible to get all type of tests registered in the application.
 
 	@Test
          public void getTestTypes() {
@@ -261,95 +261,94 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ## Class ClinicalAnalysisLaboratory
 
-public class ClinicalAnalysisLaboratory {
+	public class ClinicalAnalysisLaboratory {
+	private String laboratoryID;
+   	private String name;
+    	private String adress;
+    	private long phoneNumber;
+    	private long tin;
+    	private List<TestType> testTypes;
 
-    private String laboratoryID;
-    private String name;
-    private String adress;
-    private long phoneNumber;
-    private long tin;
-    private List<TestType> testTypes;
+    	public ClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
+        	this.laboratoryID = laboratoryID;
+        	this.name = name;
+        	this.adress = adress;
+        	this.tin = tin;
+        	this.phoneNumber = phoneNumber;
+        	this.testTypes = testTypes;
 
-    public ClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
-        this.laboratoryID = laboratoryID;
-        this.name = name;
-        this.adress = adress;
-        this.tin = tin;
-        this.phoneNumber = phoneNumber;
-        this.testTypes = testTypes;
-
-    }
-...
-}
+    		}
+	...
+	}
 
 
 ## Class ClinicalAnalysisLaboratoryStore
 
-public class ClinicalAnalysisLaboratoryStore {
-    private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratories;
+	public class ClinicalAnalysisLaboratoryStore {
+    	private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratories;
 
-    public ClinicalAnalysisLaboratoryStore() {
-        this.clinicalAnalysisLaboratories = new ArrayList<>();
-    }
+    	public ClinicalAnalysisLaboratoryStore() {
+        	this.clinicalAnalysisLaboratories = new ArrayList<>();
+    	}
 
-    public ClinicalAnalysisLaboratory registerClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
-        return new ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testTypes);
-    }
+    	public ClinicalAnalysisLaboratory registerClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
+        	return new ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testTypes);
+    	}
 
-    public void validateClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
-        checkNameRules(cal.getName());
-        checkLaboratoryIDRules(cal.getLaboratoryID());
-        checkAdressRules(cal.getAdress());
-        checkPhoneNumberRules(cal.getPhoneNumber());
-        checkTINRules(cal.getTin());
-        checkTestTypesRules(cal.getTestTypes());
-    }
-...
-}
+    	public void validateClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
+        	checkNameRules(cal.getName());
+        	checkLaboratoryIDRules(cal.getLaboratoryID());
+        	checkAdressRules(cal.getAdress());
+        	checkPhoneNumberRules(cal.getPhoneNumber());
+        	checkTINRules(cal.getTin());
+        	checkTestTypesRules(cal.getTestTypes());
+    		}
+	...
+	}
 
 ## Class ClinicalAnalysisLaboratoryController
 
-public class ClinicalAnalysisLaboratoryController {
-    private Company company;
-    private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
+	public class ClinicalAnalysisLaboratoryController {
+    	private Company company;
+    	private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
 
-    public ClinicalAnalysisLaboratoryController(){
-        this.company =App.getInstance().getCompany();
-    }
+    	public ClinicalAnalysisLaboratoryController(){
+        	this.company =App.getInstance().getCompany();
+    	}
 
-    public List<TestType> getTestTypes() {
-        TestTypeStore ts = this.company.getTestTypeStore();
-        return ts.getTestTypes();
-    }
-...
-}
+    	public List<TestType> getTestTypes() {
+        	TestTypeStore ts = this.company.getTestTypeStore();
+        	return ts.getTestTypes();
+    		}
+	...
+	}
 
 ## Class ClinicalAnalysisLaboratoryUI
 
-public class ClinicalAnalysisLaboratoryUI implements Runnable {
+	public class ClinicalAnalysisLaboratoryUI implements Runnable {
 
-    private ClinicalAnalysisLaboratoryController clinicalAnalysisLaboratoryController;
+    	private ClinicalAnalysisLaboratoryController clinicalAnalysisLaboratoryController;
 
-    public ClinicalAnalysisLaboratoryUI() {
-        this.clinicalAnalysisLaboratoryController = new ClinicalAnalysisLaboratoryController();
-    }
+    	public ClinicalAnalysisLaboratoryUI() {
+        	this.clinicalAnalysisLaboratoryController = new ClinicalAnalysisLaboratoryController();
+    	}
 
-    public void run() {
-        Scanner x = new Scanner(System.in);
-        System.out.println("Beginning to register a new clinical analysis laboratory.\n");
-        System.out.println("Insert the laboratoryID.");
-        String laboratoryID=x.nextLine();
-        System.out.println("Insert name.");
-        String name=x.nextLine();
-        System.out.println("Insert adress.");
-        String adress=x.nextLine();
-        System.out.println("Insert phone number.");
-        long phoneNumber=x.nextLong();
-        System.out.println("Insert TIN number.");
-        long tin=x.nextLong();
-...
+    	public void run() {
+        	Scanner x = new Scanner(System.in);
+        	System.out.println("Beginning to register a new clinical analysis laboratory.\n");
+        	System.out.println("Insert the laboratoryID.");
+        	String laboratoryID=x.nextLine();
+        	System.out.println("Insert name.");
+        	String name=x.nextLine();
+        	System.out.println("Insert adress.");
+        	String adress=x.nextLine();
+        	System.out.println("Insert phone number.");
+        	long phoneNumber=x.nextLong();
+        	System.out.println("Insert TIN number.");
+        	long tin=x.nextLong();
+		...
+		}
 	}
-}
 	
 
 # 6. Integration and Demo 
