@@ -7,15 +7,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClinicalAnalysisLaboratoryStore {
+
+    /**
+     * Object oriented class used to Store the Clinical analysis laboratories within the company.
+     */
     private List<ClinicalAnalysisLaboratory> clinicalAnalysisLaboratories;
+
+    /**
+     * Constructor for the Clinical Analysis Laboratory Store
+     */
 
     public ClinicalAnalysisLaboratoryStore() {
         this.clinicalAnalysisLaboratories = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param laboratoryID - laboratoryID of a Clinical analysis laboratory
+     * @param name  - name of a Clinical analysis laboratory
+     * @param adress - adress of a Clinical analysis laboratory
+     * @param phoneNumber - phone number of a Clinical analysis laboratory
+     * @param tin - tin number of a Clinical analysis laboratory
+     * @param testTypes - type of tests that a Clinical analysis laboratory performs
+     * @return Object of the ClinicalAnalysisLaboratory class
+     */
+
     public ClinicalAnalysisLaboratory registerClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<TestType> testTypes) {
         return new ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testTypes);
     }
+
+    /**
+     * Validates a ClinicalAnalysisLaboratory
+     * @param cal - clinicalanalysislaboratory
+     * @throws IllegalArgumentException
+     */
 
     public void validateClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
         checkNameRules(cal.getName());
@@ -26,16 +51,31 @@ public class ClinicalAnalysisLaboratoryStore {
         checkTestTypesRules(cal.getTestTypes());
     }
 
+    /**
+     * Saves a ClinicalAnalysisLaboratory
+     * @param cal - clinicalanalysislaboratory
+     * @throws IllegalArgumentException
+     */
+
     public void saveClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
         validateClinicalAnalysisLaboratory(cal);
         addClinicalAnalysisLaboratory(cal);
     }
 
+    /**
+     * Adds a ClinicalAnalysisLaboratory
+     * @param cal - clinicalanalysislaboratory
+     */
+
     private void addClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) {
         this.clinicalAnalysisLaboratories.add(cal);
     }
 
-
+    /**
+     * Checks Clinical analysis laboratory name rules
+     * @param name - name of the Clinical analysis laboratory
+     * @throws IllegalArgumentException
+     */
 
     public void checkNameRules(String name) throws IllegalArgumentException{
         if ((name.length()) < 1 || name.length() > 20){
@@ -46,6 +86,12 @@ public class ClinicalAnalysisLaboratoryStore {
         }
 
     }
+
+    /**
+     * Checks Clinical analysis laboratory laboratoryID rules
+     * @param laboratoryID - laboratoryID of the Clinical analysis laboratory
+     * @throws IllegalArgumentException
+     */
 
     public void checkLaboratoryIDRules(String laboratoryID) throws IllegalArgumentException{
         if (laboratoryID.length() != 5 ){
@@ -60,17 +106,26 @@ public class ClinicalAnalysisLaboratoryStore {
 
     }
 
+    /**
+     * Checks Clinical analysis laboratory adress rules
+     * @param adress - adress of the Clinical analysis laboratory
+     * @throws IllegalArgumentException
+     */
+
     public void checkAdressRules(String adress) throws IllegalArgumentException{
         if ((adress.length()) < 1 || adress.length() > 30){
             throw new IllegalArgumentException("Adress must have 1 to 30 chars.");
-        }
-        if (!adress.matches("[A-Za-z]+")) {
-            throw new IllegalArgumentException("Adress must be a string.");
         }
         if (this.getRepeatedAdress(adress) != null) {
             throw new IllegalArgumentException("Adress already exist.");
         }
     }
+
+    /**
+     * Checks Clinical analysis laboratory phone number rules
+     * @param phoneNumber - phone number of the Clinical analysis laboratory
+     * @throws IllegalArgumentException
+     */
 
     public void checkPhoneNumberRules(long phoneNumber) throws IllegalArgumentException{
         if (digits(phoneNumber) != 11) {
@@ -81,6 +136,12 @@ public class ClinicalAnalysisLaboratoryStore {
         }
     }
 
+    /**
+     * Checks Clinical analysis laboratory tin rules
+     * @param tin - tin of the Clinical analysis laboratory
+     * @throws IllegalArgumentException
+     */
+
     public void checkTINRules(long tin) throws IllegalArgumentException{
         if (digits(tin) != 10){
             throw new IllegalArgumentException("TIN number must have 10 digits.");
@@ -90,11 +151,23 @@ public class ClinicalAnalysisLaboratoryStore {
         }
      }
 
+    /**
+     * Checks Clinical analysis laboratory type of tests rules
+     * @param testTypes - type of tests of the Clinical analysis laboratory
+     * @throws IllegalArgumentException
+     */
+
     public void checkTestTypesRules(List<TestType> testTypes) throws IllegalArgumentException {
         if (testTypes.isEmpty()) {
             throw new IllegalArgumentException("Test types cannot be empty.");
         }
     }
+
+    /**
+     * Returns the number of digits in a number
+     * @param num - number to be analysed
+     * @return number of digits in a number
+     */
 
     private long digits(long num){
         int digits=0;
@@ -140,6 +213,12 @@ public class ClinicalAnalysisLaboratoryStore {
         }
         return null;
     }
+
+    /**
+     * Check if a ClinicalAnalysisLaboratory is listed
+     * @param cal - clinicalanalysislaboratory
+     * @return the value of ClinicalAnalysisLaboratory
+     */
 
     public boolean isClinicalAnalysisLaboratoryInList(ClinicalAnalysisLaboratory cal){
         return this.clinicalAnalysisLaboratories.contains(cal);

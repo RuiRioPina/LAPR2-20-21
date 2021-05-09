@@ -11,17 +11,43 @@ import java.util.List;
 
 
 public class ClinicalAnalysisLaboratoryController {
+
+    /**
+     *  Controller class for the register clinical analysis laboratory funcion [US-08 of the integrative project of 1st year ISEP DEI students].
+     */
     private Company company;
     private ClinicalAnalysisLaboratory clinicalAnalysisLaboratory;
+
+    /**
+     * Constructor for the Controller class. Gets the company that is using the software.
+     */
 
     public ClinicalAnalysisLaboratoryController(){
         this.company =App.getInstance().getCompany();
     }
 
+    /**
+     *Returns the type of tests list of the company that is using the software.
+     * @return List with types of tests.
+     */
+
     public List<TestType> getTestTypes() {
         TestTypeStore ts = this.company.getTestTypeStore();
         return ts.getTestTypes();
     }
+
+    /**
+     /**
+     * Registers an object for the ClinicalAnalysisLaboratory class
+     * @param laboratoryID - laboratoryID of a Clinical analysis laboratory
+     * @param name  - name of a Clinical analysis laboratory
+     * @param adress - adress of a Clinical analysis laboratory
+     * @param phoneNumber - phone number of a Clinical analysis laboratory
+     * @param tin - tin number of a Clinical analysis laboratory
+     * @param testTypeCodes - codes of type of tests that a Clinical analysis laboratory performs
+     * @return Object of the ClinicalAnalysisLaboratory class
+     * @throws IllegalArgumentException
+     */
 
     public ClinicalAnalysisLaboratory registerClinicalAnalysisLaboratory(String laboratoryID, String name, String adress, long phoneNumber, long tin, List<String> testTypeCodes) throws IllegalArgumentException{
         TestTypeStore ts=this.company.getTestTypeStore();
@@ -37,6 +63,12 @@ public class ClinicalAnalysisLaboratoryController {
         this.clinicalAnalysisLaboratory = cal;
         return this.clinicalAnalysisLaboratory;
     }
+
+    /**
+     * Saves a clinical analysis laboratory in the ClinicalAnalysisLaboratoryStore
+     * @param cal - clinicalanalysislaboratory
+     * @throws IllegalArgumentException
+     */
 
     public void saveClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
         ClinicalAnalysisLaboratoryStore cs = this.company.getClinicalAnalysisLaboratoryStore();
