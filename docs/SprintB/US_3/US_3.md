@@ -286,7 +286,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 *In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
 
-## Class Parameter
+## Class Client
 	
 	
 	
@@ -306,18 +306,16 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+  It is linked with the Auth package since it makes the Client an active User of the system.
+  
+  To register a new Client it is necessary to have at least one receptionist, therefore it is tightly related to the creation of receptionists.
 
-  It is linked with the Auth package since it makes the Client an active User of the system
-
-  For now it isn't represented but when there's a Receptionist UI it will have to be guaranteed that it is the Receptionist that is managing the System.
+  When in the RegisterClient UI it has to be guaranteed that it is the Receptionist that is managing the System.
 
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
-
+In this sprint it wasn't used the DTOs yet, since there isn't a complete understanding of the topic yet. It is imperative to implement it in the next Sprint, as it ensures low coupling.
 
 This User Story will have to be adapted to be fitted into a GUI.
 
