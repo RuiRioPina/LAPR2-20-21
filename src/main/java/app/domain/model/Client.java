@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Objects;
 
 import app.domain.shared.Utils;
+import auth.AuthFacade;
 import auth.domain.model.Email;
+import auth.domain.model.User;
+import auth.domain.store.UserStore;
 
 public class Client {
     private long ccn;
