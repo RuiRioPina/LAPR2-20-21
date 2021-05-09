@@ -11,10 +11,17 @@
 
 **From the specifications document:**
 
->	For new clients that arrive at the  that has not been registered yet, there is the need to register them in the application.
+>   "When a new client comes, the receptionist needs to register them in the application. In order to do so the receptionist needs the following information: In case of a new client, the receptionist registers the client in the application."
 
-> To make this registration, the
-receptionist needs the following information about the client : his citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification Number (TIN), phone number, e-mail and name.
+>    "To register a client, the receptionist needs the following information : client's citizen card number, National Healthcare Service (NHS) number, birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
+
+
+
+>   My interpretation:
+
+>	For non registered clients that arrive at a clinical analysis laboratories, there is the need to register them in the application.
+
+> 	To make this registration, the receptionist needs all the information described above.
 
 
 **From the client clarifications:**
