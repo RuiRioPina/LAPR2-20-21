@@ -101,6 +101,7 @@ My question therefore is: When creating a new Clinical Analysis Laboratory, shou
 
 	allowed to exist?
 [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7911)
+
 	* **Answer14:** Only the name of two CAL can be same.
 
 
