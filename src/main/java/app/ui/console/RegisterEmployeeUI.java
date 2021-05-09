@@ -74,7 +74,7 @@ if (confirmation.equals("S")||confirmation.equals("s")){
     }
 
     String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-    if(email.matches(regex)) {
+    if(email.matches(regex)&& e.validateEmployee()) {
     	System.out.println("The employee has been created");
     }
 }else {
