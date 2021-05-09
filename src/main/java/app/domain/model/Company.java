@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import app.controller.App;
+import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
@@ -122,5 +124,10 @@ public class Company {
         } else {
             System.out.println("The client needs to have at least one unique attribute. Please try again.");
         }
+        addClientToSystem(c);
+    }
+
+    private void addClientToSystem(Client c) {
+        App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
 }

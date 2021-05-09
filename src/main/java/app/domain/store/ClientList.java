@@ -12,7 +12,7 @@ public class ClientList {
     private List<Client> clientList;
 
     public ClientList() {
-        this.clientList = new ArrayList<Client>();
+        this.clientList = new ArrayList<>();
     }
 
     public Client createClient(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
@@ -33,7 +33,6 @@ public class ClientList {
 
     public void saveClient(Client c) {
         this.add(c);
-        App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
 
     public List<Client> getClients() {

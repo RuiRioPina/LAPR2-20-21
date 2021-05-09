@@ -22,11 +22,8 @@ public class Client {
     private String name;
     private String password;
 
-    UserStore userStore = new UserStore();
 
-    AuthFacade authFacade = new AuthFacade();
 
-    User user;
 
     LocalDate currentDate = LocalDate.now();
 
