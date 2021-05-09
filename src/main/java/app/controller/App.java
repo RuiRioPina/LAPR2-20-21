@@ -88,9 +88,7 @@ public class App {
         this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12",Constants.ROLE_RECEPTIONIST);
         this.company.setNumberOfEmployees(0);
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
-        cs.saveParameterCategory(new ParameterCategory("COISA", "Hemogram"));
-        cs.saveParameterCategory(new ParameterCategory("X2341", "BCC"));
-        cs.saveParameterCategory(new ParameterCategory("X1234", "WCC"));
+        cs.saveParameterCategory(new ParameterCategory("123XX", "Hemogram"));
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST,"REC"));
         lRole.add(lRole.create("Performs Chemical Analysis and records results",Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,"CCT"));
