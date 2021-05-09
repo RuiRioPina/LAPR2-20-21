@@ -297,9 +297,9 @@ public class Client {
      * Validates the name of the Client.
      *
      * @param name The name of the client
-     * @return false if <name> has more than <35 characters>
-     * false if <name> is <empty>
-     * false if <name> hasn't only letters.
+     * @return false if name has more than 35 characters
+     * false if name is empty
+     * false if name hasn't only letters.
      */
     public boolean validateName(String name) {
         int i = 0;
