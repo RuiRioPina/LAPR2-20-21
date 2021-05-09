@@ -58,7 +58,7 @@
 | **Scope** | **Alcance** | The range of a program. |
 | **Software** | **Software** | The programs and other operating information used by a computer. |
 | **Subset** | **Subconjunto** | A part of a larger group of related things. |
-| **TIF** | **NIF** | Initials of Tax Identification Number. |
+| **TIN** | **NIF** | Initials of Tax Identification Number. |
 | **Test** | **Teste** | A scientific examination of a sample, typically for the diagnosis of illness or for the detection and measurement of drugs or other substances. |
 | **Time Complexity** | **Complexidade de Tempo** | The time complexity is the number of operations an algorithm performs to complete its task (considering that each operation takes the same amount of time). The algorithm that performs the task in the smallest number of operations is considered the most efficient one in terms of the time complexity. |
 | **Username** | **Nome de Utilizador** | An identification used by a person with access to a application, network, or online service. |
