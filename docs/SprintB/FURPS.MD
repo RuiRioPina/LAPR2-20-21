@@ -4,25 +4,7 @@
 
 ____
 
-* Email/SMS
-
-When the test results are completed the customer will be notificated about it.
-
-Registered users shall received an email stating that the registration was completed and it shall contain the password of the user
-
-* Localization
-
-The application is to be used in England, therefore it should be in English.
-
-* Reporting
-
-Many Labs is required by the NHS to report all Covid-19 related information, daily. Therefore the application needs to generate reports on the information required by the NHS.
-
-* Security
-
-Clients must only be able to access their Test Results.
-
-Only the Specialist Doctor is allowed to access all client data.
+The application has to have the possibility to send emails/sms. Regarding this matter, registered users, on the act of the registration must receive an email stating that the registration was completed and it shall contain the password of the user. Additionally, when the test results are completed the customer shall be notified about it. Now elaborating about more about the localization, the application is to be used in England and therefore it should be in English. With that in mind, since Many Labs has the exclusivity of the COVID-19 tests in England, the company is required by the NHS to report all Covid-19 related information, daily. This reports need to be generated automatically by the application. Finally, there are some security issues that should be addressed such as the clients only being able to access their Test Results and the Specialist Doctor being the only one allowed to access all client data.
 
 ## Usability 
 
