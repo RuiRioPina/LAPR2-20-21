@@ -67,8 +67,7 @@ In case there is a failure, the program should try to save all the data it possi
 The time between failures should be large, as the program should seek to have the least number of failures possible, especially since it will be used in a health-related context.
 
 ## Performance
-_Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
-___
+__________________
 * Response time
 
 Any interface between a user and the system shall have a maximum response time of 3 seconds.
@@ -101,19 +100,18 @@ The application must be subjected to various tests to verify its functionality s
 
 Unit tests should be implemented, and a coverage report should be generated. 
 
-Mutation tests should also be developed, in order to check if the tests cover every possibilities.
+Mutation tests should also be developed, in order to check if the tests cover all possibilities.
 
 The development team must implement unit tests for all methods except methods that implement Input/Output operations.
 
 * Configurability / Compatiblity
 
-All those who wish to use the application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits.
 
 To register a client, the receptionist needs the client's citizen card number and personal information( like NHS, TIF and phone number).
 
 Only the specialist doctor is allowed to access all client data. 
 
-To facilitate the access to the results, the application must allow ordering the clients by TIF and by name. 
+To facilitate the access to the results, the application must allow ordering the clients by TIN and by name. 
 
 The application must support the English language only.
 
@@ -171,8 +169,6 @@ The application must be developed in Java language using the IntelliJ IDE or Net
 
 There are certain restricts on data input that should take place such as: "All those who wish to use the
 application must be authenticated with a password holding seven alphanumeric characters, including three capital letters and two digits". 
-If it is detected an anomaly on this standard, the application should let the user know before entering the data. If he still does enter it, it should give an error
-message stating what happened. Furthermore, it should be guaranteed that only the specialist doctor is allowed to access all client data.
 					
 * Resource limits
 
@@ -186,7 +182,7 @@ Every Unix operating system, as well as Windows.
 ____
 Our application uses the NHS API to communicate externally, to provide information required by them.
 
-The NHS API is used to generat barcodes to identify each sample, what's more it is used on sending to the NHS automatically generated reports,on 
+The NHS API is used to generate barcodes to identify each sample, what's more it is used on sending to the NHS automatically generated reports,on 
 a daily basis to the NHS.
 
 ### Physical Constraints
