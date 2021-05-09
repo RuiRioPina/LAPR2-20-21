@@ -189,9 +189,7 @@ Other software classes (i.e. Pure Fabrication) identified:
 ![US03-CD](US03-CD_v3.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
-
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
+___________________________________
 
 **Class Client:**
 
@@ -298,29 +296,139 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 	
 
-*It is also recommended to organize this content by subsections.* 
 
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
+_______________________
 
-## Class Client
-	
-	
-	
-		public String toString() {
-     		return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his tin is %d, he is %s, and his email is %s",
-        		this.name, this.ccn, this.nhsNumber, this.tin, this.sex, this.email);
-   		 }
+## class Client
     
-  
-  
+    public class Client {
+    private long ccn;
+    private long nhsNumber;
+    private String birthDate;
+    private long tin;
+    private long phoneNumber;
+    private String sex;
+    private String email;
+    private String name;
+    private String password;
 
-  *(working...)*
+
+    LocalDate currentDate = LocalDate.now();
+
+    /**
+     * Creates an empty Client.
+     */
+    public Client() {
+
+    }
+
+    /**
+     * Another constructor for class Client
+     * It is here that is generated the password.
+     *
+     * @param ccn         The Citizen card number of the client
+     * @param nhsNumber   National Health Service number of the client
+     * @param birthDate   The birth date of the client
+     * @param sex         The sex of the client
+     * @param email       The email of the client
+     * @param tin         The tax identification number of the client
+     * @param phoneNumber Phone number of the client
+     * @param name        The name of the client
+     */
+
+    public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
+        this.ccn = ccn;
+        this.tin = tin;
+        this.nhsNumber = nhsNumber;
+        this.birthDate = birthDate;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.name = name;
+        this.password = generatePassword();
+
+    }
+    
+## Class ClientList  
+    
+    public class ClientList {
+    private List<Client> clientList;
+
+    /**
+     * empty constructor of the class ClientList which initializes the arraylist.
+     */
+    public ClientList() {
+        this.clientList = new ArrayList<>();
+    }
+
+    /**Create an instance of the Class Client using the constructor from the class Client.
+     *
+     * @param ccn         The Citizen card number of the client
+     * @param nhsNumber   National Health Service number of the client
+     * @param birthDate   The birth date of the client
+     * @param sex         The sex of the client
+     * @param email       The email of the client
+     * @param tin         The tax identification number of the client
+     * @param phoneNumber Phone number of the client
+     * @param name        The name of the client
+     * @return the object Client containing the information passed through parameters.
+     */
+    public Client createClient(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
+        return new Client(ccn, nhsNumber, birthDate, sex, email, tin, phoneNumber, name);
+    }
+    ...
+    }
+    
+## Class RegisterClientController
+
+    public class RegisterClientController {
+
+    Client clt;
+    Company cmp;
+    AuthFacade authFacade = new AuthFacade();
+
+    /**
+     * Constructor of the Class RegisterClientController
+     */
+    public RegisterClientController() {
+        if (!isUserLoggedInReceptionist()) {
+            System.out.println("You are not a receptionist and therefore can't access this menu");
+        }
+        this.clt = new Client();
+        this.cmp = App.getInstance().getCompany();
+    }
+
+    /**
+     * Brings the method from the class ClientList so that there's less coupling between the UI and domain layers.
+     *
+     * @param ccn         The client's Citizen card number
+     * @param nhsNumber   National Health Service number of the client
+     * @param birthDate   The birth date of the client
+     * @param sex         The sex of the client
+     * @param email       The email of the client
+     * @param tin         The tax identification number of the client
+     * @param phoneNumber Phone number of the client
+     * @param name        The name of the client
+     * @return an instance of the class Client containing the information passed by parameters
+     */
+
+    public Client createClient(long ccn, long nhsNumber, String birthDate, String sex,
+                               long tin, long phoneNumber, String email, String name) {
+        ClientList cl = this.cmp.getClientList();
+
+        this.clt = cl.createClient(ccn, nhsNumber, birthDate, sex,
+                email, phoneNumber, tin, name);
+        return this.clt;
+
+    }
+    ...
+    }
+    
    
 
 
-*It is also recommended to organize this content by subsections.* 
 
 # 6. Integration and Demo 
 
