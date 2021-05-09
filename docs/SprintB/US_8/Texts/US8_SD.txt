@@ -2,13 +2,14 @@
 autonumber
 actor "Administrator" as ADMIN
 
-participant ":RegisterClinicalAnalysisLaboratoryUI" as UI
-participant ":RegisterClinicalAnalysisLaboratoryController" as CTRL
+participant ":ClinicalAnalysisLaboratoryUI" as UI
+participant ":ClinicalAnalysisLaboratoryController" as CTRL
 participant ":Company" as CMP
-participant "ttStore:\nTestTypeStore" as TTSTORE
+participant "ts:\nTestTypeStore" as TTSTORE
 participant "calStore:\nClinicalAnalysisLaboratory" as STORE
 participant "cal:ClinicalAnalysisLaboratory" as CAL
-participant "lc:\nList<TestType>" as lc
+participant "lt:\nList<TestType>" as lc
+participant "tt:\nTestType" as TT
 
 
 activate ADMIN
@@ -35,13 +36,11 @@ loop until no more test types are selected
 end
 UI -> CTRL: registerClinicalAnalysisLaboratory(Laboratory ID, name, adrress, phone number, TIN, TestType)
 activate CTRL
-CTRL -> TTSTORE : tt=ts.getTestType(testType)
-activate TTSTORE
-deactivate TTSTORE
-CTRL -> CMP : cs=getClinicalAnalysisLaboratoryStore()
+
+CTRL -> CMP : calStore=getClinicalAnalysisLaboratoryStore()
 activate CMP
 deactivate CMP
-CTRL -> STORE : cal=cs.register(Laboratory ID, name, adrress, phone number, TIN, TestType)
+CTRL -> STORE : cal=calStore.register(Laboratory ID, name, adrress, phone number, TIN, TestType)
 activate STORE
 STORE --> CAL** : register(Laboratory ID, name, adrress, phone number, TIN, TestType)
 deactivate STORE
