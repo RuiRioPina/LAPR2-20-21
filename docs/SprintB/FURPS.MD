@@ -28,21 +28,9 @@ Only the Specialist Doctor is allowed to access all client data.
 
 ____
 
-* Prevention of errors entered by the user
+In terms of aesthetics and design, the client hasn't any clear restriction for this. He stated that he wants to be impressed with it.
 
-  * Being always one step ahead of users helps us predict any mistakes they might make.
-
-  * We are all users, so we must think as one, to prevent the maximum number of possible errors that can occur.
-
-  * The weaknesses of the software should be flagged, in order to correct it as soon as possible. One example of this would be the user being confused with one piece of information he needs to input.
-
-* Aesthetics and design
-
-The client hasn't any clear restriction for this. He stated that he wants to be impressed with it.
-
-* Interface consistency
-
-The interface shall be consistency, in order to reduce the learning curve of the application.
+About the help and documentation, the accuracy of the prediction models should be analysed and documented in the application user manual (in the annexes) that must be delivered.
 
 ## Reliability
 ____
