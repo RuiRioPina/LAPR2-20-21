@@ -22,6 +22,7 @@
 | **Courier** | **Correio** | Person who carries and delivers the test samples from the clinical analysis laboratories to the chemical analysis laboratories. |
 | **Covid-19** | **Covid-19** | Virus that created a worldwide pandemic. |
 | **Diagnosis** | **Diagnóstico** | The identification of the nature of an illness or other problem by examination of the symptoms. |
+| **Doctor Index Number** | **Número de index de doutor** | 6 digit code used to identify certified doctors. |
 | **Doctor Prescription** | **Prescrição Médica** | A doctor’s written direction for the medicine that someone needs and how it is to be used, or the medicine itself. |
 | **External Module** | **Módulo Externo** | Is written as a separate source file that contains at least one import or export declaration. |
 | **FURPS**| **FURPS** | Name of the supplementary specification. |
@@ -56,6 +57,7 @@
 | **SVG** | **SVG** | Scalable Vector Graphics. Image format. |
 | **Sample** | **Amostra** | Collected by a clinical lab technician. Can be used to determinate whether someone is ill or not. |
 | **Scope** | **Alcance** | The range of a program. |
+| **SOC Code ** | **Código de Classificação Ocupacional Padrão** | Standard Occupational Classification Code. Used to caracterize a person's occupation. Has 4 digits. |
 | **Software** | **Software** | The programs and other operating information used by a computer. |
 | **Subset** | **Subconjunto** | A part of a larger group of related things. |
 | **TIN** | **NIF** | Initials of Tax Identification Number. |
