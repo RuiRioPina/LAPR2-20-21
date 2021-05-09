@@ -177,7 +177,7 @@ public boolean equals(Object o){
         return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their email adress is " +this.email + ". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
 }
 public  boolean validateEmployee(){
-        if (name.length()>35){
+        if (name.length()>35&&Utils.nameContainsDigits(name)){
             return false;
     }
     if (Utils.validateSOC(SOC)){
