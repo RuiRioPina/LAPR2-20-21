@@ -71,7 +71,18 @@
 > [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7954)
 > > ** Answer:** No, only needs to tell the birth day (from a previous post). The application must validate and should not accept clients who have more than 150 years of age.
 
+> **Question12:**:  Should each client have an unique ID, generated during their creation?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7955)
+> > ** Answer:**  No.
 
+> **Question13:**:  Should some data of the client (phone number and e-mail address, for example) be edited in the future?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7959)
+> > ** Answer:**  For now there is no need to have such feature.
+
+
+> **Question14:**: Recently you said that the maximum acceptable age is 150 years old, so the client can be born in 1870 and the data format is DD/MM/YY, this format can be tricky because, for example, if the data is DD/MM/70 the data can indicate that he born on 1870 or 1970. How can we solve this? Or I am understanding wrong?
+> [Link](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=7962)
+> > ** Answer:** Thank you for identifying this issue. Please consider DD / MM / YYYY format for all dates.
 
 
 
@@ -148,7 +159,7 @@ none.
 |:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1  		 |	... interacting with the actor?						 | RegisterClientUI            | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.          | 
 |   		 |	... coordinating the US?					 | RegisterClientController            | Controller          |
-|   		 |	... knowing the user using the system?					 | AuthFacade            | IE: User Authentication & Authorization Documentation       |
+|   		 |	... knowing the user using the system?					 | UserSession            | IE: User Authentication & Authorization Documentation       |
 | Step 2  		 |	... requesting the needed data?						 | none            |                              |
 | Step 3  		 |	... saving the inputed data?						 | Client            | IE:The client object has its own data   .                          |
 | Step 4  		 |	... validating all data (local validation)(i.e the compliance with the acceptance criteria, the existance of the mandatory data)?						 | Client            | IE: knows about its data       |
