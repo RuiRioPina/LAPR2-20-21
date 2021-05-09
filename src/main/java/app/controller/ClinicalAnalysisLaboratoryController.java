@@ -38,9 +38,9 @@ public class ClinicalAnalysisLaboratoryController {
         return this.clinicalAnalysisLaboratory;
     }
 
-    public void saveClinicalAnalysisLaboratory() throws IllegalArgumentException {
+    public void saveClinicalAnalysisLaboratory(ClinicalAnalysisLaboratory cal) throws IllegalArgumentException {
         ClinicalAnalysisLaboratoryStore cs = this.company.getClinicalAnalysisLaboratoryStore();
-        cs.saveClinicalAnalysisLaboratory(this.clinicalAnalysisLaboratory);
+        cs.saveClinicalAnalysisLaboratory(cal);
     }
 
 }

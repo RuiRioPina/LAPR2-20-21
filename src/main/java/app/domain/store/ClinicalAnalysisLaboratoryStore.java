@@ -41,6 +41,9 @@ public class ClinicalAnalysisLaboratoryStore {
         if ((name.length()) < 1 || name.length() > 20){
             throw new IllegalArgumentException("Name must have 1 to 20 chars.");
         }
+        if (!name.matches("[A-Za-z]+")) {
+            throw new IllegalArgumentException("Name must be a string.");
+        }
 
     }
 
@@ -49,7 +52,7 @@ public class ClinicalAnalysisLaboratoryStore {
             throw new IllegalArgumentException("LaboratoryID must have 5 chars.");
         }
         if (!laboratoryID.matches("[A-Za-z0-9]+")) {
-            throw new IllegalArgumentException("Code must be alphanumeric.");
+            throw new IllegalArgumentException("LaboratoryID must be alphanumeric.");
         }
         if (this.getRepeatedLabID(laboratoryID) != null) {
             throw new IllegalArgumentException("LaboratoryID already exist.");
@@ -60,6 +63,9 @@ public class ClinicalAnalysisLaboratoryStore {
     public void checkAdressRules(String adress) throws IllegalArgumentException{
         if ((adress.length()) < 1 || adress.length() > 30){
             throw new IllegalArgumentException("Adress must have 1 to 30 chars.");
+        }
+        if (!adress.matches("[A-Za-z]+")) {
+            throw new IllegalArgumentException("Adress must be a string.");
         }
         if (this.getRepeatedAdress(adress) != null) {
             throw new IllegalArgumentException("Adress already exist.");
