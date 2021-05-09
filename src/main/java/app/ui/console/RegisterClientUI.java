@@ -179,7 +179,7 @@ public class RegisterClientUI implements Runnable {
                     System.out.println(e.getMessage());
                 }
                 if (registerClientController.isClientInList(clt)) {
-                    System.out.println("The Client was sucessfully added!");
+                    System.out.println("The Client was sucessfully added or there is already one Client with those attributes!");
                 } else {
                     System.out.println("You either didn't confirm it or there was an error!");
                 }

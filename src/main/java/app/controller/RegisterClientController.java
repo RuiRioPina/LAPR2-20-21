@@ -47,8 +47,7 @@ public class RegisterClientController {
     }
 
     public void saveClient(Client c) {
-        ClientList cl = this.cmp.getClientList();
-        cl.saveClient(c);
+        cmp.saveClient(c);
     }
 
     public void showClient(Client c) {
@@ -64,7 +63,7 @@ public class RegisterClientController {
     }
 
     public boolean validateBirthDate(String birthDate) {
-         return clt.validateBirthDate(birthDate);
+        return clt.validateBirthDate(birthDate);
     }
 
     public boolean validateTin(long tin) {
