@@ -30,10 +30,13 @@ Throughout the project's development period, the distribution of _tasks / requir
 | US 1 (SDP Activities)  |  [1190001](SprintA/US1.md)   |    |   |  |
 | US 2 (SDP Activities)  |  [1190002](SprintA/US2.md)   |    |   |  |
 | US 3 (SDP Activities)  |     | [1201568](SprintB/US_3/US3.md)   |   |  |
-| US 4 (SDP Activities)  |  [1190004](SprintA/US4.md)   |    |   |  |
-| ...  |  ...   | ...   | ...  | ... |
+| US 4 (SDP Activities)  |    |    | [1201564](SprintC/US4.md)  |  |
+| US 5 (SDP Activities)  |    |    | [1190709](SprintC/US5.md)  |  |
 | US 7 (SDP Activities)  |     | [1201566](SprintB/US_7/US7.md)   |   |  |
 | US 8 (SDP Activities)  |     | [1201623](SprintB/US_8/US8.md)   |   |  |
 | US 9 (SDP Activities)  |     | [1190709](SprintB/US_9/US9.md)   |   |  |
 | US 10 (SDP Activities)  |     | [1201564](SprintB/US_10/US10.md)   |   |  |
 | US 11 (SDP Activities)  |     | [all](SprintB/US_11/US11.md)   |   |  |
+| US 12 (SDP Activities)  |     |   | [1201568](SprintC/US_12/US12.md)   |  |
+| US 14 (SDP Activities)  |     |   | [1201623](SprintC/US_14/US14.md)   |  |
+| US 15 (SDP Activities)  |     |   | [1201564](SprintC/US_15/US15.md)   |  |
