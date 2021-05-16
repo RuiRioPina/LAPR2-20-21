@@ -1,0 +1,75 @@
+@startuml
+autonumber
+actor "Administrator" as ADMIN
+
+participant ":CreateTestTypeUI" as UI
+participant ":CreateTestTypeController" as CTRL
+participant ":Company" as CMP
+participant "pcStore:\nParameterCategoryStore" as pcStore
+participant "ttStore:\nTestTypeStore" as ttStore
+participant "tt:\nTest Type" as TET
+participant "pc:\nParameterCategory" as pc
+participant "lc:\nList<ParameterCategory>" as lc
+
+activate ADMIN
+ADMIN -> UI : starts new type of test
+activate UI
+UI --> ADMIN : request data(i.e., code, description, collectingMethod)
+deactivate UI
+
+ADMIN -> UI : types requested data
+activate UI
+UI -> CTRL : lc=getParameterCategories()
+activate CTRL
+CTRL -> CMP : cs=getParameterCategoryStore()
+activate CMP	
+deactivate CMP
+CTRL -> pcStore : lc=cs.getParameterCategories()
+activate pcStore
+deactivate pcStore
+deactivate CTRL
+loop until no more categories are selected
+	UI --> ADMIN : shows parameter categories list and ask to select one
+	deactivate UI
+	ADMIN -> UI : selects a parameter category
+	activate UI
+end
+UI -> CTRL: createTestType(code, description, collectingMethod, parameterCategoryCodes)
+activate CTRL
+loop until get all parameter categories by code
+        CTRL -> pcStore : pc=cs.getParameterCategoryByCode(parameterCategoryCode)
+        activate pcStore
+        deactivate pcStore
+end
+CTRL -> CMP : ts=getTestTypeStore()
+activate CMP
+deactivate CMP
+CTRL -> ttStore: tt=ts.createTestType(code, description, collectingMethod, parameterCategories)
+activate ttStore
+ttStore -> TET** : create(code, description, collectingMethod, parameterCategories)
+deactivate ttStore
+CTRL -> ttStore : validateTestType(tt)
+activate ttStore
+deactivate ttStore
+CTRL -->  UI : result
+deactivate ttStore
+deactivate CMP
+deactivate CTRL
+UI --> ADMIN : shows all the data and request a confirmation
+deactivate UI
+
+ADMIN -> UI : confirms the data
+activate UI
+UI -> CTRL : saveTestType()
+activate CTRL
+CTRL -> ttStore : ts.saveTestType(tt)
+activate ttStore
+ttStore -> ttStore : validateTestType(tt)
+ttStore -> ttStore : addTestType(tt)
+UI --> ADMIN : informs operation success
+deactivate ttStore
+deactivate CTRL
+deactivate UI
+
+deactivate ADMIN
+@enduml
