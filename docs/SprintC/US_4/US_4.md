@@ -11,20 +11,42 @@ As a receptionist of the laboratory, I intend to register a test to be performed
 **From the specifications document**
 
 "Typically, the client arrives at one of the clinical analysis laboratories with a lab order prescribed by
-a doctor. Once there, a receptionist asks the client’s citizen card number, the lab order (which
+a doctor. Once there, a receptionist asks the client�s citizen card number, the lab order (which
 contains the type of test and parameters to be measured), and registers in the application the test to
 be performed to that client. Then, the client should wait until a medical lab technician calls him/her
 to collect the samples required to perform a given test."
 
-"In case of a new client, the receptionist registers the client in the application. To register a client, the
-receptionist needs the client’s citizen card number, National Healthcare Service (NHS) number,
-birth date, sex, Tax Identification number (TIF), phone number, e-mail and name."
+"Many Labs performs two types of tests. Each test is characterized by an internal code, an NHS
+code, a description that identifies the sample collection method, the date and time when the samples
+were collected, the date and time of the chemical analysis, the date and time of the diagnosis made
+by the specialist doctor, the date and time when the laboratory coordinator validated the test, and the
+test type (whether it is blood test or Covid test)."
 
 **From the client clarifications**
 
+**Q1:** When the receptionist chooses the test type, should the categories appear, and then when selecting the category, the receptionist can choose the parameters for the test? Or when the Receptionist chooses the test type, should appear all the parameters that it includes immediately?
+
+**A1:** Firstly, the receptionist should choose a test type. Then choose a category from a set of categories. Last, the receptionist should choose a parameter.
+
+**Q2:**What are the attributes of a test and the acceptance criteria?
+
+**A2:** A test has the following attributes: 
+Test code : Sequential number with 12 digits.The code is automatically generated. 
+NHS code : 12 alphanumeric characters.
+
+**Q3:** Since the Client has a Lab Order which contains the type of test and all the parameters to be measured, all the parameters selected by the Receptionist need to be equal to the Lab Order's parameters?
+
+**A3:** Yes.
+
 ### 1.3. Acceptance Criteria
 
-AC1: The receptionist must select the parameters to be analysed from all possible parameters in accordance with the test type.
+**AC1:** The receptionist must select the parameters to be analysed from all possible parameters in accordance with the test type.
+
+**AC2:** NHS code has 12 alphanumeric characters.
+
+**AC3:** Test code is a sequential number with 12 digits. The code is automatically generated.
+
+**AC4:** All test attributes are mandatory.
 
 ### 1.4. Found out Dependencies
 
@@ -32,11 +54,13 @@ This US has dependency with US3 (register the client) and to US9, US10 e US11 (r
 
 ### 1.5 Input and Output Data
 
-(waiting for client clarifications)
+**Typed Data** (nhsCode, clientCcn).
+
+**Selected Data** (testType, category, parameter(s)).
 
 ### 1.6. System Sequence Diagram (SSD)
 
-(waiting for client clarifications)
+![US4_SSD](US4_SSD.svg)
 
 ### 1.7 Other Relevant Remarks
 
