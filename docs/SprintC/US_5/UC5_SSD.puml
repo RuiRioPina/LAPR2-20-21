@@ -1,29 +1,24 @@
 @startuml
 autonumber
-actor "Administrator" as ADMIN
+actor "Medical Lab Technician" as MEDLT
 
-activate ADMIN
-ADMIN-> ":System" : starts new type of test 
+activate MEDLT
+MEDLT-> ":System" : starts record a sample. 
 activate ":System"
-":System" --> ADMIN : resquest data (i.e., code, description, collectingMethod)
+":System" --> MEDLT : shows list of tests for which there are no samples collected.
 deactivate ":System"
 
-ADMIN -> ":System" : types requested data
+MEDLT -> ":System" : selects test.
 activate ":System"
-loop until no more categories are selected
-	":System" --> ADMIN : shows parameter category list and ask to select one
-	deactivate ":System"
+":System" --> MEDLT : ask for the number of samples to collect.
+deactivate ":System"
 
-	ADMIN -> ":System" : selects the parameter category
-	activate ":System"
+MEDLT -> ":System" : selects the number of samples to collect.
+activate ":System"
+loop until all the samples have barcodes associated
+	":System" --> MEDLT : shows the barcodes that have been generated and informs the operation success.
 end
-":System" --> ADMIN : shows all data and request confirmation 
 deactivate ":System"
 
-ADMIN -> ":System" : confirms the data
-activate ":System"
-":System" --> ADMIN : informs operation success 
-deactivate ":System"
-
-deactivate ADMIN
+deactivate MEDLT
 @enduml
