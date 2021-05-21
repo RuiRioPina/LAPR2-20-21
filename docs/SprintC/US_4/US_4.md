@@ -82,6 +82,8 @@ No other remarks.
 
 **The rationale grounds on the SSD interactions and the identified input/output data.**
 
+| Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
+|:-------------  |:--------------------- |:------------|:---------------------------- |
 | Step 1  		 |	...interacting with the actor? | TestUI   |  Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.           |
 | 			  	 |	...coordinating the US? | TestController | Controller.                             |
 | 			  	 |	...registering a new Test? | TestStore | Creator: in the DM Company has a TestStore and the store has the Test.   |
@@ -122,6 +124,7 @@ According to the taken rationale, the conceptual classes promoted to software cl
  * TestStore
  
 Other software classes (i.e. Pure Fabrication) identified: 
+ 
  * TestUI  
  * TestController
 
