@@ -128,11 +128,9 @@ Other software classes (i.e. Pure Fabrication) identified:
  * TestUI  
  * TestController
 
-## 3.2. Sequence Diagram (SD)
+## 3.2. Sequence Diagram (SD
 
-*In this section, it is suggested to present an UML dynamic view stating the sequence of domain related software objects' interactions that allows to fulfill the requirement.* 
-
-![USXX-SD](USXX-SD.svg)
+![US4_SD](US4_SD.svg)
 
 ## 3.3. Class Diagram (CD)
 
