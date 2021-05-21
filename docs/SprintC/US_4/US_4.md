@@ -82,26 +82,48 @@ No other remarks.
 
 **The rationale grounds on the SSD interactions and the identified input/output data.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer  | Justification (with patterns)  |
-|:-------------  |:--------------------- |:------------|:---------------------------- |
-| Step 1  		 |							 |             |                              |
-| Step 2  		 |							 |             |                              |
-| Step 3  		 |							 |             |                              |
-| Step 4  		 |							 |             |                              |
-| Step 5  		 |							 |             |                              |
-| Step 6  		 |							 |             |                              |              
+| Step 1  		 |	...interacting with the actor? | TestUI   |  Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model.           |
+| 			  	 |	...coordinating the US? | TestController | Controller.                             |
+| 			  	 |	...registering a new Test? | TestStore | Creator: in the DM Company has a TestStore and the store has the Test.   |
+|				 |			                       | Company   | IE: knows/has its own ParameterStore.|
+| Step 2  		 | 	...requesting the needed data?|	TestUI | Interacts with the actor.	  |
+| Step 3 		 |	...saving the inputed data? | Test  | IE: object created in step 1 has its own data.  |
+| Step 4  		 |	...knowing the Client to show? | ClientStore  | IE: Client is defined by TestStore. |
+| Step 5  		 |	...saving the linked Client? | Client | IE: object created in step 1 has a Client.  |
+| Step 6         |  ...confirmating | TestUI | Interacts with the actor.|
+| Step 7 		 |	...knowing the Test Types to show? | TestTypeStore  | IE: Test Type is defined by the TestTypeStore. |
+| Step 8  		 |	...saving the selected Test Type ? | TestType | IE: object created in step 1 has a TestType.  |
+| Step 9         |  ...adding sample collecting method? |TestType | IE: there is only one collection method per Test Type |
+| Step 10 		 |	...knowing the Categories to show? | ParameterCategoryStore  | IE: Parameter Category is defined by the ParameterCategoryStore. |
+| Step 11  		 |	...saving the selected Category ? | ParameterCategory | IE: object created in step 1 has a ParameterCategory.  |
+| Step 12		 |	...knowing the Parameters to show? | ParameterStore  | IE: Parameter is defined by the ParameterStore. |
+| Step 13 		 |	...saving the selected Parameter ? | Parameter | IE: object created in step 1 has a Parameter.  |
+| Step 14        |  ...make test state "registered" and adding date | TestUI | System responsabilty at the moment.|
+| Step 15        |  ...confirmating | TestUI | Interacts with the actor.|
+| Step 16 		 |	...validating all data (local validation)? | Test | IE: owns its data.| 
+| 			  	 |	...validating all data (global validation)? | TestStore | IE: knows all its Tests.| 
+| 	             |	...saving the created Test? | TestStore | IE: owns all its Tests.| 
+| Step 17 		 |	...informing operation success?| TestUI  | Interacts with the actor.  |                 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Class1
- * Class2
- * Class3
-
+ * Company
+ * Client
+ * ClientList
+ * TestType
+ * TestTypeStore
+ * ParameterCategory
+ * ParameterCategoryStore
+ * Parameter
+ * ParameterStore
+ * Test
+ * TestStore
+ 
 Other software classes (i.e. Pure Fabrication) identified: 
- * xxxxUI  
- * xxxxController
+ * TestUI  
+ * TestController
 
 ## 3.2. Sequence Diagram (SD)
 
