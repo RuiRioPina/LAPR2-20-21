@@ -38,6 +38,10 @@ NHS code : 12 alphanumeric characters.
 
 **A3:** Yes.
 
+**Q4:** I wanted to ask if the NHS code of which test is unique or not.
+
+**A4:** Yes.
+
 ### 1.3. Acceptance Criteria
 
 **AC1:** The receptionist must select the parameters to be analysed from all possible parameters in accordance with the test type.
@@ -205,10 +209,10 @@ Other software classes (i.e. Pure Fabrication) identified:
     
     public void saveTest(Test t) throws IllegalArgumentException {
         validateTest(t);
-        addParameter(t);
+        addTest(t);
     }
 
-    private void addTestr(Test t) {
+    private void addTest(Test t) {
         this.tests.add(t);
     }
     ...
