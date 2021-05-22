@@ -1,0 +1,82 @@
+@startuml
+autonumber
+actor "Specialist Doctor" as SD
+
+participant ":WriteReportUI" as UI
+participant ":WriteReportController" as CTRL
+participant ":Company" as CMP
+participant "ts:\nTestResultStore" as TRSTORE
+participant "repStore:\nReportStore" as STORE
+participant "rep:Report" as REP
+participant "lt:\nList<TestResult>" as LT
+participant "tt:\nTest" as TT
+
+
+activate SD
+SD-> UI : asks to make a dignosis and write a report for a test
+activate UI
+UI -> CTRL : lt=getTestResults()
+activate CTRL
+CTRL -> CMP: ts=getTestResultStore()
+activate CMP
+deactivate CMP
+CTRL -> TRSTORE : lt=getTestResults()
+activate TRSTORE
+deactivate TRSTORE
+deactivate CTRL
+loop until the doctor doesn't want to analyze more tests
+UI -->SD : shows all tests ready to be analysed
+deactivate UI
+SD -> UI : chooses one test
+activate UI
+UI --> SD : shows the chosen test and requests data(date,report)
+deactivate UI
+SD -> UI : types requested data
+activate UI
+UI-> CTRL : writeReport(date,testChosen,report)
+activate CTRL
+CTRL -> CMP : repStore=getReportStore()
+activate CMP
+deactivate CMP
+CTRL -> STORE : rep=repStore.writeReport(date,testChosen,report)
+activate STORE
+STORE -> REP** : writeReport(date,testChosen,report)
+deactivate STORE
+
+CTRL -> STORE : validateReport(rep)
+activate STORE
+deactivate STORE
+CTRL -> STORE : addReport(rep)
+activate STORE
+deactivate STORE
+
+
+deactivate CTRL
+
+UI --> SD : shows the data and request a confirmation
+deactivate UI
+
+
+SD -> UI : confirms the data
+activate UI
+
+UI -> CTRL : saveReport()
+activate CTRL
+
+CTRL -> STORE : saveReport(rep)
+activate STORE
+STORE -> STORE : validateReport(rep)
+activate STORE
+STORE--
+STORE -> STORE : addReport(rep)
+activate STORE
+STORE--
+deactivate STORE
+deactivate CTRL
+
+UI --> SD: informs operation succecs
+deactivate UI
+
+deactivate SD
+end
+@enduml
