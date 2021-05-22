@@ -137,34 +137,105 @@ Other software classes (i.e. Pure Fabrication) identified:
 ![US4_CD](US4_CD.svg)
 
 # 4. Tests 
-*In this section, it is suggested to systematize how the tests were designed to allow a correct measurement of requirements fulfilling.* 
 
-**_DO NOT COPY ALL DEVELOPED TESTS HERE_**
-
-**Test 1:** Check that it is not possible to create an instance of the Example class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Parameter class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Exemplo instance = new Exemplo(null, null);
-	}
+    public void ensureNullIsNotAllowed() {
+        Test t = new Test(null, null, null, null, null, null, null, null, null, null, null, null);
+    }
 
-*It is also recommended to organize this content by subsections.* 
-
+   *Only some examples have been exposed in this section.*
+    
 # 5. Construction (Implementation)
 
-*In this section, it is suggested to provide, if necessary, some evidence that the construction/implementation is in accordance with the previously carried out design. Furthermore, it is recommeded to mention/describe the existence of other relevant (e.g. configuration) files and highlight relevant commits.*
+## class Test
+    
+    public class Test {
 
-*It is also recommended to organize this content by subsections.* 
+    private String nhsCode;
+    private String internalCode;
+    private Client client;
+    private TestType testType;
+    private String sampleCollectionMethod;
+    private List <ParameterCategory>  parameterCategory;
+    private List <Parameter> parameter;
+    private Date registrationDate;
+    private Date samplesCollectionDate;
+    private Date chemicalAnalysisDate;
+    private Date diagnosisDate;
+    private Date validationDate;
 
+
+    public Test(nhsCode, internalCode, client, testType, sampleCollectionMethod, parameterCategory,
+    parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate, diagnosisDate, validationDate) 
+    {
+        this.nhsCode = nhsCode;
+        this.internalCode = internalCode;
+        this.client = client;
+        this.testType = testType;
+        this.sampleCollectionMethod = sampleCollectionMethod;
+        this.parameterCategory = parameterCategory;
+        this.parameter = parameter;
+        this.registrationDate = registrationDate;
+        this.samplesCollectionDate = samplesCollectionDate;
+        this.chemicalAnalysisDate = chemicalAnalysisDate;
+        this.diagnosisDate = diagnosisDate;
+        this.validationDate = validationDate;
+    }
+    ...
+    }
+    
+## class TestStore    
+    
+    public class TestStore {
+
+    private List <Test> tests;
+
+    public TestStore() {
+        this.tests = new ArrayList<Test>();
+    }
+
+    public Test createTest(nhsCode, internalCode, client, testType, sampleCollectionMethod, parameterCategory,
+    parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate, diagnosisDate, validationDate) 
+    {
+        return new Test(nhsCode, internalCode, client, testType, sampleCollectionMethod, parameterCategory,
+        parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate, diagnosisDate, validationDate);
+    }
+    
+    public void saveTest(Test t) throws IllegalArgumentException {
+        validateTest(t);
+        addParameter(t);
+    }
+
+    private void addTestr(Test t) {
+        this.tests.add(t);
+    }
+    ...
+    }
+    
+## class TestController
+
+    public class TestController {
+    private Company company;
+    private Test test ;
+
+    public TestController() {
+        this.company = App.getInstance().getCompany();
+    }
+    ...
+    }
+    
 # 6. Integration and Demo 
 
-*In this section, it is suggested to describe the efforts made to integrate this functionality with the other features of the system.*
+*A new option on the Recepcionist menu options was added.*
+
+*Test has interactions with almost all the others classes implemented.*
 
 
 # 7. Observations
 
-*In this section, it is suggested to present a critical perspective on the developed work, pointing, for example, to other alternatives and or future related work.*
-
+*Most likely, some changes to this US will have to be made when JavaFX is introduced.*
 
 
 
