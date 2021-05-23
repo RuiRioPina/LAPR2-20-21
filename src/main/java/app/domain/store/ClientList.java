@@ -2,8 +2,6 @@ package app.domain.store;
 
 import app.controller.App;
 import app.domain.model.Client;
-import app.domain.model.ParameterCategory;
-import app.domain.shared.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,8 @@ public class ClientList {
         this.clientList = new ArrayList<>();
     }
 
-    /**Create an instance of the Class Client using the constructor from the class Client.
+    /**
+     * Create an instance of the Class Client using the constructor from the class Client.
      *
      * @param ccn         The Citizen card number of the client
      * @param nhsNumber   National Health Service number of the client
@@ -33,7 +32,9 @@ public class ClientList {
     public Client createClient(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
         return new Client(ccn, nhsNumber, birthDate, sex, email, tin, phoneNumber, name);
     }
-    /**Create an instance of the Class Client using the constructor from the class Client.
+
+    /**
+     * Create an instance of the Class Client using the constructor from the class Client.
      *
      * @param ccn         The Citizen card number of the client
      * @param nhsNumber   National Health Service number of the client
@@ -44,8 +45,8 @@ public class ClientList {
      * @param name        The name of the client
      * @return the object Client containing the information passed through parameters.
      */
-    public Client createClient(long ccn, long nhsNumber,String birthDate, String email, long tin, long phoneNumber, String name) {
-        return new Client(ccn, nhsNumber,birthDate, email, tin, phoneNumber, name);
+    public Client createClient(long ccn, long nhsNumber, String birthDate, String email, long tin, long phoneNumber, String name) {
+        return new Client(ccn, nhsNumber, birthDate, email, tin, phoneNumber, name);
     }
 
     private void add(Client c) {
@@ -56,7 +57,8 @@ public class ClientList {
         }
     }
 
-    /**Uses the private method add(Client c) to add it to the Class ClientList.
+    /**
+     * Uses the private method add(Client c) to add it to the Class ClientList.
      *
      * @param c the object of the Class client
      */
@@ -64,7 +66,8 @@ public class ClientList {
         this.add(c);
     }
 
-    /** Gets a copy of the arrayList containing the clients.
+    /**
+     * Gets a copy of the arrayList containing the clients.
      *
      * @return List of Clients containing all clients stored in this class.
      */
@@ -74,7 +77,8 @@ public class ClientList {
         return c;
     }
 
-    /**Checks if the Client to be added already exists in the arrayList or not.
+    /**
+     * Checks if the Client to be added already exists in the arrayList or not.
      *
      * @param c object of the class Client
      * @return true if the Client already exists in the arrayList.
@@ -83,4 +87,11 @@ public class ClientList {
         return this.clientList.contains(c);
     }
 
+    public void showList() {
+        ClientList clientList = App.getInstance().getCompany().getClientList();
+        for (Client c : clientList.getClients()) {
+            System.out.println(c);
+        }
+
+    }
 }

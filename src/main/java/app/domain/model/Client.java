@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import app.domain.shared.Utils;
-import auth.AuthFacade;
 import auth.domain.model.Email;
-import auth.domain.model.User;
-import auth.domain.store.UserStore;
 
 public class Client {
     private long ccn;
@@ -265,7 +262,7 @@ public class Client {
 
     public boolean validateSex(String sex) {
 
-        return sex.equals(".") || sex.equalsIgnoreCase("M") || sex.equalsIgnoreCase("F") || sex.equalsIgnoreCase("male") || sex.equalsIgnoreCase("female");
+        return sex.trim().isEmpty() || sex.equals("") || sex.equalsIgnoreCase("M") || sex.equalsIgnoreCase("F") || sex.equalsIgnoreCase("male") || sex.equalsIgnoreCase("female");
 
     }
 
