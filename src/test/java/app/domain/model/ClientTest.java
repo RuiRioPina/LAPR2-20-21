@@ -82,7 +82,7 @@ public class ClientTest {
     @Test
     public void validateBirthDate() {
 
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear()+1), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client2 = new Client(999999999999999L, 9999999999L, "10-03-1871", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client3 = new Client(999999999999999L, 9999999999L, "10-0-1890", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client4 = new Client(999999999999999L, 9999999999L, "10-03-187", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
@@ -90,7 +90,7 @@ public class ClientTest {
         Client client6 = new Client(999999999999999L, 9999999999L, "38-11-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client7 = new Client(999999999999999L, 9999999999L, "10-13-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client8 = new Client(999999999999999L, 9999999999L, "", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client9 = new Client(9999999999999999L, 9999999999L, "10-10-2021", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client9 = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear()), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client10 = new Client(9999999999999999L, 9999999999L, "10/10/1921", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
 
@@ -161,7 +161,7 @@ public class ClientTest {
 
         boolean actual1 = client4.validateSex("M");
         boolean actual2 = client4.validateSex("table");
-        boolean actual3 = client4.validateSex(".");
+        boolean actual3 = client4.validateSex("");
         boolean actual4 = client4.validateSex("Jorge");
         assertTrue(actual1);
         assertFalse(actual2);
