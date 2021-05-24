@@ -21,22 +21,24 @@
 		   <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-surefire-plugin</artifactId>
 		    <version>2.22.0</version>
+		    <configuration>
+    			<forkCount>1</forkCount>
+    			<reuseForks>true</reuseForks>
+    			<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+  			</configuration>
 			<dependencies>
 			   <dependency>
 					<groupId>org.apache.maven.surefire</groupId>
 					<artifactId>surefire-junit4</artifactId>
 					<version>2.22.0</version>
 				</dependency>
-			</dependencies>
-			<!-- <dependencies>-->
-                        <!-- This dependency must be included, otherwise Maven Surefire will not recognise the test cases -->
-				<!-- <dependency>
+             <!-- This dependency must be included, otherwise Maven Surefire will not recognise the test cases -->
+			<!--	<dependency>
 					<groupId>org.junit.platform</groupId>
 					<artifactId>junit-platform-surefire-provider</artifactId>
 					<version>1.2.0</version>
-				</dependency>
+				</dependency> -->
 			</dependencies>
-			-->
 	</plugin>
 		<!-- Required for generating coverage report -->
 	<plugin>
@@ -132,5 +134,10 @@
 			<version>4.13.2</version>
 			<scope>compile</scope>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>net.sourceforge.barbecue</groupId>
+			<artifactId>barbecue</artifactId>
+			<version>1.5-beta1</version>
+		</dependency>
+    </dependencies>
 </project>
