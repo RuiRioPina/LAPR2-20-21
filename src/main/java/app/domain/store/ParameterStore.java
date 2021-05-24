@@ -10,7 +10,7 @@ public class ParameterStore {
     /**
      * Object oriented class used to Store the parameters within the company.
      */
-    private List <Parameter> parameter;
+    private final List <Parameter> parameter;
 
     /**
      * Parameter Store constructor.
@@ -30,7 +30,6 @@ public class ParameterStore {
     public Parameter createParameter(String code, String shortname, String description, List<ParameterCategory> parameterCategories) {
         return new Parameter(code,shortname,description, parameterCategories);
     }
-
     /**
      * Validates a Parameter.
      * @param p - parameter.

@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class TestType {
@@ -7,11 +8,11 @@ public class TestType {
 	/**
      * Object oriented Class to the specification of a test type in a company context.
      */
-	
-	private String code;
-	private String description;
-	private String collectingMethod;
-	private List<ParameterCategory> parameterCategories;
+
+	private final String code;
+	private final String description;
+	private final String collectingMethod;
+	private final List<ParameterCategory> parameterCategories;
 	
 	/**
      * Constructor for the test type.
@@ -65,11 +66,23 @@ public class TestType {
      * @return result - result of the string of the test type.
      */
 	public String toString() {
-		String result = String.format("%s - %s - %s", this.code, this.description, this.collectingMethod);
+		StringBuilder result = new StringBuilder(String.format("%s - %s - %s", this.code, this.description, this.collectingMethod));
 		for(ParameterCategory pc : this.parameterCategories) {
-			result += String.format(" - %s", pc);
+			result.append(String.format(" - %s", pc));
 		}
-		return result;
+		return result.toString();
 	}
-	
+	public ReferenceValue checkExternalModuleBasedOnTestType(Parameter parameterCode) {
+
+		Class<?> oClass = null;
+		try {
+			oClass = Class.forName("app.domain.model.ExternalAdapter2");
+			ExternalModule em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+			return em.getReferenceValue(parameterCode);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

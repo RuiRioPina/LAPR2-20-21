@@ -1,9 +1,9 @@
 package app.domain.model;
 
 public class ReferenceValue {
-    private String metric;
-    private double maxValue;
-    private double minValue;
+    private final String metric;
+    private final double maxValue;
+    private final double minValue;
 
     private static final String METRIC_DEFAULT = "No metric";
     private static final double MAXVALUE_DEFAULT = 0;
