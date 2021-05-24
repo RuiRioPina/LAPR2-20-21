@@ -3,10 +3,8 @@ skinparam classAttributeIconSize 0
 hide methods
 left to right direction
 
-class TestType {
-  -code
-  -description
-  -collectingMethod
+class Sample {
+  -barcodeNumber
 }
 
 class Company {
@@ -14,9 +12,22 @@ class Company {
 }
 
 class Test {
+private String nhsCode;
+  -internalCode;
+  -client;
+  -testType;
+  -sampleCollectionMethod;
+  -parameterCategory;
+  -parameter;
+  -samples
+  -registrationDate;
+  -samplesCollectionDate;
+  -chemicalAnalysisDate;
+  -diagnosisDate;
+  -validationDate;
 }
 
-class Administrator {
+class MedicalLabTechnician {
   -employeeID
   -organizationRole
   -name
@@ -26,14 +37,7 @@ class Administrator {
   -standardOcupationalClassificationCode
 }
 
-class ParameterCategory {
-  -name
-  -code
-}
-Company "1" -- "*" TestType : conducts >
-Company "1" -- "*" ParameterCategory : defines >
-Test "*" -- "1" TestType : is of >
 Company "1" -- "*" Test : performs >
-TestType "*" -- "1" Administrator : created by >
-TestType "*" -- "1..*" ParameterCategory : have >
+Test "1" -- "*" Sample : has >
+Sample "1" -- "1" MedicalLabTechnician : created by >
 @enduml

@@ -15,9 +15,7 @@ deactivate ":System"
 
 MEDLT -> ":System" : selects the number of samples to collect.
 activate ":System"
-loop until all the samples have barcodes associated
-	":System" --> MEDLT : shows the barcodes that have been generated and informs the operation success.
-end
+":System" --> MEDLT : generates the barcodes and informs of the operation success.
 deactivate ":System"
 
 deactivate MEDLT
