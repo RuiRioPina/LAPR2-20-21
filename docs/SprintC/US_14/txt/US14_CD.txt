@@ -1,0 +1,58 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class WriteReportUI {
+}
+
+class WriteReportController {
+  +writeReport(date,testChosen,report)
+  +saveReport()
+  +getTests()
+}
+
+class Company
+{
+  +getReportStore()
+  +getTestStore()
+}
+
+class TestStore{
+  +getTests()
+}
+
+class Test{
+  -String nhsCode;
+  -String internalCode;
+  -Client client;
+  -TestType testType;
+  -String sampleCollectionMethod;
+  -List <ParameterCategory> parameterCategory;
+  -List <Parameter> parameter;
+  -Date registrationDate;
+  -Date samplesCollectionDate;
+  -Date chemicalAnalysisDate;
+  -Date diagnosisDate;
+  -Date validationDate;
+}
+
+
+class Report {
+  -Date date
+  -testChosen
+  -String report
+  +writeReport(date,testChosen,report)
+}
+
+class ReportStore{
+  +validateReport()
+  +saveReport()
+  +addReport()
+}
+
+WriteReportUI ..> WriteReportController
+WriteReportController..> Company
+Company "1" --> "1" ReportStore: uses
+Company "1" --> "1" TestStore: uses
+ReportStore"1" --> "*" Report: conducts
+TestStore"1" --> "*" Test : conducts
+@enduml
