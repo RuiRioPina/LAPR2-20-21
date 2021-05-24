@@ -86,6 +86,7 @@ public class App {
 
         this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456",Constants.ROLE_ADMIN);
         this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12",Constants.ROLE_RECEPTIONIST);
+        this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
         this.company.setNumberOfEmployees(0);
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
         cs.saveParameterCategory(new ParameterCategory("123XX", "Hemogram"));
