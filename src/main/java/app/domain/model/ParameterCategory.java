@@ -2,8 +2,8 @@ package app.domain.model;
 
 public class ParameterCategory {
 
-    private String code;
-	private String name;
+    private final String code;
+	private final String name;
 	
     public ParameterCategory(String code, String name) {
         this.code = code;
