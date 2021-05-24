@@ -10,24 +10,28 @@ public class Parameter {
     private String code;
     private String shortname;
     private String description;
+    private TestResult testResult;
     private List<ParameterCategory> pc;
 
     /**
      * Constructor for the parameter.
-     * @param code - code of parameter.
-     * @param shortname - shortname of parameter.
+     *
+     * @param code        - code of parameter.
+     * @param shortname   - shortname of parameter.
      * @param description - description of parameter.
-     * @param pc - parameter category.
+     * @param pc          - parameter category.
      */
-    public Parameter(String code, String shortname, String description, List<ParameterCategory>  pc) {
+    public Parameter(String code, String shortname, String description, List<ParameterCategory> pc) {
         this.code = code;
         this.shortname = shortname;
         this.description = description;
         this.pc = pc;
+        this.testResult = null;
     }
 
     /**
      * Returns the code of the parameter.
+     *
      * @return code of the parameter.
      */
     public String getCode() {
@@ -36,6 +40,7 @@ public class Parameter {
 
     /**
      * Returns the short name of the parameter.
+     *
      * @return shortname of the parameter.
      */
     public String getShortname() {
@@ -44,6 +49,7 @@ public class Parameter {
 
     /**
      * Returns the description of the parameter.
+     *
      * @return description of the parameter.
      */
     public String getDescription() {
@@ -52,9 +58,25 @@ public class Parameter {
 
     /**
      * Returns the parameter category.
+     *
      * @return parameter category.
      */
     public List<ParameterCategory> getPc() {
         return pc;
+    }
+
+    public void setTestResult(Parameter parameter,TestResult testResult) {
+        parameter.testResult = testResult;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Parameter{" +
+                "code='" + code + '\'' +
+                ", shortname='" + shortname + '\'' +
+                ", description='" + description + '\'' +
+                ", Parameter Category=" + pc +
+                '}' + "Test Result =" + testResult;
     }
 }
