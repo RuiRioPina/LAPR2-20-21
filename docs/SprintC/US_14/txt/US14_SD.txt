@@ -5,24 +5,25 @@ actor "Specialist Doctor" as SD
 participant ":WriteReportUI" as UI
 participant ":WriteReportController" as CTRL
 participant ":Company" as CMP
-participant "ts:\nTestResultStore" as TRSTORE
+participant "ts:\nTestStore" as TSTORE
 participant "repStore:\nReportStore" as STORE
 participant "rep:Report" as REP
-participant "lt:\nList<TestResult>" as LT
-participant "tt:\nTest" as TT
+participant "lt:\nList<Test>" as LT
+participant "lr:\nList<TestResult>" as LR
+participant "tr:\nTestResult" as TR
 
 
 activate SD
 SD-> UI : asks to make a dignosis and write a report for a test
 activate UI
-UI -> CTRL : lt=getTestResults()
+UI -> CTRL : lt=getTests()
 activate CTRL
-CTRL -> CMP: ts=getTestResultStore()
+CTRL -> CMP: ts=getTestStore()
 activate CMP
 deactivate CMP
-CTRL -> TRSTORE : lt=getTestResults()
-activate TRSTORE
-deactivate TRSTORE
+CTRL -> TSTORE : lt=getTests()
+activate TSTORE
+deactivate TSTORE
 deactivate CTRL
 loop until the doctor doesn't want to analyze more tests
 UI -->SD : shows all tests ready to be analysed
