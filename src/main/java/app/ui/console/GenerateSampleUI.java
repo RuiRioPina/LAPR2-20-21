@@ -20,21 +20,31 @@ public class GenerateSampleUI implements Runnable {
 	public void run() {
 		Scanner x = new Scanner(System.in);
 		int numberOfSamples = 0;
-		List<String> tests = new ArrayList<String>();
+		String testCode = "";
 		
 		System.out.println("Beginning to generate a sample.\n");
-		List<Test> lt = this.generateSampleController.getTestsRegistered();
+		List<Test> lt = this.generateSampleController.getTestsWithoutSamples();
 		int option = 0;
         option = Utils.showAndSelectIndex(lt, "Select test.");
 
         if ( (option >= 0) && (option < lt.size()))
         {
-            tests.add(lt.get(option).getInternalCode());
+            testCode = lt.get(option).getInternalCode();
             lt.remove(option);
         }
 		
 		System.out.println("Select the number of sample to generate: ");
 		numberOfSamples = x.nextInt();
+		
+		System.out.println("Generating Samples");
+		try {
+			this.generateSampleController.createSamples(testCode, numberOfSamples);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return;
+		}
+		
+		System.out.println("Samples generated with success!");
 	}
 
 }
