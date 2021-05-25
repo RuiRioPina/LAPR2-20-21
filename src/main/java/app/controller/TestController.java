@@ -1,0 +1,54 @@
+package app.controller;
+
+import app.domain.model.*;
+import app.domain.store.*;
+
+import java.util.Date;
+import java.util.List;
+
+public class TestController {
+private Company company;
+private Test test;
+
+    public TestController() {
+        this.company = App.getInstance().getCompany();
+    }
+
+    public List<Client> getClients() {
+        ClientList cl = this.company.getClientList();
+        return cl.getClients();
+    }
+
+    public List<TestType> getTestTypes(){
+        TestTypeStore tt = this.company.getTestTypeStore();
+        return tt.getTestTypes();
+    }
+
+    public List <Parameter> getParameters(){
+        ParameterStore ps = this.company.getParameterStore();
+        return  ps.getParameters();
+    }
+
+    public List <ParameterCategory> getCategories(){
+        ParameterCategoryStore pcs = this.company.getParameterCategoryStore();
+        return  pcs.getParameterCategories();
+    }
+
+    public List<ParameterCategory> getCategoriesByList(List <ParameterCategory> cat) {
+        ParameterCategoryStore pcs = this.company.getParameterCategoryStore();
+        return  pcs.getParameterCategoriesByList(cat);
+    }
+
+    public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
+                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate,
+                           Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) throws IllegalArgumentException{
+
+        TestStore ts = this.company.getTestStore();
+        Test t = ts.createTest(nhsCode, internalCode, client, testType, sampleCollectionMethod,
+                parameterCategory, parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate,
+                diagnosisDate, validationDate);
+        this.test = t;
+        return this.test;
+    }
+
+}

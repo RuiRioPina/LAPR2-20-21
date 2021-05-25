@@ -122,5 +122,10 @@ public class ParameterStore {
         return null;
     }
 
+    public List<Parameter> getParameters() {
+        List<Parameter> p = new ArrayList<>();
+        p.addAll(this.parameter);
+        return p;
+    }
 }
 
