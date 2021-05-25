@@ -15,8 +15,8 @@ public class TestTypeTest {
         ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
         parameterCategories.add(pc);
         
-        TestType tt = new TestType("54321","uma descrição", "colheita", parameterCategories);
-        String description = "uma descrição";
+        TestType tt = new TestType("54321","uma descriï¿½ï¿½o", "colheita", parameterCategories);
+        String description = "uma descriï¿½ï¿½o";
         assertEquals(tt.getDescription(), description);
     }
 
@@ -26,7 +26,7 @@ public class TestTypeTest {
         ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
         parameterCategories.add(pc);
         
-        TestType tt = new TestType("54321","uma descrição", "colheita", parameterCategories);
+        TestType tt = new TestType("54321","uma descriï¿½ï¿½o", "colheita", parameterCategories);
         String collectingMethod = "colheita";
         assertEquals(tt.getCollectingMethod(), collectingMethod);
     }
@@ -37,7 +37,7 @@ public class TestTypeTest {
         ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
         parameterCategories.add(pc);
         
-        TestType tt = new TestType("54321","uma descrição", "colheita", parameterCategories);
+        TestType tt = new TestType("54321","uma descriï¿½ï¿½o", "colheita", parameterCategories);
         String code = "54321";
         assertEquals(tt.getCode(), code);
     }
@@ -48,7 +48,7 @@ public class TestTypeTest {
         ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
         parameterCategories.add(pc);
         
-        TestType tt = new TestType("54321","uma descrição", "colheita", parameterCategories);
+        TestType tt = new TestType("54321","uma descriï¿½ï¿½o", "colheita", parameterCategories);
         
         List<ParameterCategory> ttCategories = tt.getParameterCategories();
         
@@ -61,8 +61,8 @@ public class TestTypeTest {
         ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
         parameterCategories.add(pc);
         
-        TestType tt = new TestType("54321","uma descrição", "colheita", parameterCategories);
-        String tts ="54321 - uma descrição - colheita - 54321 - HEMOGRAM";
+        TestType tt = new TestType("54321","uma descriï¿½ï¿½o", "colheita", parameterCategories);
+        String tts ="54321 - uma descriï¿½ï¿½o - colheita - 54321 | HEMOGRAM";
         assertEquals(tt.toString(),tts);
     }
 }

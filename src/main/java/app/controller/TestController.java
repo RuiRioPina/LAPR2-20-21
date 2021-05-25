@@ -14,6 +14,11 @@ private Test test;
         this.company = App.getInstance().getCompany();
     }
 
+    public List<Test> getTests(){
+        TestStore ts = this.company.getTestStore();
+        return ts.getTests();
+    }
+
     public List<Client> getClients() {
         ClientList cl = this.company.getClientList();
         return cl.getClients();

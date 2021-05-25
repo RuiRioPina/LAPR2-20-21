@@ -23,7 +23,7 @@ public class ParameterCategoryTest {
     @Test
     public void testToString() {
         ParameterCategory pc1 = new ParameterCategory("54321","HEMOGRAM");
-        String tts ="54321 - HEMOGRAM";
+        String tts ="54321 | HEMOGRAM";
         assertEquals(pc1.toString(),tts);
     }
 }

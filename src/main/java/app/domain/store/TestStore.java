@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TestStore {
 
-    private List<Test> test;
+    private final List<Test> test;
 
     public TestStore() {
         this.test = new ArrayList<>();
@@ -23,7 +23,7 @@ public class TestStore {
                 diagnosisDate, validationDate);
     }
 
-    public void saveTest(Test t) throws IllegalArgumentException {
+    public void saveTest(Test t) {
         validateTest(t);
         addTest(t);
     }
@@ -48,6 +48,18 @@ public class TestStore {
         List<Test> tests = new ArrayList<>();
         tests.addAll(this.test);
         return tests;
+    }
+    private boolean workCanBeValidated(Test t){
+        return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;
+    }
+    public List<Test> getUnvalidatedTests(){
+        List<Test> unvalidatedTestList= new ArrayList<>();
+        for(int i=0;i<test.size();i++){
+            if (workCanBeValidated(test.get(i))){
+                unvalidatedTestList.add(test.get(i));
+            }
+        }
+        return unvalidatedTestList;
     }
 
 }
