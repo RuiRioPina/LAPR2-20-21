@@ -138,7 +138,7 @@ public class App {
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
-        Test t = new Test ("123456abcdef","999999999999",c,tts.getTestTypes().get(0),"Venipuncture", pc, par,null, data,null,null,null,null);
+        Test t = new Test ("123456abcdef","999999999999",c,tts.getTestTypes().get(0),"Venipuncture", pc, par, data);
         ts.saveTest(t);
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST,"REC"));

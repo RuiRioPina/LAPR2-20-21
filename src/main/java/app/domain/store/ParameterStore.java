@@ -127,5 +127,18 @@ public class ParameterStore {
         p.addAll(this.parameter);
         return p;
     }
+
+    public List<Parameter> getParameterByCategory(ParameterCategory cat) {
+        List<Parameter> p = new ArrayList<>();
+        List<Parameter> p2 = new ArrayList<>();
+        List <ParameterCategory> pc = new ArrayList<>();
+        p.addAll(this.parameter);
+        for (int i = 0; i < p.size(); i++){
+            if (p.get(i).getPc().get(0) == cat){
+                p2.add(p.get(i));
+            }
+        }
+        return p2;
+    }
 }
 

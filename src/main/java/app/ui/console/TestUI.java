@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TestUI implements Runnable {
 
-    private final TestController testController;
+    private TestController testController;
 
 
     public TestUI() {
@@ -23,10 +23,25 @@ public class TestUI implements Runnable {
     public void run() {
         Scanner sc = new Scanner(System.in);
         String internalCode = "000000000001";
-        System.out.println("Insert test NHS code.");
-        String nhsCode = sc.nextLine();
-        System.out.println("Insert client citizen card number.");
-        long ccn = sc.nextLong();
+        String nhsCode;
+        do{
+            System.out.println("Insert test NHS code.");
+            nhsCode = sc.nextLine();
+            if (nhsCode.length() != 12 ||!nhsCode.matches("^[a-zA-Z0-9]*$")) {
+                System.out.println("NHS code has 12 alphanumeric characters. Try again.");
+            }
+        } while (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$"));
+
+        long ccn;
+        String str;
+        do {
+            System.out.println("Insert client citizen card number.");
+            ccn = sc.nextLong();
+            str = "" + ccn;
+            if (str.length() != 16){
+                System.out.println("CCN is a 16 digit number. Try again.");
+            }
+        } while (str.length() != 16);
         boolean validation = false;
 
         // CLIENT
@@ -47,8 +62,8 @@ public class TestUI implements Runnable {
 
         System.out.println();
 
-        // TEST TYPES
-        TestType testtype = new TestType(null,null,null,null);
+        //TEST TYPES
+        TestType testtype = null;
         List <TestType> ttlist = this.testController.getTestTypes();
 
         int opt = 0;
@@ -57,85 +72,55 @@ public class TestUI implements Runnable {
         if ( (opt >= 0) && (opt < ttlist.size()))
         {
             testtype = ttlist.get(opt);
-
         }
 
         String sampleCollectionMethod = testtype.getCollectingMethod();
         List <ParameterCategory> cat = testtype.getParameterCategories();
 
-        // CATEGORY
-        List<ParameterCategory> categorySelected = new ArrayList<>();
+        List <ParameterCategory> categories = testController.getCategoriesByList(cat);
+        int opT = 0;
 
-        while(validation == false) {
-            List <ParameterCategory> categories = testController.getCategoriesByList(cat);
-            int opT = 0;
-          do {
+        List<Parameter> plist;
+        int op = 0;
+
+        List <ParameterCategory> catselected = new ArrayList<>();
+        List<Parameter> parselected = new ArrayList<>();
+        ParameterCategory categorySelected = null;
+        Parameter parameter;
+
+        do {
               opT = Utils.showAndSelectIndex(categories, "Select the Category.");
 
               if ((opT >= 0) && (opT < categories.size()))
               {
-                  categorySelected.add(categories.get(opT));
+                  categorySelected = categories.get(opT);
+                  catselected.add(categorySelected);
                   categories.remove(opT);
               }
-          } while (opT != -1 && !categories.isEmpty());
-            validation = checkParameterCategoryRules(categorySelected);
-            if(validation == false) {
-                System.out.println("The Category list is invalid");
-            }
-          }
-        validation = false;
 
-
-        // PARAMETER
-        List <Parameter> parameter = new ArrayList<>();
-        while(validation == false) {
-            List<Parameter> plist = this.testController.getParameters();
-            int op = 0;
+              plist = testController.getParameterByCategory(categorySelected);
             do {
-                op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
+                  op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
 
-                if ((op >= 0) && (op < plist.size()))
-                {
-                    parameter.add(plist.get(op));
-                    plist.remove(op);
-                }
-            }
-            while (op != -1 && !plist.isEmpty());
-            validation = checkParameterRules(parameter);
-            if(validation == false) {
-                System.out.println("The Parameter list is invalid");
-            }
-        }
+                  if ((op >= 0) && (op < plist.size())) {
+                      parameter = plist.get(op);
+                      parselected.add(parameter);
+                      plist.remove(op);
+                  }
+            } while (!plist.isEmpty() && op != -1);
+            } while (opT != -1 && !categories.isEmpty());
 
         //TEST
         Test t;
         try {
             Date data = new Date(System.currentTimeMillis());
-            Date val = null;
-        t = this.testController.createTest(nhsCode, internalCode, client, testtype, sampleCollectionMethod,
-                categorySelected, parameter, null, data, null,null,null,val);
-                System.out.println(t);
+
+        t = this.testController.createTest(nhsCode, internalCode, client, testtype, sampleCollectionMethod, catselected, parselected, data);
+        testController.saveTest(t);
+        System.out.println(t);
     } catch (IllegalArgumentException ex) {
         System.out.println(ex.getMessage());
         return;
     }
 }
-
-    private boolean checkParameterCategoryRules(List<ParameterCategory> pc) {
-        boolean validation = true;
-        if (pc.isEmpty()) {
-            validation = false;
-        }
-
-        return validation;
-    }
-
-    private boolean checkParameterRules(List<Parameter> parameter) {
-        boolean validation = true;
-        if (parameter.isEmpty()) {
-            validation = false;
-        }
-        return validation;
-    }
-
-    }
+}

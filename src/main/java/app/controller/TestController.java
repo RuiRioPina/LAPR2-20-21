@@ -33,6 +33,10 @@ private Test test;
         ParameterStore ps = this.company.getParameterStore();
         return  ps.getParameters();
     }
+    public List <Parameter> getParameterByCategory(ParameterCategory cat){
+        ParameterStore ps = this.company.getParameterStore();
+        return  ps.getParameterByCategory(cat);
+    }
 
     public List <ParameterCategory> getCategories(){
         ParameterCategoryStore pcs = this.company.getParameterCategoryStore();
@@ -45,15 +49,16 @@ private Test test;
     }
 
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, List<Sample> samples, Date registrationDate,
-                           Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) throws IllegalArgumentException{
+                           List<ParameterCategory> parameterCategory, List<Parameter> parameter,Date registrationDate) throws IllegalArgumentException{
 
         TestStore ts = this.company.getTestStore();
         Test t = ts.createTest(nhsCode, internalCode, client, testType, sampleCollectionMethod,
-                parameterCategory, parameter, samples, registrationDate, samplesCollectionDate, chemicalAnalysisDate,
-                diagnosisDate, validationDate);
+                parameterCategory, parameter, registrationDate);
         this.test = t;
         return this.test;
     }
-
+    public void saveTest(Test t) {
+        TestStore ps = this.company.getTestStore();
+        ps.saveTest(t);
+    }
 }

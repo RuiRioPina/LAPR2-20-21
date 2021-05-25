@@ -39,14 +39,10 @@ public class Test {
      * @param parameterCategory - Category/Categories of the test.
      * @param parameter - Parameter/Parameters of the test.
      * @param registrationDate - Test registration date.
-     * @param samplesCollectionDate - Test collection date.
-     * @param chemicalAnalysisDate - Test chemical analysis date.
-     * @param diagnosisDate - Test diagnosis date.
-     * @param validationDate - Test validation date.
      */
     public Test(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                List<ParameterCategory> parameterCategory, List<Parameter> parameter, List<Sample> samples, Date registrationDate,
-                Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) {
+                List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate)
+                 {
 		this.nhsCode = nhsCode;
         this.internalCode = internalCode;
         this.client = client;
@@ -55,10 +51,9 @@ public class Test {
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
         this.registrationDate = registrationDate;
-        this.chemicalAnalysisDate = chemicalAnalysisDate;
-        this.diagnosisDate = diagnosisDate;
-        this.validationDate = validationDate;
-        
+        this.chemicalAnalysisDate = null;
+        this.diagnosisDate = null;
+        this.validationDate = null;
         this.samplesCollectionDate = null;
         this.samples = new ArrayList<Sample>();
     }
@@ -187,21 +182,22 @@ public class Test {
      */
     @Override
     public String toString() {
-        return "TEST" + '\n' +
-                "NHS Code = " + nhsCode + '\n' +
-                "Internal Code = " + internalCode + '\n' +
-                "Client = " + client + '\n' +
-                "Test Type = " + testType + '\n' +
-                "Sample Collection Method = " + sampleCollectionMethod + '\n' +
-                "Category(ies) = " + parameterCategory + '\n' +
-                "Parameter(s) = " + parameter + '\n' +
-                "Registration Date = " + registrationDate + '\n' +
-                "Sample Collection Date = " + samplesCollectionDate+ '\n' +
-                "Chemical Analysis Date = " + chemicalAnalysisDate + '\n' +
-                "Diagnosis Date = " + diagnosisDate + '\n' +
-                "Validation Date = " + validationDate + '\n';
+        String str = "";
+        if (samples != null || samplesCollectionDate != null ||
+                chemicalAnalysisDate != null || diagnosisDate != null || validationDate != null) {
+            str = "TEST" + '\n' +
+                    "NHS Code = " + nhsCode + '\n' +
+                    "Internal Code = " + internalCode + '\n' +
+                    "Client = " + client + '\n' +
+                    "Test Type = " + testType + '\n' +
+                    "Sample Collection Method = " + sampleCollectionMethod + '\n' +
+                    "Category(ies) = " + parameterCategory + '\n' +
+                    "Parameter(s) = " + parameter + '\n' +
+                    "Registration Date = " + registrationDate;
+        }
+        return str;
     }
-    
+
 	public void setSamplesCollectionDate(Date date) {
 		this.samplesCollectionDate = date;
 	}

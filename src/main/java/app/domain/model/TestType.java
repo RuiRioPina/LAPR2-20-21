@@ -13,7 +13,7 @@ public class TestType {
 	private final String description;
 	private final String collectingMethod;
 	private final List<ParameterCategory> parameterCategories;
-	
+
 	/**
      * Constructor for the test type.
      * @param code - code of test type.
