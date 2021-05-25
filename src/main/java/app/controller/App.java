@@ -1,16 +1,15 @@
 package app.controller;
 
-import app.domain.model.Company;
-import app.domain.model.ParameterCategory;
+import app.domain.model.*;
 import app.domain.shared.Constants;
-import app.domain.store.ParameterCategoryStore;
-import app.domain.store.RoleStore;
+import app.domain.store.*;
 import auth.AuthFacade;
 import auth.UserSession;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -87,15 +86,22 @@ public class App {
         this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456",Constants.ROLE_ADMIN);
         this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12",Constants.ROLE_RECEPTIONIST);
         this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
+        this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
         this.company.setNumberOfEmployees(0);
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
         cs.saveParameterCategory(new ParameterCategory("123XX", "Hemogram"));
+        ParameterStore ps= this.company.getParameterStore();
+        ps.saveParameter(new Parameter("12345","short","bigname",cs.getParameterCategories()));
+        ClientList lClient= this.company.getClientList();
+        lClient.saveClient(new Client(1234567890123456L,1234567890,"22-01-2002","jorge@gmail.com",1111111111L,22222222222L,"Jorge Ferreira"));
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST,"REC"));
         lRole.add(lRole.create("Performs Chemical Analysis and records results",Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,"CCT"));
         lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level",Constants.ROLE_MEDICAL_LAB_TECHNICIAN,"MDT"));
         lRole.add(lRole.create("Coordinates the activity on the laboratory",Constants.ROLE_LABORATORY_COORDINATOR,"LC"));
         lRole.add(lRole.create("Responsible for interacting with the client and their tests",Constants.ROLE_SPECIALIST_DOCTOR,"SD"));
+        TestStore ts = this.company.getTestStore();
+        ts.saveTest(new Test("a1b2c3d4e5f6","t03",new Client(1234567890123456L,1234567890,"22-01-2002","jorge@gmail.com",1111111111L,22222222222L,"Jorge Ferreira"),null,null,null,null,new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),null));
     }
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2

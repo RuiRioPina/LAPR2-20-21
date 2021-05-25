@@ -100,4 +100,7 @@ public class Test {
                 "Diagnosis Date = " + diagnosisDate + '\n' +
                 "Validation Date = " + validationDate + '\n';
     }
+    public String getWorkDatesString(){
+        return "Test code:" + internalCode +" Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate+" Diagnosis Date:" + diagnosisDate;
+    }
 }
