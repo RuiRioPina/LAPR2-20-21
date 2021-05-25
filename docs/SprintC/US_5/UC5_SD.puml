@@ -1,40 +1,43 @@
 @startuml
 autonumber
-actor "Administrator" as ADMIN
+actor "Medical Lab Technician" as MEDLT
 
-participant ":CreateTestTypeUI" as UI
-participant ":CreateTestTypeController" as CTRL
+participant ":GenerateSampleUI" as UI
+participant ":GenerateSampleController" as CTRL
 participant ":Company" as CMP
-participant "pcStore:\nParameterCategoryStore" as pcStore
-participant "ttStore:\nTestTypeStore" as ttStore
-participant "tt:\nTest Type" as TET
-participant "pc:\nParameterCategory" as pc
-participant "lc:\nList<ParameterCategory>" as lc
+participant "ts:\nTestStore" as TS
+participant "s:\nSample" as S
+participant "T:\nTest" as T
+participant "lt:\nList<Test>" as LT
 
-activate ADMIN
-ADMIN -> UI : starts new type of test
+activate MEDLT
+MEDLT -> UI : starts new sample
 activate UI
-UI --> ADMIN : request data(i.e., code, description, collectingMethod)
-deactivate UI
-
-ADMIN -> UI : types requested data
-activate UI
-UI -> CTRL : lc=getParameterCategories()
+UI -> CTRL : lt=getTestsRegistered()
 activate CTRL
-CTRL -> CMP : cs=getParameterCategoryStore()
+CTRL -> CMP : ts=getTestStore()
 activate CMP	
 deactivate CMP
-CTRL -> pcStore : lc=cs.getParameterCategories()
-activate pcStore
-deactivate pcStore
+CTRL -> TS : lt=getTestsRegistered()
+activate TS
+deactivate TS
 deactivate CTRL
-loop until no more categories are selected
-	UI --> ADMIN : shows parameter categories list and ask to select one
-	deactivate UI
-	ADMIN -> UI : selects a parameter category
-	activate UI
+UI --> MEDLT : shows tests list and ask to select one
+deactivate UI
+
+MEDLT -> UI : selects a test
+activate UI
+UI --> MEDLT : request how many samples to create
+deactivate UI
+
+MEDLT -> UI : types the number of samples to create
+activate UI
+UI -> CTRL : createSamples(testCode, numberOfSamples)
+activate CTRL
+CTRL -> TS : getTestByCode(testCode)
+loop until all samples are created
 end
-UI -> CTRL: createTestType(code, description, collectingMethod, parameterCategoryCodes)
+UI -> CTRL : createTestType(code, description, collectingMethod, parameterCategoryCodes)
 activate CTRL
 loop until get all parameter categories by code
         CTRL -> pcStore : pc=cs.getParameterCategoryByCode(parameterCategoryCode)
@@ -55,10 +58,10 @@ CTRL -->  UI : result
 deactivate ttStore
 deactivate CMP
 deactivate CTRL
-UI --> ADMIN : shows all the data and request a confirmation
+UI --> MEDLT : shows all the data and request a confirmation
 deactivate UI
 
-ADMIN -> UI : confirms the data
+MEDLT -> UI : confirms the data
 activate UI
 UI -> CTRL : saveTestType()
 activate CTRL
@@ -66,10 +69,10 @@ CTRL -> ttStore : ts.saveTestType(tt)
 activate ttStore
 ttStore -> ttStore : validateTestType(tt)
 ttStore -> ttStore : addTestType(tt)
-UI --> ADMIN : informs operation success
+UI --> MEDLT : informs operation success
 deactivate ttStore
 deactivate CTRL
 deactivate UI
 
-deactivate ADMIN
+deactivate MEDLT
 @enduml
