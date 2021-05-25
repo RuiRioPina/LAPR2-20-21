@@ -86,8 +86,8 @@ public class RegisterClientController {
      *
      * @param c instance of the class Client
      */
-    public void saveClient(Client c) {
-        cmp.saveClient(c);
+    public boolean saveClient(Client c) {
+        return cmp.saveClient(c);
     }
 
     /**
@@ -208,6 +208,5 @@ public class RegisterClientController {
     public ClientList getClientList() {
         return App.getInstance().getCompany().getClientList();
     }
-
 
 }
