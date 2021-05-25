@@ -24,10 +24,21 @@ public class TestStore {
     }
 
     public void saveTest(Test t) throws IllegalArgumentException {
-        //validateTest(t);
+        validateTest(t);
         addTest(t);
     }
 
+    private void validateTest(Test t) {
+        checkNhsCode(t.getNhsCode());
+    }
+
+    private void checkNhsCode(String nhsCode) {
+        if (!nhsCode.matches("[A-Za-z0-9]+")) {
+            throw new IllegalArgumentException("Code must be alphanumeric.");
+        }
+        if (nhsCode.length() != 12)
+            throw new IllegalArgumentException("Code must have 12 chars.");
+    }
 
     private void addTest(Test t) {
         this.test.add(t);

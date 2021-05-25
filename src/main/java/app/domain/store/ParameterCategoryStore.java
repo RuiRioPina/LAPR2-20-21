@@ -64,4 +64,11 @@ public class ParameterCategoryStore {
 		}
 		return null;
 	}
+
+	public List<ParameterCategory> getParameterCategoriesByList(List <ParameterCategory> cat) {
+		List<ParameterCategory> pc = new ArrayList<>();
+		pc.addAll(this.parameterCategories);
+		pc.retainAll(cat);
+		return pc;
+	}
 }
