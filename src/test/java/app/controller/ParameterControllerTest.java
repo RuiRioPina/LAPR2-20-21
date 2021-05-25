@@ -35,7 +35,7 @@ public class ParameterControllerTest {
         ParameterCategory pc = new ParameterCategory("5421","HEMOGRAM");
         parameterCategories.add(pc);
 
-        Parameter p1 = ps.createParameter("12345","RBC","RED BLOOD CELLS",parameterCategories);
+        Parameter p1 = ps.createParameter("12344","RBC","RED BLOOD CELLS",parameterCategories);
 
         parameterController.saveParameter(p1);
         ps.saveParameter(p1);
