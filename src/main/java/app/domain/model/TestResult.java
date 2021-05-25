@@ -17,6 +17,14 @@ public class TestResult {
         this.referenceValue = refValue;
     }
 
+    public double getResult() {
+        return result;
+    }
+
+    public ReferenceValue getReferenceValue() {
+        return referenceValue;
+    }
+
     @Override
     public String toString() {
         return "ResultOfTest{" +
