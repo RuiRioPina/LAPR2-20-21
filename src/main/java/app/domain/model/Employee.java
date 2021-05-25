@@ -183,7 +183,7 @@ public class Employee {
          id = id + nameWord.charAt(0);
      }
      id=id.toUpperCase();
-     id=String.format("%s %05d",id,nEmployees);
+     id=String.format("%s%05d",id,nEmployees);
         return id;
 }
 

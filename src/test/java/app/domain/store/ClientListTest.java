@@ -13,8 +13,9 @@ public class ClientListTest {
     @Test
     public void createClient() {
         ClientList clientList = new ClientList();
-        clientList.createClient(9999999999999999L, 9999999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        clientList.createClient(1111111111111111L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = clientList.createClient(9999999999999999L, 9999999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client2 = clientList.createClient(1111111111111111L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        assertNotEquals(client1,client2);
     }
 
 
