@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TestStore {
 
-    private List<Test> test;
+    private final List<Test> test;
 
     public TestStore() {
         this.test = new ArrayList<>();
@@ -23,7 +23,7 @@ public class TestStore {
                 diagnosisDate, validationDate);
     }
 
-    public void saveTest(Test t) throws IllegalArgumentException {
+    public void saveTest(Test t) {
         validateTest(t);
         addTest(t);
     }
@@ -60,7 +60,6 @@ public class TestStore {
             }
         }
         return unvalidatedTestList;
-
     }
 
 }

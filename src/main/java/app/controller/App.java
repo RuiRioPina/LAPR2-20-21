@@ -9,7 +9,9 @@ import auth.UserSession;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -89,19 +91,61 @@ public class App {
         this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
         this.company.setNumberOfEmployees(0);
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
-        cs.saveParameterCategory(new ParameterCategory("123XX", "Hemogram"));
-        ParameterStore ps= this.company.getParameterStore();
-        ps.saveParameter(new Parameter("12345","short","bigname",cs.getParameterCategories()));
-        ClientList lClient= this.company.getClientList();
-        lClient.saveClient(new Client(1234567890123456L,1234567890,"22-01-2002","jorge@gmail.com",1111111111L,22222222222L,"Jorge Ferreira"));
+
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00","Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01","Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02","Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+
+        List<ParameterCategory> cat1 = new ArrayList<>();
+        cat1.add(P2);
+
+        List<ParameterCategory> cat2 = new ArrayList<>();
+        cat2.add(P3);
+
+        cs.saveParameterCategory(p1);
+        cs.saveParameterCategory(P2);
+        cs.saveParameterCategory(P3);
+        ParameterStore ps = this.company.getParameterStore();
+
+        ps.saveParameter(new Parameter("WBC00","WBC","White Cell Count",cat));
+        ps.saveParameter(new Parameter("RBC00","RBC","Red Blood Count", cat));
+        ps.saveParameter(new Parameter("HB000","HB","Haemoglobin",cat1));
+        ps.saveParameter(new Parameter("PLT00","PLT","Platelet Count", cat1));
+        ps.saveParameter(new Parameter("IgGAN","IgC","Antibodies", cat2));
+
+        List <Parameter> par = new ArrayList<>();
+        par.add(ps.getParameters().get(0));
+        par.add(ps.getParameters().get(1));
+        par.add(ps.getParameters().get(2));
+        par.add(ps.getParameters().get(3));
+
+        TestTypeStore tts = this.company.getTestTypeStore();
+        tts.saveTestType(new TestType("BLT00","Blood Test","Venipuncture",pc));
+        tts.saveTestType(new TestType("CVD00","Covid-19 Test","Nasopharyngeal",p));
+
+        ClientList cl = this.company.getClientList();
+        Client c = new Client(1234567890123456L,1234567890,"22-01-2002","jorge@gmail.com",1111111111L,22222222222L,"Jorge Ferreira");
+        cl.saveClient(c);
+
+        TestStore ts = this.company.getTestStore();
+        Date data = new Date(System.currentTimeMillis());
+        Test t = new Test ("123456abcdef","999999999999",c,tts.getTestTypes().get(0),"Venipuncture", pc, par,data,null,null,null,null);
+        ts.saveTest(t);
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST,"REC"));
         lRole.add(lRole.create("Performs Chemical Analysis and records results",Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,"CCT"));
         lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level",Constants.ROLE_MEDICAL_LAB_TECHNICIAN,"MDT"));
         lRole.add(lRole.create("Coordinates the activity on the laboratory",Constants.ROLE_LABORATORY_COORDINATOR,"LC"));
         lRole.add(lRole.create("Responsible for interacting with the client and their tests",Constants.ROLE_SPECIALIST_DOCTOR,"SD"));
-        TestStore ts = this.company.getTestStore();
-        ts.saveTest(new Test("a1b2c3d4e5f6","t03",new Client(1234567890123456L,1234567890,"22-01-2002","jorge@gmail.com",1111111111L,22222222222L,"Jorge Ferreira"),null,null,null,null,new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),null));
     }
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TestUI implements Runnable {
 
-    private TestController testController;
+    private final TestController testController;
 
 
     public TestUI() {
