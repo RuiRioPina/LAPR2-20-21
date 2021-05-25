@@ -8,9 +8,6 @@ public class ValidateWorkController {
         this.company=App.getInstance().getCompany();
     }
     public void showUnvalidatedTests(){
-        for (int i=0;i<company.getTestStore().getUnvalidatedTests().size();i++){
-            int plusOne=i+1;
-            System.out.println(plusOne +" " +App.getInstance().getCompany().getTestStore().getUnvalidatedTests().get(i).getWorkDatesString());
-        }
+
     }
 }

@@ -49,18 +49,6 @@ public class TestStore {
         tests.addAll(this.test);
         return tests;
     }
-    private boolean workCanBeValidated(Test t){
-        return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;
-    }
-    public List<Test> getUnvalidatedTests(){
-        List<Test> unvalidatedTestList= new ArrayList<>();
-        for(int i=0;i<test.size();i++){
-            if (workCanBeValidated(test.get(i))){
-                unvalidatedTestList.add(test.get(i));
-            }
-        }
-        return unvalidatedTestList;
-    }
 
 	public List<Test> getTestsWithoutSamples() {
 		List<Test> result = new ArrayList<Test>();

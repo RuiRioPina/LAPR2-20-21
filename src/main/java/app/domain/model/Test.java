@@ -47,13 +47,6 @@ public class Test {
     public Test(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
                 List<ParameterCategory> parameterCategory, List<Parameter> parameter, List<Sample> samples, Date registrationDate,
                 Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) {
-        this.client = new Client();
-		this.internalCode = "";
-		this.nhsCode = "";
-		this.parameterCategory = null;
-		this.registrationDate = new Date();
-		this.sampleCollectionMethod = "";
-		this.testType = null;
 		this.nhsCode = nhsCode;
         this.internalCode = internalCode;
         this.client = client;
@@ -65,19 +58,6 @@ public class Test {
         this.chemicalAnalysisDate = chemicalAnalysisDate;
         this.diagnosisDate = diagnosisDate;
         this.validationDate = validationDate;
-        barcode = 123456789012L;
-		List<ParameterCategory> parameterCategories = new ArrayList<>();
-		ParameterCategory p1 = new ParameterCategory("54321", "HEMOGRAM");
-		parameterCategories.add(p1);
-		parameter.add(new Parameter("HB000", "HB", "Haemoglobin", parameterCategories));
-		parameter.add(new Parameter("WBC00", "WBC", "White Cell Count", parameterCategories));
-		parameter.add(new Parameter("PLT00", "PLT", "Platelet Count", parameterCategories));
-		parameter.add(new Parameter("RBC00", "RBC", "Red Blood Count", parameterCategories));
-		parameter.add(new Parameter("MCV00", "MCV", "Mean Cell Volume", parameterCategories));
-		parameter.add(new Parameter("MCH00", "MCH", "MC Haemoglobin", parameterCategories));
-		parameter.add(new Parameter("MCHC0", "MCHC", "MCHaemoglobinConcen", parameterCategories));
-		parameter.add(new Parameter("ESR00", "ESR", "ErythSedimenRate", parameterCategories));
-		parameter.add(new Parameter("IgGAN", "IgC", "Antibodies", parameterCategories));
         
         this.samplesCollectionDate = null;
         this.samples = new ArrayList<Sample>();
@@ -221,71 +201,8 @@ public class Test {
                 "Diagnosis Date = " + diagnosisDate + '\n' +
                 "Validation Date = " + validationDate + '\n';
     }
-    public String getWorkDatesString(){
-        return "Test code:" + internalCode +" Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate+" Diagnosis Date:" + diagnosisDate;
-    }
-
+    
 	public void setSamplesCollectionDate(Date date) {
 		this.samplesCollectionDate = date;
-	}
-
-	private long barcode;
-
-	public Test(ParameterStore parameterStore) {
-		this.client = new Client();
-		this.internalCode = "";
-		this.nhsCode = "";
-		this.parameterCategory = null;
-		this.registrationDate = new Date();
-		this.sampleCollectionMethod = "";
-		this.testType = null;
-	}
-
-	public long getBarcode() {
-		return barcode;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-		
-		if (o == null) {
-			return false;
-		}
-
-		if (getClass() != o.getClass()) {
-			return false;
-		}	
-		Test t = (Test) o;
-		return Objects.equals(this.barcode, t.barcode);
-	}
-
-	public TestResult addTestResult(Parameter parameter, double result) {
-		ReferenceValue referenceValue = testType.checkExternalModuleBasedOnTestType(parameter);
-		return resultOfTestStore.addTestResult(parameter, result, referenceValue);
-	}
-
-	public List<TestResult> getTestResult() {
-		return resultOfTestStore.getResultOfTest();
-	}
-
-	public List<Parameter> getParameterStore() {
-		return this.parameter;
-	}
-
-	public List<Parameter> getParameterStoreToShow() {
-		List<Parameter> parametersToShow = new ArrayList<>();
-		parametersToShow.addAll(this.parameter);
-		return parametersToShow;
-	}
-		
-	List<Parameter> parametersToShowAndRemove = getParameterStoreToShow();
-
-	public List<Parameter> removeItemFromParameterStore(int option) {
-		List<Parameter> parameterToRemove = parametersToShowAndRemove;
-    	parameterToRemove.remove(option);
-		return parameterToRemove;
 	}
 }

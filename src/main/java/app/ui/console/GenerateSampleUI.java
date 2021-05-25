@@ -30,9 +30,8 @@ public class GenerateSampleUI implements Runnable {
         if ( (option >= 0) && (option < lt.size()))
         {
             testCode = lt.get(option).getInternalCode();
-            lt.remove(option);
         }
-		if(option == -1 || lt.size() == 0) {
+		if(option == -1) {
 			return;
 		}
 		do {
