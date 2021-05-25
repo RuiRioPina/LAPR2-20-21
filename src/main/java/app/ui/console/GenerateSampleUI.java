@@ -32,9 +32,16 @@ public class GenerateSampleUI implements Runnable {
             testCode = lt.get(option).getInternalCode();
             lt.remove(option);
         }
-		
-		System.out.println("Select the number of sample to generate: ");
-		numberOfSamples = x.nextInt();
+		if(option == -1 || lt.size() == 0) {
+			return;
+		}
+		do {
+			System.out.println("Select the number of sample to generate: ");
+			numberOfSamples = x.nextInt();
+			if(numberOfSamples == 0) {
+				System.out.println("Cannot be 0 please try again.");
+			}
+		} while (numberOfSamples == 0);
 		
 		System.out.println("Generating Samples");
 		try {
