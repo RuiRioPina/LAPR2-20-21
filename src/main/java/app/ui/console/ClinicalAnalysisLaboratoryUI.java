@@ -31,7 +31,7 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
         System.out.println("Insert TIN number.");
         long tin=x.nextLong();
 
-        List<String> testTypeCodes = new ArrayList<String>();
+        List<String> testTypeCodes = new ArrayList<>();
 
         List<TestType> list=this.clinicalAnalysisLaboratoryController.getTestTypes();
         int option=0;
@@ -55,16 +55,16 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
             return;
         }
 
-        System.out.println("Confirmation: \n");
-        System.out.printf("-LaboratoryID: %s\n", cal.getLaboratoryID());
-        System.out.printf("-Name: %s\n", cal.getName());
-        System.out.printf("-Adress: %s\n", cal.getAdress());
-        System.out.printf("-Phone number: %s\n", cal.getPhoneNumber());
-        System.out.printf("-TIN: %s\n", cal.getTin());
+        System.out.println("Confirmation: %n");
+        System.out.printf("-LaboratoryID: %s%n", cal.getLaboratoryID());
+        System.out.printf("-Name: %s%n", cal.getName());
+        System.out.printf("-Adress: %s%n", cal.getAdress());
+        System.out.printf("-Phone number: %s%n", cal.getPhoneNumber());
+        System.out.printf("-TIN: %s%n", cal.getTin());
         System.out.println("-Test types: ");
 
         for(TestType tt : cal.getTestTypes()) {
-            System.out.printf("\t%s - %s - %s - %s\n", tt.getCode(),tt.getDescription(),tt.getCollectingMethod(), tt.getParameterCategories());
+            System.out.printf("\t%s - %s - %s - %s %n", tt.getCode(),tt.getDescription(),tt.getCollectingMethod(), tt.getParameterCategories());
         }
 
         if(!Utils.confirm("Confirm test type creation (s/n)?")){

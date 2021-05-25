@@ -6,10 +6,10 @@ import app.domain.model.ParameterCategory;
 
 public class ParameterCategoryStore {
 
-	private List<ParameterCategory> parameterCategories;
+	private final List<ParameterCategory> parameterCategories;
 	
 	public ParameterCategoryStore() {
-		this.parameterCategories = new ArrayList<ParameterCategory>();
+		this.parameterCategories = new ArrayList<>();
 	}
 	
 	public ParameterCategory createParameterCategory(String code, String name) {

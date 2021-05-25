@@ -23,6 +23,7 @@ public class Company {
     private TestTypeStore testTypeStore;
     private ParameterStore parameterStore;
     private EmployeeStore employeeStore;
+    private ResultOfTestStore resultOfTestStore;
     private RoleStore roleStore;
     private ClientList clientList;
     private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
@@ -40,6 +41,7 @@ public class Company {
         this.parameterStore = new ParameterStore();
         this.clientList = new ClientList();
         this.employeeStore = new EmployeeStore();
+        this.resultOfTestStore = new ResultOfTestStore();
         this.roleStore = new RoleStore();
         this.employeeStore = new EmployeeStore();
         this.roleStore = new RoleStore();
@@ -50,6 +52,7 @@ public class Company {
 
     /**
      * Getter for the number of Employees in the company.
+     *
      * @return number of employees.
      */
     public int getNumberOfEmployees() {
@@ -58,6 +61,7 @@ public class Company {
 
     /**
      * Setter for the number of Employees in the company
+     *
      * @param numberOfEmployees- new number of Employees.
      */
     public void setNumberOfEmployees(int numberOfEmployees) {
@@ -86,8 +90,13 @@ public class Company {
         return this.parameterStore;
     }
 
+    public ResultOfTestStore getResultOfTestStore() {
+        return this.resultOfTestStore;
+    }
+
     /**
      * Getter for the Employee Store that the company is using.
+     *
      * @return Employee Store that contains the Employees in the company.
      */
     public EmployeeStore getEmployeeStore() {
@@ -101,6 +110,7 @@ public class Company {
     public TestStore getTestStore(){return  this.testStore;}
     /**
      * Getter for the Role Store that the company is using.
+     *
      * @return Role Store that contains the Roles in the company.
      */
     public RoleStore getRoleStore() {
@@ -154,17 +164,21 @@ public class Company {
      *
      * @param c instance of the class Client
      */
-    public void saveClient(Client c) {
+    public boolean saveClient(Client c) {
+        int i = 0;
         if (validateClient(c)) {
             ClientList cl = this.getClientList();
             cl.saveClient(c);
         } else {
             System.out.println("The client needs to have at least one unique attribute. Please try again.");
+            i = 1;
         }
         addClientToSystem(c);
+        return i != 1;
     }
 
-    /**Adds the Client instance to the platform, so that he can login with the credentials given.
+    /**
+     * Adds the Client instance to the platform, so that he can login with the credentials given.
      *
      * @param c instance of the class Client
      */

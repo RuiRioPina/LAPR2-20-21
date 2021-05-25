@@ -1,10 +1,15 @@
 package app.domain.shared;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Constants {
+    private Constants() {
+
+    }
     public static final String ROLE_ADMIN = "ADMINISTRATOR";
     public static final String ROLE_CLIENT = "CLIENT";
     public static final String ROLE_RECEPTIONIST = "RECEPTIONIST";

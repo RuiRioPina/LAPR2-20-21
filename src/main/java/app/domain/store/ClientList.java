@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientList {
-    private List<Client> clientList;
+    private List<Client> listOfClients;
 
     /**
      * empty constructor of the class ClientList which initializes the arraylist.
      */
     public ClientList() {
-        this.clientList = new ArrayList<>();
+        this.listOfClients = new ArrayList<>();
     }
 
     /**
@@ -50,8 +50,8 @@ public class ClientList {
     }
 
     private void add(Client c) {
-        if (!clientList.contains(c)) {
-            this.clientList.add(c);
+        if (!listOfClients.contains(c)) {
+            this.listOfClients.add(c);
         } else {
             System.out.println("At least one attribute needs to be unique. Please try again");
         }
@@ -72,8 +72,8 @@ public class ClientList {
      * @return List of Clients containing all clients stored in this class.
      */
     public List<Client> getClients() {
-        List<Client> c = new ArrayList<Client>();
-        c.addAll(this.clientList);
+        List<Client> c = new ArrayList<>();
+        c.addAll(this.listOfClients);
         return c;
     }
 
@@ -84,12 +84,12 @@ public class ClientList {
      * @return true if the Client already exists in the arrayList.
      */
     public boolean isClientInList(Client c) {
-        return this.clientList.contains(c);
+        return this.listOfClients.contains(c);
     }
 
     public void showList() {
-        ClientList clientList = App.getInstance().getCompany().getClientList();
-        for (Client c : clientList.getClients()) {
+        ClientList listOfClients = App.getInstance().getCompany().getClientList();
+        for (Client c : listOfClients.getClients()) {
             System.out.println(c);
         }
 

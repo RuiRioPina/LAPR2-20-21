@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class RegisterClientUI implements Runnable {
     public RegisterClientUI() {
+        // Do nothing because there is no need to construct the UI layer with anything. This is only used to be able to use the UI when selecting in menus.
     }
 
     public void run() {
@@ -76,7 +77,7 @@ public class RegisterClientUI implements Runnable {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("All information asked must be inputted. Please insert a day of birth, month and year asked in the format (DD-MM-YYYY).");
             } catch (NumberFormatException e) {
-                System.out.println("Houve um problema com a introdução dos dados. Por favor tente novamente");
+                System.out.println("The was a problem while introducing the data. Please try again.");
             }
         } while (!result);
 
@@ -84,7 +85,7 @@ public class RegisterClientUI implements Runnable {
 
         do {
             try {
-                System.out.println("Enter the Client's sex (optional: write .): ");
+                System.out.println("Enter the Client's sex (optional: press enter): ");
                 sex = sc.nextLine();
                 result = registerClientController.validateSex(sex);
                 if (!result) {
@@ -155,7 +156,7 @@ public class RegisterClientUI implements Runnable {
         } while (!result);
 
         Client clt;
-        if (sex.equals(".")) {
+        if (sex.trim().isEmpty()) {
             clt = registerClientController.createClient(ccn, nhsNumber, birthDate, tin, phoneNumber, email, name);
         } else {
             clt = registerClientController.createClient(ccn, nhsNumber, birthDate, sex, tin, phoneNumber, email, name);
@@ -169,24 +170,20 @@ public class RegisterClientUI implements Runnable {
             String response = sc.nextLine();
             if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
                 try {
-                    registerClientController.saveClient(clt);
-                    registerClientController.sendEmailToClient(clt);
                     clientList = registerClientController.getClientList();
                     for (Client c : clientList.getClients()) {
                         System.out.println(c);
                     }
+
+                    if (registerClientController.saveClient(clt) && clt != null) {
+                        System.out.println("The Client was sucessfully added!");
+                        registerClientController.sendEmailToClient(clt);
+                    }
                 } catch (IOException | InterruptedException e) {
                     System.out.println(e.getMessage());
                 }
-                if (registerClientController.isClientInList(clt)) {
-                    System.out.println("The Client was sucessfully added or there is already one Client with those attributes!");
-                } else {
-                    System.out.println("You either didn't confirm it or there was an error!");
-                }
-            } else if (clt != null) {
-                registerClientController.saveClient(clt);
             } else if (response.equalsIgnoreCase("n") || response.equalsIgnoreCase("no")) {
-                clt = new Client();
+                result = true;
             } else {
                 System.out.println("Please insert a valid option (Y/N)");
                 result = false;

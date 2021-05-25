@@ -22,42 +22,42 @@ public class TestTypeUI implements Runnable {
 		String code = "";
 		String description = "";
 		String collectingMethod = "";
-		List<String> parameterCategoryCodes = new ArrayList<String>();
+		List<String> parameterCategoryCodes = new ArrayList<>();
 		boolean validation = false;
 		
 		System.out.println("Beginning to register a new type of Test.\n");
 		
-		while(validation == false) {
+		while(!validation) {
 			System.out.println("Insert the code of the test type.");
 			code = x.nextLine();
 			validation = checkCodeRules(code);
-			if(validation == false) {
+			if(!validation) {
 				System.out.println("The code is invalid");
 			}
 		}
 		validation = false;
 		
-		while(validation == false) {
+		while(!validation) {
 			System.out.println("Insert the description of the test type.");
 			description = x.nextLine();
 			validation = checkDescriptionRules(description);
-			if(validation == false) {
+			if(!validation) {
 				System.out.println("The description is invalid");
 			}
 		}
 		validation = false;
 		
-		while(validation == false) {
+		while(!validation) {
 			System.out.println("Insert the collecting method of the test type.");
 			collectingMethod = x.nextLine();
 			validation = checkCollectingMethodRules(collectingMethod);
-			if(validation == false) {
+			if(!validation) {
 				System.out.println("The collecting method is invalid");
 			}
 		}
 		validation = false;
 		
-		while(validation == false) {
+		while(!validation) {
 			List<ParameterCategory> list = this.testTypeController.getParameterCategories();
 			int option = 0;
 	        do
@@ -72,12 +72,11 @@ public class TestTypeUI implements Runnable {
 	        }
 	        while (option != -1 && !list.isEmpty());
 	        validation = checkParameterCategoryRules(parameterCategoryCodes);
-	        if(validation == false) {
+	        if(!validation) {
 				System.out.println("The Parameter Category list is invalid");
 			}
 		}
-		validation = false;
-		
+
         TestType tt;
         try {
         	tt = this.testTypeController.createTestType(code, description, collectingMethod, parameterCategoryCodes);
@@ -86,13 +85,13 @@ public class TestTypeUI implements Runnable {
         	return;
         }
         
-        System.out.println("Confirmation: \n");
-        System.out.printf("-Code: %s\n", tt.getCode());
-        System.out.printf("-Description: %s\n", tt.getDescription());
-        System.out.printf("-Collecting Method: %s\n", tt.getCollectingMethod());
+        System.out.println("Confirmation: %n");
+        System.out.printf("-Code: %s %n", tt.getCode());
+        System.out.printf("-Description: %s %n", tt.getDescription());
+        System.out.printf("-Collecting Method: %s %n", tt.getCollectingMethod());
         System.out.println("-Parameter Categories: ");
         for(ParameterCategory pc : tt.getParameterCategories()) {
-        	System.out.printf("\t%s - %s\n", pc.getCode(), pc.getName());
+        	System.out.printf("\t%s - %s %n", pc.getCode(), pc.getName());
         }
         
         if(!Utils.confirm("Confirm test type creation (s/n)?")){

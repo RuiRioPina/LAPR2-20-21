@@ -9,7 +9,6 @@ import app.domain.model.Role;
 
 
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RegisterEmployeeUI implements Runnable {
@@ -32,7 +31,6 @@ public class RegisterEmployeeUI implements Runnable {
     @Override
     public void run() {
         int nEmployees= App.getInstance().getCompany().getNumberOfEmployees();
-        int roleIndex;
         nEmployees++;
         App.getInstance().getCompany().setNumberOfEmployees(nEmployees);
         String specialistDoctorIndexNumber=null;
