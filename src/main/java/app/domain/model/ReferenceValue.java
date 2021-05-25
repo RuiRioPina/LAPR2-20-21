@@ -9,6 +9,14 @@ public class ReferenceValue {
     private static final double MAXVALUE_DEFAULT = 0;
     private static final double MINVALUE_DEFAULT = 0;
 
+    public double getMaxValue() {
+        return maxValue;
+    }
+
+    public double getMinValue() {
+        return minValue;
+    }
+
     public ReferenceValue() {
         metric = METRIC_DEFAULT;
         maxValue = MAXVALUE_DEFAULT;
