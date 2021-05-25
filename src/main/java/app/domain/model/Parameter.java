@@ -13,6 +13,10 @@ public class Parameter {
     private TestResult testResult;
     private List<ParameterCategory> pc;
 
+    public TestResult getTestResult() {
+        return testResult;
+    }
+
     /**
      * Constructor for the parameter.
      *
@@ -65,18 +69,17 @@ public class Parameter {
         return pc;
     }
 
-    public void setTestResult(Parameter parameter,TestResult testResult) {
-        parameter.testResult = testResult;
+    public void setTestResult(TestResult testResult) {
+        this.testResult = testResult;
     }
 
 
     @Override
     public String toString() {
-        return "Parameter{" +
-                "code='" + code + '\'' +
-                ", shortname='" + shortname + '\'' +
-                ", description='" + description + '\'' +
-                ", Parameter Category=" + pc +
-                '}' + "Test Result =" + testResult;
-    }
+            return "Parameter{" +
+                    "code='" + code + '\'' +
+                    ", shortname='" + shortname + '\'' +
+                    ", description='" + description + '\'' +
+                    ", Parameter Category=" + pc +
+                    '}' + "Test Result =" + testResult;   }
 }
