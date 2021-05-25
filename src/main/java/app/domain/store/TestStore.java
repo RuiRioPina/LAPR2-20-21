@@ -15,11 +15,11 @@ public class TestStore {
     }
 
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate,
+                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, List<Sample> samples, Date registrationDate,
                            Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) {
 
         return new Test(nhsCode, internalCode, client, testType, sampleCollectionMethod,
-                parameterCategory, parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate,
+                parameterCategory, parameter, samples, registrationDate, samplesCollectionDate, chemicalAnalysisDate,
                 diagnosisDate, validationDate);
     }
 

@@ -45,12 +45,12 @@ private Test test;
     }
 
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate,
+                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, List<Sample> samples, Date registrationDate,
                            Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) throws IllegalArgumentException{
 
         TestStore ts = this.company.getTestStore();
         Test t = ts.createTest(nhsCode, internalCode, client, testType, sampleCollectionMethod,
-                parameterCategory, parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate,
+                parameterCategory, parameter, samples, registrationDate, samplesCollectionDate, chemicalAnalysisDate,
                 diagnosisDate, validationDate);
         this.test = t;
         return this.test;

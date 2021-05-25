@@ -16,6 +16,7 @@ public class Test {
     private final List <ParameterCategory>  parameterCategory;
     private final List <Parameter> parameter;
     private final Date registrationDate;
+    private List <Sample> samples;
     private Date samplesCollectionDate;
     private Date chemicalAnalysisDate;
     private Date diagnosisDate;
@@ -38,7 +39,7 @@ public class Test {
      * @param validationDate - Test validation date.
      */
     public Test(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate,
+                List<ParameterCategory> parameterCategory, List<Parameter> parameter, List<Sample> samples, Date registrationDate,
                 Date samplesCollectionDate, Date chemicalAnalysisDate, Date diagnosisDate, Date validationDate) {
         this.nhsCode = nhsCode;
         this.internalCode = internalCode;
@@ -47,6 +48,7 @@ public class Test {
         this.sampleCollectionMethod = sampleCollectionMethod;
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
+        this.samples = samples;
         this.registrationDate = registrationDate;
         this.samplesCollectionDate = samplesCollectionDate;
         this.chemicalAnalysisDate = chemicalAnalysisDate;
@@ -117,6 +119,15 @@ public class Test {
         return parameter;
     }
 
+    /**
+     * Returns the test samples.
+     *
+     * @return samples of the test.
+     */
+    public List<Sample> getSamples() {
+        return samples;
+    }
+    
     /**
      * Returns the test registration date.
      *

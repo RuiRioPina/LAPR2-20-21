@@ -113,7 +113,7 @@ public class TestUI implements Runnable {
             Date data = new Date(System.currentTimeMillis());
             Date val = null;
         t = this.testController.createTest(nhsCode, internalCode, client, testtype, sampleCollectionMethod,
-                categorySelected, parameter, data, null,null,null,val);
+                categorySelected, parameter, null, data, null,null,null,val);
                 System.out.println(t);
     } catch (IllegalArgumentException ex) {
         System.out.println(ex.getMessage());
