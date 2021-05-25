@@ -13,11 +13,11 @@ public class Test {
     /**
      * Object oriented Class to the registration of a test.
      */
-    private String nhsCode;
-    private String internalCode;
-    private Client client;
-    private TestType testType;
-    private String sampleCollectionMethod;
+    private final String nhsCode;
+    private final String internalCode;
+    private final Client client;
+    private final TestType testType;
+    private final String sampleCollectionMethod;
     private List <ParameterCategory>  parameterCategory;
     private List<Parameter> parameter = null;
     private Date registrationDate;

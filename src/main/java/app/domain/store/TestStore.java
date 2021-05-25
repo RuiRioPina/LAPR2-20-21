@@ -49,7 +49,7 @@ public class TestStore {
     }
 
 	public List<Test> getTestsWithoutSamples() {
-		List<Test> result = new ArrayList<Test>();
+		List<Test> result = new ArrayList<>();
 		for(Test t : this.test) {
 			if(t.getSamplesCollectionDate() == null) {
 				result.add(t);

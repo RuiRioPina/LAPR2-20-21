@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TestUI implements Runnable {
 
-    private TestController testController;
+    private final TestController testController;
 
 
     public TestUI() {
@@ -42,7 +42,6 @@ public class TestUI implements Runnable {
                 System.out.println("CCN is a 16 digit number. Try again.");
             }
         } while (str.length() != 16);
-        boolean validation = false;
 
         // CLIENT
         List<Client> clist = this.testController.getClients();
@@ -56,11 +55,8 @@ public class TestUI implements Runnable {
                 client = clist.get(i);
             }
         }
-        System.out.println();
 
-        System.out.println("Lab Order Information");
-
-        System.out.println();
+        System.out.println('\n' +"Lab Order Information" + '\n');
 
         //TEST TYPES
         TestType testtype = null;
@@ -116,11 +112,11 @@ public class TestUI implements Runnable {
             Date data = new Date(System.currentTimeMillis());
 
         t = this.testController.createTest(nhsCode, internalCode, client, testtype, sampleCollectionMethod, catselected, parselected, data);
-        testController.saveTest(t);
         System.out.println(t);
+        Utils.confirm("Confirm this client? (s/n)");
+        testController.saveTest(t);
     } catch (IllegalArgumentException ex) {
         System.out.println(ex.getMessage());
-        return;
     }
 }
 }

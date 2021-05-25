@@ -7,9 +7,9 @@ public class Parameter {
     /**
      * Object oriented Class to the specification of a parameter in a company context.
      */
-    private String code;
-    private String shortname;
-    private String description;
+    private final String code;
+    private final String shortname;
+    private final String description;
     private TestResult testResult;
     private List<ParameterCategory> pc;
 
