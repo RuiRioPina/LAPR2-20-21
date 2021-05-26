@@ -175,16 +175,16 @@ public class Employee {
      * @return String with the employee's id.
      */
  private String generateID(int nEmployees){
-        String id="";
+        StringBuilder id= new StringBuilder();
         String employeeName = this.name;
         employeeName=employeeName.trim();
         String[] nameWords = employeeName.split(" ");
      for (String nameWord : nameWords) {
-         id = id + nameWord.charAt(0);
+         id.append(nameWord.charAt(0));
      }
-     id=id.toUpperCase();
-     id=String.format("%s%05d",id,nEmployees);
-        return id;
+     id = new StringBuilder(id.toString().toUpperCase());
+     id = new StringBuilder(String.format("%s%05d", id.toString(), nEmployees));
+        return id.toString();
 }
 
     /**

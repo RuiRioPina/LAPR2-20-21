@@ -140,10 +140,13 @@ public class App {
         Date data = new Date(System.currentTimeMillis());
         Test t = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(t);
-
-        Test test = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Sample sample1 = new Sample("11111111111");
+        Test test = new Test("123454abcdef", "999992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test test1 = new Test("121454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(test);
+
         ts.saveSample(test, sample);
+        ts.saveSample(test1, sample1);
 
 
         RoleStore lRole = this.company.getRoleStore();

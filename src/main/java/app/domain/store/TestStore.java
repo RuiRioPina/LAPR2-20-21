@@ -114,19 +114,24 @@ public class TestStore {
         t.setSamplesCollectionDate(new Date(System.currentTimeMillis()));
     }
 
-    public boolean testExists(long barcode) {
-        return tests.stream().anyMatch(o -> o.getBarcode() == barcode);
+    public boolean testExists(String barcode) {
+        for (Test t : this.tests) {
+            for (Sample samplesOfATest : t.getSamples()) {
+                return samplesOfATest.getBarcode().equals(barcode);
+            }
+        }
+        return false;
     }
 
     private boolean testExists(Test test) {
         return tests.contains(test);
     }
 
-    public boolean hasTestPassedSampleCollection(long barcode) {
+    public boolean hasTestPassedSampleCollection(String barcode) {
         return getTest(barcode).getSamplesCollectionDate() != null;
     }
 
-    public Test getTest(long barcode) {
+    public Test getTest(String barcode) {
 
         for (Test testFound : tests) {
             if (testExists(barcode)) {

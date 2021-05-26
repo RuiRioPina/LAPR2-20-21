@@ -17,7 +17,7 @@ public class RecordTestResultsUI implements Runnable {
     public void run() {
         List<Parameter> parametersToShow;
         List<Parameter> parametersSelected;
-        long barcode;
+        String barcode;
         double result = 0;
         String parameterCode = "";
         Scanner sc = new Scanner(System.in);
@@ -26,8 +26,8 @@ public class RecordTestResultsUI implements Runnable {
         System.out.println("Welcome to the Record Results of Test Page");
         System.out.println();
         do {
-            System.out.println("Please introduce the barcode of the Sample where the results will be recorded.(12 digits)");
-            barcode = sc.nextLong();
+            System.out.println("Please introduce the barcode of the Sample where the results will be recorded.(11 digits)");
+            barcode = sc.nextLine();
         } while (!recordTestResultsController.testExists(barcode) || recordTestResultsController.hasTestPassedSampleCollection(barcode));
 
         parametersToShow = recordTestResultsController.getParameterStoreToShow(recordTestResultsController.getTest(barcode));

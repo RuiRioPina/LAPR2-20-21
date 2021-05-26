@@ -11,10 +11,7 @@ import app.domain.shared.EmailNotificationSender;
 import app.domain.store.ParameterStore;
 import app.domain.store.ResultOfTestStore;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import app.domain.store.ParameterStore;
 import app.domain.store.ResultOfTestStore;
@@ -24,12 +21,12 @@ public class Test {
     /**
      * Object oriented Class to the registration of a test.
      */
-    private String nhsCode = "";
-    private String internalCode = "";
-    private Client client = null;
+    private String nhsCode;
+    private String internalCode;
+    private Client client;
     private List<ParameterCategory> parameterCategory;
-    private TestType testType = new TestType("blood", "blood", "dirpa", parameterCategory);
-    private String sampleCollectionMethod = "";
+    private TestType testType;
+    private String sampleCollectionMethod;
     private List<Parameter> parameter = new ArrayList<>();
     private Date registrationDate;
     private List<Sample> samples;
@@ -43,13 +40,13 @@ public class Test {
     /**
      * Constructor for the test.
      *
-     * @param nhsCode                - NHS code of the test.
-     * @param internalCode           - Internal code of the test.
-     * @param client                 - Client that performs the test.
-     * @param testType               - Test Type of the test.
-     * @param parameterCategory      - Category/Categories of the test.
-     * @param parameter              - Parameter/Parameters of the test.
-     * @param registrationDate       - Test registration date.
+     * @param nhsCode           - NHS code of the test.
+     * @param internalCode      - Internal code of the test.
+     * @param client            - Client that performs the test.
+     * @param testType          - Test Type of the test.
+     * @param parameterCategory - Category/Categories of the test.
+     * @param parameter         - Parameter/Parameters of the test.
+     * @param registrationDate  - Test registration date.
      */
     public Test(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
             parameterCategory, List<Parameter> parameter, Date registrationDate) {
@@ -65,7 +62,7 @@ public class Test {
         this.diagnosisDate = null;
         this.validationDate = null;
         this.samplesCollectionDate = null;
-        this.samples = new ArrayList<Sample>();
+        this.samples = new ArrayList<>();
     }
 
     /**
@@ -215,12 +212,12 @@ public class Test {
         this.samplesCollectionDate = date;
     }
 
-    private long barcode;
+    private String barcode;
 
     public Test(ParameterStore parameterStore) {
     }
 
-    public long getBarcode() {
+    public String getBarcode() {
         return barcode;
     }
 

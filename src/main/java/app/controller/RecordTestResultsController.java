@@ -17,11 +17,11 @@ public class RecordTestResultsController {
         //Constructor
     }
 
-    public boolean testExists(long barcode) {
+    public boolean testExists(String barcode) {
         return tests.testExists(barcode);
     }
 
-    public Test getTest(long barcode) {
+    public Test getTest(String barcode) {
         return tests.getTest(barcode);
     }
 
@@ -48,7 +48,7 @@ public class RecordTestResultsController {
         return tests.getValidatedTests(parameterCode);
     }
 
-    public boolean hasTestPassedSampleCollection(long barcode) {
+    public boolean hasTestPassedSampleCollection(String barcode) {
         return tests.hasTestPassedSampleCollection(barcode);
     }
 
