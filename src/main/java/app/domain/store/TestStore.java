@@ -1,5 +1,6 @@
 package app.domain.store;
 
+import app.controller.App;
 import app.domain.model.*;
 
 import java.util.ArrayList;
@@ -8,17 +9,41 @@ import java.util.List;
 
 public class TestStore {
 
-    private final List<Test> test;
+    List<Test> tests;
+    Test test = new Test();
+    TestParam testParam = new TestParam(test);
+    Parameter parameter;
+    TestResult testResult;
 
     public TestStore() {
-        this.test = new ArrayList<>();
+        tests = new ArrayList<>();
+        tests.add(test);
+    }
+
+    public void addTests(Test test) {
+        tests.add(test);
+    }
+
+    public List<Parameter> getParameterSelectedList() {
+        return getTest(test.getBarcode()).getParameterStore();
+    }
+
+    public TestResult addTestResult(String parameterCode, double result) {
+
+
+        if (testParam.findParameterInTestParameter(parameterCode) != null) {
+            parameter = testParam.findParameterInTestParameter(parameterCode);
+            testResult = test.addTestResult(parameter, result);
+            return testResult;
+        }
+        return null;
     }
 
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
                            List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate) {
 
         return new Test(nhsCode, internalCode, client, testType, sampleCollectionMethod,
-                parameterCategory, parameter,registrationDate);
+                parameterCategory, parameter, registrationDate);
     }
 
     public void saveTest(Test t) {
@@ -39,54 +64,122 @@ public class TestStore {
     }
 
     private void addTest(Test t) {
-        this.test.add(t);
+        this.tests.add(t);
     }
 
     public List<Test> getTests() {
         List<Test> tests = new ArrayList<>();
-        tests.addAll(this.test);
+        tests.addAll(this.tests);
         return tests;
     }
 
-	public List<Test> getTestsWithoutSamples() {
-		List<Test> result = new ArrayList<>();
-		for(Test t : this.test) {
-			if(t.getSamplesCollectionDate() == null) {
-				result.add(t);
-			}
-		}
-		return result;
-	}
+    public List<Test> getTestsWithoutSamples() {
+        List<Test> result = new ArrayList<>();
+        for (Test t : this.tests) {
+            if (t.getSamplesCollectionDate() == null) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
 
-	public Test getTestByInternalCode(String testCode) {
-		for(Test t : this.test) {
-			if(t.getInternalCode().equals(testCode)) {
-				return t;
-			}
-		}
-		return null;
-	}
+    public Test getTestByInternalCode(String testCode) {
+        for (Test t : this.tests) {
+            if (t.getInternalCode().equals(testCode)) {
+                return t;
+            }
+        }
+        return null;
+    }
 
-	public Sample createSample(String barcode) {
-		return new Sample(barcode);
-	}
+    public Sample createSample(String barcode) {
+        return new Sample(barcode);
+    }
 
-	public void saveSample(Test t, Sample s) {
-		validateSample(s);
+    public void saveSample(Test t, Sample s) {
+        validateSample(s);
         addSample(t, s);
-	}
-	
-	private void validateSample(Sample s) {
+    }
+
+    private void validateSample(Sample s) {
         if (!s.getBarcode().matches("[0-9]+")) {
             throw new IllegalArgumentException("Barcode must be numeric.");
         }
         if (s.getBarcode().length() != 11) {
             throw new IllegalArgumentException("Barcode must have 11 chars.");
         }
-	}
-	
-	private void addSample(Test t, Sample s) {
-		t.getSamples().add(s);
-		t.setSamplesCollectionDate(new Date(System.currentTimeMillis()));
-	}
+    }
+
+    private void addSample(Test t, Sample s) {
+        t.getSamples().add(s);
+        t.setSamplesCollectionDate(new Date(System.currentTimeMillis()));
+    }
+
+    public boolean testExists(long barcode) {
+        return tests.stream().anyMatch(o -> o.getBarcode() == barcode);
+    }
+
+    private boolean testExists(Test test) {
+        return tests.contains(test);
+    }
+
+    public boolean hasTestPassedSampleCollection(long barcode) {
+        return getTest(barcode).getSamplesCollectionDate() != null;
+    }
+
+    public Test getTest(long barcode) {
+
+        for (Test testFound : tests) {
+            if (testExists(barcode)) {
+                return testFound;
+            }
+        }
+        return null;
+    }
+
+    public List<TestResult> getTestsResults(Test test) {
+        return App.getInstance().getCompany().getTestStore().getTestsResults(test);
+    }
+
+    public boolean findParameter() {
+        return test.getParameter().contains(parameter);
+    }
+
+
+    private boolean isTestResultInBetweenReferenceValue(TestResult parameterBeingTested) {
+        double maxValue = parameterBeingTested.getReferenceValue().getMaxValue();
+        double minValue = parameterBeingTested.getReferenceValue().getMinValue();
+        double result = parameterBeingTested.getResult();
+        return result > minValue && result < maxValue;
+
+    }
+
+    List<Parameter> validatedParameterList = new ArrayList<>();
+
+    public List<Parameter> getValidatedTests(String parameterCode) {
+        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode);
+        TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
+
+        if (isTestResultInBetweenReferenceValue(testResultBeingValidated)) {
+            validatedParameterList.add(parameter);
+        }
+
+        return validatedParameterList;
+
+    }
+
+    public Test getTest(Test test) {
+
+        for (Test testFound : tests) {
+            if (testExists(test)) {
+                return testFound;
+            }
+        }
+        return null;
+    }
+
+    public void associateToParameter() {
+        parameter.setTestResult(testResult);
+    }
+
 }
