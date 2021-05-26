@@ -3,6 +3,7 @@ package app.domain.store;
 import app.controller.App;
 import app.domain.model.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -178,6 +179,29 @@ public class TestStore {
 
     public void associateToParameter() {
         parameter.setTestResult(testResult);
+    }
+    private boolean isUnvalidatedTest(Test t){
+        return t.getRegistrationDate()!=null && t.getSamplesCollectionDate()!=null && t.getChemicalAnalysisDate()!=null && t.getDiagnosisDate()!=null && t.getValidationDate()==null;
+    }
+    public List<Test> getUnvalidatedTests(){
+        List<Test> lUnvalidatedTests= new ArrayList<>();
+        for (int i=0;i<tests.size();i++){
+            if (isUnvalidatedTest(tests.get(i))){
+                lUnvalidatedTests.add(tests.get(i));
+            }
+        }
+        return lUnvalidatedTests;
+    }
+    public void validateTests(List<Test> lTests,Date newDate) {
+        for (int i=0;i<lTests.size();i++){
+            lTests.get(i).setValidationDate(newDate);
+            try {
+                lTests.get(i).sendTestCompletedNotification();
+            }catch (Exception e){
+
+            }
+
+        }
     }
 
     public List<Test> getTestsWithoutDiagnosis() {

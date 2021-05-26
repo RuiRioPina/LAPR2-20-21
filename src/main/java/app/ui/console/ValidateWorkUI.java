@@ -15,5 +15,11 @@ public class ValidateWorkUI implements Runnable {
         System.out.println("Please type the numbers of the tests you wish to validate(separated by a space(or type ALL to validate all of them)");
         Scanner sc= new Scanner(System.in);
         String selectedTests=sc.nextLine();
+        validateWorkController.askConfirmation(selectedTests);
+        String confirmation=sc.nextLine();
+        if (confirmation.equals("Y")){
+            validateWorkController.validateTests(selectedTests);
+        }
+//validateWorkController.showAllTests(); DEBUGGING FEATURE
     }
 }

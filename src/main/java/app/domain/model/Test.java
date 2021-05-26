@@ -1,5 +1,16 @@
 package app.domain.model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
+import app.domain.shared.EmailNotificationSender;
+import app.domain.store.ParameterStore;
+import app.domain.store.ResultOfTestStore;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -194,6 +205,9 @@ public class Test {
                     "Parameter(s) = " + parameter + '\n' +
                     "Registration Date = " + registrationDate;
         }
+        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate!= null && validationDate==null){
+            str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
+        }
         return str;
     }
 
@@ -226,7 +240,6 @@ public class Test {
         Test t = (Test) o;
         return Objects.equals(this.barcode, t.barcode);
     }
-
     public TestResult addTestResult(Parameter parameter, double result) {
 
         ReferenceValue referenceValue = testType.checkExternalModuleBasedOnTestType(parameter);
@@ -245,7 +258,7 @@ public class Test {
 
     public List<Parameter> getParameterStoreToShow() {
         List<Parameter> parametersToShow = new ArrayList<>();
-        parametersToShow.addAll(this.parameter);
+            parametersToShow.addAll(this.parameter);
         return parametersToShow;
     }
 
@@ -256,8 +269,18 @@ public class Test {
         parameterToRemove.remove(option);
         return parameterToRemove;
     }
-
-    public void setDiagnosisDate(Date date){
-        this.diagnosisDate=date;
+    public void setChemicalAnalysisDate(Date newDate){
+        this.chemicalAnalysisDate=newDate;
     }
+    public void setDiagnosisDate(Date newDate){
+        this.diagnosisDate=newDate;
+    }
+    public void setValidationDate(Date newDate){
+        this.validationDate=newDate;
+    }
+    public void sendTestCompletedNotification()throws InterruptedException, IOException {
+         EmailNotificationSender ens= new EmailNotificationSender(this.client);
+         ens.sendTestCompletedNotification();
+    }
+
 }

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
+ *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class App {
@@ -150,6 +151,35 @@ public class App {
         lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level", Constants.ROLE_MEDICAL_LAB_TECHNICIAN, "MDT"));
         lRole.add(lRole.create("Coordinates the activity on the laboratory", Constants.ROLE_LABORATORY_COORDINATOR, "LC"));
         lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
+        lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST,"REC"));
+        lRole.add(lRole.create("Performs Chemical Analysis and records results",Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,"CCT"));
+        lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level",Constants.ROLE_MEDICAL_LAB_TECHNICIAN,"MDT"));
+        lRole.add(lRole.create("Coordinates the activity on the laboratory",Constants.ROLE_LABORATORY_COORDINATOR,"LC"));
+        lRole.add(lRole.create("Responsible for interacting with the client and their tests",Constants.ROLE_SPECIALIST_DOCTOR,"SD"));
+        Test t2 = new Test ("123456abcdef","999999999999",c,tts.getTestTypes().get(0), pc, par, data);
+        t2.setSamplesCollectionDate(data);
+        t2.setChemicalAnalysisDate(data);
+        t2.setDiagnosisDate(data);
+ts.saveTest(t2);
+        Test t3 = new Test ("123456abcdef","999999999995",c,tts.getTestTypes().get(0), pc, par, data);
+        t3.setChemicalAnalysisDate(data);
+        t3.setDiagnosisDate(data);
+        ts.saveTest(t3);
+        Test t4 = new Test ("123456abcdef","999999999996",c,tts.getTestTypes().get(0), pc, par, data);
+        t4.setSamplesCollectionDate(data);
+        t4.setChemicalAnalysisDate(data);
+        t4.setDiagnosisDate(data);
+        ts.saveTest(t4);
+        Test t5 = new Test ("123456abcdef","999999999997",c,tts.getTestTypes().get(0), pc, par, data);
+        t5.setSamplesCollectionDate(data);
+        t5.setChemicalAnalysisDate(data);
+        t5.setDiagnosisDate(data);
+        ts.saveTest(t5);
+        Test t6 = new Test ("123456abcdef","999999999998",c,tts.getTestTypes().get(0), pc, par, data);
+        t6.setSamplesCollectionDate(data);
+        t6.setChemicalAnalysisDate(data);
+        t6.setDiagnosisDate(data);
+        ts.saveTest(t6);
     }
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
