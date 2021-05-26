@@ -115,9 +115,12 @@ public class TestStore {
     }
 
     public boolean testExists(String barcode) {
+        int i = 0;
         for (Test t : this.tests) {
             for (Sample samplesOfATest : t.getSamples()) {
-                return samplesOfATest.getBarcode().equals(barcode);
+                if (samplesOfATest.getBarcode().equals(barcode)) {
+                    return true;
+                }
             }
         }
         return false;
@@ -185,24 +188,27 @@ public class TestStore {
     public void associateToParameter() {
         parameter.setTestResult(testResult);
     }
-    private boolean isUnvalidatedTest(Test t){
-        return t.getRegistrationDate()!=null && t.getSamplesCollectionDate()!=null && t.getChemicalAnalysisDate()!=null && t.getDiagnosisDate()!=null && t.getValidationDate()==null;
+
+    private boolean isUnvalidatedTest(Test t) {
+        return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;
     }
-    public List<Test> getUnvalidatedTests(){
-        List<Test> lUnvalidatedTests= new ArrayList<>();
-        for (int i=0;i<tests.size();i++){
-            if (isUnvalidatedTest(tests.get(i))){
+
+    public List<Test> getUnvalidatedTests() {
+        List<Test> lUnvalidatedTests = new ArrayList<>();
+        for (int i = 0; i < tests.size(); i++) {
+            if (isUnvalidatedTest(tests.get(i))) {
                 lUnvalidatedTests.add(tests.get(i));
             }
         }
         return lUnvalidatedTests;
     }
-    public void validateTests(List<Test> lTests,Date newDate) {
-        for (int i=0;i<lTests.size();i++){
+
+    public void validateTests(List<Test> lTests, Date newDate) {
+        for (int i = 0; i < lTests.size(); i++) {
             lTests.get(i).setValidationDate(newDate);
             try {
                 lTests.get(i).sendTestCompletedNotification();
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
 
@@ -211,8 +217,8 @@ public class TestStore {
 
     public List<Test> getTestsWithoutDiagnosis() {
         List<Test> complete = new ArrayList<Test>();
-        for(Test t : this.tests) {
-            if(t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() !=null && t.getDiagnosisDate()==null) {
+        for (Test t : this.tests) {
+            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() == null) {
                 complete.add(t);
             }
         }
