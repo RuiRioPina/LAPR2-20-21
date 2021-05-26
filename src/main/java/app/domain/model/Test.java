@@ -8,14 +8,6 @@ import java.util.Objects;
 import app.domain.store.ParameterStore;
 import app.domain.store.ResultOfTestStore;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-
-import app.domain.store.ParameterStore;
-import app.domain.store.ResultOfTestStore;
-
 public class Test {
 
     /**
@@ -63,7 +55,7 @@ public class Test {
         this.diagnosisDate = null;
         this.validationDate = null;
         this.samplesCollectionDate = null;
-        this.samples = new ArrayList<Sample>();
+        this.samples = new ArrayList<>();
     }
 
     /**

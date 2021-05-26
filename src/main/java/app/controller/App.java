@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class App {
@@ -23,37 +22,31 @@ public class App {
     private Company company;
     private AuthFacade authFacade;
 
-    private App()
-    {
+    private App() {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
         bootstrap();
     }
 
-    public Company getCompany()
-    {
+    public Company getCompany() {
         return this.company;
     }
 
 
-    public UserSession getCurrentUserSession()
-    {
+    public UserSession getCurrentUserSession() {
         return this.authFacade.getCurrentUserSession();
     }
 
-    public boolean doLogin(String email, String pwd)
-    {
-        return this.authFacade.doLogin(email,pwd).isLoggedIn();
+    public boolean doLogin(String email, String pwd) {
+        return this.authFacade.doLogin(email, pwd).isLoggedIn();
     }
 
-    public void doLogout()
-    {
+    public void doLogout() {
         this.authFacade.doLogout();
     }
 
-    private Properties getProperties()
-    {
+    private Properties getProperties() {
         Properties props = new Properties();
 
         // Add default properties and values
@@ -61,44 +54,42 @@ public class App {
 
 
         // Read configured values
-        try
-        {
+        try {
             InputStream in = new FileInputStream(Constants.PARAMS_FILENAME);
             props.load(in);
             in.close();
-        }
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
 
         }
         return props;
     }
 
 
-    private void bootstrap()
-    {
+    private void bootstrap() {
 
 
-        this.authFacade.addUserRole(Constants.ROLE_ADMIN,Constants.ROLE_ADMIN);
-        this.authFacade.addUserRole(Constants.ROLE_CLIENT,Constants.ROLE_CLIENT);
-        this.authFacade.addUserRole(Constants.ROLE_RECEPTIONIST,Constants.ROLE_RECEPTIONIST);
-        this.authFacade.addUserRole(Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST);
-        this.authFacade.addUserRole(Constants.ROLE_MEDICAL_LAB_TECHNICIAN,Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
-        this.authFacade.addUserRole(Constants.ROLE_LABORATORY_COORDINATOR,Constants.ROLE_LABORATORY_COORDINATOR);
-        this.authFacade.addUserRole(Constants.ROLE_SPECIALIST_DOCTOR,Constants.ROLE_SPECIALIST_DOCTOR);
+        this.authFacade.addUserRole(Constants.ROLE_ADMIN, Constants.ROLE_ADMIN);
+        this.authFacade.addUserRole(Constants.ROLE_CLIENT, Constants.ROLE_CLIENT);
+        this.authFacade.addUserRole(Constants.ROLE_RECEPTIONIST, Constants.ROLE_RECEPTIONIST);
+        this.authFacade.addUserRole(Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST, Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST);
+        this.authFacade.addUserRole(Constants.ROLE_MEDICAL_LAB_TECHNICIAN, Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
+        this.authFacade.addUserRole(Constants.ROLE_LABORATORY_COORDINATOR, Constants.ROLE_LABORATORY_COORDINATOR);
+        this.authFacade.addUserRole(Constants.ROLE_SPECIALIST_DOCTOR, Constants.ROLE_SPECIALIST_DOCTOR);
 
-        this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456",Constants.ROLE_ADMIN);
-        this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12",Constants.ROLE_RECEPTIONIST);
+        this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456", Constants.ROLE_ADMIN);
+        this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12", Constants.ROLE_RECEPTIONIST);
         this.authFacade.addUserWithRole("Clinical Chemistry Technologist", "cct@lei.sem2.pt", "12", Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST);
         this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
         this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
         this.company.setNumberOfEmployees(0);
+
+        Sample sample = new Sample("99999999999");
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
 
         List<ParameterCategory> pc = new ArrayList<>();
-        ParameterCategory p1 = new ParameterCategory("CAT00","Category00");
-        ParameterCategory P2 = new ParameterCategory("CAT01","Category01");
-        ParameterCategory P3 = new ParameterCategory("CAT02","Category02");
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
         pc.add(p1);
         pc.add(P2);
 
@@ -119,46 +110,51 @@ public class App {
         cs.saveParameterCategory(P3);
         ParameterStore ps = this.company.getParameterStore();
 
-        ps.saveParameter(new Parameter("WBC00","WBC","White Cell Count",cat));
-        ps.saveParameter(new Parameter("RBC00","RBC","Red Blood Count", cat));
-        ps.saveParameter(new Parameter("HB000","HB","Haemoglobin",cat1));
-        ps.saveParameter(new Parameter("PLT00","PLT","Platelet Count", cat1));
-        ps.saveParameter(new Parameter("IgGAN","IgC","Antibodies", cat2));
 
-        List <Parameter> par = new ArrayList<>();
+        ps.saveParameter(new Parameter("WBC00", "WBC", "White Cell Count", cat));
+        ps.saveParameter(new Parameter("RBC00", "RBC", "Red Blood Count", cat));
+        ps.saveParameter(new Parameter("HB000", "HB", "Haemoglobin", cat1));
+        ps.saveParameter(new Parameter("PLT00", "PLT", "Platelet Count", cat1));
+        ps.saveParameter(new Parameter("IgGAN", "IgC", "Antibodies", cat2));
+
+        List<Parameter> par = new ArrayList<>();
         par.add(ps.getParameters().get(0));
         par.add(ps.getParameters().get(1));
         par.add(ps.getParameters().get(2));
         par.add(ps.getParameters().get(3));
 
         TestTypeStore tts = this.company.getTestTypeStore();
-        tts.saveTestType(new TestType("BLT00","Blood Test","Venipuncture",pc));
-        tts.saveTestType(new TestType("CVD00","Covid-19 Test","Nasopharyngeal",p));
+        tts.saveTestType(new TestType("BLT00", "Blood Test", "Venipuncture", pc));
+        tts.saveTestType(new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p));
 
         ClientList cl = this.company.getClientList();
-        Client c = new Client(1234567890123456L,1234567890,"22-01-2002","jorge@gmail.com",1111111111L,22222222222L,"Jorge Ferreira");
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
         cl.saveClient(c);
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
-        Test t = new Test ("123456abcdef","999999999999",c,tts.getTestTypes().get(0),"Venipuncture", pc, par, data);
+        Test t = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), "Venipuncture", pc, par, data);
         ts.saveTest(t);
+
+        Test test = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), "Venipuncture", pc, par, data);
+        ts.saveTest(test);
+        ts.saveSample(test, sample);
+
+
         RoleStore lRole = this.company.getRoleStore();
-        lRole.add(lRole.create("Receives the client",Constants.ROLE_RECEPTIONIST,"REC"));
-        lRole.add(lRole.create("Performs Chemical Analysis and records results",Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST,"CCT"));
-        lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level",Constants.ROLE_MEDICAL_LAB_TECHNICIAN,"MDT"));
-        lRole.add(lRole.create("Coordinates the activity on the laboratory",Constants.ROLE_LABORATORY_COORDINATOR,"LC"));
-        lRole.add(lRole.create("Responsible for interacting with the client and their tests",Constants.ROLE_SPECIALIST_DOCTOR,"SD"));
+        lRole.add(lRole.create("Receives the client", Constants.ROLE_RECEPTIONIST, "REC"));
+        lRole.add(lRole.create("Performs Chemical Analysis and records results", Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST, "CCT"));
+        lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level", Constants.ROLE_MEDICAL_LAB_TECHNICIAN, "MDT"));
+        lRole.add(lRole.create("Coordinates the activity on the laboratory", Constants.ROLE_LABORATORY_COORDINATOR, "LC"));
+        lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
     }
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
     private static App singleton = null;
-    public static App getInstance()
-    {
-        if(singleton == null)
-        {
-            synchronized(App.class)
-            {
+
+    public static App getInstance() {
+        if (singleton == null) {
+            synchronized (App.class) {
                 singleton = new App();
             }
         }
