@@ -37,10 +37,10 @@ public class RoleTest {
 @Test
     public void toStringTest(){
     Role r1=new Role("Receives Clients","Receptionist","Rec");
-    String expected="Receptionist. Receives Clients. Rec.";
+    String expected="Receptionist. Receives Clients. Receives Clients.";
     String notExpected="Receptionist. ReceivesClients. Recs";
-    assertEquals(r1.toString(),expected);
-    assertNotEquals(r1.toString(),notExpected);
+    assertEquals(expected,r1.toString());
+    assertNotEquals(notExpected,r1.toString());
 }
 @Test
     public void validateRole(){
