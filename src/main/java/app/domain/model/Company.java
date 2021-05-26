@@ -29,6 +29,7 @@ public class Company {
     private ClientList clientList;
     private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
     private TestStore testStore;
+    private ReportStore reportStore;
 
 
     public Company(String designation) {
@@ -50,6 +51,7 @@ public class Company {
         this.testStore = new TestStore();
         this.numberOfEmployees = 0;
         this.lastBarcode = 0;
+        this.reportStore = new ReportStore();
     }
 
     /**
@@ -106,6 +108,9 @@ public class Company {
     }
 
     public TestStore getTestStore(){return  this.testStore;}
+
+    public ReportStore getReportStore(){return this.reportStore;}
+
     /**
      * Getter for the Role Store that the company is using.
      * @return Role Store that contains the Roles in the company.
