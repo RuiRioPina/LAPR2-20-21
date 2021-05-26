@@ -11,7 +11,7 @@ public class BarcodeController {
 
 	public static void generateBarcode(String barcode) throws Exception {
 		try {
-			String filePath = String.format("C:\\Dados\\Barcode_%s.jpeg", barcode);
+			String filePath = String.format("C:\\Users\\ruiri\\Documents\\Barcode_%s.jpeg", barcode);
 			Barcode bc = BarcodeFactory.createUPCA(barcode);
         	bc.setPreferredBarHeight(100);
         	BarcodeImageHandler.savePNG(bc, new File(filePath));

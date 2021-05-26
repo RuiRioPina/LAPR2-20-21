@@ -3,7 +3,6 @@ package app.domain.store;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 
 import app.domain.model.ParameterCategory;
 import app.domain.model.TestType;
@@ -18,7 +17,7 @@ public class TestTypeStore {
      * TestTypeStore constructor.
      */
 	public TestTypeStore() {
-		this.testTypes = new ArrayList<TestType>();
+		this.testTypes = new ArrayList<>();
 	}
 	
 	/**
@@ -39,7 +38,7 @@ public class TestTypeStore {
      * @return list of object of TestType class.
      */
 	public List<TestType> getTestTypes() {
-		List<TestType> ts = new ArrayList<TestType>();
+		List<TestType> ts = new ArrayList<>();
 		ts.addAll(this.testTypes);
 		return ts;
 	}

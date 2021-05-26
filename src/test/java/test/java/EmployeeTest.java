@@ -14,7 +14,7 @@ public class EmployeeTest {
         Role r1=new Role("Receives Clients","Receptionist","Rec");
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",937845773,("tiagosantacruz@gmail.com"),"xd",2,r1,null);
         String expectedID = "TSC00002";
-        assertEquals(expectedID,e1.getID());
+        assertEquals(expectedID,e1.getId());
 
     }
     @Test

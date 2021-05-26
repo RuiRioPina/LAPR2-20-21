@@ -8,14 +8,13 @@ import java.util.List;
 
 public class ReceptionistUI implements Runnable {
     public ReceptionistUI() {
+        // Do nothing because there is no need to construct the UI layer with any value. This is only used to be able to use the UI when selecting in menus.
     }
 
     public void run() {
-        ClientList clientList = new ClientList();
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Option 1 - Register New Client", new RegisterClientUI()));
         options.add(new MenuItem("Option 2 - Register a test to be performed to a registered client", new TestUI()));
-        boolean var3 = false;
 
         int option;
         do {

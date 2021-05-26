@@ -102,7 +102,7 @@ public class ParameterUI implements Runnable{
             System.out.printf("\t %s - %s %n", pc.getCode(), pc.getName());
         }
 
-        if (!Utils.confirm("Confirm parameter creation (s/n)?")) {
+        if (!Utils.confirm("Confirm parameter creation (y/n)?")) {
             return;
         }
 

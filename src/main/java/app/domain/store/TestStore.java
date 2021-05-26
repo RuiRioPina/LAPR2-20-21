@@ -3,7 +3,6 @@ package app.domain.store;
 import app.controller.App;
 import app.domain.model.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -115,7 +114,6 @@ public class TestStore {
     }
 
     public boolean testExists(String barcode) {
-        int i = 0;
         for (Test t : this.tests) {
             for (Sample samplesOfATest : t.getSamples()) {
                 if (samplesOfATest.getBarcode().equals(barcode)) {
@@ -216,7 +214,7 @@ public class TestStore {
     }
 
     public List<Test> getTestsWithoutDiagnosis() {
-        List<Test> complete = new ArrayList<Test>();
+        List<Test> complete = new ArrayList<>();
         for (Test t : this.tests) {
             if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() == null) {
                 complete.add(t);

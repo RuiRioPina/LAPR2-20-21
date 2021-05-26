@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,10 +10,6 @@ import app.domain.shared.EmailNotificationSender;
 import app.domain.store.ParameterStore;
 import app.domain.store.ResultOfTestStore;
 
-import java.util.*;
-
-import app.domain.store.ParameterStore;
-import app.domain.store.ResultOfTestStore;
 
 public class Test {
 

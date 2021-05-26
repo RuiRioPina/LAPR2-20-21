@@ -34,7 +34,7 @@ public class ParameterCategoryUI implements Runnable {
         System.out.printf("-Code: %s%n", pc.getCode());
         System.out.printf("-Name: %s%n", pc.getName());
         
-        if(!Utils.confirm("Confirm parameter category creation (s/n)?")){
+        if(!Utils.confirm("Confirm parameter category creation (y/n)?")){
         	return;
         }
         

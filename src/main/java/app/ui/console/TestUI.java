@@ -120,7 +120,7 @@ public class TestUI implements Runnable {
 
             t = this.testController.createTest(nhsCode, testCode, client, testtype, catselected, parselected, data);
             System.out.println(t);
-            Utils.confirm("Confirm this TEST? (s/n)");
+            Utils.confirm("Confirm this TEST? (y/n)");
             testController.saveTest(t);
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());

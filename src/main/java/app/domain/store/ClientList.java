@@ -88,8 +88,8 @@ public class ClientList {
     }
 
     public void showList() {
-        ClientList listOfClients = App.getInstance().getCompany().getClientList();
-        for (Client c : listOfClients.getClients()) {
+        ClientList listOfClientsToShow = App.getInstance().getCompany().getClientList();
+        for (Client c : listOfClientsToShow.getClients()) {
             System.out.println(c);
         }
 

@@ -94,7 +94,7 @@ public class TestTypeUI implements Runnable {
         	System.out.printf("\t%s - %s %n", pc.getCode(), pc.getName());
         }
         
-        if(!Utils.confirm("Confirm test type creation (s/n)?")){
+        if(!Utils.confirm("Confirm test type creation (y/n)?")){
         	return;
         }
         

@@ -18,9 +18,9 @@ public class Employee {
     private String password;
     private String email;
     private String name;
-    private String ID;
+    private String id;
     private String adress;
-    private String SOC;
+    private String soc;
     private long phoneNumber;
     private Role role;
     private String specialistDoctorIndexNumber;
@@ -46,7 +46,7 @@ public class Employee {
      * Constructor for the employee.
      * @param name- name of the employee.
      * @param adress- adress of the employee.
-     * @param SOC- Standard Occupational Classificational Code.
+     * @param soc- Standard Occupational Classificational Code.
      * @param phoneNumber- phone number of the employee.
      * @param email- email of the employee.
      * @param userName- userName of the employee.
@@ -54,15 +54,15 @@ public class Employee {
      * @param role- Role of the employee in the system
      * @param specialistDoctorIndexNumber- if the employee is a specialist doctor it contains their doctor index number if not, if not the value is null
      */
-    public Employee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber){
+    public Employee(String name, String adress, String soc, long phoneNumber, String email, String userName, int nEmployees, Role role, String specialistDoctorIndexNumber){
         this.name=name;
         this.adress=adress;
-        this.SOC = SOC;
+        this.soc = soc;
         this.phoneNumber=phoneNumber;
         this.userName=userName;
         this.email=email;
         this.password=generateEmployeePassword();
-        this.ID=generateID(nEmployees);
+        this.id =generateID(nEmployees);
         this.role= role;
         this.specialistDoctorIndexNumber=specialistDoctorIndexNumber;
     }
@@ -85,40 +85,39 @@ public class Employee {
             Character c=randomCharacter("abcdefghijklmnopqrstuvxyz");
             s.append(c);
         }
-        String str= s.toString();
-        return str;
+        return s.toString();
     }
 
     /**
      * Getter for the employee's id
      * @return String with the employee's ID
      */
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
     /**
      * Sets  the employee's ID
-     * @param ID- String with the new ID of the employee
+     * @param id- String with the new ID of the employee
      */
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
      * Getter for the StandardOccupationalClassification Code
      * @return String with the SOC Code.
      */
-    public String getSOC() {
-        return SOC;
+    public String getSoc() {
+        return soc;
     }
 
     /**
      * Sets the employee's StandardOccupationalClassification Code
-     * @param SOC- String with the new SOC Code.
+     * @param soc- String with the new SOC Code.
      */
-    public void setSOC(String SOC) {
-        this.SOC = SOC;
+    public void setSoc(String soc) {
+        this.soc = soc;
     }
 
     /**
@@ -273,7 +272,7 @@ public boolean equals(Object o){
         return false;
     }
     Employee e = (Employee) o;
-    return Objects.equals(name,e.name) && Objects.equals(ID,e.ID) && Objects.equals(adress,e.adress) && Objects.equals(SOC,e.SOC) && Objects.equals(phoneNumber,e.phoneNumber)&& Objects.equals(userName,e.userName)&& Objects.equals(role,e.role)&&Objects.equals(email,e.email);
+    return Objects.equals(name,e.name) && Objects.equals(id,e.id) && Objects.equals(adress,e.adress) && Objects.equals(soc,e.soc) && Objects.equals(phoneNumber,e.phoneNumber)&& Objects.equals(userName,e.userName)&& Objects.equals(role,e.role)&&Objects.equals(email,e.email);
 
 }
 
@@ -285,9 +284,9 @@ public boolean equals(Object o){
     @Override
     public String toString(){
         if (specialistDoctorIndexNumber==null){
-            return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their email adress is "+ this.email+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+".");
+            return String.format("This employee is named "+this.name+". Their ID is "+ this.id +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.soc +". Their email adress is "+ this.email+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+".");
         }else
-            return String.format("This employee is named "+this.name+". Their ID is "+ this.ID +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.SOC+". Their email adress is " +this.email + ". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
+            return String.format("This employee is named "+this.name+". Their ID is "+ this.id +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.soc +". Their email adress is " +this.email + ". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
 }
 
     /**
@@ -303,17 +302,14 @@ public boolean equals(Object o){
         if (name.length()>35||Utils.nameContainsDigits(name)){
             return false;
     }
-    if (Utils.validateSOC(SOC)){
+    if (Utils.validateSOC(soc)){
         return false;
     }
     if (role==null){
         return false;
     }
-    if (specialistDoctorIndexNumber!= null && specialistDoctorIndexNumber.length()!=6){
-        return false;
+        return specialistDoctorIndexNumber == null || specialistDoctorIndexNumber.length() == 6;
     }
-    return true;
-}
 
     /**
      * Used to create the password, returns a random character from a String parameter.

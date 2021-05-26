@@ -5,16 +5,16 @@ public class Report {
     /**
      * Object oriented class to describe a report in a company text
      */
-    private String report;
+    private final String reportText;
 
     /**
      * Constructor for the Report
-     * @param report
+     * @param reportText
      */
 
-    public Report(String report){
+    public Report(String reportText){
 
-        this.report = report;
+        this.reportText = reportText;
 
     }
 
@@ -24,7 +24,7 @@ public class Report {
      */
 
     public String getReport(){
-        return report;
+        return reportText;
     }
 
 

@@ -16,7 +16,7 @@ public class EmployeeTest2 {
         Role r1=new Role("Receives Clients","Receptionist","Rec");
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",937845773,("tiagosantacruz@gmail.com"),"xd",2,r1,null);
         String expectedID = "TSC00002";
-        assertEquals(expectedID,e1.getID());
+        assertEquals(expectedID,e1.getId());
 
     }
     @Test
@@ -49,7 +49,7 @@ public class EmployeeTest2 {
         String expected = "TSC00002";
         String notExpected="TSC00001";
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
-        String actual=e1.getID();
+        String actual=e1.getId();
         assertEquals(expected,actual);
         assertNotEquals(notExpected,actual);
 
@@ -69,9 +69,9 @@ assertNotEquals(e1.generateEmployeePassword().length(),notExpectedLength);
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         String desired="TSC1";
         String old="TSC00002";
-        e1.setID("TSC1");
-        assertEquals(e1.getID(),desired);
-        assertNotEquals(e1.getID(),old);
+        e1.setId("TSC1");
+        assertEquals(e1.getId(),desired);
+        assertNotEquals(e1.getId(),old);
     }
     @Test
     public void getSOC(){
@@ -79,8 +79,8 @@ assertNotEquals(e1.generateEmployeePassword().length(),notExpectedLength);
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         String expected="1234";
         String notExpected="1233";
-        assertEquals(e1.getSOC(),expected);
-        assertNotEquals(e1.getSOC(),notExpected);
+        assertEquals(e1.getSoc(),expected);
+        assertNotEquals(e1.getSoc(),notExpected);
     }
     @Test
     public void setSOC(){
@@ -88,9 +88,9 @@ assertNotEquals(e1.generateEmployeePassword().length(),notExpectedLength);
         Employee e1= new Employee("Tiago Santa Cruz","Porto","1234",999999999L,"tiagosantacruz@gmail.com","Tiago",2,r1,null);
         String desired="1233";
         String old="1234";
-        e1.setSOC("1233");
-        assertEquals(e1.getSOC(),desired);
-        assertNotEquals(e1.getSOC(),old);
+        e1.setSoc("1233");
+        assertEquals(e1.getSoc(),desired);
+        assertNotEquals(e1.getSoc(),old);
     }
     @Test
     public void setPhoneNumber(){

@@ -1,6 +1,5 @@
 package app.ui;
 
-import app.domain.model.Client;
 import app.ui.console.MainMenuUI;
 
 /**

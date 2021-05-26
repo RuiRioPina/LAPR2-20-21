@@ -48,7 +48,7 @@ public class RecordTestResultsUI implements Runnable {
 
             }
 
-            if (!Utils.confirm("Confirm test result creation (s/n)?")) {
+            if (!Utils.confirm("Confirm test result creation (y/n)?")) {
                 return;
             }
             recordTestResultsController.associateToParameter();

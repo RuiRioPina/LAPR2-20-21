@@ -34,7 +34,7 @@ public class EmployeeStore {
      *
      * @param name-                        name of the employee.
      * @param adress-                      adress of the employee.
-     * @param SOC-                         Standard Occupational Classificational Code.
+     * @param soc-                         Standard Occupational Classificational Code.
      * @param phoneNumber-                 phone number of the employee.
      * @param email-                       email of the employee.
      * @param userName-                    userName of the employee.
@@ -43,8 +43,8 @@ public class EmployeeStore {
      * @param specialistDoctorIndexNumber- if the employee is a specialist doctor it contains their doctor index number if not, if not the value is null
      * @return Object of the employee Class.
      */
-    public Employee createEmployee(String name, String adress, String SOC, long phoneNumber, String email, String userName, int nEmployee, Role role, String specialistDoctorIndexNumber) {
-        return new Employee(name, adress, SOC, phoneNumber, email, userName, nEmployee, role, specialistDoctorIndexNumber);
+    public Employee createEmployee(String name, String adress, String soc, long phoneNumber, String email, String userName, int nEmployee, Role role, String specialistDoctorIndexNumber) {
+        return new Employee(name, adress, soc, phoneNumber, email, userName, nEmployee, role, specialistDoctorIndexNumber);
     }
 
     /**

@@ -1,6 +1,5 @@
 package app.domain.shared;
 
-import java.util.function.Consumer;
 
 /**
  *
