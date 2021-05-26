@@ -256,4 +256,8 @@ public class Test {
         parameterToRemove.remove(option);
         return parameterToRemove;
     }
+
+    public void setDiagnosisDate(Date date){
+        this.diagnosisDate=date;
+    }
 }

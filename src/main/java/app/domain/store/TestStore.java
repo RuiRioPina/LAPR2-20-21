@@ -180,4 +180,13 @@ public class TestStore {
         parameter.setTestResult(testResult);
     }
 
+    public List<Test> getTestsWithoutDiagnosis() {
+        List<Test> complete = new ArrayList<Test>();
+        for(Test t : this.tests) {
+            if(t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() !=null && t.getDiagnosisDate()==null) {
+                complete.add(t);
+            }
+        }
+        return complete;
+    }
 }
