@@ -83,6 +83,7 @@ public class App {
         this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
         this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
         this.company.setNumberOfEmployees(0);
+        this.company.setTestCode(0);
 
         Sample sample = new Sample("99999999999");
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();

@@ -13,17 +13,24 @@ import java.util.Scanner;
 public class TestUI implements Runnable {
 
     private final TestController testController;
+    private final Company cmp;
 
 
     public TestUI() {
         this.testController = new TestController();
+        this.cmp = new Company("Company");
     }
 
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
-        String internalCode = "000000000001";//WORKING
+        int internalCode = cmp.getTestCode();
+        internalCode++;
+        cmp.setTestCode(internalCode);
+        String testCode = String.format("%012d", internalCode);
+
         String nhsCode;
+
         do{
             System.out.println("Insert test NHS code.");
             nhsCode = sc.nextLine();
@@ -111,7 +118,7 @@ public class TestUI implements Runnable {
         try {
             Date data = new Date(System.currentTimeMillis());
 
-            t = this.testController.createTest(nhsCode, internalCode, client, testtype, catselected, parselected, data);
+            t = this.testController.createTest(nhsCode, testCode, client, testtype, catselected, parselected, data);
             System.out.println(t);
             Utils.confirm("Confirm this TEST? (s/n)");
             testController.saveTest(t);

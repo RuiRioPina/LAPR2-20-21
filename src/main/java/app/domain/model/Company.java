@@ -18,6 +18,7 @@ public class Company {
 
     private int numberOfEmployees;
     private long lastBarcode;
+    private int testCode;
     private String designation;
     private AuthFacade authFacade;
     private ParameterCategoryStore parameterCategoryStore;
@@ -51,9 +52,15 @@ public class Company {
         this.testStore = new TestStore();
         this.numberOfEmployees = 0;
         this.lastBarcode = 0;
+        this.testCode = 0;
         this.reportStore = new ReportStore();
     }
-
+    public int getTestCode() {
+        return testCode;
+    }
+    public void setTestCode(int number) {
+        this.testCode = number;
+    }
     /**
      * Getter for the number of Employees in the company.
      * @return number of employees.
