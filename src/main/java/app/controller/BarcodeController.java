@@ -1,6 +1,5 @@
 package app.controller;
 
-import java.awt.Dimension;
 import java.io.File;
 
 import net.sourceforge.barbecue.Barcode;
@@ -14,8 +13,9 @@ public class BarcodeController {
 		try {
 			String filePath = String.format("C:\\Dados\\Barcode_%s.jpeg", barcode);
 			Barcode bc = BarcodeFactory.createUPCA(barcode);
-			BarcodeImageHandler.saveJPEG(bc, new File(filePath));
-		} catch (BarcodeException e) {
+        	bc.setPreferredBarHeight(100);
+        	BarcodeImageHandler.savePNG(bc, new File(filePath));
+		} catch (Exception e) {
 			throw new Exception("Error generating barcode");
 		}
 	}
