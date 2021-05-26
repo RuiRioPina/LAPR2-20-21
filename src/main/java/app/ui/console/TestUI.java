@@ -22,7 +22,7 @@ public class TestUI implements Runnable {
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
-        String internalCode = "000000000001";
+        String internalCode = "000000000001";//WORKING
         String nhsCode;
         do{
             System.out.println("Insert test NHS code.");
@@ -85,38 +85,38 @@ public class TestUI implements Runnable {
         Parameter parameter;
 
         do {
-              opT = Utils.showAndSelectIndex(categories, "Select the Category.");
+            opT = Utils.showAndSelectIndex(categories, "Select the Category.");
 
-              if ((opT >= 0) && (opT < categories.size()))
-              {
-                  categorySelected = categories.get(opT);
-                  catselected.add(categorySelected);
-                  categories.remove(opT);
-              }
+            if ((opT >= 0) && (opT < categories.size()))
+            {
+                categorySelected = categories.get(opT);
+                catselected.add(categorySelected);
+                categories.remove(opT);
+            }
 
-              plist = testController.getParameterByCategory(categorySelected);
+            plist = testController.getParameterByCategory(categorySelected);
             do {
-                  op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
+                op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
 
-                  if ((op >= 0) && (op < plist.size())) {
-                      parameter = plist.get(op);
-                      parselected.add(parameter);
-                      plist.remove(op);
-                  }
+                if ((op >= 0) && (op < plist.size())) {
+                    parameter = plist.get(op);
+                    parselected.add(parameter);
+                    plist.remove(op);
+                }
             } while (!plist.isEmpty() && op != -1);
-            } while (opT != -1 && !categories.isEmpty());
+        } while (opT != -1 && !categories.isEmpty());
 
         //TEST
         Test t;
         try {
             Date data = new Date(System.currentTimeMillis());
 
-        t = this.testController.createTest(nhsCode, internalCode, client, testtype, sampleCollectionMethod, catselected, parselected, data);
-        System.out.println(t);
-        Utils.confirm("Confirm this client? (s/n)");
-        testController.saveTest(t);
-    } catch (IllegalArgumentException ex) {
-        System.out.println(ex.getMessage());
+            t = this.testController.createTest(nhsCode, internalCode, client, testtype, catselected, parselected, data);
+            System.out.println(t);
+            Utils.confirm("Confirm this TEST? (s/n)");
+            testController.saveTest(t);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-}
 }

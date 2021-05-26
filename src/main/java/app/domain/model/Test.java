@@ -36,18 +36,17 @@ public class Test {
      * @param internalCode           - Internal code of the test.
      * @param client                 - Client that performs the test.
      * @param testType               - Test Type of the test.
-     * @param sampleCollectionMethod - Sample collection method of the test.
      * @param parameterCategory      - Category/Categories of the test.
      * @param parameter              - Parameter/Parameters of the test.
      * @param registrationDate       - Test registration date.
      */
-    public Test(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate) {
+    public Test(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
+            parameterCategory, List<Parameter> parameter, Date registrationDate) {
         this.nhsCode = nhsCode;
         this.internalCode = internalCode;
         this.client = client;
         this.testType = testType;
-        this.sampleCollectionMethod = sampleCollectionMethod;
+        this.sampleCollectionMethod = this.testType.getCollectingMethod();
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
         this.registrationDate = registrationDate;
@@ -55,7 +54,7 @@ public class Test {
         this.diagnosisDate = null;
         this.validationDate = null;
         this.samplesCollectionDate = null;
-        this.samples = new ArrayList<>();
+        this.samples = new ArrayList<Sample>();
     }
 
     /**

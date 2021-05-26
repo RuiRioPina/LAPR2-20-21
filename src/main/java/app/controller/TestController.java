@@ -48,15 +48,15 @@ private Test test;
         return  pcs.getParameterCategoriesByList(cat);
     }
 
-    public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                           List<ParameterCategory> parameterCategory, List<Parameter> parameter,Date registrationDate) throws IllegalArgumentException{
+    public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
+            parameterCategory, List<Parameter> parameter,Date registrationDate) throws IllegalArgumentException{
 
         TestStore ts = this.company.getTestStore();
-        Test t = ts.createTest(nhsCode, internalCode, client, testType, sampleCollectionMethod,
-                parameterCategory, parameter, registrationDate);
+        Test t = ts.createTest(nhsCode, internalCode, client, testType,parameterCategory, parameter, registrationDate);
         this.test = t;
         return this.test;
     }
+
     public void saveTest(Test t) {
         TestStore ps = this.company.getTestStore();
         ps.saveTest(t);

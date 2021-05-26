@@ -110,12 +110,15 @@ public class App {
         cs.saveParameterCategory(P3);
         ParameterStore ps = this.company.getParameterStore();
 
-
-        ps.saveParameter(new Parameter("WBC00", "WBC", "White Cell Count", cat));
-        ps.saveParameter(new Parameter("RBC00", "RBC", "Red Blood Count", cat));
-        ps.saveParameter(new Parameter("HB000", "HB", "Haemoglobin", cat1));
-        ps.saveParameter(new Parameter("PLT00", "PLT", "Platelet Count", cat1));
-        ps.saveParameter(new Parameter("IgGAN", "IgC", "Antibodies", cat2));
+        ps.saveParameter(new Parameter("HB000","HB","Haemoglobin",cat));
+        ps.saveParameter(new Parameter("WBC00","WBC","White Cell Count",cat));
+        ps.saveParameter(new Parameter("PLT00","PLT","Platelet Count", cat));
+        ps.saveParameter(new Parameter("RBC00","RBC","Red Blood Count", cat));
+        ps.saveParameter(new Parameter("MCV00","MCV","Mean Cell Volume", cat1));
+        ps.saveParameter(new Parameter("MCH00","MCH","Mean Cell Heaemoglob", cat1));
+        ps.saveParameter(new Parameter("MCHC0","MCHC","MCH Concentration", cat1));
+        ps.saveParameter(new Parameter("ESR00","ESR","Erythrocyte Sed Rate", cat1));
+        ps.saveParameter(new Parameter("IgGAN","IgC","Antibodies", cat2));
 
         List<Parameter> par = new ArrayList<>();
         par.add(ps.getParameters().get(0));
@@ -133,10 +136,10 @@ public class App {
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
-        Test t = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), "Venipuncture", pc, par, data);
+        Test t = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(t);
 
-        Test test = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), "Venipuncture", pc, par, data);
+        Test test = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(test);
         ts.saveSample(test, sample);
 

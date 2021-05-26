@@ -37,10 +37,10 @@ public class TestStore {
         return null;
     }
 
-    public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, String sampleCollectionMethod,
-                           List<ParameterCategory> parameterCategory, List<Parameter> parameter, Date registrationDate) {
+    public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
+            parameterCategory, List<Parameter> parameter, Date registrationDate) {
 
-        return new Test(nhsCode, internalCode, client, testType, sampleCollectionMethod,
+        return new Test(nhsCode, internalCode, client, testType,
                 parameterCategory, parameter, registrationDate);
     }
 
