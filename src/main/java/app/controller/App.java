@@ -77,6 +77,8 @@ public class App {
 
     private void bootstrap()
     {
+
+
         this.authFacade.addUserRole(Constants.ROLE_ADMIN,Constants.ROLE_ADMIN);
         this.authFacade.addUserRole(Constants.ROLE_CLIENT,Constants.ROLE_CLIENT);
         this.authFacade.addUserRole(Constants.ROLE_RECEPTIONIST,Constants.ROLE_RECEPTIONIST);

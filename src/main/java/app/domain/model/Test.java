@@ -236,24 +236,6 @@ public class Test {
         return Objects.equals(this.barcode, t.barcode);
     }
 
-
-    public Test() {
-
-        barcode = 123456789012L;
-        List<ParameterCategory> parameterCategories = new ArrayList<>();
-        ParameterCategory p1 = new ParameterCategory("54321", "HEMOGRAM");
-        parameterCategories.add(p1);
-        parameter.add(new Parameter("HB000", "HB", "Haemoglobin", parameterCategories));
-        parameter.add(new Parameter("WBC00", "WBC", "White Cell Count", parameterCategories));
-        parameter.add(new Parameter("PLT00", "PLT", "Platelet Count", parameterCategories));
-        parameter.add(new Parameter("RBC00", "RBC", "Red Blood Count", parameterCategories));
-        parameter.add(new Parameter("MCV00", "MCV", "Mean Cell Volume", parameterCategories));
-        parameter.add(new Parameter("MCH00", "MCH", "MC Haemoglobin", parameterCategories));
-        parameter.add(new Parameter("MCHC0", "MCHC", "MCHaemoglobinConcen", parameterCategories));
-        parameter.add(new Parameter("ESR00", "ESR", "ErythSedimenRate", parameterCategories));
-        parameter.add(new Parameter("IgGAN", "IgC", "Antibodies", parameterCategories));
-    }
-
     public TestResult addTestResult(Parameter parameter, double result) {
 
         ReferenceValue referenceValue = testType.checkExternalModuleBasedOnTestType(parameter);
@@ -272,7 +254,7 @@ public class Test {
 
     public List<Parameter> getParameterStoreToShow() {
         List<Parameter> parametersToShow = new ArrayList<>();
-            parametersToShow.addAll(this.parameter);
+        parametersToShow.addAll(this.parameter);
         return parametersToShow;
     }
 

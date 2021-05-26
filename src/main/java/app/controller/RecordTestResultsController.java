@@ -29,8 +29,8 @@ public class RecordTestResultsController {
         return tests.getTest(test).getParameterStore();
     }
 
-    public void addTestResult(String parameterCode, double result) {
-        tests.addTestResult(parameterCode, result);
+    public void addTestResult(String parameterCode, double result, Test test) {
+        tests.addTestResult(parameterCode, result, test);
     }
 
 

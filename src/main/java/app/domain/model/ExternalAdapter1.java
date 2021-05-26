@@ -17,5 +17,4 @@ public class ExternalAdapter1 implements ExternalModule {
         return new ReferenceValue(usedMetric, maxValue, minValue);
     }
 
-    //covidAPI.usedMetric("HB001",123456); // exemplo de como usar a A*O
 }

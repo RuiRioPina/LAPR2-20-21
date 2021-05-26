@@ -10,26 +10,24 @@ import java.util.List;
 public class TestStore {
 
     List<Test> tests;
-    Test test = new Test();
-    TestParam testParam = new TestParam(test);
+    TestParam testParam;
     Parameter parameter;
     TestResult testResult;
 
     public TestStore() {
         tests = new ArrayList<>();
-        tests.add(test);
     }
 
     public void addTests(Test test) {
         tests.add(test);
     }
 
-    public List<Parameter> getParameterSelectedList() {
+    public List<Parameter> getParameterSelectedList(Test test) {
         return getTest(test.getBarcode()).getParameterStore();
     }
 
-    public TestResult addTestResult(String parameterCode, double result) {
-
+    public TestResult addTestResult(String parameterCode, double result, Test test) {
+        testParam = new TestParam(test);
 
         if (testParam.findParameterInTestParameter(parameterCode) != null) {
             parameter = testParam.findParameterInTestParameter(parameterCode);
@@ -141,7 +139,7 @@ public class TestStore {
         return App.getInstance().getCompany().getTestStore().getTestsResults(test);
     }
 
-    public boolean findParameter() {
+    public boolean findParameter(Test test) {
         return test.getParameter().contains(parameter);
     }
 

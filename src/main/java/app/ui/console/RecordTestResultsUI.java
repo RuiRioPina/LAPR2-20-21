@@ -41,7 +41,7 @@ public class RecordTestResultsUI implements Runnable {
                 System.out.println("Please insert the result for the intended parameter: ");
                 result = sc.nextDouble();
                 parameterCode = parametersToShow.get(option).getCode();
-                recordTestResultsController.addTestResult(parameterCode, result);
+                recordTestResultsController.addTestResult(parameterCode, result,recordTestResultsController.getTest(barcode));
                 System.out.println("Confirmation: \n");
                 System.out.printf("-Parameter Selected: %s%n", parameterCode);
                 System.out.printf("-Result introduced: %s%n", result);
