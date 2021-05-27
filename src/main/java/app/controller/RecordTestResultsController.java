@@ -4,6 +4,7 @@ import app.domain.model.*;
 import app.domain.store.ResultOfTestStore;
 import app.domain.store.TestStore;
 
+import java.util.Date;
 import java.util.List;
 
 public class RecordTestResultsController {
@@ -50,6 +51,12 @@ public class RecordTestResultsController {
 
     public boolean hasTestPassedSampleCollection(String barcode) {
         return tests.hasTestPassedSampleCollection(barcode);
+    }
+
+    public void setAnalysisDate(String barcode) {
+        Date data = new Date(System.currentTimeMillis());
+
+        tests.getTest(barcode).setChemicalAnalysisDate(data);
     }
 
 

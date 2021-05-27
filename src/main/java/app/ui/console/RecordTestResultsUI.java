@@ -4,6 +4,7 @@ import app.controller.RecordTestResultsController;
 import app.domain.model.Parameter;
 import app.ui.console.utils.Utils;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,11 +38,23 @@ public class RecordTestResultsUI implements Runnable {
             int option = 0;
 
             option = Utils.showAndSelectIndex(parametersToShow, "Select parameter to record the result.");
+            boolean pass = false;
             if ((option >= 0) && (option < parametersToShow.size())) {
-                System.out.println("Please insert the result for the intended parameter: ");
-                result = sc.nextDouble();
+                do {
+                    System.out.println("Please insert the result for the intended parameter: ");
+                    pass = true;
+                    try {
+                        result = sc.nextDouble();
+                    } catch (InputMismatchException e) {
+                        System.out.println("The value of the result of the test can only have numbers. Please try again!");
+                        pass = false;
+                        sc.nextLine();
+                    }
+                } while (!pass);
+
+
                 parameterCode = parametersToShow.get(option).getCode();
-                recordTestResultsController.addTestResult(parameterCode, result,recordTestResultsController.getTest(barcode));
+                recordTestResultsController.addTestResult(parameterCode, result, recordTestResultsController.getTest(barcode));
                 System.out.println("Confirmation: \n");
                 System.out.printf("-Parameter Selected: %s%n", parameterCode);
                 System.out.printf("-Result introduced: %s%n", result);
@@ -67,8 +80,8 @@ public class RecordTestResultsUI implements Runnable {
                 System.out.println(parameter1231);
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-
         }
+        recordTestResultsController.setAnalysisDate(barcode);
     }
 
 }

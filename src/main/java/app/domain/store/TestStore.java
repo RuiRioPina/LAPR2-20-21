@@ -18,13 +18,6 @@ public class TestStore {
         tests = new ArrayList<>();
     }
 
-    public void addTests(Test test) {
-        tests.add(test);
-    }
-
-    public List<Parameter> getParameterSelectedList(Test test) {
-        return getTest(test.getBarcode()).getParameterStore();
-    }
 
     public TestResult addTestResult(String parameterCode, double result, Test test) {
         testParam = new TestParam(test);
@@ -144,10 +137,6 @@ public class TestStore {
 
     public List<TestResult> getTestsResults(Test test) {
         return App.getInstance().getCompany().getTestStore().getTestsResults(test);
-    }
-
-    public boolean findParameter(Test test) {
-        return test.getParameter().contains(parameter);
     }
 
 
