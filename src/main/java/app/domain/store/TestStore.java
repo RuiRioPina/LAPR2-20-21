@@ -195,11 +195,12 @@ public class TestStore {
         return null;
     }
 
-    public void associateToParameter(String parameterCode,String barcode) {
+    public void saveTestResult(String parameterCode,String barcode) {
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters = test.getParameter();
         parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
         parameter.setTestResult(testResult);
+        setChemicalAnalysisDate(test);
     }
 
 

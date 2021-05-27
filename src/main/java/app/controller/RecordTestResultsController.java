@@ -40,8 +40,8 @@ public class RecordTestResultsController {
     }
 
 
-    public void associateToParameter(String parameterCode, String barcode) {
-        tests.associateToParameter(parameterCode, barcode);
+    public void saveTestResult(String parameterCode, String barcode) {
+        tests.saveTestResult(parameterCode, barcode);
     }
 
 

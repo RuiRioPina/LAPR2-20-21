@@ -64,7 +64,7 @@ public class RecordTestResultsUI implements Runnable {
             if (!Utils.confirm("Confirm test result creation (y/n)?")) {
                 return;
             }
-            recordTestResultsController.associateToParameter(parameterCode,barcode);
+            recordTestResultsController.saveTestResult(parameterCode,barcode);
 
 
             parametersSelected = recordTestResultsController.getParameterStoreToShow(barcode);
@@ -80,7 +80,7 @@ public class RecordTestResultsUI implements Runnable {
                 System.out.println(parameter1231);
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            recordTestResultsController.setChemicalAnalysisDate(recordTestResultsController.getTest(barcode));
+
         }
     }
 
