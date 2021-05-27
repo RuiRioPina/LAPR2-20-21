@@ -67,7 +67,6 @@ public class RecordTestResultsUI implements Runnable {
             if (!Utils.confirm("Confirm test result creation (y/n)?")) {
                 return;
             }
-            recordTestResultsController.setChemicalAnalysisDate(recordTestResultsController.getTestByBarcode(barcode));
             recordTestResultsController.saveTestResult(parameterCode,barcode);
 
 
@@ -85,12 +84,7 @@ public class RecordTestResultsUI implements Runnable {
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-            TestStore testStore = App.getInstance().getCompany().getTestStore();
-            List<Test> tests =testStore.getTests();
-            for (Test test :tests) {
-                System.out.println(test);
-            }
-            recordTestResultsController.setChemicalAnalysisDate(recordTestResultsController.getTestByBarcode(barcode));
+
             recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
         }
     }

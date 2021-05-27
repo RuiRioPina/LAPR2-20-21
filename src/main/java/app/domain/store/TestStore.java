@@ -196,6 +196,7 @@ public class TestStore {
         List<Parameter> parameters = test.getParameter();
         parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
         parameter.setTestResult(testResult);
+        test.setChemicalAnalysisDate(new Date(System.currentTimeMillis()));
     }
 
 

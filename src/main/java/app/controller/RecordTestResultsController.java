@@ -65,6 +65,6 @@ public class RecordTestResultsController {
 
 
     public void getDate(Test testByBarcode) {
-        tests.getTest(testByBarcode).getDate();
+        testByBarcode.getDate();
     }
 }
