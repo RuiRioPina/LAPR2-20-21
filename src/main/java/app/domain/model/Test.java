@@ -200,6 +200,11 @@ public class Test {
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate!= null && validationDate==null){
             str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
         }
+
+        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
+            str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
+        }
+
         return str;
     }
 
@@ -276,4 +281,7 @@ public class Test {
     }
 
 
+    public void getDate() {
+        System.out.println(this.chemicalAnalysisDate);
+    }
 }

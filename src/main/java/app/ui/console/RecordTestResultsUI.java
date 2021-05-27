@@ -1,7 +1,10 @@
 package app.ui.console;
 
+import app.controller.App;
 import app.controller.RecordTestResultsController;
 import app.domain.model.Parameter;
+import app.domain.model.Test;
+import app.domain.store.TestStore;
 import app.ui.console.utils.Utils;
 
 import java.util.InputMismatchException;
@@ -64,6 +67,7 @@ public class RecordTestResultsUI implements Runnable {
             if (!Utils.confirm("Confirm test result creation (y/n)?")) {
                 return;
             }
+            recordTestResultsController.setChemicalAnalysisDate(recordTestResultsController.getTestByBarcode(barcode));
             recordTestResultsController.saveTestResult(parameterCode,barcode);
 
 
@@ -81,6 +85,13 @@ public class RecordTestResultsUI implements Runnable {
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
+            TestStore testStore = App.getInstance().getCompany().getTestStore();
+            List<Test> tests =testStore.getTests();
+            for (Test test :tests) {
+                System.out.println(test);
+            }
+            recordTestResultsController.setChemicalAnalysisDate(recordTestResultsController.getTestByBarcode(barcode));
+            recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
         }
     }
 
