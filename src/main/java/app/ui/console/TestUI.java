@@ -30,39 +30,57 @@ public class TestUI implements Runnable {
         String testCode = String.format("%012d", internalCode);
 
         String nhsCode;
-
+        boolean val = false;
+        List <Test> test = testController.getTests();
         do{
             System.out.println("Insert test NHS code.");
             nhsCode = sc.nextLine();
+
             if (nhsCode.length() != 12 ||!nhsCode.matches("^[a-zA-Z0-9]*$")) {
                 System.out.println("NHS code has 12 alphanumeric characters. Try again.");
             }
-        } while (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$"));
 
-        long ccn;
-        String str;
-        do {
-            System.out.println("Insert client citizen card number.");
-            ccn = sc.nextLong();
-            str = "" + ccn;
-            if (str.length() != 16){
-                System.out.println("CCN is a 16 digit number. Try again.");
+            for(int i=0;i<test.size();i++){
+                if (nhsCode.equals(test.get(i).getNhsCode())) {
+                    val = true;
+                    System.out.println("NHS code is already linked to a test. Try again.");
+                    break;
+                }else{
+                    val = false;
+                }
             }
-        } while (str.length() != 16);
+        } while (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$")|| val);
 
-        // CLIENT
+
+
         List<Client> clist = this.testController.getClients();
-        Client client = new Client();
+        Client client = null;
+        long tin;
+        String str;
+        boolean valid = false;
+        do {
+            System.out.println("Insert client's TIN.");
+            tin = sc.nextLong();
+            str = "" + tin;
 
-        for(int i=0;i<clist.size();i++){
-            if(ccn == clist.get(i).getCcn()){
-                System.out.println();
-                System.out.println(clist.get(i));
-                Utils.confirm("Confirm this client? (s/n)"); //change Utils to y/n
-                client = clist.get(i);
+            if (str.length() != 10){
+                System.out.println("TIN is a 10 digit number.");
             }
-        }
 
+            for (int i = 0; i < clist.size(); i++) {
+                if (tin == clist.get(i).getTin()) {
+                    client = clist.get(i);
+                    valid = true;
+                    break;
+                } else {
+                    System.out.println("There is no client registered with this TIN. Try again.");
+                    valid = false;
+                }
+            }
+        } while(str.length() != 10|| !valid);
+
+        String cl = "" + client;
+        System.out.println('\n' + cl);
         System.out.println('\n' +"Lab Order Information" + '\n');
 
         //TEST TYPES
@@ -77,7 +95,7 @@ public class TestUI implements Runnable {
             testtype = ttlist.get(opt);
         }
 
-        String sampleCollectionMethod = testtype.getCollectingMethod();
+        assert testtype != null;
         List <ParameterCategory> cat = testtype.getParameterCategories();
 
         List <ParameterCategory> categories = testController.getCategoriesByList(cat);
