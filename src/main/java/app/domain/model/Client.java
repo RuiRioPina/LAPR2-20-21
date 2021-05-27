@@ -131,11 +131,11 @@ public class Client {
     @Override
     public String toString() {
         if (this.sex == null || this.sex.equals(".")) {
-            return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s, his tin is %d, and his email is %s",
-                    this.name, this.ccn, this.nhsNumber, this.birthDate, this.tin, this.email);
+            return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s, his tin is %d, his phonenumber %d and his email is %s",
+                    this.name, this.ccn, this.nhsNumber, this.birthDate, this.tin, this.phoneNumber, this.email);
         }
-        return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s , his sex is %s, his tin is %d, and his email is %s",
-                this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.email);
+        return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s , his sex is %s, his tin is %d, his phonenumber %d and his email is %s",
+                this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.phoneNumber, this.email);
     }
 
     /**

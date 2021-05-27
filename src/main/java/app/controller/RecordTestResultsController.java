@@ -25,6 +25,10 @@ public class RecordTestResultsController {
     public Test getTest(String barcode) {
         return tests.getTest(barcode);
     }
+    public Test getTestByBarcode(String barcode) {
+        return tests.getTestByBarcode(barcode);
+    }
+
 
     public List<Parameter> getListOfParametersSelected(Test test) {
         return tests.getTest(test).getParameterStore();
@@ -35,18 +39,18 @@ public class RecordTestResultsController {
     }
 
 
-    public void associateToParameter() {
-        tests.associateToParameter();
+    public void associateToParameter(String parameterCode,String barcode) {
+        tests.associateToParameter(parameterCode,barcode);
     }
 
 
-    public List<Parameter> getParameterStoreToShow(Test test) {
-        return tests.getTest(test).getParameterStoreToShow();
+    public List<Parameter> getParameterStoreToShow(String barcode) {
+        return tests.getParameterTestToShow(barcode);
     }
 
 
-    public List<Parameter> getValidatedTests(String parameterCode) {
-        return tests.getValidatedTests(parameterCode);
+    public List<Parameter> getValidatedTests(String parameterCode,String barcode) {
+        return tests.getValidatedTests(parameterCode,barcode);
     }
 
     public boolean hasTestPassedSampleCollection(String barcode) {
@@ -56,7 +60,7 @@ public class RecordTestResultsController {
     public void setAnalysisDate(String barcode) {
         Date data = new Date(System.currentTimeMillis());
 
-        tests.getTest(barcode).setChemicalAnalysisDate(data);
+        tests.getTestByBarcode(barcode).setChemicalAnalysisDate(data);
     }
 
 

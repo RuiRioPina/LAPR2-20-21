@@ -20,5 +20,13 @@ public class TestParam {
         }
         return null; // not found
     }
+    public Parameter findParameterInTestParameter(String parameterCode,List<Parameter> parameters) {
+        for (Parameter parameter : parameters) {
+            if (parameter.getCode().equals(parameterCode)) {
+                return parameter;
+            }
+        }
+        return null; // not found
+    }
 
 }

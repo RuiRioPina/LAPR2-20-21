@@ -98,7 +98,6 @@ public class RegisterClientUI implements Runnable {
         } while (!result);
 
         result = false;
-
         do {
             try {
                 System.out.println("Enter the Client's Tax Identification Number (10 digits): ");
@@ -157,9 +156,9 @@ public class RegisterClientUI implements Runnable {
 
         Client clt;
         if (sex.trim().isEmpty()) {
-            clt = registerClientController.createClient(ccn, nhsNumber, birthDate, tin, phoneNumber, email, name);
+            clt = registerClientController.createClient(ccn, nhsNumber, birthDate,phoneNumber , tin, email, name);
         } else {
-            clt = registerClientController.createClient(ccn, nhsNumber, birthDate, sex, tin, phoneNumber, email, name);
+            clt = registerClientController.createClient(ccn, nhsNumber, birthDate, sex,phoneNumber, tin , email, name);
         }
 
         registerClientController.showClient(clt);

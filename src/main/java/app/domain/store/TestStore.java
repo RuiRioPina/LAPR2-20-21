@@ -117,12 +117,28 @@ public class TestStore {
         return false;
     }
 
+    public Test getTestByBarcode(String barcode) {
+        for (Test t : this.tests) {
+            for (Sample samplesOfATest : t.getSamples()) {
+                if (samplesOfATest.getBarcode().equals(barcode)) {
+                    return t;
+                }
+            }
+        }
+        return null;
+    }
+
     private boolean testExists(Test test) {
         return tests.contains(test);
     }
 
     public boolean hasTestPassedSampleCollection(String barcode) {
         return getTest(barcode).getSamplesCollectionDate() != null;
+    }
+
+    public List<Parameter> getParameterTestToShow(String barcode) {
+        Test test = getTestByBarcode(barcode);
+        return test.getParameterStoreToShow();
     }
 
     public Test getTest(String barcode) {
@@ -150,8 +166,10 @@ public class TestStore {
 
     List<Parameter> validatedParameterList = new ArrayList<>();
 
-    public List<Parameter> getValidatedTests(String parameterCode) {
-        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode);
+    public List<Parameter> getValidatedTests(String parameterCode,String barcode) {
+        Test test = getTestByBarcode(barcode);
+        List<Parameter> parameters =test.getParameter();
+        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
         TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
 
         if (isTestResultInBetweenReferenceValue(testResultBeingValidated)) {
@@ -172,7 +190,11 @@ public class TestStore {
         return null;
     }
 
-    public void associateToParameter() {
+    public void associateToParameter(String parameterCode,String barcode) {
+        Test test = getTestByBarcode(barcode);
+        List<Parameter> parameters = test.getParameter();
+
+        parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
         parameter.setTestResult(testResult);
     }
 
