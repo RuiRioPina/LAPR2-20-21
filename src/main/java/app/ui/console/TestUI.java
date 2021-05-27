@@ -1,5 +1,6 @@
 package app.ui.console;
 
+import app.controller.App;
 import app.controller.TestController;
 import app.domain.model.*;
 import app.ui.console.utils.Utils;
@@ -13,12 +14,9 @@ import java.util.Scanner;
 public class TestUI implements Runnable {
     static Scanner sc = new Scanner(System.in);
     private final TestController testController;
-    private final Company cmp;
-
 
     public TestUI() {
         this.testController = new TestController();
-        this.cmp = new Company("Company");
     }
 
     @Override
@@ -89,22 +87,23 @@ public class TestUI implements Runnable {
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
+
     }
 
     private String generateTestCode() {
-        int internalCode = cmp.getTestCode();
+        int internalCode = App.getInstance().getCompany().getTestCode();
         internalCode++;
-        cmp.setTestCode(internalCode);
+        App.getInstance().getCompany().setTestCode(internalCode);
         return String.format("%012d", internalCode);
     }
 
     private String nhsCode() {
+        List <Test> test = testController.getTests();
         String nhsCode;
         boolean val = false;
-        List <Test> test = testController.getTests();
         do{
             System.out.println("Insert test NHS code.");
-            nhsCode = sc.nextLine();
+            nhsCode = sc.next();
 
             if (nhsCode.length() != 12 ||!nhsCode.matches("^[a-zA-Z0-9]*$")) {
                 System.out.println("NHS code has 12 alphanumeric characters. Try again.");

@@ -156,11 +156,6 @@ public class App {
         lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level", Constants.ROLE_MEDICAL_LAB_TECHNICIAN, "MDT"));
         lRole.add(lRole.create("Coordinates the activity on the laboratory", Constants.ROLE_LABORATORY_COORDINATOR, "LC"));
         lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
-        lRole.add(lRole.create("Receives the client", Constants.ROLE_RECEPTIONIST, "REC"));
-        lRole.add(lRole.create("Performs Chemical Analysis and records results", Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST, "CCT"));
-        lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level", Constants.ROLE_MEDICAL_LAB_TECHNICIAN, "MDT"));
-        lRole.add(lRole.create("Coordinates the activity on the laboratory", Constants.ROLE_LABORATORY_COORDINATOR, "LC"));
-        lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
         Test t2 = new Test("123456abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         t2.setSamplesCollectionDate(data);
         t2.setChemicalAnalysisDate(data);
