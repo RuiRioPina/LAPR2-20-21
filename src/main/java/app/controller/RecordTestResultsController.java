@@ -25,6 +25,7 @@ public class RecordTestResultsController {
     public Test getTest(String barcode) {
         return tests.getTest(barcode);
     }
+
     public Test getTestByBarcode(String barcode) {
         return tests.getTestByBarcode(barcode);
     }
@@ -39,8 +40,8 @@ public class RecordTestResultsController {
     }
 
 
-    public void associateToParameter(String parameterCode,String barcode) {
-        tests.associateToParameter(parameterCode,barcode);
+    public void associateToParameter(String parameterCode, String barcode) {
+        tests.associateToParameter(parameterCode, barcode);
     }
 
 
@@ -49,8 +50,8 @@ public class RecordTestResultsController {
     }
 
 
-    public List<Parameter> getValidatedTests(String parameterCode,String barcode) {
-        return tests.getValidatedTests(parameterCode,barcode);
+    public List<Parameter> getValidatedTests(String parameterCode, String barcode) {
+        return tests.getValidatedTests(parameterCode, barcode);
     }
 
     public boolean hasTestPassedSampleCollection(String barcode) {
