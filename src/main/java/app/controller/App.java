@@ -139,7 +139,11 @@ public class App {
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
 
-
+        Test testSemSample1 = new Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample2 = new Test("123454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        ts.saveTest(testSemSample1);
+        ts.saveTest(testSemSample2);
+        
         Test test = new Test("123454abcdef", "999992999999", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("121454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(test);
