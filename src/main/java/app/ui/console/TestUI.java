@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 
 public class TestUI implements Runnable {
-
+    static Scanner sc = new Scanner(System.in);
     private final TestController testController;
     private final Company cmp;
 
@@ -23,12 +23,82 @@ public class TestUI implements Runnable {
 
     @Override
     public void run() {
-        Scanner sc = new Scanner(System.in);
+        String testCode = generateTestCode();
+        String nhsCode = nhsCode();
+        Client client = clientByTIN();
+
+        String cl = "" + client;
+        System.out.println('\n' + cl);
+
+        System.out.println('\n' +"Lab Order Information" + '\n');
+
+        TestType testtype = null;
+        List <TestType> ttlist = this.testController.getTestTypes();
+
+        int opt = 0;
+        opt = Utils.showAndSelectIndex(ttlist, "Select the Test Type.");
+
+        if ( (opt >= 0) && (opt < ttlist.size()))
+        {
+            testtype = ttlist.get(opt);
+        }
+
+        assert testtype != null;
+        List <ParameterCategory> cat = testtype.getParameterCategories();
+
+        List <ParameterCategory> categories = testController.getCategoriesByList(cat);
+        List <ParameterCategory> catselected = new ArrayList<>();
+        ParameterCategory categorySelected = null;
+        int opT = 0;
+
+        List<Parameter> plist;
+        List<Parameter> parselected = new ArrayList<>();
+        Parameter parameter;
+        int op = 0;
+
+        do {
+            opT = Utils.showAndSelectIndex(categories, "Select the Category.");
+
+            if ((opT >= 0) && (opT < categories.size()))
+            {
+                categorySelected = categories.get(opT);
+                catselected.add(categorySelected);
+                categories.remove(opT);
+            }
+
+            plist = testController.getParameterByCategory(categorySelected);
+            do {
+                op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
+
+                if ((op >= 0) && (op < plist.size())) {
+                    parameter = plist.get(op);
+                    parselected.add(parameter);
+                    plist.remove(op);
+                }
+            } while (!plist.isEmpty() && op != -1);
+        } while (opT != -1 && !categories.isEmpty());
+
+        Test t;
+        try {
+            Date data = new Date(System.currentTimeMillis());
+
+            t = this.testController.createTest(nhsCode, testCode, client, testtype, catselected, parselected, data);
+            System.out.println(t);
+            Utils.confirm("Confirm this TEST? (y/n)");
+            testController.saveTest(t);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private String generateTestCode() {
         int internalCode = cmp.getTestCode();
         internalCode++;
         cmp.setTestCode(internalCode);
-        String testCode = String.format("%012d", internalCode);
+        return String.format("%012d", internalCode);
+    }
 
+    private String nhsCode() {
         String nhsCode;
         boolean val = false;
         List <Test> test = testController.getTests();
@@ -50,9 +120,10 @@ public class TestUI implements Runnable {
                 }
             }
         } while (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$")|| val);
+        return nhsCode;
+    }
 
-
-
+    private Client clientByTIN() {
         List<Client> clist = this.testController.getClients();
         Client client = null;
         long tin;
@@ -78,70 +149,6 @@ public class TestUI implements Runnable {
                 }
             }
         } while(str.length() != 10|| !valid);
-
-        String cl = "" + client;
-        System.out.println('\n' + cl);
-        System.out.println('\n' +"Lab Order Information" + '\n');
-
-        //TEST TYPES
-        TestType testtype = null;
-        List <TestType> ttlist = this.testController.getTestTypes();
-
-        int opt = 0;
-        opt = Utils.showAndSelectIndex(ttlist, "Select the Test Type.");
-
-        if ( (opt >= 0) && (opt < ttlist.size()))
-        {
-            testtype = ttlist.get(opt);
-        }
-
-        assert testtype != null;
-        List <ParameterCategory> cat = testtype.getParameterCategories();
-
-        List <ParameterCategory> categories = testController.getCategoriesByList(cat);
-        int opT = 0;
-
-        List<Parameter> plist;
-        int op = 0;
-
-        List <ParameterCategory> catselected = new ArrayList<>();
-        List<Parameter> parselected = new ArrayList<>();
-        ParameterCategory categorySelected = null;
-        Parameter parameter;
-
-        do {
-            opT = Utils.showAndSelectIndex(categories, "Select the Category.");
-
-            if ((opT >= 0) && (opT < categories.size()))
-            {
-                categorySelected = categories.get(opT);
-                catselected.add(categorySelected);
-                categories.remove(opT);
-            }
-
-            plist = testController.getParameterByCategory(categorySelected);
-            do {
-                op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
-
-                if ((op >= 0) && (op < plist.size())) {
-                    parameter = plist.get(op);
-                    parselected.add(parameter);
-                    plist.remove(op);
-                }
-            } while (!plist.isEmpty() && op != -1);
-        } while (opT != -1 && !categories.isEmpty());
-
-        //TEST
-        Test t;
-        try {
-            Date data = new Date(System.currentTimeMillis());
-
-            t = this.testController.createTest(nhsCode, testCode, client, testtype, catselected, parselected, data);
-            System.out.println(t);
-            Utils.confirm("Confirm this TEST? (y/n)");
-            testController.saveTest(t);
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
-        }
+        return client;
     }
 }
