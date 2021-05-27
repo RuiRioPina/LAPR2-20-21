@@ -230,7 +230,7 @@ public class TestStore {
     public List<Test> getTestsWithoutDiagnosis() {
         List<Test> complete = new ArrayList<>();
         for (Test t : this.tests) {
-            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() == null) {
+            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate()==null && t.getDiagnosisDate() == null) {
                 complete.add(t);
             }
         }

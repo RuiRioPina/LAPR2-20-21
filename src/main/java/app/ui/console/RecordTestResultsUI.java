@@ -84,7 +84,7 @@ public class RecordTestResultsUI implements Runnable {
 
 
             recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
-            recordTestResultsController.saveTest(recordTestResultsController.getTestByBarcode(barcode));
+
 
         }
     }
