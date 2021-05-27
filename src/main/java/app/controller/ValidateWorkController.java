@@ -23,7 +23,9 @@ public class ValidateWorkController {
     }
     public void askConfirmation(String selectedTestString){
         List<Test> lTestsToBeValidated=getTestsToBeValidated(selectedTestString);
-        System.out.println(lTestsToBeValidated);
+        for (int i =0;i<lTestsToBeValidated.size();i++){
+            System.out.println(lTestsToBeValidated.get(i).getInternalCode());
+        }
         System.out.println("Are you sure you want to confirm the previous tests:(Y/N)");
     }
     public List<Test> getTestsToBeValidated(String selectedTestString){
