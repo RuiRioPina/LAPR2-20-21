@@ -53,7 +53,11 @@ public class Test {
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
         this.registrationDate = registrationDate;
-        this.chemicalAnalysisDate = null;
+        if(getTestResult()==null) {
+            this.chemicalAnalysisDate = null;
+        }else {
+            this.chemicalAnalysisDate = new Date(System.currentTimeMillis());
+        }
         this.diagnosisDate = null;
         this.validationDate = null;
         this.samplesCollectionDate = null;

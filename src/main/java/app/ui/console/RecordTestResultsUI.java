@@ -3,8 +3,6 @@ package app.ui.console;
 import app.controller.App;
 import app.controller.RecordTestResultsController;
 import app.domain.model.Parameter;
-import app.domain.model.Test;
-import app.domain.store.TestStore;
 import app.ui.console.utils.Utils;
 
 import java.util.InputMismatchException;
@@ -86,6 +84,8 @@ public class RecordTestResultsUI implements Runnable {
 
 
             recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
+            recordTestResultsController.saveTest(recordTestResultsController.getTestByBarcode(barcode));
+
         }
     }
 
