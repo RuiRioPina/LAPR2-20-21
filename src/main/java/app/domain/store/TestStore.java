@@ -106,6 +106,11 @@ public class TestStore {
         t.setSamplesCollectionDate(new Date(System.currentTimeMillis()));
     }
 
+    private void setChemicalAnalysisDate(Test test) {
+        Date date = new Date(System.currentTimeMillis());
+        test.setChemicalAnalysisDate(date);
+    }
+
     public boolean testExists(String barcode) {
         for (Test t : this.tests) {
             for (Sample samplesOfATest : t.getSamples()) {
@@ -193,10 +198,11 @@ public class TestStore {
     public void associateToParameter(String parameterCode,String barcode) {
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters = test.getParameter();
-
         parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
         parameter.setTestResult(testResult);
     }
+
+
 
     private boolean isUnvalidatedTest(Test t) {
         return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;

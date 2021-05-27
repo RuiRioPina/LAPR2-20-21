@@ -58,10 +58,9 @@ public class RecordTestResultsController {
         return tests.hasTestPassedSampleCollection(barcode);
     }
 
-    public void setAnalysisDate(String barcode) {
+    public void setChemicalAnalysisDate(Test test) {
         Date data = new Date(System.currentTimeMillis());
-
-        tests.getTestByBarcode(barcode).setChemicalAnalysisDate(data);
+        tests.getTest(test).setChemicalAnalysisDate(data);
     }
 
 

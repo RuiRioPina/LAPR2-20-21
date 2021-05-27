@@ -80,8 +80,8 @@ public class RecordTestResultsUI implements Runnable {
                 System.out.println(parameter1231);
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            recordTestResultsController.setChemicalAnalysisDate(recordTestResultsController.getTest(barcode));
         }
-        recordTestResultsController.setAnalysisDate(barcode);
     }
 
 }
