@@ -21,7 +21,6 @@ public class TestUI implements Runnable {
 
     @Override
     public void run() {
-        String testCode = generateTestCode();
         String nhsCode = nhsCode();
         Client client = clientByTIN();
 
@@ -30,57 +29,57 @@ public class TestUI implements Runnable {
 
         System.out.println('\n' +"Lab Order Information" + '\n');
 
-        TestType testtype = null;
-        List <TestType> ttlist = this.testController.getTestTypes();
+        TestType tt = null;
+        List <TestType> ltt = this.testController.getTestTypes();
 
         int opt = 0;
-        opt = Utils.showAndSelectIndex(ttlist, "Select the Test Type.");
+        opt = Utils.showAndSelectIndex(ltt, "Select the Test Type.");
 
-        if ( (opt >= 0) && (opt < ttlist.size()))
+        if ( (opt >= 0) && (opt < ltt.size()))
         {
-            testtype = ttlist.get(opt);
+            tt = ltt.get(opt);
         }
 
-        assert testtype != null;
-        List <ParameterCategory> cat = testtype.getParameterCategories();
+        assert tt != null;
+        List <ParameterCategory> cat = tt.getParameterCategories();
 
-        List <ParameterCategory> categories = testController.getCategoriesByList(cat);
-        List <ParameterCategory> catselected = new ArrayList<>();
-        ParameterCategory categorySelected = null;
+        List <ParameterCategory> lc = testController.getCategoriesByList(cat);
+        List <ParameterCategory> lcs = new ArrayList<>();
+        ParameterCategory c = null;
         int opT = 0;
 
-        List<Parameter> plist;
-        List<Parameter> parselected = new ArrayList<>();
+        List<Parameter> lp;
+        List<Parameter> lps = new ArrayList<>();
         Parameter parameter;
         int op = 0;
 
         do {
-            opT = Utils.showAndSelectIndex(categories, "Select the Category.");
+            opT = Utils.showAndSelectIndex(lc, "Select the Category.");
 
-            if ((opT >= 0) && (opT < categories.size()))
+            if ((opT >= 0) && (opT < lc.size()))
             {
-                categorySelected = categories.get(opT);
-                catselected.add(categorySelected);
-                categories.remove(opT);
+                c = lc.get(opT);
+                lcs.add(c);
+                lc.remove(opT);
             }
 
-            plist = testController.getParameterByCategory(categorySelected);
+            lp = testController.getParameterByCategory(c);
             do {
-                op = Utils.showAndSelectIndex(plist, "Select the Parameters.");
+                op = Utils.showAndSelectIndex(lp, "Select the Parameters.");
 
-                if ((op >= 0) && (op < plist.size())) {
-                    parameter = plist.get(op);
-                    parselected.add(parameter);
-                    plist.remove(op);
+                if ((op >= 0) && (op < lp.size())) {
+                    parameter = lp.get(op);
+                    lps.add(parameter);
+                    lp.remove(op);
                 }
-            } while (!plist.isEmpty() && op != -1);
-        } while (opT != -1 && !categories.isEmpty());
+            } while (!lp.isEmpty() && op != -1);
+        } while (opT != -1 && !lc.isEmpty());
 
+        String testCode = generateTestCode();
         Test t;
         try {
-            Date data = new Date(System.currentTimeMillis());
-
-            t = this.testController.createTest(nhsCode, testCode, client, testtype, catselected, parselected, data);
+            Date rDate = new Date(System.currentTimeMillis());
+            t = this.testController.createTest(nhsCode, testCode, client, tt, lcs, lps, rDate);
             System.out.println(t);
             Utils.confirm("Confirm this TEST? (y/n)");
             testController.saveTest(t);
@@ -123,7 +122,7 @@ public class TestUI implements Runnable {
     }
 
     private Client clientByTIN() {
-        List<Client> clist = this.testController.getClients();
+        List<Client> lcl = this.testController.getClients();
         Client client = null;
         long tin;
         String str;
@@ -137,9 +136,9 @@ public class TestUI implements Runnable {
                 System.out.println("TIN is a 10 digit number.");
             }
 
-            for (int i = 0; i < clist.size(); i++) {
-                if (tin == clist.get(i).getTin()) {
-                    client = clist.get(i);
+            for (int i = 0; i < lcl.size(); i++) {
+                if (tin == lcl.get(i).getTin()) {
+                    client = lcl.get(i);
                     valid = true;
                     break;
                 } else {

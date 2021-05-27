@@ -20,13 +20,13 @@ private Test test;
     }
 
     public List<Client> getClients() {
-        ClientList cl = this.company.getClientList();
-        return cl.getClients();
+        ClientList cList = this.company.getClientList();
+        return cList.getClients();
     }
 
     public List<TestType> getTestTypes(){
-        TestTypeStore tt = this.company.getTestTypeStore();
-        return tt.getTestTypes();
+        TestTypeStore ttStore = this.company.getTestTypeStore();
+        return ttStore.getTestTypes();
     }
 
     public List <Parameter> getParameters(){
@@ -44,21 +44,21 @@ private Test test;
     }
 
     public List<ParameterCategory> getCategoriesByList(List <ParameterCategory> cat) {
-        ParameterCategoryStore pcs = this.company.getParameterCategoryStore();
-        return  pcs.getParameterCategoriesByList(cat);
+        ParameterCategoryStore pcStore = this.company.getParameterCategoryStore();
+        return  pcStore.getParameterCategoriesByList(cat);
     }
 
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
             parameterCategory, List<Parameter> parameter,Date registrationDate) throws IllegalArgumentException{
 
-        TestStore ts = this.company.getTestStore();
-        Test t = ts.createTest(nhsCode, internalCode, client, testType,parameterCategory, parameter, registrationDate);
+        TestStore tStore = this.company.getTestStore();
+        Test t = tStore.createTest(nhsCode, internalCode, client, testType,parameterCategory, parameter, registrationDate);
         this.test = t;
         return this.test;
     }
 
     public void saveTest(Test t) {
-        TestStore ps = this.company.getTestStore();
-        ps.saveTest(t);
+        TestStore tStore = this.company.getTestStore();
+        tStore.saveTest(t);
     }
 }
