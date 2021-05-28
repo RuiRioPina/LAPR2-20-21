@@ -86,9 +86,15 @@ public class TestType {
 
     public ReferenceValue checkExternalModuleBasedOnTestType(Parameter parameterCode) {
         Class<?> oClass = null;
+        ExternalModule em;
         try {
-            oClass = Class.forName("app.domain.model.ExternalAdapter2");
-            ExternalModule em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+            if(parameterCode.getCode().equals("IgGAN")){
+                oClass = Class.forName("app.domain.model.ExternalAdapter1");
+                em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+            }else {
+                oClass = Class.forName("app.domain.model.ExternalAdapter2");
+                em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+            }
             return em.getReferenceValue(parameterCode);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();

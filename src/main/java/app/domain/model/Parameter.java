@@ -17,6 +17,14 @@ public class Parameter {
         return testResult;
     }
 
+    public Parameter(Parameter another) {
+        this.code = another.getCode();
+        this.shortname = another.getShortname();
+        this.description = another.getDescription();
+        this.pc = another.getPc();
+        this.testResult = null;
+    }
+
     /**
      * Constructor for the parameter.
      *

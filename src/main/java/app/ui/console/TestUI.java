@@ -11,9 +11,15 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class TestUI implements Runnable {
+public class TestUI implements Runnable, Cloneable {
     static Scanner sc = new Scanner(System.in);
     private final TestController testController;
+    private Parameter parameter;
+
+    public Parameter cloneParameter(Parameter another) {
+        this.parameter = another; // you can access
+        return parameter;
+    }
 
     public TestUI() {
         this.testController = new TestController();
@@ -27,24 +33,23 @@ public class TestUI implements Runnable {
         String cl = "" + client;
         System.out.println('\n' + cl);
 
-        System.out.println('\n' +"Lab Order Information" + '\n');
+        System.out.println('\n' + "Lab Order Information" + '\n');
 
         TestType tt = null;
-        List <TestType> ltt = this.testController.getTestTypes();
+        List<TestType> ltt = this.testController.getTestTypes();
 
         int opt = 0;
         opt = Utils.showAndSelectIndex(ltt, "Select the Test Type.");
 
-        if ( (opt >= 0) && (opt < ltt.size()))
-        {
+        if ((opt >= 0) && (opt < ltt.size())) {
             tt = ltt.get(opt);
         }
 
         assert tt != null;
-        List <ParameterCategory> cat = tt.getParameterCategories();
+        List<ParameterCategory> cat = tt.getParameterCategories();
 
-        List <ParameterCategory> lc = testController.getCategoriesByList(cat);
-        List <ParameterCategory> lcs = new ArrayList<>();
+        List<ParameterCategory> lc = testController.getCategoriesByList(cat);
+        List<ParameterCategory> lcs = new ArrayList<>();
         ParameterCategory c = null;
         int opT = 0;
 
@@ -56,8 +61,7 @@ public class TestUI implements Runnable {
         do {
             opT = Utils.showAndSelectIndex(lc, "Select the Category.");
 
-            if ((opT >= 0) && (opT < lc.size()))
-            {
+            if ((opT >= 0) && (opT < lc.size())) {
                 c = lc.get(opT);
                 lcs.add(c);
                 lc.remove(opT);
@@ -69,17 +73,19 @@ public class TestUI implements Runnable {
 
                 if ((op >= 0) && (op < lp.size())) {
                     parameter = lp.get(op);
-                    lps.add(parameter);
+                    Parameter cloned = new Parameter(parameter);
+                    lps.add(cloned);
                     lp.remove(op);
                 }
             } while (!lp.isEmpty() && op != -1);
         } while (opT != -1 && !lc.isEmpty());
+        List<Parameter> parameters = new ArrayList<>(lps);
 
         String testCode = generateTestCode();
         Test t;
         try {
             Date rDate = new Date(System.currentTimeMillis());
-            t = this.testController.createTest(nhsCode, testCode, client, tt, lcs, lps, rDate);
+            t = this.testController.createTest(nhsCode, testCode, client, tt, lcs, parameters, rDate);
             System.out.println(t);
             Utils.confirm("Confirm this TEST? (y/n)");
             testController.saveTest(t);
@@ -97,27 +103,27 @@ public class TestUI implements Runnable {
     }
 
     private String nhsCode() {
-        List <Test> test = testController.getTests();
+        List<Test> test = testController.getTests();
         String nhsCode;
         boolean val = false;
-        do{
+        do {
             System.out.println("Insert test NHS code.");
             nhsCode = sc.next();
 
-            if (nhsCode.length() != 12 ||!nhsCode.matches("^[a-zA-Z0-9]*$")) {
+            if (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$")) {
                 System.out.println("NHS code has 12 alphanumeric characters. Try again.");
             }
 
-            for(int i=0;i<test.size();i++){
+            for (int i = 0; i < test.size(); i++) {
                 if (nhsCode.equals(test.get(i).getNhsCode())) {
                     val = true;
                     System.out.println("NHS code is already linked to a test. Try again.");
                     break;
-                }else{
+                } else {
                     val = false;
                 }
             }
-        } while (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$")|| val);
+        } while (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$") || val);
         return nhsCode;
     }
 
@@ -132,7 +138,7 @@ public class TestUI implements Runnable {
             tin = sc.nextLong();
             str = "" + tin;
 
-            if (str.length() != 10){
+            if (str.length() != 10) {
                 System.out.println("TIN is a 10 digit number.");
             }
 
@@ -146,7 +152,7 @@ public class TestUI implements Runnable {
                     valid = false;
                 }
             }
-        } while(str.length() != 10|| !valid);
+        } while (str.length() != 10 || !valid);
         return client;
     }
 }

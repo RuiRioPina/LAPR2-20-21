@@ -12,11 +12,6 @@ public class TestResult {
         this.referenceValue = referenceValue;
     }
 
-    public TestResult(double result, ReferenceValue refValue) {
-        this.result = result;
-        this.referenceValue = refValue;
-    }
-
     public double getResult() {
         return result;
     }

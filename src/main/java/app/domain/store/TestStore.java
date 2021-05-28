@@ -165,16 +165,16 @@ public class TestStore {
 
     }
 
-    List<Parameter> validatedParameterList = new ArrayList<>();
 
-    public List<Parameter> getValidatedTests(String parameterCode,String barcode) {
+    public List<Parameter> getValidatedParameters(String parameterCode,String barcode) {
+        List<Parameter> validatedParameterList = new ArrayList<>();
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters =test.getParameter();
         Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
         TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
 
         if (isTestResultInBetweenReferenceValue(testResultBeingValidated)) {
-            validatedParameterList.add(parameter);
+            validatedParameterList.add(parameterFromWhichTestResultWillBeExtracted);
         }
 
         return validatedParameterList;

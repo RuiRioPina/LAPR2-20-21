@@ -1,10 +1,10 @@
 package app.ui.console;
 
-import app.controller.App;
 import app.controller.RecordTestResultsController;
 import app.domain.model.Parameter;
 import app.ui.console.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +19,7 @@ public class RecordTestResultsUI implements Runnable {
     public void run() {
         List<Parameter> parametersToShow;
         List<Parameter> parametersSelected;
+
         String barcode;
         double result = 0;
         String parameterCode = "";
@@ -65,7 +66,7 @@ public class RecordTestResultsUI implements Runnable {
             if (!Utils.confirm("Confirm test result creation (y/n)?")) {
                 return;
             }
-            recordTestResultsController.saveTestResult(parameterCode,barcode);
+            recordTestResultsController.saveTestResult(parameterCode, barcode);
 
 
             parametersSelected = recordTestResultsController.getParameterStoreToShow(barcode);
@@ -75,13 +76,12 @@ public class RecordTestResultsUI implements Runnable {
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             parametersToShow.remove(option);
-            List<Parameter> yau = recordTestResultsController.getValidatedTests(parameterCode,barcode);
-
+            List<Parameter> yau = new ArrayList<>();
+            yau = recordTestResultsController.getValidatedParameters(parameterCode, barcode);
             for (Parameter parameter1231 : yau) {
                 System.out.println(parameter1231);
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-
 
             recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
 

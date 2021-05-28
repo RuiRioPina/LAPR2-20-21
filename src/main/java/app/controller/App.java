@@ -86,14 +86,17 @@ public class App {
 
         Sample sample = new Sample("99999999999");
         Sample sample1 = new Sample("11111111111");
+        Sample sample3 = new Sample("55555555555");
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
 
         List<ParameterCategory> pc = new ArrayList<>();
+        List<ParameterCategory> pCovid = new ArrayList<>();
         ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
         ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
         ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
         pc.add(p1);
         pc.add(P2);
+        pCovid.add(P3);
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
@@ -111,6 +114,8 @@ public class App {
         cs.saveParameterCategory(P2);
         cs.saveParameterCategory(P3);
         ParameterStore ps = this.company.getParameterStore();
+        ParameterStore psCovid = this.company.getParameterStore();
+        psCovid.saveParameter(new Parameter("IgGAN", "IgC", "Antibodies", cat2));
 
         ps.saveParameter(new Parameter("HB000", "HB", "Haemoglobin", cat));
         ps.saveParameter(new Parameter("WBC00", "WBC", "White Cell Count", cat));
@@ -120,13 +125,15 @@ public class App {
         ps.saveParameter(new Parameter("MCH00", "MCH", "Mean Cell Heaemoglob", cat1));
         ps.saveParameter(new Parameter("MCHC0", "MCHC", "MCH Concentration", cat1));
         ps.saveParameter(new Parameter("ESR00", "ESR", "Erythrocyte Sed Rate", cat1));
-        ps.saveParameter(new Parameter("IgGAN", "IgC", "Antibodies", cat2));
+
 
         List<Parameter> par = new ArrayList<>();
+        List<Parameter> parCovid = new ArrayList<>();
         par.add(ps.getParameters().get(0));
         par.add(ps.getParameters().get(1));
         par.add(ps.getParameters().get(2));
         par.add(ps.getParameters().get(3));
+        parCovid.add(ps.getParameters().get(0));
 
         TestTypeStore tts = this.company.getTestTypeStore();
         TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
@@ -152,11 +159,16 @@ public class App {
         
         Test test = new Test("123454abcdef", "999992999999", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("121454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test test3 = new Test("999999abcdef", "111112111111", c, tts.getTestTypes().get(0), pCovid, parCovid, data);
+
         ts.saveTest(test);
         ts.saveTest(test1);
+        ts.saveTest(test3);
+
 
         ts.saveSample(test, sample);
         ts.saveSample(test1, sample1);
+        ts.saveSample(test3, sample3);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
         ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999979999L,9999999999L,ttList);

@@ -50,8 +50,8 @@ public class RecordTestResultsController {
     }
 
 
-    public List<Parameter> getValidatedTests(String parameterCode, String barcode) {
-        return tests.getValidatedTests(parameterCode, barcode);
+    public List<Parameter> getValidatedParameters(String parameterCode, String barcode) {
+        return tests.getValidatedParameters(parameterCode, barcode);
     }
 
     public boolean hasTestPassedSampleCollection(String barcode) {
@@ -67,5 +67,9 @@ public class RecordTestResultsController {
 
     public void saveTest(Test testByBarcode) {
         tests.saveTest(testByBarcode);
+    }
+
+    public void setChemicalAnalysis() {
+
     }
 }
