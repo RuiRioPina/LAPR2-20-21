@@ -335,4 +335,16 @@ public class ClientTest {
         Assert.assertEquals(expected1, client1.toString());
 
     }
+
+    @Test
+    public void getPassword() {
+
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        String expected = "The client is called Rui Pina, his ccn is 9999999999999999, his NHS Number is 9999999999, his birthdate is 10-10-2010 , his sex is M, his tin is 9999999999, his phonenumber 99999999999 and his email is ruipina@mail.com";
+        String expected1 = "The client is called Rui Pina, his ccn is 9999999999999999, his NHS Number is 9999999999, his birthdate is 10-10-2010, his tin is 9999999999, his phonenumber 99999999999 and his email is ruipina@mail.com";
+        Assert.assertEquals(10, client.getPassword().length());
+        Assert.assertEquals(10, client1.getPassword().length());
+
+    }
 }

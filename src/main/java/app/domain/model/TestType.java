@@ -1,11 +1,7 @@
 package app.domain.model;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Properties;
 
 public class TestType {
 
@@ -17,7 +13,6 @@ public class TestType {
     private final String description;
     private final String collectingMethod;
     private final List<ParameterCategory> parameterCategories;
-    private final Properties props = new Properties();
 
     /**
      * Constructor for the test type.
@@ -101,24 +96,5 @@ public class TestType {
         }
         return null;
     }
-
-    //private ExternalModule readPropertiesFile() {
-    //
-    //        ExternalModule em = null;
-    //        try (InputStream in = new FileInputStream("config.properties")) {
-    //            props.load(in);
-    //        } catch (IOException exception) {
-    //            exception.getMessage();
-    //        }
-    //        String classToUse = props.getProperty("Automatic.ValidationAPI");
-    //        Class<?> oClass = null;
-    //        try {
-    //            oClass = Class.forName(classToUse);
-    //            em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
-    //        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-    //            e.printStackTrace();
-    //        }
-    //        return em;
-    //    }
 
 }

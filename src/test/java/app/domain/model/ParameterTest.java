@@ -58,4 +58,71 @@ public class ParameterTest {
 
         assertEquals(parameterCategories,p.getPc());
     }
+
+    @Test
+    public void getTestResult() {
+        ParameterCategory parameterCategory = new ParameterCategory("PLT00", "plalets");
+        List<ParameterCategory> pcl = new ArrayList<>();
+        pcl.add(parameterCategory);
+        Parameter parameter = new Parameter("PLT00", "plalets", "Plalets", pcl);
+        ReferenceValue referenceValue = new ReferenceValue();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        List<ParameterCategory> pc = new ArrayList<>();
+        pc.add(p1);
+        double result = 5;
+        TestType testType = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        ReferenceValue referenceValue1 =testType.checkExternalModuleBasedOnTestType(parameter);
+
+        TestResult testResult = new TestResult(parameter,155,referenceValue1);
+        parameter.setTestResult(testResult);
+        assertEquals(parameter.getTestResult(),testResult);
+    }
+
+
+    @Test
+    public void getTestResult1() {
+        ParameterCategory parameterCategory = new ParameterCategory("PLT00", "plalets");
+        List<ParameterCategory> pcl = new ArrayList<>();
+        pcl.add(parameterCategory);
+        Parameter parameter = new Parameter("PLT00", "plalets", "Plalets", pcl);
+        ReferenceValue referenceValue = new ReferenceValue();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        List<ParameterCategory> pc = new ArrayList<>();
+        pc.add(p1);
+        double result = 5;
+        TestType testType = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        ReferenceValue referenceValue1 =testType.checkExternalModuleBasedOnTestType(parameter);
+        Parameter parameter1 = new Parameter(parameter);
+        TestResult testResult = new TestResult(parameter,155,referenceValue1);
+        parameter1.setTestResult(testResult);
+        assertEquals(parameter1.getTestResult(),testResult);
+    }
+
+    @Test
+    public void setTestResult() {
+        ParameterCategory parameterCategory = new ParameterCategory("PLT00", "plalets");
+        List<ParameterCategory> pcl = new ArrayList<>();
+        pcl.add(parameterCategory);
+        Parameter parameter = new Parameter("PLT00", "plalets", "Plalets", pcl);
+        ReferenceValue referenceValue = new ReferenceValue();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        List<ParameterCategory> pc = new ArrayList<>();
+        pc.add(p1);
+        double result = 5;
+        TestType testType = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        ReferenceValue referenceValue1 =testType.checkExternalModuleBasedOnTestType(parameter);
+
+        TestResult testResult = new TestResult(parameter,155,referenceValue1);
+        parameter.setTestResult(testResult);
+        assertEquals(parameter.getTestResult(),testResult);
+    }
+
+    @Test
+    public void testToString() {
+        ParameterCategory parameterCategory = new ParameterCategory("PLT00", "plalets");
+        List<ParameterCategory> pcl = new ArrayList<>();
+        pcl.add(parameterCategory);
+        Parameter parameter = new Parameter("PLT00", "plalets", "Plalets", pcl);
+        assertEquals("Parameter{code='PLT00', shortname='plalets', description='Plalets', Parameter Category=[PLT00 | plalets]}Test Result =null",parameter.toString());
+    }
 }
