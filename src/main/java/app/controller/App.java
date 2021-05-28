@@ -148,6 +148,13 @@ public class App {
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
         cl.saveClient(c);
+        
+        ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999979999L,9999999999L,ttList);
+        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344","LABor","Manchester",88888888888L,8888888888L,ttList);
+        clas.saveClinicalAnalysisLaboratory(cla);
+        clas.saveClinicalAnalysisLaboratory(cla2);
+        this.company.setCLA(cla2);
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
@@ -165,16 +172,9 @@ public class App {
         ts.saveTest(test1);
         ts.saveTest(test3);
 
-
         ts.saveSample(test, sample);
         ts.saveSample(test1, sample1);
         ts.saveSample(test3, sample3);
-
-        ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
-        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999979999L,9999999999L,ttList);
-        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344","LABor","Manchester",88888888888L,8888888888L,ttList);
-        clas.saveClinicalAnalysisLaboratory(cla);
-        clas.saveClinicalAnalysisLaboratory(cla2);
 
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client", Constants.ROLE_RECEPTIONIST, "REC"));

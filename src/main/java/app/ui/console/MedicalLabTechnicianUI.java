@@ -1,5 +1,7 @@
 package app.ui.console;
 
+import app.controller.App;
+import app.domain.model.ClinicalAnalysisLaboratory;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -19,6 +21,20 @@ public class MedicalLabTechnicianUI implements Runnable{
 
     public void run()
     {
+    	List <ClinicalAnalysisLaboratory> claList = App.getInstance().getCompany().getClinicalAnalysisLaboratoryStore().getCLA();
+
+        ClinicalAnalysisLaboratory cla = null;
+
+        int opt = 0;
+        opt = Utils.showAndSelectIndex(claList, "Select the Lab.");
+
+        if ( (opt >= 0) && (opt < claList.size()))
+        {
+            cla = claList.get(opt);
+        }
+
+        App.getInstance().getCompany().setCLA(cla);
+        
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Option 1 - Generate Samples", new GenerateSampleUI()));
 

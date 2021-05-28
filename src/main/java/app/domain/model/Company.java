@@ -29,7 +29,6 @@ public class Company {
     private RoleStore roleStore;
     private ClientList clientList;
     private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
-    private TestStore testStore;
     private ReportStore reportStore;
     private ClinicalAnalysisLaboratory cla;
 
@@ -49,7 +48,6 @@ public class Company {
         this.employeeStore = new EmployeeStore();
         this.roleStore = new RoleStore();
         this.clinicalAnalysisLaboratoryStore = new ClinicalAnalysisLaboratoryStore();
-        this.testStore = new TestStore();
         this.numberOfEmployees = 0;
         this.lastBarcode = 0;
         this.testCode = 0;
@@ -59,6 +57,7 @@ public class Company {
     public void setCLA (ClinicalAnalysisLaboratory cla){
         this.cla = cla;
     }
+
     public ClinicalAnalysisLaboratory getCLA (){
         return this.cla;
     }
@@ -121,7 +120,7 @@ public class Company {
         return this.clientList;
     }
 
-    public TestStore getTestStore(){return  this.testStore;}
+    public TestStore getTestStore(){return  this.cla.getTestStore();}
 
     public ReportStore getReportStore(){return this.reportStore;}
 
