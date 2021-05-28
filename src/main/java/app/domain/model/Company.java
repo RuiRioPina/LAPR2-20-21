@@ -31,7 +31,7 @@ public class Company {
     private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
     private TestStore testStore;
     private ReportStore reportStore;
-
+    private ClinicalAnalysisLaboratory cla;
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -54,6 +54,13 @@ public class Company {
         this.lastBarcode = 0;
         this.testCode = 0;
         this.reportStore = new ReportStore();
+        this.cla = null;
+    }
+    public void setCLA (ClinicalAnalysisLaboratory cla){
+        this.cla = cla;
+    }
+    public ClinicalAnalysisLaboratory getCLA (){
+        return this.cla;
     }
     public int getTestCode() {
         return testCode;

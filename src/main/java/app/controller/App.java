@@ -129,8 +129,14 @@ public class App {
         par.add(ps.getParameters().get(3));
 
         TestTypeStore tts = this.company.getTestTypeStore();
-        tts.saveTestType(new TestType("BLT00", "Blood Test", "Venipuncture", pc));
-        tts.saveTestType(new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p));
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+        tts.saveTestType(tt1);
+        tts.saveTestType(tt2);
+
+        List <TestType> ttList = new ArrayList<>();
+        ttList.add(tt1);
+        ttList.add(tt2);
 
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
@@ -152,6 +158,11 @@ public class App {
         ts.saveSample(test, sample);
         ts.saveSample(test1, sample1);
 
+        ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999999999L,9999999999L,ttList);
+        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344","LABor","Manchester",88888888888L,8888888888L,ttList);
+        clas.saveClinicalAnalysisLaboratory(cla);
+        clas.saveClinicalAnalysisLaboratory(cla2);
 
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client", Constants.ROLE_RECEPTIONIST, "REC"));

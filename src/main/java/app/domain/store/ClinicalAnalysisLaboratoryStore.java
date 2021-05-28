@@ -1,6 +1,7 @@
 package app.domain.store;
 
 import app.domain.model.ClinicalAnalysisLaboratory;
+import app.domain.model.Test;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;
@@ -222,5 +223,11 @@ public class ClinicalAnalysisLaboratoryStore {
 
     public boolean isClinicalAnalysisLaboratoryInList(ClinicalAnalysisLaboratory cal){
         return this.clinicalAnalysisLaboratories.contains(cal);
+    }
+
+    public List<ClinicalAnalysisLaboratory> getCLA() {
+        List<ClinicalAnalysisLaboratory> cla = new ArrayList<>();
+        cla.addAll(this.clinicalAnalysisLaboratories);
+        return cla;
     }
 }

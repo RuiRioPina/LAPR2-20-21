@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import app.domain.store.TestStore;
+
 import java.util.List;
 
 
@@ -15,6 +17,7 @@ public class ClinicalAnalysisLaboratory {
     private long phoneNumber;
     private long tin;
     private List<TestType> testTypes;
+    private TestStore tStore;
 
     /**
      * Constructor for the Clinical analysis laboratory
@@ -33,7 +36,19 @@ public class ClinicalAnalysisLaboratory {
         this.tin = tin;
         this.phoneNumber = phoneNumber;
         this.testTypes = testTypes;
+        this.tStore = new TestStore();
+    }
 
+    @Override
+    public String toString() {
+        return "ClinicalAnalysisLaboratory{" +
+                "laboratoryID='" + laboratoryID + '\'' +
+                ", name='" + name + '\'' +
+                ", adress='" + adress + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", tin=" + tin +
+                ", testTypes=" + testTypes +
+                '}';
     }
 
     /**
@@ -86,6 +101,10 @@ public class ClinicalAnalysisLaboratory {
      */
     public List<TestType> getTestTypes() {
         return testTypes;
+    }
+
+    public TestStore getTestStore() {
+        return this.tStore;
     }
 }
 
