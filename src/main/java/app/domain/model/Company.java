@@ -236,7 +236,7 @@ public class Company {
         List<Test> testes = new ArrayList<>();
         TestStore testStore;
         for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            testes.addAll(lab.getTestStore().getTests());
+            testes.addAll(lab.getTestStore().getTestsWithSamples());
         }
         testStore = new TestStore(testes);
         return testStore;
