@@ -175,6 +175,15 @@ public class App {
         ts.saveSample(test, sample);
         ts.saveSample(test1, sample1);
         ts.saveSample(test3, sample3);
+        
+        this.company.setCLA(cla);
+
+        ts = this.company.getTestStore();
+
+        Test testSemSample3 = new Test("123454abcdef", "132992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample4 = new Test("123454abcdef", "321992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        ts.saveTest(testSemSample3);
+        ts.saveTest(testSemSample4);
 
         RoleStore lRole = this.company.getRoleStore();
         lRole.add(lRole.create("Receives the client", Constants.ROLE_RECEPTIONIST, "REC"));

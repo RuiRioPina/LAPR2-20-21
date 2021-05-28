@@ -6,10 +6,12 @@ import app.domain.store.*;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -203,5 +205,13 @@ public class Company {
 	public String getNextBarcode() {
 		this.lastBarcode++;
 		return String.format("%011d", this.lastBarcode);
+	}
+	
+	public List<Test> getAllTest() {
+		List<Test> testes = new ArrayList<Test>();
+		for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
+			testes.addAll(lab.getTestStore().getTests());
+		}
+		return testes;
 	}
 }
