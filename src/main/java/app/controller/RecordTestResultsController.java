@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RecordTestResultsController {
     Company company = App.getInstance().getCompany();
-    TestStore tests = new TestStore(App.getInstance().getCompany().getAllTestWithSamples());
+    TestStore tests = App.getInstance().getCompany().getAllTestStore();
 
     ResultOfTestStore resultOfTestStore = this.company.getResultOfTestStore();
 
