@@ -11,15 +11,9 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class TestUI implements Runnable, Cloneable {
+public class TestUI implements Runnable {
     static Scanner sc = new Scanner(System.in);
     private final TestController testController;
-    private Parameter parameter;
-
-    public Parameter cloneParameter(Parameter another) {
-        this.parameter = another; // you can access
-        return parameter;
-    }
 
     public TestUI() {
         this.testController = new TestController();
@@ -27,7 +21,6 @@ public class TestUI implements Runnable, Cloneable {
 
     @Override
     public void run() {
-
 
         String nhsCode = nhsCode();
 

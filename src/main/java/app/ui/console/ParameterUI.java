@@ -15,7 +15,7 @@ public class ParameterUI implements Runnable{
     /**
      * Class to create the UI used to specify a new Parameter and categorize it.
      */
-    private ParameterController parameterController;
+    private final ParameterController parameterController;
 
     /**
      * Constructor for the UI to create the corresponding controller.

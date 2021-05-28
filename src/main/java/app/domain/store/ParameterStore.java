@@ -35,7 +35,7 @@ public class ParameterStore {
      * @param p - parameter.
      */
 
-    public void validateParameter(Parameter p) throws IllegalArgumentException {
+    public void validateParameter(Parameter p) {
         checkCodeRules(p.getCode());
         checkShortnameRules(p.getShortname());
         checkDescriptionRules(p.getDescription());
@@ -47,7 +47,7 @@ public class ParameterStore {
      * Saves a Parameter.
      * @param p - parameter.
      */
-    public void saveParameter(Parameter p) throws IllegalArgumentException {
+    public void saveParameter(Parameter p) {
         validateParameter(p);
         addParameter(p);
     }
@@ -98,7 +98,7 @@ public class ParameterStore {
      * Checks parameter category rules.
      * @param parameterCategories - parameter category.
      */
-    void checkParameterCategoryRules(List<ParameterCategory> parameterCategories) throws IllegalArgumentException {
+    void checkParameterCategoryRules(List<ParameterCategory> parameterCategories) {
         if (parameterCategories.isEmpty()) {
             throw new IllegalArgumentException("Parameter categories cannot be empty.");
         }

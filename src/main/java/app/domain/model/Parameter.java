@@ -11,7 +11,7 @@ public class Parameter {
     private final String shortname;
     private final String description;
     private TestResult testResult;
-    private List<ParameterCategory> pc;
+    private final List<ParameterCategory> pc;
 
     public TestResult getTestResult() {
         return testResult;
