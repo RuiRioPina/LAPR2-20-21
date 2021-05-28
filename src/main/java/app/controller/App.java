@@ -159,7 +159,7 @@ public class App {
         ts.saveSample(test1, sample1);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
-        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999999999L,9999999999L,ttList);
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999979999L,9999999999L,ttList);
         ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344","LABor","Manchester",88888888888L,8888888888L,ttList);
         clas.saveClinicalAnalysisLaboratory(cla);
         clas.saveClinicalAnalysisLaboratory(cla2);
