@@ -241,6 +241,17 @@ public class Company {
         testStore = new TestStore(testes);
         return testStore;
     }
+
+    public TestStore getAllTestCompleted(){
+        List<Test> tests = new ArrayList<>();
+        TestStore testStore;
+        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
+            tests.addAll(lab.getTestStore().getTestsWithoutDiagnosis());
+        }
+        testStore = new TestStore(tests);
+        return testStore;
+    }
+
     public List<Test> getAllTestWithSamples() {
         List<Test> stores = new ArrayList<>();
         for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {

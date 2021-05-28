@@ -80,6 +80,7 @@ public class App {
         this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12", Constants.ROLE_RECEPTIONIST);
         this.authFacade.addUserWithRole("Clinical Chemistry Technologist", "cct@lei.sem2.pt", "12", Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST);
         this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
+        this.authFacade.addUserWithRole("Specialist Doctor","specd@lei.sem2.pt","123456",Constants.ROLE_SPECIALIST_DOCTOR);
         this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
         this.company.setNumberOfEmployees(0);
         this.company.setTestCode(0);
