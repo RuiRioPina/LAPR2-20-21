@@ -27,10 +27,14 @@ public class TestUI implements Runnable, Cloneable {
 
     @Override
     public void run() {
-        String nhsCode = nhsCode();
-        Client client = clientByTIN();
 
-        String cl = "" + client;
+
+        String nhsCode = nhsCode();
+
+        List<Client> lcl = this.testController.getClients();
+        Client client = clientByTIN(lcl);
+
+        String cl = "Client = " + client.getName();
         System.out.println('\n' + cl);
 
         System.out.println('\n' + "Lab Order Information" + '\n');
@@ -55,7 +59,7 @@ public class TestUI implements Runnable, Cloneable {
 
         List<Parameter> lp;
         List<Parameter> lps = new ArrayList<>();
-        Parameter parameter;
+        Parameter p;
         int op = 0;
 
         do {
@@ -72,8 +76,8 @@ public class TestUI implements Runnable, Cloneable {
                 op = Utils.showAndSelectIndex(lp, "Select the Parameters.");
 
                 if ((op >= 0) && (op < lp.size())) {
-                    parameter = lp.get(op);
-                    Parameter cloned = new Parameter(parameter);
+                    p = lp.get(op);
+                    Parameter cloned = new Parameter(p);
                     lps.add(cloned);
                     lp.remove(op);
                 }
@@ -103,7 +107,7 @@ public class TestUI implements Runnable, Cloneable {
     }
 
     private String nhsCode() {
-        List<Test> test = testController.getTests();
+        List<Test> test = App.getInstance().getCompany().getAllTest();
         String nhsCode;
         boolean val = false;
         do {
@@ -127,8 +131,7 @@ public class TestUI implements Runnable, Cloneable {
         return nhsCode;
     }
 
-    private Client clientByTIN() {
-        List<Client> lcl = this.testController.getClients();
+    private Client clientByTIN(List<Client>lcl) {
         Client client = null;
         long tin;
         String str;
