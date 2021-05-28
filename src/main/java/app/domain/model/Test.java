@@ -29,6 +29,7 @@ public class Test {
     private Date chemicalAnalysisDate;
     private Date diagnosisDate;
     private Date validationDate;
+    private Report report;
     private final ResultOfTestStore resultOfTestStore = new ResultOfTestStore();
 
 
@@ -53,6 +54,7 @@ public class Test {
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
         this.registrationDate = registrationDate;
+        this.report=report;
         if(getTestResult()==null) {
             this.chemicalAnalysisDate = null;
         }else {
@@ -163,6 +165,12 @@ public class Test {
         return chemicalAnalysisDate;
     }
 
+    public Report getReport(){return report;}
+
+    public void setReport(Report report){
+        this.report=report;
+    }
+
     /**
      * Returns the test diagnosis date.
      *
@@ -201,6 +209,19 @@ public class Test {
                     "Parameter(s) = " + parameter + '\n' +
                     "Registration Date = " + registrationDate;
         }
+
+        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && report==null && validationDate==null){
+            str = "TEST" + '\n' +
+                    "NHS Code = " + nhsCode + '\n' +
+                    "Internal Code = " + internalCode + '\n' +
+                    "Client = " + client + '\n' +
+                    "Test Type = " + testType + '\n' +
+                    "Sample Collection Method = " + sampleCollectionMethod + '\n' +
+                    "Category(ies) = " + parameterCategory + '\n' +
+                    "Parameter(s) = " + parameter + '\n' +
+                    "Registration Date = " + registrationDate;
+        }
+
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate!= null && validationDate==null){
             str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
         }
@@ -208,6 +229,7 @@ public class Test {
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
             str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
         }
+
 
         return str;
     }
