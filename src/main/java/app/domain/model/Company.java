@@ -56,21 +56,26 @@ public class Company {
         this.reportStore = new ReportStore();
         this.cla = null;
     }
-    public void setCLA (ClinicalAnalysisLaboratory cla){
+
+    public void setCLA(ClinicalAnalysisLaboratory cla) {
         this.cla = cla;
     }
 
-    public ClinicalAnalysisLaboratory getCLA (){
+    public ClinicalAnalysisLaboratory getCLA() {
         return this.cla;
     }
+
     public int getTestCode() {
         return testCode;
     }
+
     public void setTestCode(int number) {
         this.testCode = number;
     }
+
     /**
      * Getter for the number of Employees in the company.
+     *
      * @return number of employees.
      */
     public int getNumberOfEmployees() {
@@ -79,6 +84,7 @@ public class Company {
 
     /**
      * Setter for the number of Employees in the company
+     *
      * @param numberOfEmployees- new number of Employees.
      */
     public void setNumberOfEmployees(int numberOfEmployees) {
@@ -86,10 +92,14 @@ public class Company {
 
     }
 
-    public ResultOfTestStore getResultOfTestStore() {
-    	return this.resultOfTestStore;
+    public void getAllTests() {
+
     }
-    
+
+    public ResultOfTestStore getResultOfTestStore() {
+        return this.resultOfTestStore;
+    }
+
     public String getDesignation() {
         return designation;
     }
@@ -112,6 +122,7 @@ public class Company {
 
     /**
      * Getter for the Employee Store that the company is using.
+     *
      * @return Employee Store that contains the Employees in the company.
      */
     public EmployeeStore getEmployeeStore() {
@@ -122,12 +133,17 @@ public class Company {
         return this.clientList;
     }
 
-    public TestStore getTestStore(){return  this.cla.getTestStore();}
+    public TestStore getTestStore() {
+        return this.cla.getTestStore();
+    }
 
-    public ReportStore getReportStore(){return this.reportStore;}
+    public ReportStore getReportStore() {
+        return this.reportStore;
+    }
 
     /**
      * Getter for the Role Store that the company is using.
+     *
      * @return Role Store that contains the Roles in the company.
      */
     public RoleStore getRoleStore() {
@@ -182,7 +198,7 @@ public class Company {
      * @param c instance of the class Client
      */
     public boolean saveClient(Client c) {
-    	int i = 0;
+        int i = 0;
         if (validateClient(c)) {
             ClientList cl = this.getClientList();
             cl.saveClient(c);
@@ -194,7 +210,8 @@ public class Company {
         return i != 1;
     }
 
-    /**Adds the Client instance to the platform, so that he can login with the credentials given.
+    /**
+     * Adds the Client instance to the platform, so that he can login with the credentials given.
      *
      * @param c instance of the class Client
      */
@@ -202,16 +219,23 @@ public class Company {
         App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
 
-	public String getNextBarcode() {
-		this.lastBarcode++;
-		return String.format("%011d", this.lastBarcode);
-	}
+    public String getNextBarcode() {
+        this.lastBarcode++;
+        return String.format("%011d", this.lastBarcode);
+    }
 	
 	public List<Test> getAllTest() {
-		List<Test> testes = new ArrayList<Test>();
+		List<Test> testes = new ArrayList<>();
 		for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
 			testes.addAll(lab.getTestStore().getTests());
 		}
 		return testes;
 	}
+    public List<Test> getAllTestWithSamples() {
+        List<Test> stores = new ArrayList<>();
+        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
+            stores.addAll(lab.getTestStore().getTestsWithSamples());
+        }
+        return stores;
+    }
 }

@@ -17,7 +17,20 @@ public class TestStore {
     public TestStore() {
         tests = new ArrayList<>();
     }
+    public TestStore(List<Test> tests) {
+        this.tests = tests;
+    }
 
+
+    List<Parameter> validatedParameterList;
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
+
+    public void initializeValidationList() {
+        validatedParameterList = new ArrayList<>();
+    }
 
     public TestResult addTestResult(String parameterCode, double result, Test test) {
         testParam = new TestParam(test);
@@ -68,6 +81,16 @@ public class TestStore {
         List<Test> result = new ArrayList<>();
         for (Test t : this.tests) {
             if (t.getSamplesCollectionDate() == null) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    public List<Test> getTestsWithSamples() {
+        List<Test> result = new ArrayList<>();
+        for (Test t : this.tests) {
+            if (t.getSamplesCollectionDate() != null) {
                 result.add(t);
             }
         }
@@ -167,7 +190,7 @@ public class TestStore {
 
 
     public List<Parameter> getValidatedParameters(String parameterCode,String barcode) {
-        List<Parameter> validatedParameterList = new ArrayList<>();
+
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters =test.getParameter();
         Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
@@ -196,7 +219,6 @@ public class TestStore {
         List<Parameter> parameters = test.getParameter();
         parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
         parameter.setTestResult(testResult);
-        test.setChemicalAnalysisDate(new Date(System.currentTimeMillis()));
     }
 
 
@@ -236,4 +258,6 @@ public class TestStore {
         }
         return complete;
     }
+
+
 }

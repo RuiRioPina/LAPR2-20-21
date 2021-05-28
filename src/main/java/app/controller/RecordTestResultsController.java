@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RecordTestResultsController {
     Company company = App.getInstance().getCompany();
-    TestStore tests = App.getInstance().getCompany().getTestStore();
+    TestStore tests = new TestStore(App.getInstance().getCompany().getAllTestWithSamples());
 
     ResultOfTestStore resultOfTestStore = this.company.getResultOfTestStore();
 
@@ -69,7 +69,11 @@ public class RecordTestResultsController {
         tests.saveTest(testByBarcode);
     }
 
-    public void setChemicalAnalysis() {
+    public void setChemicalAnalysis(Test test) {
+        test.setChemicalAnalysisDate(new Date(System.currentTimeMillis()));
+    }
 
+    public void initializeValidationList() {
+        tests.initializeValidationList();
     }
 }

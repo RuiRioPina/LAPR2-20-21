@@ -25,6 +25,7 @@ public class RecordTestResultsUI implements Runnable {
         String parameterCode = "";
         Scanner sc = new Scanner(System.in);
         RecordTestResultsController recordTestResultsController = new RecordTestResultsController();
+        recordTestResultsController.initializeValidationList();
         System.out.println();
         System.out.println("Welcome to the Record Results of Test Page");
         System.out.println();
@@ -76,12 +77,13 @@ public class RecordTestResultsUI implements Runnable {
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             parametersToShow.remove(option);
-            List<Parameter> yau = new ArrayList<>();
+            List<Parameter> yau;
             yau = recordTestResultsController.getValidatedParameters(parameterCode, barcode);
             for (Parameter parameter1231 : yau) {
                 System.out.println(parameter1231);
             }
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            recordTestResultsController.setChemicalAnalysis(recordTestResultsController.getTestByBarcode(barcode));
 
             recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
 
