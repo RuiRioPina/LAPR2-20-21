@@ -38,8 +38,10 @@ public class GenerateSampleUI implements Runnable {
 			numberOfSamples = x.nextInt();
 			if(numberOfSamples == 0) {
 				System.out.println("Cannot be 0 please try again.");
+			} if (numberOfSamples >= 100) {
+				System.out.println("Cannot generate that amount of samples please select another number.");
 			}
-		} while (numberOfSamples == 0);
+		} while (numberOfSamples == 0 || numberOfSamples >= 100);
 		
 		System.out.println("Generating Samples");
 		try {

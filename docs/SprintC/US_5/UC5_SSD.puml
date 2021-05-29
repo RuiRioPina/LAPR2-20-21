@@ -3,7 +3,7 @@ autonumber
 actor "Medical Lab Technician" as MEDLT
 
 activate MEDLT
-MEDLT-> ":System" : starts record a sample. 
+MEDLT-> ":System" : registing new samples. 
 activate ":System"
 ":System" --> MEDLT : shows list of tests for which there are no samples collected.
 deactivate ":System"

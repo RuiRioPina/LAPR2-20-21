@@ -158,6 +158,14 @@ public class TestStore {
         if (s.getBarcode().length() != 11) {
             throw new IllegalArgumentException("Barcode must have 11 chars.");
         }
+        List<Test> tests = App.getInstance().getCompany().getAllTest();
+        for(Test test : tests) {
+        	for(Sample sample : test.getSamples()) {
+        		if(s.getBarcode().equals(sample.getBarcode())) {
+        			throw new IllegalArgumentException("Barcode must be unique");
+        		}
+        	}
+        }
     }
 
     private void addSample(Test t, Sample s) {
