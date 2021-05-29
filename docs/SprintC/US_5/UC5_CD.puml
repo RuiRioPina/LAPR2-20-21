@@ -4,50 +4,68 @@ skinparam classAttributeIconSize 0
 class Company
 {
   -String designation
-  +getParameterCategoryStore()
-  +getTestTypeStore()
+  +setCLA()
+  +getTestStore()
+  +getNextBarcode()
 }
 
-class TestTypeStore {
-  +createTestType(code, description, collectingMethod, parameterCategories)
-  +validateTestType(tt)
-  +saveTestType(tt)
-  -addTestType(tt)
-}
-
-class ParameterCategoryStore {
-  +getParameterCategories()
-  +getParameterCategoryByCode(parameterCategoryCode)
-}
-
-class TestType {
-  -String code
-  -String description
-  -String collectingMethod
-  -List<ParameterCategory> parameterCategories
-  +TestType(code, description, collectingMethod, parameterCategories)
-}
-
-class ParameterCategory {
-  -String code
+class ClinicalAnalysisLaboratory {
   -String name
-  +ParameterCategory(code, name)
+  -String adress
+  -long phoneNumber
+  -long tin
+  -TestStore testStore
+  +getTestStore()
 }
 
-class CreateTestTypeUI {
+class Test {
+  -String nhsCode
+  -String internalCode
+  -Client client
+  -TestType testType
+  -List<ParameterCategory> parameterCategory
+  -List<Parameter> parameter
+  -Date registrationDate
 }
 
-class CreateTestTypeController {
-  +getParameterCategories()
-  +createTestType(code, description, collectingMethod, parameterCategoryCodes)
-  +saveTestType()
+class Sample {
+  -String barcode
+  +Sample(barcode)
 }
 
-CreateTestTypeUI ..> CreateTestTypeController
-CreateTestTypeController ..> Company
-Company "1" --> "1" TestTypeStore : uses
-Company "1" --> "1" ParameterCategoryStore : uses
-TestTypeStore "1" --> "*" TestType : conducts
-ParameterCategoryStore "1" --> "1" ParameterCategory : adopts
-TestType "*" --> "1..*" ParameterCategory : have
+class TestStore {
+  +getTestsWithoutSamples()
+  +getTestByInternalCode(testCode)
+  +createSample(barcode)
+  +saveSample(t, s)
+  -validateSample(s)
+  -addSample(t, s)
+}
+
+class BarcodeController {
+  +generateBarcode(barcode)
+}
+
+class API {
+  +createUPCA(barcode)
+  +setPrefferedBarHeight(height)
+  +savePNG(bc,file)
+}
+
+class GenerateSampleUI {
+}
+
+class GenerateSampleController {
+  +getTestsWithoutSamples()
+  +createSamples(testCode, numberOfSamples)
+}
+
+GenerateSampleUI ..> GenerateSampleController
+GenerateSampleController ..> Company
+GenerateSampleController ..> BarcodeController
+Company "1" --> "1..*" ClinicalAnalysisLaboratory : has
+ClinicalAnalysisLaboratory "1" --> "1" TestStore : has
+TestStore "1" --> "*" Test : conducts
+Test "1" --> "*" Sample : requires
+BarcodeController "1" --> "1" API : uses
 @enduml
