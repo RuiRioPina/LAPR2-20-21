@@ -35,17 +35,19 @@ Class SpecialistDoctor{
 Class Report{
 -bodyOfText
 }
-Class TestResultList{
--listOfPositiveCases
--listOfNegativeCases
--sortingAlgorithmByTIF
--sortingAlgorithmByName
-}
 
+Class Test{
+-testCode
+-nhsCode
+-dates
+}
 
 Class TestResults{
 -parameterResults
 }
+
+Test "1" --> "*" TestResults : contains
+SpecialistDoctor "1" --> "*" Test : can check
 Diagnosis "1" <-- "1" Report: contains
 Administrator "1" --> "*" SpecialistDoctor: registers
 TestResults "*" <-- "1" ClinicalChemistTechnologist: produces
@@ -53,7 +55,6 @@ TestResults "*" <-- "1" SpecialistDoctor: reviews
 Report "*" <-- "1" SpecialistDoctor: writes
 Diagnosis "*" <-- "1" SpecialistDoctor: performs
 TestResults "1" <-- "1" Report: contains
-TestResultList "1" <-- "*" SpecialistDoctor : can check
 TestResults "*" <-- "1" Diagnosis: to
 Company "1" --> "1" Administrator : knows
 @enduml
