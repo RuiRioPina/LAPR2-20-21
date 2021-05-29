@@ -92,9 +92,6 @@ public class Company {
 
     }
 
-    public void getAllTests() {
-
-    }
 
     public ResultOfTestStore getResultOfTestStore() {
         return this.resultOfTestStore;

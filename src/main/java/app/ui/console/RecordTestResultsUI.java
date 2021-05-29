@@ -4,7 +4,6 @@ import app.controller.RecordTestResultsController;
 import app.domain.model.Parameter;
 import app.ui.console.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;

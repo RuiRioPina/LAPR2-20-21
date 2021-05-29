@@ -1,7 +1,6 @@
 package app.domain.store;
 
 import app.domain.model.ClinicalAnalysisLaboratory;
-import app.domain.model.Test;
 import app.domain.model.TestType;
 
 import java.util.ArrayList;

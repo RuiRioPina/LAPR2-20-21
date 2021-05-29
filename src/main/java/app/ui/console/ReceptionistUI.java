@@ -2,7 +2,6 @@
 package app.ui.console;
 
 import app.controller.App;
-import app.controller.ClinicalAnalysisLaboratoryController;
 import app.domain.model.ClinicalAnalysisLaboratory;
 import app.ui.console.utils.Utils;
 import java.util.ArrayList;

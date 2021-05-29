@@ -46,7 +46,7 @@ public class TestTypeController {
 			List<String> parameterCategoryCodes) throws IllegalArgumentException {
 		ParameterCategoryStore cs = this.company.getParameterCategoryStore();
 		
-		List<ParameterCategory> parameterCategories = new ArrayList<ParameterCategory>();
+		List<ParameterCategory> parameterCategories = new ArrayList<>();
 		for(String parameterCategoryCode : parameterCategoryCodes) {
 			ParameterCategory pc = cs.getParameterCategoryByCode(parameterCategoryCode);
 			if(pc==null) {

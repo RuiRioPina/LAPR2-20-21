@@ -4,7 +4,6 @@ import app.domain.model.Company;
 import app.domain.model.Employee;
 import app.domain.model.Role;
 import app.domain.shared.Constants;
-import app.domain.shared.Utils;
 import app.domain.store.EmployeeStore;
 import app.domain.store.RoleStore;
 import auth.AuthFacade;

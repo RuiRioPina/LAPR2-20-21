@@ -36,9 +36,9 @@ public class RoleStore {
      * @return Arraylist with the stored Roles.
      */
     public List<Role> getlRole() {
-        ArrayList<Role> lRole= new ArrayList<>();
-        lRole.addAll(this.lRole);
-        return lRole;
+        ArrayList<Role> roles= new ArrayList<>();
+        roles.addAll(this.lRole);
+        return roles;
     }
 
     /**

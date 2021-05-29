@@ -4,7 +4,6 @@ import app.controller.WriteReportController;
 import app.domain.model.Report;
 import app.domain.model.Test;
 import app.domain.model.TestResult;
-import app.domain.store.TestStore;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class WriteReportUI implements Runnable {
     @Override
     public void run() {
         Scanner x = new Scanner(System.in);
-        List<TestResult>testResults=new ArrayList<>();
+        List<TestResult>testResults;
         int option = 0;
 
 
@@ -61,7 +60,7 @@ public class WriteReportUI implements Runnable {
                 System.out.println("Confirmation: ");
                 System.out.printf("-Report: %s%n", report);
 
-                if(!Utils.confirm("Confirm test type creation (y/n)?")){
+                if(!Utils.confirm("Confirm test report creation (y/n)?")){
                     return;
                 }
 
@@ -92,8 +91,8 @@ public class WriteReportUI implements Runnable {
     }
 
     public long numberOfWords(String report){
-        long var = report.split(" ", -1).length - 1;
-        var=var+1;
-        return var;
+        long wordsInReport = report.split(" ", -1).length - 1;
+        wordsInReport=wordsInReport+1;
+        return wordsInReport;
     }
 }

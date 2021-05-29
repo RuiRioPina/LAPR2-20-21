@@ -72,9 +72,9 @@ public class TestStore {
     }
 
     public List<Test> getTests() {
-        List<Test> tests = new ArrayList<>();
-        tests.addAll(this.tests);
-        return tests;
+        List<Test> testList = new ArrayList<>();
+        testList.addAll(this.tests);
+        return testList;
     }
 
     public List<Test> getTestsWithoutSamples() {

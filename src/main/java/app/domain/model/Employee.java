@@ -174,16 +174,16 @@ public class Employee {
      * @return String with the employee's id.
      */
  private String generateID(int nEmployees){
-        StringBuilder id= new StringBuilder();
+        StringBuilder idGenerated= new StringBuilder();
         String employeeName = this.name;
         employeeName=employeeName.trim();
         String[] nameWords = employeeName.split(" ");
      for (String nameWord : nameWords) {
-         id.append(nameWord.charAt(0));
+         idGenerated.append(nameWord.charAt(0));
      }
-     id = new StringBuilder(id.toString().toUpperCase());
-     id = new StringBuilder(String.format("%s%05d", id.toString(), nEmployees));
-        return id.toString();
+     idGenerated = new StringBuilder(idGenerated.toString().toUpperCase());
+     idGenerated = new StringBuilder(String.format("%s%05d", idGenerated, nEmployees));
+        return idGenerated.toString();
 }
 
     /**
@@ -282,13 +282,12 @@ public boolean equals(Object o){
      * @return String with a formatted String presenting the employee information.
      */
     @Override
-    public String toString(){
-        if (specialistDoctorIndexNumber==null){
-            return String.format("This employee is named "+this.name+". Their ID is "+ this.id +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.soc +". Their email adress is "+ this.email+". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+".");
-        }else
-            return String.format("This employee is named "+this.name+". Their ID is "+ this.id +". Their adress is "+ this.adress+". Their phone number is "+ this.phoneNumber+". \nTheir SOC is "+this.soc +". Their email adress is " +this.email + ". Their username is "+ this.userName+". Their password is "+this.password+". Their role is "+ role.getRoleID()+". Their doctor Index number is "+this.specialistDoctorIndexNumber);
-}
-
+    public String toString() {
+        if (specialistDoctorIndexNumber == null) {
+            return String.format("This employee is named %s. Their ID is %s. Their address is %s. Their phone number is %d. %nTheir SOC is %s. Their email address is %s. Their username is %s. Their password is %s. Their role is %s.", this.name, this.id, this.adress, this.phoneNumber, this.soc, this.email, this.userName, this.password, role.getRoleID());
+        } else
+            return String.format("This employee is named %s. Their ID is %s. Their address is %s. Their phone number is %d. %nTheir SOC is %s. Their email address is %s. Their username is %s. Their password is %s. Their role is %s. Their doctor Index number is %s", this.name, this.id, this.adress, this.phoneNumber, this.soc, this.email, this.userName, this.password, role.getRoleID(), this.specialistDoctorIndexNumber);
+    }
     /**
      * Checks to see if the employee has valid date within this program's context.
      * Checks to see if the name has more than 35 characters or has numbers.
