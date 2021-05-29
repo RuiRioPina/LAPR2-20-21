@@ -219,8 +219,6 @@ public class TestTest {
         part.add(ps.getParameters().get(3));
 
         TestTypeStore tts = this.company.getTestTypeStore();
-        tts.saveTestType(new TestType("BET10", "Blood Test", "Venipuncture", pc));
-        tts.saveTestType(new TestType("CED10", "Covid-19 Test", "Nasopharyngeal", p));
 
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
