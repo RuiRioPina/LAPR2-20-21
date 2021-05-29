@@ -56,7 +56,7 @@ public class TestParamTest {
         par.add(ps.getParameters().get(3));
 
         TestTypeStore tts = this.company.getTestTypeStore();
-        tts.saveTestType(new TestType("BTT10", "Blood Test", "Venipuncture", pc));
+        tts.saveTestType(new TestType("BLL17", "Blood Test", "Venipuncture", pc));
         tts.saveTestType(new TestType("CTD10", "Covid-19 Test", "Nasopharyngeal", p));
 
         ClientList cl = this.company.getClientList();
