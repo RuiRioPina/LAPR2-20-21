@@ -8,12 +8,17 @@ import java.util.Date;
 import java.util.List;
 
 public class TestStore {
-
+    /**
+     * Object Oriented class used to store the Tests.
+     */
     List<Test> tests;
     TestParam testParam;
     Parameter parameter;
     TestResult testResult;
 
+    /**
+     * Test Store constructor.
+     */
     public TestStore() {
         tests = new ArrayList<>();
     }
@@ -43,6 +48,17 @@ public class TestStore {
         return null;
     }
 
+    /**
+     * Creates an object of Test class.
+     * @param nhsCode           - NHS code of the test.
+     * @param internalCode      - Internal code of the test.
+     * @param client            - Client that performs the test.
+     * @param testType          - Test Type of the test.
+     * @param parameterCategory - Category/Categories of the test.
+     * @param parameter         - Parameter/Parameters of the test.
+     * @param registrationDate  - Test registration date.
+     * @return Object of Test class.
+     */
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
             parameterCategory, List<Parameter> parameter, Date registrationDate) {
 
@@ -50,15 +66,27 @@ public class TestStore {
                 parameterCategory, parameter, registrationDate);
     }
 
+    /**
+     * Saves a test.
+     * @param t - Test.
+     */
     public void saveTest(Test t) {
         validateTest(t);
         addTest(t);
     }
 
+    /**
+     * Validates a test.
+     * @param t - Test.
+     */
     private void validateTest(Test t) {
         checkNhsCode(t.getNhsCode());
     }
 
+    /**
+     * Checks Test NHS Code rules.
+     * @param nhsCode - NHS Code of the test.
+     */
     private void checkNhsCode(String nhsCode) {
         if (!nhsCode.matches("[A-Za-z0-9]+")) {
             throw new IllegalArgumentException("Code must be alphanumeric.");
@@ -67,10 +95,18 @@ public class TestStore {
             throw new IllegalArgumentException("Code must have 12 chars.");
     }
 
+    /**
+     * Adds a test to the list.
+     * @param t - Test.
+     */
     private void addTest(Test t) {
         this.tests.add(t);
     }
 
+    /**
+     * Method to get all tests.
+     * @return - all test stored in list.
+     */
     public List<Test> getTests() {
         List<Test> testList = new ArrayList<>();
         testList.addAll(this.tests);

@@ -122,12 +122,21 @@ public class ParameterStore {
         return null;
     }
 
+    /**
+     * Method to get all Parameters stored.
+     * @return all parameters.
+     */
     public List<Parameter> getParameters() {
         List<Parameter> p = new ArrayList<>();
         p.addAll(this.parameter);
         return p;
     }
 
+    /**
+     * Method to get the Parameters from a specific category.
+     * @param cat - (Parameter) Category.
+     * @return a list with the Parameters of the specific category.
+     */
     public List<Parameter> getParameterByCategory(ParameterCategory cat) {
         List<Parameter> p = new ArrayList<>();
         List<Parameter> p2 = new ArrayList<>();
