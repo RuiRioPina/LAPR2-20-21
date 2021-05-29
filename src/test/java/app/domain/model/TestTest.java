@@ -210,15 +210,7 @@ public class TestTest {
         Parameter parameter = new Parameter("PET01", "PLT", "Platelet Count", cat);
 
 
-        ps.saveParameter(new Parameter("HE011", "HB", "Haemoglobin", cat));
-        ps.saveParameter(new Parameter("WEC01", "WBC", "White Cell Count", cat));
-        ps.saveParameter(parameter);
-        ps.saveParameter(new Parameter("REC01", "RBC", "Red Blood Count", cat));
-        ps.saveParameter(new Parameter("MEV01", "MCV", "Mean Cell Volume", cat1));
-        ps.saveParameter(new Parameter("MEH01", "MCH", "Mean Cell Heaemoglob", cat1));
-        ps.saveParameter(new Parameter("MEHC1", "MCHC", "MCH Concentration", cat1));
-        ps.saveParameter(new Parameter("EER01", "ESR", "Erythrocyte Sed Rate", cat1));
-        ps.saveParameter(new Parameter("IEGAR", "IgC", "Antibodies", cat2));
+
         List<Parameter> part = new ArrayList<>();
         part.add(parameter);
         part.add(ps.getParameters().get(0));
