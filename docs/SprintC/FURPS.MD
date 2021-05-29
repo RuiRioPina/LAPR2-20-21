@@ -140,7 +140,7 @@ Java.
 
 * Software process
 
-Iterative Incremental Model.
+Scrum.
 
 * Mandatory Standards/patterns
 
