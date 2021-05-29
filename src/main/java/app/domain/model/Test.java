@@ -54,7 +54,6 @@ public class Test {
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
         this.registrationDate = registrationDate;
-        this.report=report;
         if(getTestResult()==null) {
             this.chemicalAnalysisDate = null;
         }else {
@@ -165,6 +164,10 @@ public class Test {
         return chemicalAnalysisDate;
     }
 
+    /**
+     *  Returns the test report
+     * @return report of the test
+     */
     public Report getReport(){return report;}
 
     public void setReport(Report report){
@@ -210,7 +213,7 @@ public class Test {
                     "Registration Date = " + registrationDate;
         }
 
-        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && report==null && validationDate==null){
+        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
             str = "TEST" + '\n' +
                     "NHS Code = " + nhsCode + '\n' +
                     "Internal Code = " + internalCode + '\n' +
@@ -226,9 +229,6 @@ public class Test {
             str= "Internal code: "+ internalCode +" Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + " Diagnosis Date:"+diagnosisDate;
         }
 
-        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
-            str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
-        }
 
 
         return str;
