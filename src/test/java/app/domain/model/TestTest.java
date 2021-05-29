@@ -3,6 +3,7 @@ package app.domain.model;
 import app.controller.App;
 import app.domain.store.ClientList;
 import app.domain.store.ParameterStore;
+import app.domain.store.TestStore;
 import app.domain.store.TestTypeStore;
 import org.junit.Test;
 
@@ -38,58 +39,388 @@ public class TestTest {
 
     @Test
     public void getInternalCode() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        String expected ="900000000000";
+        assertEquals(expected,t.getInternalCode());
     }
 
     @Test
     public void getClient() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertEquals(c,t.getClient());
     }
 
     @Test
     public void getTestType() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        System.out.println(t);
+        assertEquals(tt1,t.getTestType());
     }
 
     @Test
     public void getSampleCollectionMethod() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertEquals(tt1.getCollectingMethod(),t.getSampleCollectionMethod());
     }
 
     @Test
     public void getParameterCategory() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertEquals(pc,t.getParameterCategory());
     }
 
     @Test
     public void getParameter() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertEquals(par,t.getParameter());
     }
 
     @Test
     public void getSamples() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertEquals(new ArrayList<>(),t.getSamples());
     }
 
     @Test
     public void getRegistrationDate() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertEquals(data,t.getRegistrationDate());
     }
 
     @Test
     public void getSamplesCollectionDate() {
-    }
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
 
-    @Test
-    public void getChemicalAnalysisDate() {
-    }
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
 
-    @Test
-    public void getReport() {
-    }
+        List<TestType> tt = new ArrayList<>();
 
-    @Test
-    public void setReport() {
-    }
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
 
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertNull(t.getSamplesCollectionDate());
+    }
     @Test
     public void getDiagnosisDate() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertNull(t.getDiagnosisDate());
     }
 
     @Test
     public void getValidationDate() {
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+
+        TestStore ts = new TestStore();
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
+        assertNull(t.getValidationDate());
     }
 
     @Test
