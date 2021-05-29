@@ -39,7 +39,7 @@ activate CTRL
 CTRL -> TS : t=getTestByInternalCode(testCode)
 activate TS
 loop until all the samples are created
-    ref over CTRL, TS , S: UC5_SSD_CreatingSamples.svg
+    ref over CTRL, TS , S: UC5_SD_CreatingSamples.svg
 end loop
 UI --> MEDLT : informs operation success
 deactivate TS
