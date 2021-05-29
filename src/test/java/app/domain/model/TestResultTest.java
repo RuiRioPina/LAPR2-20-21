@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import app.controller.App;
+import app.domain.store.TestStore;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +11,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TestResultTest {
+    Company company = App.getInstance().getCompany();
 
     @Before
     public void setUp() throws Exception {
@@ -27,6 +30,23 @@ public class TestResultTest {
         double actual = testResult.getResult();
         double expected = 170;
         assertEquals(expected, actual, 0.01);
+    }
+
+    @Test
+    public void getResultForBlood() {
+        ParameterCategory parameterCategory = new ParameterCategory("CAT02", "Category02");
+        List<ParameterCategory> pcl = new ArrayList<>();
+        pcl.add(parameterCategory);
+        Parameter parameter = new Parameter("IgGAN", "IgC", "Antibodies", pcl);
+        double result = 1;
+        ReferenceValue referenceValue = new ReferenceValue("10e9L", 1.4D, 0);
+        TestResult testResult = new TestResult(parameter, result, referenceValue);
+        double actual = testResult.getResult();
+        ReferenceValue actualReferenceValue = testResult.getReferenceValue();
+        double expected = 1;
+        ReferenceValue expectedReferenceValue = referenceValue;
+        assertEquals(expected, actual, 0.01);
+        assertEquals(expectedReferenceValue, actualReferenceValue);
     }
 
     @Test
