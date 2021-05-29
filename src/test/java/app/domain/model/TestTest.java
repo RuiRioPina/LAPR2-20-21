@@ -3,7 +3,6 @@ package app.domain.model;
 import app.controller.App;
 import app.domain.store.ClientList;
 import app.domain.store.ParameterStore;
-import app.domain.store.TestStore;
 import app.domain.store.TestTypeStore;
 import org.junit.Test;
 
@@ -19,6 +18,22 @@ public class TestTest {
 
     @Test
     public void getNhsCode() {
+        Client c = new Client(1234567897123456L, 1234567690, "21-01-2002", "jorgepaulo@gmail.com", 1111231111L, 22262222122L, "Jorge Paulo");
+        TestTypeStore tts = this.company.getTestTypeStore();
+        List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new Parameter("HE011", "HB", "Haemoglobin", pc));
+        pc.add(p1);
+        pc.add(P2);
+        Date data = new Date(System.currentTimeMillis());
+        tts.saveTestType(new TestType("BET10", "Blood Test", "Venipuncture", pc));
+        app.domain.model.Test test = new app.domain.model.Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, parameters, data);
+        String actual = test.getNhsCode();
+        String expected = "123454abcdef";
+        assertEquals(expected,actual);
     }
 
     @Test

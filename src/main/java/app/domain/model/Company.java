@@ -21,17 +21,17 @@ public class Company {
     private int numberOfEmployees;
     private long lastBarcode;
     private int testCode;
-    private String designation;
-    private AuthFacade authFacade;
-    private ParameterCategoryStore parameterCategoryStore;
-    private TestTypeStore testTypeStore;
-    private ParameterStore parameterStore;
+    private final String designation;
+    private final AuthFacade authFacade;
+    private final ParameterCategoryStore parameterCategoryStore;
+    private final TestTypeStore testTypeStore;
+    private final ParameterStore parameterStore;
     private EmployeeStore employeeStore;
-    private ResultOfTestStore resultOfTestStore;
+    private final ResultOfTestStore resultOfTestStore;
     private RoleStore roleStore;
-    private ClientList clientList;
-    private ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
-    private ReportStore reportStore;
+    private final ClientList clientList;
+    private final ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
+    private final ReportStore reportStore;
     private ClinicalAnalysisLaboratory cla;
 
     public Company(String designation) {
@@ -247,13 +247,5 @@ public class Company {
         }
         testStore = new TestStore(tests);
         return testStore;
-    }
-
-    public List<Test> getAllTestWithSamples() {
-        List<Test> stores = new ArrayList<>();
-        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            stores.addAll(lab.getTestStore().getTestsWithSamples());
-        }
-        return stores;
     }
 }
