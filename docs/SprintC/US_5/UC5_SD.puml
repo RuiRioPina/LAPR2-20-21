@@ -5,20 +5,22 @@ actor "Medical Lab Technician" as MEDLT
 participant ":GenerateSampleUI" as UI
 participant ":GenerateSampleController" as CTRL
 participant ":Company" as CMP
+participant ":ClinicalAnalysisLaboratory" as LAB
 participant "ts:\nTestStore" as TS
 participant "s:\nSample" as S
-participant "T:\nTest" as T
-participant "lt:\nList<Test>" as LT
 
 activate MEDLT
-MEDLT -> UI : starts new sample
+MEDLT -> UI : register new samples
 activate UI
-UI -> CTRL : lt=getTestsRegistered()
+UI -> CTRL : lt=getTestsWithoutSamples()
 activate CTRL
 CTRL -> CMP : ts=getTestStore()
-activate CMP	
+activate CMP
+CMP -> LAB : ts=getTestStore()
+activate LAB
+deactivate LAB
 deactivate CMP
-CTRL -> TS : lt=getTestsRegistered()
+CTRL -> TS : lt=getTestsWithoutSamples()
 activate TS
 deactivate TS
 deactivate CTRL
@@ -34,45 +36,14 @@ MEDLT -> UI : types the number of samples to create
 activate UI
 UI -> CTRL : createSamples(testCode, numberOfSamples)
 activate CTRL
-CTRL -> TS : getTestByCode(testCode)
-loop until all samples are created
-end
-UI -> CTRL : createTestType(code, description, collectingMethod, parameterCategoryCodes)
-activate CTRL
-loop until get all parameter categories by code
-        CTRL -> pcStore : pc=cs.getParameterCategoryByCode(parameterCategoryCode)
-        activate pcStore
-        deactivate pcStore
-end
-CTRL -> CMP : ts=getTestTypeStore()
-activate CMP
-deactivate CMP
-CTRL -> ttStore: tt=ts.createTestType(code, description, collectingMethod, parameterCategories)
-activate ttStore
-ttStore -> TET** : create(code, description, collectingMethod, parameterCategories)
-deactivate ttStore
-CTRL -> ttStore : validateTestType(tt)
-activate ttStore
-deactivate ttStore
-CTRL -->  UI : result
-deactivate ttStore
-deactivate CMP
-deactivate CTRL
-UI --> MEDLT : shows all the data and request a confirmation
-deactivate UI
-
-MEDLT -> UI : confirms the data
-activate UI
-UI -> CTRL : saveTestType()
-activate CTRL
-CTRL -> ttStore : ts.saveTestType(tt)
-activate ttStore
-ttStore -> ttStore : validateTestType(tt)
-ttStore -> ttStore : addTestType(tt)
+CTRL -> TS : t=getTestByInternalCode(testCode)
+activate TS
+loop until all the samples are created
+    ref over CTRL, TS , S: UC5_SSD_CreatingSamples.svg
+end loop
 UI --> MEDLT : informs operation success
-deactivate ttStore
+deactivate TS
 deactivate CTRL
 deactivate UI
-
 deactivate MEDLT
 @enduml
