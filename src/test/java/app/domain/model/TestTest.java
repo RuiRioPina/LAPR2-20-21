@@ -233,15 +233,15 @@ public class TestTest {
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
         Date data = new Date(System.currentTimeMillis());
-        app.domain.model.Test testSemSample1 = new app.domain.model.Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, part, data);
-        String string1 ="932992999999 Registration Date:"+data+" Chemical Analysis Date:"+data+" Diagnosis Date:"+data;
+        app.domain.model.Test testSemSample1 = new app.domain.model.Test("123454abcdeg", "932992999998", c, tts.getTestTypes().get(0), pc, part, data);
+        String string1 ="Internal code: 932992999998 Registration Date:"+data+" Chemical Analysis Date:"+data+" Diagnosis Date:"+data;
         assertNotEquals(testSemSample1.toString(),string1);
         testSemSample1.setSamplesCollectionDate(data);
         assertNotEquals(testSemSample1.toString(),string1);
         testSemSample1.setChemicalAnalysisDate(data);
         assertNotEquals(testSemSample1.toString(),string1);
         testSemSample1.setDiagnosisDate(data);
-        assertEquals(string1.toString(),string1);
+        assertEquals(testSemSample1.toString(),string1);
 
 
     }
