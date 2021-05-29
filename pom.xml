@@ -28,9 +28,6 @@
                         <version>2.22.0</version>
                     </dependency>
                 </dependencies>
-                <configuration>
-                    <forkCount>0</forkCount>
-                </configuration>
                 <!-- <dependencies>-->
                 <!-- This dependency must be included, otherwise Maven Surefire will not recognise the test cases -->
                 <!-- <dependency>
