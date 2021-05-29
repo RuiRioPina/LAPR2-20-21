@@ -42,11 +42,31 @@ NHS code : 12 alphanumeric characters.
 
 **A4:** Yes.
 
+**Q5:** When the receptionist is registering a test for a client, the test can have more than one category and many parameters of the chosen categories or it only can have one category?
+
+**A5:** Each test can have more than one category.
+
+**Q6:** You've said on previous questions that the NHS code contains 12 characters and is alphanumeric, so this will be different from the NHS number from the client, am I right? If so, how do we know a certain test is associated to a client?
+
+**A6:** A test has a NHS code and a client has a NHS number. In US4 the receptionist of the laboratory should ask the client to get his TIN number. Using the TIN number the receptionist of the laboratory can find all information about the client. Do not forget that a client should be registered in the system to make a test.
+
+**Q7:** Should we show the list of all clients available or just introduce the client's CCN?
+
+**A7:** The TIN number should be used to find a client and associate the client with the test.
+
+**Q8:** Shouldn't the receptionist locate the Client by the Citizen Card Number instead of TIN Number?
+
+**A8:** The receptionist should use the TIN number to find the client.
+
+**Q9:** How is it possible to know in which laboratory the test is being registered? Should the Receptionist select the Laboratory before selecting the Test Type?
+
+**A9:** After login the receptionist should select the laboratory where she is working. Then, the receptionist has access to the system's features/functionalities.
+
 ### 1.3. Acceptance Criteria
 
 **AC1:** The receptionist must select the parameters to be analysed from all possible parameters in accordance with the test type.
 
-**AC2:** NHS code has 12 alphanumeric characters.
+**AC2:** NHS code has 12 alphanumeric characters and is unique.
 
 **AC3:** Test code is a sequential number with 12 digits. The code is automatically generated.
 
@@ -58,9 +78,9 @@ This US has dependency with US3 (register the client) and to US9, US10 e US11 (r
 
 ### 1.5 Input and Output Data
 
-**Typed Data** (nhsCode, clientCcn).
+**Typed Data** (nhsCode, clientTIN).
 
-**Selected Data** (testType, category, parameter(s)).
+**Selected Data** (testType, category(ies), parameter(s)).
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -96,20 +116,18 @@ No other remarks.
 | Step 3 		 |	...saving the inputed data? | Test  | IE: object created in step 1 has its own data.  |
 | Step 4  		 |	...knowing the Client to show? | ClientStore  | IE: Client is defined by TestStore. |
 | Step 5  		 |	...saving the linked Client? | Client | IE: object created in step 1 has a Client.  |
-| Step 6         |  ...confirmating | TestUI | Interacts with the actor.|
-| Step 7 		 |	...knowing the Test Types to show? | TestTypeStore  | IE: Test Type is defined by the TestTypeStore. |
-| Step 8  		 |	...saving the selected Test Type ? | TestType | IE: object created in step 1 has a TestType.  |
-| Step 9         |  ...adding sample collecting method? |TestType | IE: there is only one collection method per Test Type |
-| Step 10 		 |	...knowing the Categories to show? | ParameterCategoryStore  | IE: Parameter Category is defined by the ParameterCategoryStore. |
-| Step 11  		 |	...saving the selected Category ? | ParameterCategory | IE: object created in step 1 has a ParameterCategory.  |
-| Step 12		 |	...knowing the Parameters to show? | ParameterStore  | IE: Parameter is defined by the ParameterStore. |
-| Step 13 		 |	...saving the selected Parameter ? | Parameter | IE: object created in step 1 has a Parameter.  |
-| Step 14        |  ...make test state "registered" and adding date | TestUI | System responsabilty at the moment.|
-| Step 15        |  ...confirmating | TestUI | Interacts with the actor.|
-| Step 16 		 |	...validating all data (local validation)? | Test | IE: owns its data.| 
+| Step 6 		 |	...knowing the Test Types to show? | TestTypeStore  | IE: Test Type is defined by the TestTypeStore. |
+| Step 7  		 |	...saving the selected Test Type ? | TestType | IE: object created in step 1 has a TestType.  |
+| Step 8 		 |	...knowing the Categories to show? | ParameterCategoryStore  | IE: Parameter Category is defined by the ParameterCategoryStore. |
+| Step 9  		 |	...saving the selected Category ? | ParameterCategory | IE: object created in step 1 has a ParameterCategory.  |
+| Step 10		 |	...knowing the Parameters to show? | ParameterStore  | IE: Parameter is defined by the ParameterStore. |
+| Step 11 		 |	...saving the selected Parameter ? | Parameter | IE: object created in step 1 has a Parameter.  |
+| Step 12        |  ...generate test code and date | TestUI | System responsabilty at the moment.|
+| Step 13        |  ...confirmating | TestUI | Interacts with the actor.|
+| Step 14		 |	...validating all data (local validation)? | Test | IE: owns its data.| 
 | 			  	 |	...validating all data (global validation)? | TestStore | IE: knows all its Tests.| 
 | 	             |	...saving the created Test? | TestStore | IE: owns all its Tests.| 
-| Step 17 		 |	...informing operation success?| TestUI  | Interacts with the actor.  |                 
+| Step 15 		 |	...informing operation success?| TestUI  | Interacts with the actor.  |                 
 
 ### Systematization ##
 
@@ -142,79 +160,90 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Parameter class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Test class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
     public void ensureNullIsNotAllowed() {
-        Test t = new Test(null, null, null, null, null, null, null, null, null, null, null, null);
+        Test t = new Test(null, null, null, null, null, null, null);
     }
 
    *Only some examples have been exposed in this section.*
     
+   **Test 2:** Check that it is possible to get the test code of a test 
+   
+    @Test
+    public void getInternalCode() {
+        ...
+        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", client, testType, category, parameter, data);
+        String expected ="900000000000";
+        assertEquals(expected,t.getInternalCode());
+    }
+    
 # 5. Construction (Implementation)
 
 ## class Test
-    
-    public class Test {
-
     private String nhsCode;
     private String internalCode;
     private Client client;
+    private List<ParameterCategory> parameterCategory;
     private TestType testType;
     private String sampleCollectionMethod;
-    private List <ParameterCategory>  parameterCategory;
-    private List <Parameter> parameter;
+    private List<Parameter> parameter = new ArrayList<>();
     private Date registrationDate;
+    private List<Sample> samples;
     private Date samplesCollectionDate;
     private Date chemicalAnalysisDate;
     private Date diagnosisDate;
     private Date validationDate;
+    private Report report;
+    private final ResultOfTestStore resultOfTestStore = new ResultOfTestStore();
 
 
-    public Test(nhsCode, internalCode, client, testType, sampleCollectionMethod, parameterCategory,
-    parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate, diagnosisDate, validationDate) 
-    {
+    public Test(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
+            parameterCategory, List<Parameter> parameter, Date registrationDate) {
         this.nhsCode = nhsCode;
         this.internalCode = internalCode;
         this.client = client;
         this.testType = testType;
-        this.sampleCollectionMethod = sampleCollectionMethod;
+        this.sampleCollectionMethod = this.testType.getCollectingMethod();
         this.parameterCategory = parameterCategory;
         this.parameter = parameter;
         this.registrationDate = registrationDate;
-        this.samplesCollectionDate = samplesCollectionDate;
-        this.chemicalAnalysisDate = chemicalAnalysisDate;
-        this.diagnosisDate = diagnosisDate;
-        this.validationDate = validationDate;
-    }
-    ...
-    }
+        ...
+        }
+        ...
+     }
     
 ## class TestStore    
     
-    public class TestStore {
+    public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
+            parameterCategory, List<Parameter> parameter, Date registrationDate) {
 
-    private List <Test> tests;
-
-    public TestStore() {
-        this.tests = new ArrayList<Test>();
+        return new Test(nhsCode, internalCode, client, testType,
+                parameterCategory, parameter, registrationDate);
     }
 
-    public Test createTest(nhsCode, internalCode, client, testType, sampleCollectionMethod, parameterCategory,
-    parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate, diagnosisDate, validationDate) 
-    {
-        return new Test(nhsCode, internalCode, client, testType, sampleCollectionMethod, parameterCategory,
-        parameter, registrationDate, samplesCollectionDate, chemicalAnalysisDate, diagnosisDate, validationDate);
-    }
-    
-    public void saveTest(Test t) throws IllegalArgumentException {
+    public void saveTest(Test t) {
         validateTest(t);
         addTest(t);
+    }
+
+    private void validateTest(Test t) {
+        checkNhsCode(t.getNhsCode());
+    }
+
+    private void checkNhsCode(String nhsCode) {
+        if (!nhsCode.matches("[A-Za-z0-9]+")) {
+            throw new IllegalArgumentException("Code must be alphanumeric.");
+        }
+        if (nhsCode.length() != 12)
+            throw new IllegalArgumentException("Code must have 12 chars.");
     }
 
     private void addTest(Test t) {
         this.tests.add(t);
     }
+
     ...
     }
     
