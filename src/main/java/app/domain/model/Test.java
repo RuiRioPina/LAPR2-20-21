@@ -307,7 +307,7 @@ public class Test {
     }
 
 
-    public void getDate() {
-        System.out.println(this.chemicalAnalysisDate);
+    public String getDate() {
+        return String.format("%s",this.chemicalAnalysisDate);
     }
 }

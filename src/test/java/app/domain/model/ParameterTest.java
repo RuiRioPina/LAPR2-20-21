@@ -123,6 +123,6 @@ public class ParameterTest {
         List<ParameterCategory> pcl = new ArrayList<>();
         pcl.add(parameterCategory);
         Parameter parameter = new Parameter("PLT00", "plalets", "Plalets", pcl);
-        assertEquals("Parameter{code='PLT00', shortname='plalets', description='Plalets', Parameter Category=[PLT00 | plalets]}Test Result =null",parameter.toString());
+        assertEquals("Parameter{code='PLT00', shortname='plalets', description='Plalets', Parameter Category=[PLT00 | plalets]}",parameter.toString());
     }
 }

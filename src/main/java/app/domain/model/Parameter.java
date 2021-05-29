@@ -84,11 +84,20 @@ public class Parameter {
 
     @Override
     public String toString() {
-        return "Parameter{" +
-                "code='" + code + '\'' +
-                ", shortname='" + shortname + '\'' +
-                ", description='" + description + '\'' +
-                ", Parameter Category=" + pc +
-                '}' + "Test Result =" + testResult;
+        if(testResult!=null) {
+            return "Parameter{" +
+                    "code='" + code + '\'' +
+                    ", shortname='" + shortname + '\'' +
+                    ", description='" + description + '\'' +
+                    ", Parameter Category=" + pc +
+                    '}' + "Test Result =" + testResult;
+        }else {
+            return "Parameter{" +
+                    "code='" + code + '\'' +
+                    ", shortname='" + shortname + '\'' +
+                    ", description='" + description + '\'' +
+                    ", Parameter Category=" + pc +
+                    '}';
+        }
     }
 }
