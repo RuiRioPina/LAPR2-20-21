@@ -29,7 +29,7 @@ public class TestTest {
         pc.add(p1);
         pc.add(P2);
         Date data = new Date(System.currentTimeMillis());
-        tts.saveTestType(new TestType("BET10", "Blood Test", "Venipuncture", pc));
+        tts.saveTestType(new TestType("BTT10", "Blood Test", "Venipuncture", pc));
         app.domain.model.Test test = new app.domain.model.Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, parameters, data);
         String actual = test.getNhsCode();
         String expected = "123454abcdef";
