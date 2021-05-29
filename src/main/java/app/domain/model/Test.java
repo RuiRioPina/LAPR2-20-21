@@ -1,10 +1,7 @@
 package app.domain.model;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import app.domain.shared.EmailNotificationSender;
 import app.domain.store.ParameterStore;
@@ -51,9 +48,9 @@ public class Test {
         this.client = client;
         this.testType = testType;
         this.sampleCollectionMethod = this.testType.getCollectingMethod();
-        this.parameterCategory = parameterCategory;
-        this.parameter = parameter;
-        this.registrationDate = registrationDate;
+        this.parameterCategory = Collections.unmodifiableList(parameterCategory);
+        this.parameter = Collections.unmodifiableList(parameter);
+        this.registrationDate = new Date(registrationDate.getTime());
         if(getTestResult()==null) {
             this.chemicalAnalysisDate = null;
         }else {
