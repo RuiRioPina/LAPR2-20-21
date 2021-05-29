@@ -50,4 +50,11 @@ public class Configuration {
 	public static String getBarcodeApiImageMethod () {
 		return props.getProperty("BarcodeApi.BarcodeImageSaving");
 	}
+
+	public static String getAutomaticValidationCovid () {
+		return props.getProperty("Automatic.Validation.Covid");
+	}
+	public static String getAutomaticValidationBlood () {
+		return props.getProperty("Automatic.Validation.Blood");
+	}
 }

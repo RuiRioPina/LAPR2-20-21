@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import app.domain.shared.Configuration;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -84,12 +86,11 @@ public class TestType {
         ExternalModule em;
         try {
             if(parameterCode.getCode().equals("IgGAN")){
-                oClass = Class.forName("app.domain.model.ExternalAdapter1");
-                em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+                oClass = Class.forName(Configuration.getAutomaticValidationCovid());
             }else {
-                oClass = Class.forName("app.domain.model.ExternalAdapter2");
-                em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+                oClass = Class.forName(Configuration.getAutomaticValidationBlood());
             }
+            em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
             return em.getReferenceValue(parameterCode);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
