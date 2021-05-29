@@ -7,6 +7,8 @@ participant ":GenerateSampleController" as CTRL
 participant ":Company" as CMP
 participant ":ClinicalAnalysisLaboratory" as LAB
 participant "ts:\nTestStore" as TS
+participant "bcc:\nBarcodeController" as BCC
+participant ":API" as API
 participant "s:\nSample" as S
 
 activate MEDLT
@@ -38,11 +40,11 @@ UI -> CTRL : createSamples(testCode, numberOfSamples)
 activate CTRL
 CTRL -> TS : t=getTestByInternalCode(testCode)
 activate TS
+deactivate TS
 loop until all the samples are created
-    ref over CTRL, TS , S: UC5_SD_CreatingSamples.svg
+    ref over CTRL, TS , S, BCC, API: UC5_SD_CreatingSamples.svg
 end loop
 UI --> MEDLT : informs operation success
-deactivate TS
 deactivate CTRL
 deactivate UI
 deactivate MEDLT
