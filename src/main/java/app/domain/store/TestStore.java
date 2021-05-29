@@ -222,11 +222,20 @@ public class TestStore {
     }
 
 
-
+    /**
+     * Method used to check if a test is ready to be used by the Laboratory Coordinator. Checks if the
+     * registrationDate, the sampleCollectionDate, the chemicalAnalysisDate and the diagnosisDate aren't null,while the validationDate is.
+     * @param t- Test Object to be checked
+     * @return - boolean value saying if the Object is ready to be used or not.
+     */
     private boolean isUnvalidatedTest(Test t) {
         return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;
     }
 
+    /**
+     * Checks the TestStore's Test List to get all the UnvalidatedTests.
+     * @return- List with all of the Unvalidated tests.
+     */
     public List<Test> getUnvalidatedTests() {
         List<Test> lUnvalidatedTests = new ArrayList<>();
         for (int i = 0; i < tests.size(); i++) {
@@ -237,6 +246,11 @@ public class TestStore {
         return lUnvalidatedTests;
     }
 
+    /**
+     * Method used to change the validationDate of a List of Test Objects.
+     * @param lTests- List to be changed.
+     * @param newDate- Date used for the validationDate.
+     */
     public void validateTests(List<Test> lTests, Date newDate) {
         for (int i = 0; i < lTests.size(); i++) {
             lTests.get(i).setValidationDate(newDate);

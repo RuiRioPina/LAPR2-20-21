@@ -15,7 +15,7 @@ public class EmailNotificationSender {
     public boolean sendTestCompletedNotification()throws  IOException,InterruptedException{
         String nomeficheiro = "TestCompletedNotification.txt";
         try (PrintWriter out = new PrintWriter(nomeficheiro)) {
-            out.println("Hello"+ client.getName());
+            out.println("Hello "+ client.getName());
             out.println("Your Test Results are ready to be received.");
         } catch (IOException e) {
             System.out.println("The file has not been created since there was an error. Please try again.");
@@ -25,7 +25,7 @@ public class EmailNotificationSender {
             System.out.println("Email sent!");
         }
         Desktop desktop = Desktop.getDesktop();
-        Thread.sleep(500); // Faz com que o java tenha tempo de criar o ficheiro antes de o ler.
+        Thread.sleep(500);
         desktop.open(file);
         return true;
     }

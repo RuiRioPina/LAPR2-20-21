@@ -223,7 +223,7 @@ public class Test {
         }
 
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate!= null && validationDate==null){
-            str= internalCode + " Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
+            str= "Internal code: "+ internalCode +" Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + "Diagnosis Date:"+diagnosisDate;
         }
 
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
@@ -298,6 +298,11 @@ public class Test {
     public void setDiagnosisDate(Date newDate){
         this.diagnosisDate=newDate;
     }
+
+    /**
+     * Setter for the validationDate
+     * @param newDate- new Date object to replace the old value.
+     */
     public void setValidationDate(Date newDate){
         this.validationDate=newDate;
     }
