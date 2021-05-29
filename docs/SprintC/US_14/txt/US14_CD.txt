@@ -5,9 +5,9 @@ class WriteReportUI {
 }
 
 class WriteReportController {
-  +writeReport(date,testChosen,report)
+  +writeReport(report)
   +saveReport()
-  +getTests()
+  +getTestsWithoutDiagnosis()
 }
 
 class Company
@@ -17,7 +17,8 @@ class Company
 }
 
 class TestStore{
-  +getTests()
+  +getTestsWithoutDiagnosis()
+  +getTestByInternalCode()
 }
 
 class Test{
@@ -37,16 +38,15 @@ class Test{
 
 
 class Report {
-  -Date date
-  -testChosen
   -String report
-  +writeReport(date,testChosen,report)
+  +writeReport(report)
 }
 
 class ReportStore{
   +validateReport()
   +saveReport()
   +addReport()
+  +writeReport(report)
 }
 
 WriteReportUI ..> WriteReportController
