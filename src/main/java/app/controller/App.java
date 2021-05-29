@@ -26,7 +26,6 @@ public class App {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
-        bootstrap();
     }
 
     public Company getCompany() {
@@ -202,6 +201,7 @@ public class App {
         if (singleton == null) {
             synchronized (App.class) {
                 singleton = new App();
+                singleton.bootstrap();
             }
         }
         return singleton;
