@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ResultOfTestStore {
     private final List<TestResult> resultOfTestsStore;
-    private List<Test> test;
 
 
     /**

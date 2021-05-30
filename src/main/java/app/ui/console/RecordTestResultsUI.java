@@ -1,9 +1,9 @@
 package app.ui.console;
 
 import app.controller.RecordTestResultsController;
-import app.domain.model.Parameter;
-import app.ui.console.utils.Utils;
 
+import app.ui.console.utils.Utils;
+import app.domain.model.Parameter;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +17,6 @@ public class RecordTestResultsUI implements Runnable {
     @Override
     public void run() {
         List<Parameter> parametersToShow;
-        List<Parameter> parametersSelected;
 
         String barcode;
         double result = 0;
@@ -68,24 +67,9 @@ public class RecordTestResultsUI implements Runnable {
             }
             recordTestResultsController.saveTestResult(parameterCode, barcode);
 
-
-            parametersSelected = recordTestResultsController.getParameterStoreToShow(barcode);
-
-            for (Parameter parameter1231 : parametersSelected) {
-                System.out.println(parameter1231);
-            }
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             parametersToShow.remove(option);
-            List<Parameter> yau;
-            yau = recordTestResultsController.getValidatedParameters(parameterCode, barcode);
-            for (Parameter parameter1231 : yau) {
-                System.out.println(parameter1231);
-            }
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
             recordTestResultsController.setChemicalAnalysis(recordTestResultsController.getTestByBarcode(barcode));
-
-            recordTestResultsController.getDate(recordTestResultsController.getTestByBarcode(barcode));
-
 
         }
     }
