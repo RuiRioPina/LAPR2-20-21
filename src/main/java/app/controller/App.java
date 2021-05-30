@@ -79,7 +79,7 @@ public class App {
         this.authFacade.addUserWithRole("Receptionist", "receptionist@lei.sem2.pt", "12", Constants.ROLE_RECEPTIONIST);
         this.authFacade.addUserWithRole("Clinical Chemistry Technologist", "cct@lei.sem2.pt", "12", Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST);
         this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
-        this.authFacade.addUserWithRole("Specialist Doctor","specd@lei.sem2.pt","123456",Constants.ROLE_SPECIALIST_DOCTOR);
+        this.authFacade.addUserWithRole("Specialist Doctor", "specd@lei.sem2.pt", "123456", Constants.ROLE_SPECIALIST_DOCTOR);
         this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
         this.company.setNumberOfEmployees(0);
         this.company.setTestCode(0);
@@ -141,17 +141,17 @@ public class App {
         tts.saveTestType(tt1);
         tts.saveTestType(tt2);
 
-        List <TestType> ttList = new ArrayList<>();
+        List<TestType> ttList = new ArrayList<>();
         ttList.add(tt1);
         ttList.add(tt2);
 
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
         cl.saveClient(c);
-        
+
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
-        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345","LAB","London",99999979999L,9999999999L,ttList);
-        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344","LABor","Manchester",88888888888L,8888888888L,ttList);
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345", "LAB", "London", 99999979999L, 9999999999L, ttList);
+        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344", "LABor", "Manchester", 88888888888L, 8888888888L, ttList);
         clas.saveClinicalAnalysisLaboratory(cla);
         clas.saveClinicalAnalysisLaboratory(cla2);
         this.company.setCLA(cla2);
@@ -163,7 +163,7 @@ public class App {
         Test testSemSample2 = new Test("123454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
-        
+
         Test test = new Test("123454abcdef", "999992999999", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("121454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
         Test test3 = new Test("999999abcdef", "111112111111", c, tts.getTestTypes().get(0), pCovid, parCovid, data);
@@ -175,7 +175,7 @@ public class App {
         ts.saveSample(test, sample);
         ts.saveSample(test1, sample1);
         ts.saveSample(test3, sample3);
-        
+
         this.company.setCLA(cla);
 
         ts = this.company.getTestStore();

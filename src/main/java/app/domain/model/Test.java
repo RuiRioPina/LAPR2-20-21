@@ -166,9 +166,7 @@ public class Test {
      */
     public Report getReport(){return report;}
 
-    public void setReport(Report report){
-        this.report=report;
-    }
+
 
     /**
      * Returns the test diagnosis date.
@@ -186,6 +184,76 @@ public class Test {
      */
     public Date getValidationDate() {
         return validationDate;
+    }
+
+    /**
+     * Get a copy of the parameters for a test
+     * @return a list containing a copy of parameters of a test
+     */
+
+    public List<Parameter> getParameterStoreToShow() {
+        List<Parameter> parametersToShow = new ArrayList<>();
+        parametersToShow.addAll(this.parameter);
+        return parametersToShow;
+    }
+
+
+    /**
+     * Getter of test results
+     * @return the test results of the test
+     */
+
+    public List<TestResult> getTestResult() {
+        return resultOfTestStore.getResultOfTest();
+    }
+
+    /**
+     * Setter for samples of a test
+     * @param samples a list sample associated to the test
+     */
+
+
+    public void setSamples(List<Sample> samples) {
+        this.samples = samples;
+    }
+
+    public void setReport(Report report){
+        this.report=report;
+    }
+
+    /**
+     * Setter for the sample collection date
+     * @param date date to be changed to.
+     */
+
+    public void setSamplesCollectionDate(Date date) {
+        this.samplesCollectionDate = date;
+    }
+
+
+
+    /**
+     * Setter for the ChemicalAnalysisDate.
+     * @param newDate- new Date object to replace the old value.
+     */
+    public void setChemicalAnalysisDate(Date newDate){
+        this.chemicalAnalysisDate=newDate;
+    }
+
+    /**
+     * Setter for the diagnosisDate.
+     * @param newDate- new Date object to replace the old value.
+     */
+    public void setDiagnosisDate(Date newDate){
+        this.diagnosisDate=newDate;
+    }
+
+    /**
+     * Setter for the validationDate.
+     * @param newDate- new Date object to replace the old value.
+     */
+    public void setValidationDate(Date newDate){
+        this.validationDate=newDate;
     }
 
     /**
@@ -230,14 +298,6 @@ public class Test {
         return str;
     }
 
-    /**
-     * Setter for the sample collection date
-     * @param date date to be changed to.
-     */
-
-    public void setSamplesCollectionDate(Date date) {
-        this.samplesCollectionDate = date;
-    }
 
     /**
      * The method equals overwritten to check if a test is equal to another one
@@ -272,60 +332,6 @@ public class Test {
         ReferenceValue referenceValue = testType.checkExternalModuleBasedOnTestType(parameter);
 
         return resultOfTestStore.addTestResult(parameter, result, referenceValue);
-    }
-
-    /**
-     * Getter of test results
-     * @return the test results of the test
-     */
-
-    public List<TestResult> getTestResult() {
-        return resultOfTestStore.getResultOfTest();
-    }
-
-    /**
-     * Setter for samples of a test
-     * @param samples a list sample associated to the test
-     */
-
-
-    public void setSamples(List<Sample> samples) {
-        this.samples = samples;
-    }
-
-    /**
-     * Get a copy of the parameters for a test
-     * @return a list containing a copy of parameters of a test
-     */
-
-    public List<Parameter> getParameterStoreToShow() {
-        List<Parameter> parametersToShow = new ArrayList<>();
-            parametersToShow.addAll(this.parameter);
-        return parametersToShow;
-    }
-
-    /**
-     * Setter for the ChemicalAnalysisDate.
-     * @param newDate- new Date object to replace the old value.
-     */
-    public void setChemicalAnalysisDate(Date newDate){
-        this.chemicalAnalysisDate=newDate;
-    }
-
-    /**
-     * Setter for the diagnosisDate.
-     * @param newDate- new Date object to replace the old value.
-     */
-    public void setDiagnosisDate(Date newDate){
-        this.diagnosisDate=newDate;
-    }
-
-    /**
-     * Setter for the validationDate.
-     * @param newDate- new Date object to replace the old value.
-     */
-    public void setValidationDate(Date newDate){
-        this.validationDate=newDate;
     }
 
     /**

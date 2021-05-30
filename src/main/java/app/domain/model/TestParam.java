@@ -3,6 +3,11 @@ package app.domain.model;
 import java.util.List;
 
 public class TestParam {
+
+    /**
+     * Object oriented Class for the manipulation of Parameters that were selected for a test.
+     */
+
     List<Parameter> parametersSelected;
     public TestParam(Test test) {
         this.parametersSelected = test.getParameter();
