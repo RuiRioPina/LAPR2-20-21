@@ -129,10 +129,11 @@ public class App {
 
         List<Parameter> par = new ArrayList<>();
         List<Parameter> parCovid = new ArrayList<>();
-        par.add(ps.getParameters().get(0));
+        //par.add(ps.getParameters().get(0));
         par.add(ps.getParameters().get(1));
         par.add(ps.getParameters().get(2));
         par.add(ps.getParameters().get(3));
+        par.add(ps.getParameters().get(5));
         parCovid.add(ps.getParameters().get(0));
 
         TestTypeStore tts = this.company.getTestTypeStore();
@@ -141,7 +142,7 @@ public class App {
         tts.saveTestType(tt1);
         tts.saveTestType(tt2);
 
-        List<TestType> ttList = new ArrayList<>();
+        List <TestType> ttList = new ArrayList<>();
         ttList.add(tt1);
         ttList.add(tt2);
 
@@ -150,8 +151,8 @@ public class App {
         cl.saveClient(c);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
-        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("12345", "LAB", "London", 99999979999L, 9999999999L, ttList);
-        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("12344", "LABor", "Manchester", 88888888888L, 8888888888L, ttList);
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("00001","LABLondon","London",99999979999L,9999999999L,ttList);
+        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("00002","ManLAB","Manchester",88888888888L,8888888888L,ttList);
         clas.saveClinicalAnalysisLaboratory(cla);
         clas.saveClinicalAnalysisLaboratory(cla2);
         this.company.setCLA(cla2);
@@ -159,14 +160,14 @@ public class App {
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
 
-        Test testSemSample1 = new Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, par, data);
-        Test testSemSample2 = new Test("123454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample1 = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
 
-        Test test = new Test("123454abcdef", "999992999999", c, tts.getTestTypes().get(0), pc, par, data);
-        Test test1 = new Test("121454abcdef", "991992999999", c, tts.getTestTypes().get(0), pc, par, data);
-        Test test3 = new Test("999999abcdef", "111112111111", c, tts.getTestTypes().get(0), pCovid, parCovid, data);
+        Test test = new Test("333333abcdef", "999999999997", c, tts.getTestTypes().get(0), pc, par, data);
+        Test test1 = new Test("444444abcdef", "999999999996", c, tts.getTestTypes().get(0), pc, par, data);
+        Test test3 = new Test("555555abcdef", "999999999995", c, tts.getTestTypes().get(0), pCovid, parCovid, data);
 
         ts.saveTest(test);
         ts.saveTest(test1);
@@ -180,8 +181,8 @@ public class App {
 
         ts = this.company.getTestStore();
 
-        Test testSemSample3 = new Test("123454abcdef", "132992999999", c, tts.getTestTypes().get(0), pc, par, data);
-        Test testSemSample4 = new Test("123454abcdef", "321992999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample3 = new Test("666666abcdef", "999999999994", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample4 = new Test("777777abcdef", "999999999993", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(testSemSample3);
         ts.saveTest(testSemSample4);
 
