@@ -213,7 +213,7 @@ public class TestStore {
     }
 
 
-    private boolean isTestResultInBetweenReferenceValue(TestResult parameterBeingTested) {
+    public boolean isTestResultInBetweenReferenceValue(TestResult parameterBeingTested) {
         double maxValue = parameterBeingTested.getReferenceValue().getMaxValue();
         double minValue = parameterBeingTested.getReferenceValue().getMinValue();
         double result = parameterBeingTested.getResult();
@@ -222,7 +222,11 @@ public class TestStore {
     }
 
 
-    public List<Parameter> getValidatedParameters(String parameterCode,String barcode) {
+    public void setTestParam(TestParam testParam) {
+        this.testParam = testParam;
+    }
+
+    public List<Parameter> getValidatedParameters(String parameterCode, String barcode) {
 
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters =test.getParameter();
