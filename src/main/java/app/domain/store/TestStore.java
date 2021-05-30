@@ -119,6 +119,11 @@ public class TestStore {
         return result;
     }
 
+    /**
+     * Getter for the tests that have at least one sample
+     * @return a list containg only tests that have samples
+     */
+
     public List<Test> getTestsWithSamples() {
         List<Test> result = new ArrayList<>();
         for (Test t : this.tests) {
@@ -170,6 +175,11 @@ public class TestStore {
         t.setSamplesCollectionDate(new Date(System.currentTimeMillis()));
     }
 
+    /**
+     * Checks if the test associated to a given barcode exists
+     * @param barcode barcode of a sample that is contained on a test
+     * @return boolean asserting if it found the test with that barcode associated or not
+     */
 
     public boolean testExists(String barcode) {
         for (Test t : this.tests) {
@@ -182,6 +192,12 @@ public class TestStore {
         return false;
     }
 
+    /**
+     * Seeks for a test containing a sample that as associated to itself the given barcode
+     * @param barcode barcode of a sample that is contained on a test
+     * @return the test if it found it
+     */
+
     public Test getTestByBarcode(String barcode) {
         for (Test t : this.tests) {
             for (Sample samplesOfATest : t.getSamples()) {
@@ -193,14 +209,30 @@ public class TestStore {
         return null;
     }
 
+    /**
+     * See if a given test has passed through the medical lab technician already
+     * @param barcode barcode of a sample that is contained on a test
+     * @return boolean asserting if it has passed through the medical lab technician or not
+     */
     public boolean hasTestPassedSampleCollection(String barcode) {
         return getTest(barcode).getSamplesCollectionDate() != null;
     }
 
+    /**
+     * Getter for the parameters associated to a test
+     * @param barcode barcode of a sample that is contained on a test
+     * @return list of parameters of a test
+     */
     public List<Parameter> getParameterTestToShow(String barcode) {
         Test test = getTestByBarcode(barcode);
         return test.getParameterStoreToShow();
     }
+
+    /**
+     * Getter for a test that has a sample associated to that barcode
+     * @param barcode barcode of a sample that is contained on a test
+     * @return test if it was found
+     */
 
     public Test getTest(String barcode) {
 
@@ -212,7 +244,11 @@ public class TestStore {
         return null;
     }
 
-
+    /**
+     * Checks whether the parameter has passed through the automatic validation test
+     * @param parameterBeingTested parameter where it is validated
+     * @return boolean containing the result on whether the result is between the reference values or not
+     */
     public boolean isTestResultInBetweenReferenceValue(TestResult parameterBeingTested) {
         double maxValue = parameterBeingTested.getReferenceValue().getMaxValue();
         double minValue = parameterBeingTested.getReferenceValue().getMinValue();
@@ -221,10 +257,20 @@ public class TestStore {
 
     }
 
-
+    /**
+     * Setter for the testParam
+     * @param testParam an instance of the class testParam
+     */
     public void setTestParam(TestParam testParam) {
         this.testParam = testParam;
     }
+
+    /**
+     * Getter for all the parameters that have passed through the automatic validation done by the API
+     * @param parameterCode parameter where it is going to be validated
+     * @param barcode barcode of a sample of the test
+     * @return a list containing a list of parameters that passed sucessfully through the automatic validation
+     */
 
     public List<Parameter> getValidatedParameters(String parameterCode, String barcode) {
 
@@ -240,6 +286,12 @@ public class TestStore {
         return validatedParameterList;
 
     }
+
+    /**
+     * Save the test result of the test
+     * @param parameterCode parameter code from where the test result will be associated to the parameter
+     * @param barcode barcode from a sample of the test
+     */
 
 
     public void saveTestResult(String parameterCode,String barcode) {
