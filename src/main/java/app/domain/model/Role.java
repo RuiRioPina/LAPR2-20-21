@@ -32,14 +32,6 @@ public class Role {
         return roleID;
     }
 
-    /**
-     * Setter for the role ID.
-     *
-     * @param roleID- String with the new RoleID.
-     */
-    public void setRoleID(String roleID) {
-        this.roleID = roleID;
-    }
 
     /**
      * Getter for the role Description.
@@ -48,6 +40,34 @@ public class Role {
      */
     public String getRoleDescription() {
         return roleDescription;
+    }
+
+    /**
+     * Getter for the role shortname.
+     *
+     * @return String with the role Shortname.
+     */
+    public String getRoleShortname() {
+        return roleShortname;
+    }
+
+    /**
+     * Setter for the roleShortname.
+     *
+     * @param roleShortname- String with the new roleShortname.
+     */
+    public void setRoleShortname(String roleShortname) {
+        this.roleShortname = roleShortname;
+    }
+
+
+    /**
+     * Setter for the role ID.
+     *
+     * @param roleID- String with the new RoleID.
+     */
+    public void setRoleID(String roleID) {
+        this.roleID = roleID;
     }
 
     /**
@@ -93,23 +113,7 @@ public class Role {
         return String.format("%s. %s. %s.", roleID, roleDescription, roleDescription);
     }
 
-    /**
-     * Getter for the role shortname.
-     *
-     * @return String with the role Shortname.
-     */
-    public String getRoleShortname() {
-        return roleShortname;
-    }
 
-    /**
-     * Setter for the roleShortname.
-     *
-     * @param roleShortname- String with the new roleShortname.
-     */
-    public void setRoleShortname(String roleShortname) {
-        this.roleShortname = roleShortname;
-    }
 
     /**
      * Checks to see if the role's shortname has more than 15 characters. If that is the case it returns false.

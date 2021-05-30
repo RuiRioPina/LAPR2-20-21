@@ -49,6 +49,19 @@ public class ClientList {
         return new Client(ccn, nhsNumber, birthDate, email, tin, phoneNumber, name);
     }
 
+    /**
+     * Gets a copy of the arrayList containing the clients.
+     *
+     * @return List of Clients containing all clients stored in this class.
+     */
+    public List<Client> getClients() {
+        List<Client> c = new ArrayList<>();
+        c.addAll(this.listOfClients);
+        return c;
+    }
+
+
+
     private void add(Client c) {
         if (!listOfClients.contains(c)) {
             this.listOfClients.add(c);
@@ -66,16 +79,6 @@ public class ClientList {
         this.add(c);
     }
 
-    /**
-     * Gets a copy of the arrayList containing the clients.
-     *
-     * @return List of Clients containing all clients stored in this class.
-     */
-    public List<Client> getClients() {
-        List<Client> c = new ArrayList<>();
-        c.addAll(this.listOfClients);
-        return c;
-    }
 
     /**
      * Checks if the Client to be added already exists in the arrayList or not.
