@@ -29,10 +29,6 @@ public class TestStore {
 
     List<Parameter> validatedParameterList;
 
-    public void setTests(List<Test> tests) {
-        this.tests = tests;
-    }
-
     public void initializeValidationList() {
         validatedParameterList = new ArrayList<>();
     }
@@ -197,10 +193,6 @@ public class TestStore {
         return null;
     }
 
-    private boolean testExists(Test test) {
-        return tests.contains(test);
-    }
-
     public boolean hasTestPassedSampleCollection(String barcode) {
         return getTest(barcode).getSamplesCollectionDate() != null;
     }
@@ -218,10 +210,6 @@ public class TestStore {
             }
         }
         return null;
-    }
-
-    public List<TestResult> getTestsResults(Test test) {
-        return App.getInstance().getCompany().getTestStore().getTestsResults(test);
     }
 
 
@@ -249,15 +237,6 @@ public class TestStore {
 
     }
 
-    public Test getTest(Test test) {
-
-        for (Test testFound : tests) {
-            if (testExists(test)) {
-                return testFound;
-            }
-        }
-        return null;
-    }
 
     public void saveTestResult(String parameterCode,String barcode) {
         Test test = getTestByBarcode(barcode);
