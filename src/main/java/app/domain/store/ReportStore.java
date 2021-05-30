@@ -14,8 +14,7 @@ public class ReportStore {
      */
 
     private List<Report> reports;
-    private List<Test> tests;
-    private Test test;
+
 
     /**
      * Constructor for the Report store.
