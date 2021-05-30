@@ -128,10 +128,10 @@ public class TestStore {
         List<Test> result = new ArrayList<>();
         for (Test t : this.tests) {
             if (t.getSamplesCollectionDate() != null) {
-                result.add(t);
+                result.addAll(this.tests);
             }
         }
-        return result;
+        return this.tests;
     }
 
     public Test getTestByInternalCode(String testCode) {
