@@ -12,14 +12,14 @@ public class Test {
     /**
      * Object oriented Class to the registration of a test.
      */
-    private String nhsCode;
-    private String internalCode;
-    private Client client;
-    private List<ParameterCategory> parameterCategory;
-    private TestType testType;
-    private String sampleCollectionMethod;
+    private final String nhsCode;
+    private final String internalCode;
+    private final Client client;
+    private final List<ParameterCategory> parameterCategory;
+    private final TestType testType;
+    private final String sampleCollectionMethod;
     private List<Parameter> parameter = new ArrayList<>();
-    private Date registrationDate;
+    private final Date registrationDate;
     private List<Sample> samples;
     private Date samplesCollectionDate;
     private Date chemicalAnalysisDate;
@@ -112,7 +112,7 @@ public class Test {
      * @return categories of the test.
      */
     public List<ParameterCategory> getParameterCategory() {
-        return parameterCategory;
+        return new ArrayList<>(parameterCategory);
     }
 
     /**
@@ -121,7 +121,7 @@ public class Test {
      * @return parameters of the test.
      */
     public List<Parameter> getParameter() {
-        return parameter;
+        return new ArrayList<>(parameter);
     }
 
     /**
@@ -139,7 +139,7 @@ public class Test {
      * @return registration date of the test.
      */
     public Date getRegistrationDate() {
-        return registrationDate;
+        return new Date(registrationDate.getTime());
     }
 
     /**
