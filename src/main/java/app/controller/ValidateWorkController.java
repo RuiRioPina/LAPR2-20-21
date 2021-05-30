@@ -24,11 +24,17 @@ public class ValidateWorkController {
     /**
      * Prints out the list of unvalidated tests in the company with a number before it to indicate the selection of each test.
      */
-    public void showUnvalidatedTests(){
+    public boolean showUnvalidatedTests(){
         List<Test> lTests= App.getInstance().getCompany().getTestStore().getUnvalidatedTests();
-        for (int i=0;i<lTests.size();i++){
-            int numToShow=i+1;
-            System.out.println(numToShow + " " + lTests.get(i));
+        if (!lTests.isEmpty()) {
+            for (int i = 0; i < lTests.size(); i++) {
+                int numToShow = i + 1;
+                System.out.println(numToShow + " " + lTests.get(i));
+            }
+            return true;
+        }else {
+            System.out.println("There are no tests to be shown");
+            return false;
         }
     }
 
@@ -39,9 +45,9 @@ public class ValidateWorkController {
     public void askConfirmation(String selectedTestString){
         List<Test> lTestsToBeValidated=getTestsToBeValidated(selectedTestString);
         for (int i =0;i<lTestsToBeValidated.size();i++){
-            System.out.println(lTestsToBeValidated.get(i).getInternalCode());
+            System.out.println("Internal Code: "+ lTestsToBeValidated.get(i).getInternalCode());
         }
-        System.out.println("Are you sure you want to confirm the previous tests:(Y/N)");
+
     }
 
     /**
