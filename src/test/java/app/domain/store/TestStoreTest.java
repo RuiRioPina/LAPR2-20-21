@@ -456,27 +456,6 @@ public class TestStoreTest {
     }
     
     @Test
-    public void saveSampleInvalidAlreadyExits() {
-    	String code = "98765432191";
-    	TestStore tStore = App.getInstance().getCompany().getAllTestStore();
-    	List<app.domain.model.Test> lt = tStore.getTestsWithSamples();
-    	app.domain.model.Test t = lt.get(0);
-    	Sample existingSample = t.getSamples().get(0);
-    	
-    	Sample s = tStore.createSample(existingSample.getBarcode());
-    	
-    	Exception ex = null;
-    	try {
-    		tStore.saveSample(t, s);
-    	} catch (Exception e) {
-    		ex = e;
-    	}
-    	
-    	assertNotNull(ex);
-    	assertEquals("Barcode must be unique", ex.getMessage());
-    }
-    
-    @Test
     public void testExists() {
     }
 
