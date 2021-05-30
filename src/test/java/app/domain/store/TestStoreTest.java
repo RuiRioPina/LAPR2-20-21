@@ -1,5 +1,6 @@
 package app.domain.store;
 
+import app.controller.App;
 import app.domain.model.Client;
 import app.domain.model.Parameter;
 import app.domain.model.ParameterCategory;
@@ -93,5 +94,14 @@ public class TestStoreTest {
 
     @Test
     public void getTests() {
+    }
+
+    @Test
+    public void getTestsWithoutDiagnosis(){
+        List<app.domain.model.Test> tt = App.getInstance().getCompany().getTestStore().getTestsWithoutDiagnosis();
+        TestStore ts=new TestStore();
+
+        List<app.domain.model.Test> t2=ts.getTestsWithoutDiagnosis();
+        assertArrayEquals(tt.toArray(), t2.toArray());
     }
 }
