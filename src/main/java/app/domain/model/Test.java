@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.*;
 
 import app.domain.shared.EmailNotificationSender;
-import app.domain.store.ParameterStore;
 import app.domain.store.ResultOfTestStore;
 
 
@@ -235,14 +234,6 @@ public class Test {
         this.samplesCollectionDate = date;
     }
 
-    private String barcode;
-
-    public Test(ParameterStore parameterStore) {
-    }
-
-    public String getBarcode() {
-        return barcode;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -258,7 +249,7 @@ public class Test {
             return false;
         }
         Test t = (Test) o;
-        return Objects.equals(this.barcode, t.barcode);
+        return Objects.equals(this.samples, t.samples);
     }
     public TestResult addTestResult(Parameter parameter, double result) {
 
@@ -272,9 +263,6 @@ public class Test {
     }
 
 
-    public List<Parameter> getParameterStore() {
-        return this.parameter;
-    }
 
     public List<Parameter> getParameterStoreToShow() {
         List<Parameter> parametersToShow = new ArrayList<>();
@@ -282,13 +270,7 @@ public class Test {
         return parametersToShow;
     }
 
-    List<Parameter> parametersToShowAndRemove = getParameterStoreToShow();
 
-    public List<Parameter> removeItemFromParameterStore(int option) {
-        List<Parameter> parameterToRemove = parametersToShowAndRemove;
-        parameterToRemove.remove(option);
-        return parameterToRemove;
-    }
     public void setChemicalAnalysisDate(Date newDate){
         this.chemicalAnalysisDate=newDate;
     }

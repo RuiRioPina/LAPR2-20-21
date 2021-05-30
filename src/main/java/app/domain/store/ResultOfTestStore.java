@@ -10,26 +10,11 @@ public class ResultOfTestStore {
     private List<Test> test;
 
 
-
-
     /**
      * empty constructor of the class ClientList which initializes the arraylist.
      */
     public ResultOfTestStore() {
         this.resultOfTestsStore = new ArrayList<>();
-    }
-
-
-
-
-    public List<TestResult> getResultOfTestsStore() {
-        return new ArrayList<>(this.resultOfTestsStore);
-    }
-
-
-
-    public boolean isTestResultInStore(TestResult testResult) {
-        return this.resultOfTestsStore.contains(testResult);
     }
 
 
@@ -44,18 +29,4 @@ public class ResultOfTestStore {
         return new ArrayList<>(this.resultOfTestsStore);
     }
 
-
-
-    public void saveTest(Test t) throws IllegalArgumentException {
-        addTest(t);
-    }
-
-
-    private void addTest(Test t) {
-        this.test.add(t);
-    }
-
-    public List<Test> getTests() {
-        return new ArrayList<>(this.test);
-    }
 }

@@ -22,23 +22,13 @@ public class RecordTestResultsController {
         return tests.testExists(barcode);
     }
 
-    public Test getTest(String barcode) {
-        return tests.getTest(barcode);
-    }
-
     public Test getTestByBarcode(String barcode) {
         return tests.getTestByBarcode(barcode);
-    }
-
-
-    public List<Parameter> getListOfParametersSelected(Test test) {
-        return tests.getTest(test).getParameterStore();
     }
 
     public void addTestResult(String parameterCode, double result, Test test) {
         tests.addTestResult(parameterCode, result, test);
     }
-
 
     public void saveTestResult(String parameterCode, String barcode) {
         tests.saveTestResult(parameterCode, barcode);
@@ -58,15 +48,8 @@ public class RecordTestResultsController {
         return tests.hasTestPassedSampleCollection(barcode);
     }
 
-
-
-
     public void getDate(Test testByBarcode) {
         testByBarcode.getDate();
-    }
-
-    public void saveTest(Test testByBarcode) {
-        tests.saveTest(testByBarcode);
     }
 
     public void setChemicalAnalysis(Test test) {
