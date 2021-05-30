@@ -20,16 +20,6 @@ public class RoleStore {
         this.lRole= new ArrayList<>();
     }
 
-    /**
-     * Creates a new Role using the given role parameters
-     * @param roleDescription-String that the describes the role.
-     * @param roleID-String that identifies the role within the system.
-     * @param roleShortname- Shortname of the string.
-     * @return - Object of the Role Class.
-     */
-    public  Role create (String roleDescription,String roleID,String roleShortname){
-        return new Role(roleDescription,roleID,roleShortname);
-    }
 
     /**
      * Getter for the Role List withing
@@ -40,6 +30,16 @@ public class RoleStore {
         roles.addAll(this.lRole);
         return roles;
     }
+
+    /**
+     * Uses an index number to get a certain role from the list.
+     * @param index- index number of the desired role.
+     * @return object of the Role Class.
+     */
+    public Role get(int index){
+        return lRole.get(index);
+    }
+
 
     /**
      * Setter for the Role List.
@@ -65,6 +65,18 @@ public class RoleStore {
     }
 
     /**
+     * Creates a new Role using the given role parameters
+     * @param roleDescription-String that the describes the role.
+     * @param roleID-String that identifies the role within the system.
+     * @param roleShortname- Shortname of the string.
+     * @return - Object of the Role Class.
+     */
+    public  Role create (String roleDescription,String roleID,String roleShortname){
+        return new Role(roleDescription,roleID,roleShortname);
+    }
+
+
+    /**
      * Removes a role within the role list.
      * @param r- Non Null Role.
      * @return boolean value to confirm if the Role was removed or not.
@@ -74,15 +86,6 @@ public class RoleStore {
         if (r != null)
             return this.lRole.remove(r);
         return false;
-    }
-
-    /**
-     * Uses an index number to get a certain role from the list.
-     * @param index- index number of the desired role.
-     * @return object of the Role Class.
-     */
-    public Role get(int index){
-        return lRole.get(index);
     }
 
     /**

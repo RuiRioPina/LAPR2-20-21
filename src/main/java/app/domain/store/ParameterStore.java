@@ -30,6 +30,43 @@ public class ParameterStore {
     public Parameter createParameter(String code, String shortname, String description, List<ParameterCategory> parameterCategories) {
         return new Parameter(code,shortname,description, parameterCategories);
     }
+
+    public Parameter getParameterByCode(String parameterCode) {
+        for(Parameter p : this.parameter) {
+            if(p.getCode().equals(parameterCode)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method to get all Parameters stored.
+     * @return all parameters.
+     */
+    public List<Parameter> getParameters() {
+        List<Parameter> p = new ArrayList<>();
+        p.addAll(this.parameter);
+        return p;
+    }
+
+    /**
+     * Method to get the Parameters from a specific category.
+     * @param cat - (Parameter) Category.
+     * @return a list with the Parameters of the specific category.
+     */
+    public List<Parameter> getParameterByCategory(ParameterCategory cat) {
+        List<Parameter> p = new ArrayList<>();
+        List<Parameter> p2 = new ArrayList<>();
+        p.addAll(this.parameter);
+        for (int i = 0; i < p.size(); i++){
+            if (p.get(i).getPc().get(0) == cat){
+                p2.add(p.get(i));
+            }
+        }
+        return p2;
+    }
+
     /**
      * Validates a Parameter.
      * @param p - parameter.
@@ -113,40 +150,5 @@ public class ParameterStore {
         return this.parameter.contains(p);
     }
 
-    public Parameter getParameterByCode(String parameterCode) {
-        for(Parameter p : this.parameter) {
-            if(p.getCode().equals(parameterCode)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Method to get all Parameters stored.
-     * @return all parameters.
-     */
-    public List<Parameter> getParameters() {
-        List<Parameter> p = new ArrayList<>();
-        p.addAll(this.parameter);
-        return p;
-    }
-
-    /**
-     * Method to get the Parameters from a specific category.
-     * @param cat - (Parameter) Category.
-     * @return a list with the Parameters of the specific category.
-     */
-    public List<Parameter> getParameterByCategory(ParameterCategory cat) {
-        List<Parameter> p = new ArrayList<>();
-        List<Parameter> p2 = new ArrayList<>();
-        p.addAll(this.parameter);
-        for (int i = 0; i < p.size(); i++){
-            if (p.get(i).getPc().get(0) == cat){
-                p2.add(p.get(i));
-            }
-        }
-        return p2;
-    }
 }
 

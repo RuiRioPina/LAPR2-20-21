@@ -19,19 +19,7 @@ public class TestTypeStore {
 	public TestTypeStore() {
 		this.testTypes = new ArrayList<>();
 	}
-	
-	/**
-     * Creates an object of TestType class.
-     * @param code - code of the test type.
-     * @param description - description of the test type.
-     * @param collectingMethod - the collecting method of the test type.
-     * @param parameterCategories - list of parameter category.
-     * @return Object of TestType class.
-     */
-	public TestType createTestType(String code, String description, String collectingMethod, 
-			List<ParameterCategory> parameterCategories) {
-		return new TestType(code, description, collectingMethod, parameterCategories);
-	}
+
 
 	/**
      * Gets the list of the objects of TestType class.
@@ -41,6 +29,33 @@ public class TestTypeStore {
 		List<TestType> ts = new ArrayList<>();
 		ts.addAll(this.testTypes);
 		return ts;
+	}
+
+	/**
+	 * Gets the list of a test type by its code.
+	 * @param testTypeCode - code of a test type
+	 * @return list of object of TestType class.
+	 */
+	public TestType getTestTypeByCode(String testTypeCode) {
+		for(TestType tt : this.testTypes) {
+			if(tt.getCode().equals(testTypeCode)) {
+				return tt;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Creates an object of TestType class.
+	 * @param code - code of the test type.
+	 * @param description - description of the test type.
+	 * @param collectingMethod - the collecting method of the test type.
+	 * @param parameterCategories - list of parameter category.
+	 * @return Object of TestType class.
+	 */
+	public TestType createTestType(String code, String description, String collectingMethod,
+								   List<ParameterCategory> parameterCategories) {
+		return new TestType(code, description, collectingMethod, parameterCategories);
 	}
 	
 	/**
@@ -119,17 +134,5 @@ public class TestTypeStore {
 		}
 	}
 	
-	/**
-     * Gets the list of a test type by its code.
-     * @param testTypeCode - code of a test type
-     * @return list of object of TestType class.
-     */
-	public TestType getTestTypeByCode(String testTypeCode) {
-		for(TestType tt : this.testTypes) {
-			if(tt.getCode().equals(testTypeCode)) {
-				return tt;
-			}
-		}
-		return null;
-	}
+
 }

@@ -21,6 +21,23 @@ public class ParameterCategoryStore {
 		pc.addAll(this.parameterCategories);
 		return pc;
 	}
+
+
+	public ParameterCategory getParameterCategoryByCode(String parameterCategoryCode) {
+		for(ParameterCategory pc : this.parameterCategories) {
+			if(pc.getCode().equals(parameterCategoryCode)) {
+				return pc;
+			}
+		}
+		return null;
+	}
+
+	public List<ParameterCategory> getParameterCategoriesByList(List <ParameterCategory> cat) {
+		List<ParameterCategory> pc = new ArrayList<>();
+		pc.addAll(this.parameterCategories);
+		pc.retainAll(cat);
+		return pc;
+	}
 	
 	public void validateParameterCategory(ParameterCategory pc) throws IllegalArgumentException {
 		checkCodeRules(pc.getCode());
@@ -55,20 +72,5 @@ public class ParameterCategoryStore {
 	        throw new IllegalArgumentException("Name must have 1 to 10 chars.");
 	    }
 	}
-	
-	public ParameterCategory getParameterCategoryByCode(String parameterCategoryCode) {
-		for(ParameterCategory pc : this.parameterCategories) {
-			if(pc.getCode().equals(parameterCategoryCode)) {
-				return pc;
-			}
-		}
-		return null;
-	}
 
-	public List<ParameterCategory> getParameterCategoriesByList(List <ParameterCategory> cat) {
-		List<ParameterCategory> pc = new ArrayList<>();
-		pc.addAll(this.parameterCategories);
-		pc.retainAll(cat);
-		return pc;
-	}
 }

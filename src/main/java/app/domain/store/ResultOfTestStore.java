@@ -17,6 +17,15 @@ public class ResultOfTestStore {
     }
 
     /**
+     * Get all the test results that were recorded
+     * @return a list containing all test results recorded
+     */
+
+    public List<TestResult> getResultOfTest() {
+        return new ArrayList<>(this.resultOfTestsStore);
+    }
+
+    /**
      * Instanciate an object from the TestResult class
      * @param parameter the parameter to be assigned to the test result
      * @param result the result, that was inputted by the user
@@ -29,13 +38,6 @@ public class ResultOfTestStore {
         return testResult;
     }
 
-    /**
-     * Get all the test results that were recorded
-     * @return a list containing all test results recorded
-     */
 
-    public List<TestResult> getResultOfTest() {
-        return new ArrayList<>(this.resultOfTestsStore);
-    }
 
 }

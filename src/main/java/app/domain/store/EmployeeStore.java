@@ -13,14 +13,7 @@ public class EmployeeStore {
      */
     private ArrayList<Employee> lEmployee;
 
-    /**
-     * Getter for the List that contains Employees.
-     *
-     * @return List with the employees within the company.
-     */
-    public List<Employee> getlEmployee() {
-        return lEmployee;
-    }
+
 
     /**
      * Constructor for the Employee Store. It Creates an empty list that stores Employees.
@@ -45,6 +38,15 @@ public class EmployeeStore {
      */
     public Employee createEmployee(String name, String adress, String soc, long phoneNumber, String email, String userName, int nEmployee, Role role, String specialistDoctorIndexNumber) {
         return new Employee(name, adress, soc, phoneNumber, email, userName, nEmployee, role, specialistDoctorIndexNumber);
+    }
+
+    /**
+     * Getter for the List that contains Employees.
+     *
+     * @return List with the employees within the company.
+     */
+    public List<Employee> getlEmployee() {
+        return lEmployee;
     }
 
     /**

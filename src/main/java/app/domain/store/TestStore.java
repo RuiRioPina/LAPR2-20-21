@@ -26,6 +26,114 @@ public class TestStore {
         this.tests = tests;
     }
 
+    public List<Test> getTestsWithoutDiagnosis() {
+        List<Test> complete = new ArrayList<>();
+        for (Test t : this.tests) {
+            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate()!=null && t.getDiagnosisDate() == null) {
+                complete.add(t);
+            }
+        }
+        return complete;
+    }
+
+
+    /**
+     * Checks the TestStore's Test List to get all the UnvalidatedTests.
+     * @return- List with all of the Unvalidated tests.
+     */
+    public List<Test> getUnvalidatedTests() {
+        List<Test> lUnvalidatedTests = new ArrayList<>();
+        for (int i = 0; i < tests.size(); i++) {
+            if (isUnvalidatedTest(tests.get(i))) {
+                lUnvalidatedTests.add(tests.get(i));
+            }
+        }
+        return lUnvalidatedTests;
+    }
+
+    /**
+     * Getter for all the parameters that have passed through the automatic validation done by the API
+     * @param parameterCode parameter where it is going to be validated
+     * @param barcode barcode of a sample of the test
+     * @return a list containing a list of parameters that passed sucessfully through the automatic validation
+     */
+
+    public List<Parameter> getValidatedParameters(String parameterCode, String barcode) {
+
+        Test test = getTestByBarcode(barcode);
+        List<Parameter> parameters =test.getParameter();
+        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
+        TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
+
+        if (isTestResultInBetweenReferenceValue(testResultBeingValidated) && parameter!=null) {
+            validatedParameterList.add(parameterFromWhichTestResultWillBeExtracted);
+        }
+
+        return validatedParameterList;
+
+    }
+
+
+    /**
+     * Getter for the tests that have at least one sample
+     * @return a list containg only tests that have samples
+     */
+
+    public List<Test> getTestsWithSamples() {
+        List<Test> result = new ArrayList<>();
+        for (Test t : this.tests) {
+            if (t.getSamplesCollectionDate() != null) {
+                result.addAll(this.tests);
+            }
+        }
+        return this.tests;
+    }
+
+    public Test getTestByInternalCode(String testCode) {
+        for (Test t : this.tests) {
+            if (t.getInternalCode().equals(testCode)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Getter for the parameters associated to a test
+     * @param barcode barcode of a sample that is contained on a test
+     * @return list of parameters of a test
+     */
+    public List<Parameter> getParameterTestToShow(String barcode) {
+        Test test = getTestByBarcode(barcode);
+        return test.getParameterStoreToShow();
+    }
+
+    /**
+     * Getter for a test that has a sample associated to that barcode
+     * @param barcode barcode of a sample that is contained on a test
+     * @return test if it was found
+     */
+
+    public Test getTest(String barcode) {
+
+        for (Test testFound : tests) {
+            if (testExists(barcode)) {
+                return testFound;
+            }
+        }
+        return null;
+    }
+
+
+
+    /**
+     * Setter for the testParam
+     * @param testParam an instance of the class testParam
+     */
+    public void setTestParam(TestParam testParam) {
+        this.testParam = testParam;
+    }
+
 
     List<Parameter> validatedParameterList;
 
@@ -119,29 +227,24 @@ public class TestStore {
         return result;
     }
 
+
     /**
-     * Getter for the tests that have at least one sample
-     * @return a list containg only tests that have samples
+     * Seeks for a test containing a sample that as associated to itself the given barcode
+     * @param barcode barcode of a sample that is contained on a test
+     * @return the test if it found it
      */
 
-    public List<Test> getTestsWithSamples() {
-        List<Test> result = new ArrayList<>();
+    public Test getTestByBarcode(String barcode) {
         for (Test t : this.tests) {
-            if (t.getSamplesCollectionDate() != null) {
-                result.addAll(this.tests);
-            }
-        }
-        return this.tests;
-    }
-
-    public Test getTestByInternalCode(String testCode) {
-        for (Test t : this.tests) {
-            if (t.getInternalCode().equals(testCode)) {
-                return t;
+            for (Sample samplesOfATest : t.getSamples()) {
+                if (samplesOfATest.getBarcode().equals(barcode)) {
+                    return t;
+                }
             }
         }
         return null;
     }
+
 
     public Sample createSample(String barcode) {
         return new Sample(barcode);
@@ -192,22 +295,6 @@ public class TestStore {
         return false;
     }
 
-    /**
-     * Seeks for a test containing a sample that as associated to itself the given barcode
-     * @param barcode barcode of a sample that is contained on a test
-     * @return the test if it found it
-     */
-
-    public Test getTestByBarcode(String barcode) {
-        for (Test t : this.tests) {
-            for (Sample samplesOfATest : t.getSamples()) {
-                if (samplesOfATest.getBarcode().equals(barcode)) {
-                    return t;
-                }
-            }
-        }
-        return null;
-    }
 
     /**
      * See if a given test has passed through the medical lab technician already
@@ -218,31 +305,6 @@ public class TestStore {
         return getTest(barcode).getSamplesCollectionDate() != null;
     }
 
-    /**
-     * Getter for the parameters associated to a test
-     * @param barcode barcode of a sample that is contained on a test
-     * @return list of parameters of a test
-     */
-    public List<Parameter> getParameterTestToShow(String barcode) {
-        Test test = getTestByBarcode(barcode);
-        return test.getParameterStoreToShow();
-    }
-
-    /**
-     * Getter for a test that has a sample associated to that barcode
-     * @param barcode barcode of a sample that is contained on a test
-     * @return test if it was found
-     */
-
-    public Test getTest(String barcode) {
-
-        for (Test testFound : tests) {
-            if (testExists(barcode)) {
-                return testFound;
-            }
-        }
-        return null;
-    }
 
     /**
      * Checks whether the parameter has passed through the automatic validation test
@@ -257,35 +319,7 @@ public class TestStore {
 
     }
 
-    /**
-     * Setter for the testParam
-     * @param testParam an instance of the class testParam
-     */
-    public void setTestParam(TestParam testParam) {
-        this.testParam = testParam;
-    }
 
-    /**
-     * Getter for all the parameters that have passed through the automatic validation done by the API
-     * @param parameterCode parameter where it is going to be validated
-     * @param barcode barcode of a sample of the test
-     * @return a list containing a list of parameters that passed sucessfully through the automatic validation
-     */
-
-    public List<Parameter> getValidatedParameters(String parameterCode, String barcode) {
-
-        Test test = getTestByBarcode(barcode);
-        List<Parameter> parameters =test.getParameter();
-        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
-        TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
-
-        if (isTestResultInBetweenReferenceValue(testResultBeingValidated) && parameter!=null) {
-            validatedParameterList.add(parameterFromWhichTestResultWillBeExtracted);
-        }
-
-        return validatedParameterList;
-
-    }
 
     /**
      * Save the test result of the test
@@ -314,19 +348,6 @@ public class TestStore {
         return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;
     }
 
-    /**
-     * Checks the TestStore's Test List to get all the UnvalidatedTests.
-     * @return- List with all of the Unvalidated tests.
-     */
-    public List<Test> getUnvalidatedTests() {
-        List<Test> lUnvalidatedTests = new ArrayList<>();
-        for (int i = 0; i < tests.size(); i++) {
-            if (isUnvalidatedTest(tests.get(i))) {
-                lUnvalidatedTests.add(tests.get(i));
-            }
-        }
-        return lUnvalidatedTests;
-    }
 
     /**
      * Method used to change the validationDate of a List of Test Objects.
@@ -345,15 +366,6 @@ public class TestStore {
         }
     }
 
-    public List<Test> getTestsWithoutDiagnosis() {
-        List<Test> complete = new ArrayList<>();
-        for (Test t : this.tests) {
-            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate()!=null && t.getDiagnosisDate() == null) {
-                complete.add(t);
-            }
-        }
-        return complete;
-    }
 
 
 }

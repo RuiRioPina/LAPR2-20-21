@@ -36,6 +36,50 @@ public class ClinicalAnalysisLaboratoryStore {
         return new ClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testTypes);
     }
 
+
+    public ClinicalAnalysisLaboratory getRepeatedLabID(String laboratoryID) {
+        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
+            if(cal.getLaboratoryID().equals(laboratoryID)) {
+                return cal;
+            }
+        }
+        return null;
+    }
+
+    public ClinicalAnalysisLaboratory getRepeatedAdress(String adress) {
+        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
+            if(cal.getAdress().equals(adress)) {
+                return cal;
+            }
+        }
+        return null;
+    }
+
+    public ClinicalAnalysisLaboratory getRepeatedPhoneNumber(long phoneNumber) {
+        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
+            if(cal.getPhoneNumber()==(phoneNumber)) {
+                return cal;
+            }
+        }
+        return null;
+    }
+
+    public ClinicalAnalysisLaboratory getRepeatedTIN(long tin) {
+        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
+            if(cal.getTin()==(tin)) {
+                return cal;
+            }
+        }
+        return null;
+    }
+
+
+    public List<ClinicalAnalysisLaboratory> getCLA() {
+        List<ClinicalAnalysisLaboratory> cla = new ArrayList<>();
+        cla.addAll(this.clinicalAnalysisLaboratories);
+        return cla;
+    }
+
     /**
      * Validates a ClinicalAnalysisLaboratory
      * @param cal - clinicalanalysislaboratory
@@ -178,42 +222,6 @@ public class ClinicalAnalysisLaboratoryStore {
         return digits;
     }
 
-    public ClinicalAnalysisLaboratory getRepeatedLabID(String laboratoryID) {
-        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
-            if(cal.getLaboratoryID().equals(laboratoryID)) {
-                return cal;
-            }
-        }
-        return null;
-    }
-
-    public ClinicalAnalysisLaboratory getRepeatedAdress(String adress) {
-        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
-            if(cal.getAdress().equals(adress)) {
-                return cal;
-            }
-        }
-        return null;
-    }
-
-    public ClinicalAnalysisLaboratory getRepeatedPhoneNumber(long phoneNumber) {
-        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
-            if(cal.getPhoneNumber()==(phoneNumber)) {
-                return cal;
-            }
-        }
-        return null;
-    }
-
-    public ClinicalAnalysisLaboratory getRepeatedTIN(long tin) {
-        for(ClinicalAnalysisLaboratory cal : this.clinicalAnalysisLaboratories) {
-            if(cal.getTin()==(tin)) {
-                return cal;
-            }
-        }
-        return null;
-    }
-
     /**
      * Check if a ClinicalAnalysisLaboratory is listed
      * @param cal - clinicalanalysislaboratory
@@ -224,9 +232,4 @@ public class ClinicalAnalysisLaboratoryStore {
         return this.clinicalAnalysisLaboratories.contains(cal);
     }
 
-    public List<ClinicalAnalysisLaboratory> getCLA() {
-        List<ClinicalAnalysisLaboratory> cla = new ArrayList<>();
-        cla.addAll(this.clinicalAnalysisLaboratories);
-        return cla;
-    }
 }
