@@ -77,10 +77,17 @@ public class Parameter {
         return pc;
     }
 
+    /**
+     * Setter of the test Result, associated to the parameter
+     * @param testResult the test result to be associated to the parameter
+     */
     public void setTestResult(TestResult testResult) {
         this.testResult = testResult;
     }
-
+    /**
+     * Method toString overwritten in order to be able to view the relevant information in regards to the parameter
+     * @return String containing the information about the parameter.
+     */
 
     @Override
     public String toString() {

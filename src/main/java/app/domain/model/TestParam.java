@@ -8,7 +8,11 @@ public class TestParam {
         this.parametersSelected = test.getParameter();
     }
 
-
+    /**
+     * Find the test parameter of a given test in between all the others parameters that were selected for a test
+     * @param parameterCode the parameter being seeked
+     * @return the parameter found / or not
+     */
 
     public Parameter findParameterInTestParameter(String parameterCode) {
         for (Parameter parameter : parametersSelected) {
@@ -18,6 +22,13 @@ public class TestParam {
         }
         return null; // not found
     }
+
+    /**
+     * Find the test parameter of a given test in between all the others parameters from a given list of parameters
+     * @param parameterCode the parameter being seeked
+     * @return the parameter found / or not
+     */
+
     public Parameter findParameterInTestParameter(String parameterCode,List<Parameter> parameters) {
         for (Parameter parameter : parameters) {
             if (parameter.getCode().equals(parameterCode)) {

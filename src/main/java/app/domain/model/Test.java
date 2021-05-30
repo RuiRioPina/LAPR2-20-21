@@ -230,11 +230,20 @@ public class Test {
         return str;
     }
 
+    /**
+     * Setter for the sample collection date
+     * @param date date to be changed to.
+     */
+
     public void setSamplesCollectionDate(Date date) {
         this.samplesCollectionDate = date;
     }
 
-
+    /**
+     * The method equals overwritten to check if a test is equal to another one
+     * @param o the object being compared
+     * @return boolean containing the result of the comparison
+     */
     @Override
     public boolean equals(Object o) {
 
@@ -251,6 +260,13 @@ public class Test {
         Test t = (Test) o;
         return Objects.equals(this.samples, t.samples);
     }
+
+    /**
+     * Add the test result for the test being handled
+     * @param parameter parameter of where the result will be recorded
+     * @param result result of the test. Introduced by the user
+     * @return allocate this task to the resultOfTestStore assigned to do this task. (High Cohesion Pattern)
+     */
     public TestResult addTestResult(Parameter parameter, double result) {
 
         ReferenceValue referenceValue = testType.checkExternalModuleBasedOnTestType(parameter);
@@ -258,14 +274,29 @@ public class Test {
         return resultOfTestStore.addTestResult(parameter, result, referenceValue);
     }
 
+    /**
+     * Getter of test results
+     * @return the test results of the test
+     */
+
     public List<TestResult> getTestResult() {
         return resultOfTestStore.getResultOfTest();
     }
+
+    /**
+     * Setter for samples of a test
+     * @param samples a list sample associated to the test
+     */
 
 
     public void setSamples(List<Sample> samples) {
         this.samples = samples;
     }
+
+    /**
+     * Get a copy of the parameters for a test
+     * @return a list containing a copy of parameters of a test
+     */
 
     public List<Parameter> getParameterStoreToShow() {
         List<Parameter> parametersToShow = new ArrayList<>();
@@ -273,10 +304,14 @@ public class Test {
         return parametersToShow;
     }
 
-
+    /**
+     * Setter for the chemical analysis date
+     * @param newDate- new Date object to replace the old value.
+     */
     public void setChemicalAnalysisDate(Date newDate){
         this.chemicalAnalysisDate=newDate;
     }
+
     public void setDiagnosisDate(Date newDate){
         this.diagnosisDate=newDate;
     }

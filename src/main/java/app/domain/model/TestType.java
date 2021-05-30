@@ -81,6 +81,12 @@ public class TestType {
         return result.toString();
     }
 
+    /**
+     * Checks what API will be used, using the testType of the parameter at stake to find the correct one.
+     * @param parameterCode the parameter from where the test type will be seen
+     * @return the reference value of the parameter containing its metric, its maximum value and its minimum value
+     */
+
     public ReferenceValue checkExternalModuleBasedOnTestType(Parameter parameterCode) {
         Class<?> oClass = null;
         ExternalModule em;

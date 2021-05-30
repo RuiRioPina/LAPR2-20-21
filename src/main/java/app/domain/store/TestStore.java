@@ -233,7 +233,7 @@ public class TestStore {
         Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
         TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
 
-        if (isTestResultInBetweenReferenceValue(testResultBeingValidated)) {
+        if (isTestResultInBetweenReferenceValue(testResultBeingValidated) && parameter!=null) {
             validatedParameterList.add(parameterFromWhichTestResultWillBeExtracted);
         }
 
@@ -246,7 +246,9 @@ public class TestStore {
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters = test.getParameter();
         parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
-        parameter.setTestResult(testResult);
+        if(parameter!=null) {
+            parameter.setTestResult(testResult);
+        }
     }
 
 
