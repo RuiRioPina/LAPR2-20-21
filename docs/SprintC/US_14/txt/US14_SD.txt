@@ -24,9 +24,6 @@ deactivate CMP
 CTRL -> TSTORE : lt=getTestsWithoutDiagnosis()
 activate TSTORE
 deactivate TSTORE
-CTRL -> TSTORE : getTestByInternalCode()
-activate TSTORE
-deactivate TSTORE
 deactivate CTRL
 loop until the doctor doesn't want to analyze more tests
 UI -->SD : shows all tests ready to be analysed
@@ -37,8 +34,11 @@ UI --> SD : shows the result of the chosen test and requests data(report)
 deactivate UI
 SD -> UI : types requested data
 activate UI
-UI-> CTRL : writeReport(report)
+UI-> CTRL : writeReport(testCode,report)
 activate CTRL
+CTRL -> TSTORE : getTestByInternalCode(testCode)
+activate TSTORE
+deactivate TSTORE
 CTRL -> CMP : repStore=getReportStore()
 activate CMP
 deactivate CMP
