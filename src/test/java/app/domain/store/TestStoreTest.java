@@ -1,6 +1,7 @@
 package app.domain.store;
 
 import app.controller.App;
+import app.controller.GenerateSampleController;
 import app.domain.model.*;
 import org.junit.Test;
 
@@ -165,7 +166,85 @@ public class TestStoreTest {
     }
 
     @Test
-    public void getTestsWithoutSamples() {
+    public void getTestsWithoutSamplesValid() {
+		TestStore tStore= new TestStore();
+		List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+        
+        app.domain.model.Test t = new app.domain.model.Test("1324efghi112", "908412481721", c, tt1, pc, par, data);
+        tStore.saveTest(t);
+        
+        List<app.domain.model.Test> lt = tStore.getTestsWithoutSamples();
+		
+        assertEquals(1, lt.size());
+        assertEquals(lt.get(0), t);
+    }
+    
+    @Test
+    public void getTestsWithoutSamplesInvalid() {
+		TestStore tStore= new TestStore();
+		List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+        
+        app.domain.model.Test t = new app.domain.model.Test("1324efghi112", "908412481721", c, tt1, pc, par, data);
+        tStore.saveTest(t);
+        
+        Sample s = new Sample("86315489123");
+        tStore.saveSample(t, s);
+        
+        List<app.domain.model.Test> lt = tStore.getTestsWithoutSamples();
+		
+        assertEquals(0, lt.size());
     }
 
     @Test
@@ -210,21 +289,198 @@ public class TestStoreTest {
         List<app.domain.model.Test> actual = ts.getTestsWithSamples();
         List<app.domain.model.Test> expected = ts.getTests();
         assertEquals(expected,actual);
-
     }
 
     @Test
     public void getTestByInternalCode() {
+    	String code = "518912581123";
+    	TestStore tStore = new TestStore();
+    	
+    	app.domain.model.Test t = tStore.getTestByInternalCode(code);
+    	
+    	assertNull("Test should not be found", t);
     }
 
     @Test
     public void createSample() {
+    	String code = "98765432191";
+    	TestStore tStore = new TestStore();
+    	
+    	Sample s = tStore.createSample(code);
+    	
+    	assertNotNull(s);
+    	assertEquals(code, s.getBarcode());
     }
 
     @Test
-    public void saveSample() {
+    public void saveSampleValid() {
+    	String code = "98765432191";
+    	TestStore tStore = new TestStore();
+    	
+    	List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+        
+        app.domain.model.Test t = new app.domain.model.Test("1324efghi112", "908412481721", c, tt1, pc, par, data);
+        tStore.saveTest(t);
+    	
+    	Sample s = tStore.createSample(code);
+    	
+    	Exception ex = null;
+    	try {
+    		tStore.saveSample(t, s);
+    	} catch (Exception e) {
+    		ex = e;
+    	}
+    	
+    	assertNull(ex);
+    	assertEquals(1, t.getSamples().size());
+    	assertEquals(s, t.getSamples().get(0));
+    }
+    
+    @Test
+    public void saveSampleInvalidDigits() {
+    	String code = "98$65432191";
+    	TestStore tStore = new TestStore();
+    	
+    	List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+        
+        app.domain.model.Test t = new app.domain.model.Test("1324efghi112", "908412481721", c, tt1, pc, par, data);
+        tStore.saveTest(t);
+    	
+    	Sample s = tStore.createSample(code);
+    	
+    	Exception ex = null;
+    	try {
+    		tStore.saveSample(t, s);
+    	} catch (Exception e) {
+    		ex = e;
+    	}
+    	
+    	assertNotNull(ex);
+    	assertEquals("Barcode must be numeric.", ex.getMessage());
     }
 
+    @Test
+    public void saveSampleInvalidSize() {
+    	String code = "9865432191";
+    	TestStore tStore = new TestStore();
+    	
+    	List<ParameterCategory> pc = new ArrayList<>();
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
+        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        pc.add(p1);
+        pc.add(P2);
+
+        List<ParameterCategory> p = new ArrayList<>();
+        p.add(P3);
+        Date data = new Date(System.currentTimeMillis());
+
+        List<TestType> tt = new ArrayList<>();
+
+        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
+        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+
+        tt.add(tt2);
+        tt.add(tt1);
+
+        List<Parameter> par = new ArrayList<>();
+        List<ParameterCategory> cat = new ArrayList<>();
+        cat.add(pc.get(0));
+        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
+        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
+        par.add(par1);
+        par.add(par2);
+        
+        app.domain.model.Test t = new app.domain.model.Test("1324efghi112", "908412481721", c, tt1, pc, par, data);
+        tStore.saveTest(t);
+    	
+    	Sample s = tStore.createSample(code);
+    	
+    	Exception ex = null;
+    	try {
+    		tStore.saveSample(t, s);
+    	} catch (Exception e) {
+    		ex = e;
+    	}
+    	
+    	assertNotNull(ex);
+    	assertEquals("Barcode must have 11 chars.", ex.getMessage());
+    }
+    
+    @Test
+    public void saveSampleInvalidAlreadyExits() {
+    	String code = "98765432191";
+    	TestStore tStore = App.getInstance().getCompany().getAllTestStore();
+    	List<app.domain.model.Test> lt = tStore.getTestsWithSamples();
+    	app.domain.model.Test t = lt.get(0);
+    	Sample existingSample = t.getSamples().get(0);
+    	
+    	Sample s = tStore.createSample(existingSample.getBarcode());
+    	
+    	Exception ex = null;
+    	try {
+    		tStore.saveSample(t, s);
+    	} catch (Exception e) {
+    		ex = e;
+    	}
+    	
+    	assertNotNull(ex);
+    	assertEquals("Barcode must be unique", ex.getMessage());
+    }
+    
     @Test
     public void testExists() {
     }
