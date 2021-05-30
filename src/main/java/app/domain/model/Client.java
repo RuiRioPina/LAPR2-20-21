@@ -81,20 +81,86 @@ public class Client {
 
     }
 
-    /**
-     * This method generates a random password containing 10 alphanumeric characters
-     */
 
-    public String generatePassword() {
-        password = "";
-        List<Character> list = Utils.randomCharacter(10);
-        Collections.shuffle(list);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Character l : list) {
-            password = String.valueOf(stringBuilder.append(l));
-        }
+    /**
+     * @return current ccn
+     */
+    public long getCcn() {
+        return ccn;
+    }
+
+    /**
+     * @return current NHS number
+     */
+    public long getNhsNumber() {
+        return nhsNumber;
+    }
+
+    /**
+     * @return current birth date
+     */
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    /**
+     * @return current tin
+     */
+    public long getTin() {
+        return tin;
+    }
+
+    /**
+     * @return current phone number
+     */
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @return current sex
+     */
+    public String getSex() {
+        return sex;
+    }
+
+    /**
+     * @return current email address
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @return current name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return current password
+     */
+    public String getPassword() {
         return password;
     }
+
+
+    /**
+     * Present in the console the output contain all the information about the client
+     *
+     * @return the phrase with all the information about the client
+     */
+    @Override
+    public String toString() {
+        if (this.sex == null || this.sex.equals(".")) {
+            return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s, his tin is %d, his phonenumber %d and his email is %s",
+                    this.name, this.ccn, this.nhsNumber, this.birthDate, this.tin, this.phoneNumber, this.email);
+        }
+        return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s , his sex is %s, his tin is %d, his phonenumber %d and his email is %s",
+                this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.phoneNumber, this.email);
+    }
+
 
     /**
      * @return true if <i>this client</i> is compared with itself
@@ -121,21 +187,6 @@ public class Client {
                 && Objects.equals(this.birthDate, c.birthDate) && Objects.equals(this.email, c.email) &&
                 Objects.equals(this.tin, c.tin) && Objects.equals(this.phoneNumber, c.phoneNumber)
                 && Objects.equals(this.name, c.name);
-    }
-
-    /**
-     * Present in the console the output contain all the information about the client
-     *
-     * @return the phrase with all the information about the client
-     */
-    @Override
-    public String toString() {
-        if (this.sex == null || this.sex.equals(".")) {
-            return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s, his tin is %d, his phonenumber %d and his email is %s",
-                    this.name, this.ccn, this.nhsNumber, this.birthDate, this.tin, this.phoneNumber, this.email);
-        }
-        return String.format("The client is called %s, his ccn is %d, his NHS Number is %d, his birthdate is %s , his sex is %s, his tin is %d, his phonenumber %d and his email is %s",
-                this.name, this.ccn, this.nhsNumber, this.birthDate, this.sex, this.tin, this.phoneNumber, this.email);
     }
 
     /**
@@ -313,66 +364,20 @@ public class Client {
         return i != 1;
     }
 
-    /**
-     * @return current ccn
-     */
-    public long getCcn() {
-        return ccn;
-    }
 
     /**
-     * @return current NHS number
+     * This method generates a random password containing 10 alphanumeric characters
      */
-    public long getNhsNumber() {
-        return nhsNumber;
-    }
 
-    /**
-     * @return current birth date
-     */
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    /**
-     * @return current tin
-     */
-    public long getTin() {
-        return tin;
-    }
-
-    /**
-     * @return current phone number
-     */
-    public long getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * @return current sex
-     */
-    public String getSex() {
-        return sex;
-    }
-
-    /**
-     * @return current email address
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @return current name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return current password
-     */
-    public String getPassword() {
+    public String generatePassword() {
+        password = "";
+        List<Character> list = Utils.randomCharacter(10);
+        Collections.shuffle(list);
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Character l : list) {
+            password = String.valueOf(stringBuilder.append(l));
+        }
         return password;
     }
+
 }

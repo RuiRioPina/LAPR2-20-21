@@ -57,9 +57,7 @@ public class Company {
         this.cla = null;
     }
 
-    public void setCLA(ClinicalAnalysisLaboratory cla) {
-        this.cla = cla;
-    }
+
 
     public ClinicalAnalysisLaboratory getCLA() {
         return this.cla;
@@ -69,10 +67,6 @@ public class Company {
         return testCode;
     }
 
-    public void setTestCode(int number) {
-        this.testCode = number;
-    }
-
     /**
      * Getter for the number of Employees in the company.
      *
@@ -80,21 +74,6 @@ public class Company {
      */
     public int getNumberOfEmployees() {
         return numberOfEmployees;
-    }
-
-    /**
-     * Setter for the number of Employees in the company
-     *
-     * @param numberOfEmployees- new number of Employees.
-     */
-    public void setNumberOfEmployees(int numberOfEmployees) {
-        this.numberOfEmployees = numberOfEmployees;
-
-    }
-
-
-    public ResultOfTestStore getResultOfTestStore() {
-        return this.resultOfTestStore;
     }
 
     public String getDesignation() {
@@ -147,8 +126,62 @@ public class Company {
         return this.roleStore;
     }
 
+
+    public String getNextBarcode() {
+        this.lastBarcode++;
+        return String.format("%011d", this.lastBarcode);
+    }
+
+    public List<Test> getAllTest() {
+        List<Test> testes = new ArrayList<>();
+        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
+            testes.addAll(lab.getTestStore().getTests());
+        }
+        return testes;
+    }
+
+    public TestStore getAllTestStore() {
+        List<Test> testes = new ArrayList<>();
+        TestStore testStore;
+        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
+            testes.addAll(lab.getTestStore().getTestsWithSamples());
+        }
+        testStore = new TestStore(testes);
+        return testStore;
+    }
+
+    public TestStore getAllTestCompleted(){
+        List<Test> tests = new ArrayList<>();
+        TestStore testStore;
+        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
+            tests.addAll(lab.getTestStore().getTestsWithoutDiagnosis());
+        }
+        testStore = new TestStore(tests);
+        return testStore;
+    }
+
     public ClinicalAnalysisLaboratoryStore getClinicalAnalysisLaboratoryStore() {
         return this.clinicalAnalysisLaboratoryStore;
+    }
+
+
+    public void setTestCode(int number) {
+        this.testCode = number;
+    }
+
+    public void setCLA(ClinicalAnalysisLaboratory cla) {
+        this.cla = cla;
+    }
+
+
+    /**
+     * Setter for the number of Employees in the company
+     *
+     * @param numberOfEmployees- new number of Employees.
+     */
+    public void setNumberOfEmployees(int numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+
     }
 
     /**
@@ -216,36 +249,4 @@ public class Company {
         App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
 
-    public String getNextBarcode() {
-        this.lastBarcode++;
-        return String.format("%011d", this.lastBarcode);
-    }
-	
-	public List<Test> getAllTest() {
-		List<Test> testes = new ArrayList<>();
-		for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-			testes.addAll(lab.getTestStore().getTests());
-		}
-		return testes;
-	}
-
-    public TestStore getAllTestStore() {
-        List<Test> testes = new ArrayList<>();
-        TestStore testStore;
-        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            testes.addAll(lab.getTestStore().getTestsWithSamples());
-        }
-        testStore = new TestStore(testes);
-        return testStore;
-    }
-
-    public TestStore getAllTestCompleted(){
-        List<Test> tests = new ArrayList<>();
-        TestStore testStore;
-        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            tests.addAll(lab.getTestStore().getTestsWithoutDiagnosis());
-        }
-        testStore = new TestStore(tests);
-        return testStore;
-    }
 }
