@@ -305,24 +305,34 @@ public class Test {
     }
 
     /**
-     * Setter for the chemical analysis date
+     * Setter for the ChemicalAnalysisDate.
      * @param newDate- new Date object to replace the old value.
      */
     public void setChemicalAnalysisDate(Date newDate){
         this.chemicalAnalysisDate=newDate;
     }
 
+    /**
+     * Setter for the diagnosisDate.
+     * @param newDate- new Date object to replace the old value.
+     */
     public void setDiagnosisDate(Date newDate){
         this.diagnosisDate=newDate;
     }
 
     /**
-     * Setter for the validationDate
+     * Setter for the validationDate.
      * @param newDate- new Date object to replace the old value.
      */
     public void setValidationDate(Date newDate){
         this.validationDate=newDate;
     }
+
+    /**
+     * Method used to simulate the sending of an email to the client.
+     * @throws IOException          if the file to be written to doesn't exist.
+     * @throws InterruptedException if the thread that is sleeping is interrupted.
+     */
     public void sendTestCompletedNotification()throws InterruptedException, IOException {
          EmailNotificationSender ens= new EmailNotificationSender(this.client);
          ens.sendTestCompletedNotification();

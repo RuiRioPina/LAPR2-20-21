@@ -13,7 +13,7 @@ public class EmailNotificationSender {
         this.client=client;
     }
     public boolean sendTestCompletedNotification()throws  IOException,InterruptedException{
-        String nomeficheiro = "TestCompletedNotification.txt";
+        String nomeficheiro = "emailAndSMSMessages.txt";
         try (PrintWriter out = new PrintWriter(nomeficheiro)) {
             out.println("Hello "+ client.getName());
             out.println("Your Test Results are ready to be received.");
