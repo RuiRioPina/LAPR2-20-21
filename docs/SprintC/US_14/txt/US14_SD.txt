@@ -36,7 +36,7 @@ SD -> UI : types requested data
 activate UI
 UI-> CTRL : writeReport(testCode,report)
 activate CTRL
-CTRL -> TSTORE : getTestByInternalCode(testCode)
+CTRL -> TSTORE : t=getTestByInternalCode(testCode)
 activate TSTORE
 deactivate TSTORE
 CTRL -> CMP : repStore=getReportStore()
@@ -50,7 +50,7 @@ deactivate STORE
 CTRL -> STORE : validateReport(rep)
 activate STORE
 deactivate STORE
-CTRL -> STORE : addReport(rep)
+CTRL -> STORE : addReport(t,rep)
 activate STORE
 deactivate STORE
 
@@ -67,12 +67,12 @@ activate UI
 UI -> CTRL : saveReport()
 activate CTRL
 
-CTRL -> STORE : saveReport(rep)
+CTRL -> STORE : saveReport(t,rep)
 activate STORE
 STORE -> STORE : validateReport(rep)
 activate STORE
 STORE--
-STORE -> STORE : addReport(rep)
+STORE -> STORE : addReport(t,rep)
 activate STORE
 STORE--
 deactivate STORE
