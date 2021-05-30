@@ -18,7 +18,7 @@ public class ReportStoreTest {
 
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void saveReport() {
         List<ParameterCategory> pc = new ArrayList<>();
         ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
