@@ -76,8 +76,8 @@ public class ReportStore {
      */
 
     public void checkReportRules(String report) throws IllegalArgumentException{
-        if (numberOfWords(report)<1 || numberOfWords(report)>400){
-            throw new IllegalArgumentException("Report must have a maximum of 400 words");
+        if ((numberOfWords(report)<=1 && report.equals(""))  || numberOfWords(report)>400){
+            throw new IllegalArgumentException("The report should have between 1 and 400 words.");
         }
     }
 
@@ -88,9 +88,9 @@ public class ReportStore {
      */
 
     public long numberOfWords(String report){
-        long var = report.split(" ", -1).length - 1;
-        var=var+1;
-        return var;
+        long wordsInReport = report.split(" ", -1).length - 1;
+        wordsInReport=wordsInReport+1;
+        return wordsInReport;
     }
     
 

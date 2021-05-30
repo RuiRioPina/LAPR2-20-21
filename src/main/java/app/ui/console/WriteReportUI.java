@@ -29,7 +29,7 @@ public class WriteReportUI implements Runnable {
             option = 0;
             List<Test> lt = this.writeReportController.getTestsWithoutDiagnosis();
             String report="";
-            String testCode="";
+            String testCode;
             System.out.println("Beginning to write a report.\n");
 
             option = Utils.showAndSelectIndex(lt, "Select test.");
@@ -42,11 +42,11 @@ public class WriteReportUI implements Runnable {
                 System.out.println(testResults);
                 while(!validation) {
                     System.out.println();
-                    System.out.println("Write Report");
+                    System.out.println("Write Report:");
                     report = x.nextLine();
                     validation = checkReportRules(report);
                     if(!validation) {
-                        System.out.println("Report must have a maximum of 400 words");
+                        System.out.println("The report should have between 1 and 400 words.");
                     }
                 }
                 validation=false;
@@ -83,7 +83,7 @@ public class WriteReportUI implements Runnable {
 
     public boolean checkReportRules(String report){
         boolean validation=true;
-        if (numberOfWords(report)<1 || numberOfWords(report)>400){
+        if ((numberOfWords(report)<=1 && report.equals("")) || numberOfWords(report)>400){
 
             validation=false;
         }
