@@ -81,6 +81,17 @@ public class RegisterClientController {
         return this.clt;
     }
 
+
+    /**
+     * Brings the method getClientList from the class ClientList so that there is less coupling between the UI and domain layers.
+     *
+     * @return the instance of the Class ClientList containing the current listing of the ClientList.
+     */
+
+    public ClientList getClientList() {
+        return App.getInstance().getCompany().getClientList();
+    }
+
     /**
      * Brings the method from the class Company so that there's less coupling between the UI and domain layers.
      *
@@ -199,14 +210,5 @@ public class RegisterClientController {
         return true;
     }
 
-    /**
-     * Brings the method getClientList from the class ClientList so that there is less coupling between the UI and domain layers.
-     *
-     * @return the instance of the Class ClientList containing the current listing of the ClientList.
-     */
-
-    public ClientList getClientList() {
-        return App.getInstance().getCompany().getClientList();
-    }
 
 }

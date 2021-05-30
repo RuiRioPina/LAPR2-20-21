@@ -39,17 +39,6 @@ public class ClinicalAnalysisLaboratory {
         this.tStore = new TestStore();
     }
 
-    @Override
-    public String toString() {
-        return "ClinicalAnalysisLaboratory{" +
-                "laboratoryID='" + laboratoryID + '\'' +
-                ", name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", tin=" + tin +
-                ", testTypes=" + testTypes +
-                '}';
-    }
 
     /**
      * Returns the laboratoryID of the Clinical analysis laboratory
@@ -106,6 +95,19 @@ public class ClinicalAnalysisLaboratory {
     public TestStore getTestStore() {
         return this.tStore;
     }
+
+    @Override
+    public String toString() {
+        return "ClinicalAnalysisLaboratory{" +
+                "laboratoryID='" + laboratoryID + '\'' +
+                ", name='" + name + '\'' +
+                ", adress='" + adress + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", tin=" + tin +
+                ", testTypes=" + testTypes +
+                '}';
+    }
+
 }
 
 
