@@ -263,6 +263,9 @@ public class Test {
     }
 
 
+    public void setSamples(List<Sample> samples) {
+        this.samples = samples;
+    }
 
     public List<Parameter> getParameterStoreToShow() {
         List<Parameter> parametersToShow = new ArrayList<>();
