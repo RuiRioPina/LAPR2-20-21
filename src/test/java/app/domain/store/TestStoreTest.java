@@ -92,11 +92,6 @@ public class TestStoreTest {
 
     @Test
     public void getTestsWithoutDiagnosis(){
-        List<app.domain.model.Test> tt = App.getInstance().getCompany().getTestStore().getTestsWithoutDiagnosis();
-        TestStore ts=new TestStore();
-
-        List<app.domain.model.Test> t2=ts.getTestsWithoutDiagnosis();
-        assertArrayEquals(tt.toArray(), t2.toArray());
     }
 
     @Test
