@@ -1,5 +1,5 @@
 package app.ui.gui;
 
-public class MainMenuUi {
+public class MainMenuGUI {
 	
 }
