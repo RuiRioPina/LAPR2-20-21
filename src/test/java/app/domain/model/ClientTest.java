@@ -109,6 +109,12 @@ public class ClientTest {
 
         client.validateBirthDate("37-11-1994");
 
+        client.validateBirthDate("12-11" + "-" + currentDate.getYear());
+
+        client.validateBirthDate(currentDate.getDayOfMonth() + "-" + currentDate.getMonthValue() + "-" + currentDate.getYear());
+
+        client.validateBirthDate("12-11" + "-" + currentDate.getYear());
+
 
     }
 
