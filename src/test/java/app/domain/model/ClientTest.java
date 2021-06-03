@@ -149,11 +149,9 @@ public class ClientTest {
     @Test(expected = IllegalArgumentException.class)
     public void validatePhoneNumber() {
         Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        client.validatePhoneNumber(client.getPhoneNumber());
-        client.setPhoneNumber(999999999999L);
-        client.validatePhoneNumber(client.getPhoneNumber());
-        client.setPhoneNumber(9999999999L);
-        client.validatePhoneNumber(client.getPhoneNumber());
+        client.validatePhoneNumber(99999999999L);
+        client.validatePhoneNumber(999999999999L);
+        client.validatePhoneNumber(9999999999L);
         client.setPhoneNumber(99999999999L);
         clientList.saveClient(client);
         Client client1 = new Client(9999999919999999L, 9999919999L, "10-10-2010", "M", "ruipisa@mail.com", 9999999199L, 99999999999L, "Rui Pina");
