@@ -281,14 +281,13 @@ public class Client {
         if (birthDate.trim().isEmpty()) {
             throw new IllegalArgumentException("The date must be in the format DD/MM/YYYY. Please try again");
         }
-        try {
             String[] dateParts;
             dateParts = birthDate.trim().split("-");
             int[] checkParts = new int[dateParts.length];
             if (checkParts.length == 0) {
                 throw new IllegalArgumentException("The date must be in the format DD/MM/YYYY. Please try again");
             }
-            if (dateParts[0].length() != 0 || dateParts[1].length() != 0 || dateParts[2].length() != 0) {
+            if (dateParts[0].length() != 0 && dateParts[1].length() != 0 && dateParts[2].length() != 0) {
                 day = Integer.parseInt(dateParts[0]);
                 month = Integer.parseInt(dateParts[1]);
                 year = Integer.parseInt(dateParts[2]);
@@ -320,18 +319,13 @@ public class Client {
                 throw new IllegalArgumentException("The client can't be born in that year. Please try again with a different birth date");
 
             }
-            if ((year == (currentDate.getYear() - 150) && month < currentDate.getMonthValue() || month == currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
+            if ((year == (currentDate.getYear() - 150) && month <= currentDate.getMonthValue() && day <= currentDate.getDayOfMonth())) {
                 throw new IllegalArgumentException("The client can not born be older than 150 years old. Please try again with a different birth date");
             }
 
             if ((year == currentDate.getYear() && month >= currentDate.getMonthValue() && day > currentDate.getDayOfMonth())) {
                 throw new IllegalArgumentException("The client can not be born in the future! Please try again with a different birth date");
             }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("You can only introduce a date between " + "\"-\"." + "Please try again. ");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("There was an error! Please try again with other values");
-        }
     }
 
     /**

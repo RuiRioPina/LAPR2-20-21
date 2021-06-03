@@ -4,10 +4,7 @@ import app.controller.App;
 import app.domain.store.ClientList;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
@@ -88,39 +85,47 @@ public class ClientTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void validateBirthDate() {
-
         Client client = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() + 1), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client2 = new Client(999999999999999L, 9999999999L, "10-03-1871", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client3 = new Client(999999999999999L, 9999999999L, "10-0-1890", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client4 = new Client(999999999999999L, 9999999999L, "10-03-187", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client5 = new Client(999999999999999L, 9999999999L, "1-03-1990", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client6 = new Client(999999999999999L, 9999999999L, "38-11-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client7 = new Client(999999999999999L, 9999999999L, "10-13-1880", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client8 = new Client(999999999999999L, 9999999999L, "", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client9 = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear()), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client10 = new Client(9999999999999999L, 9999999999L, "10/10/1921", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
+        client.validateBirthDate((currentDate.getYear() - 150) + "-" +  (currentDate.getMonthValue()) + "-" +  currentDate.getMonthValue() + "-" + currentDate.getDayOfMonth());
+        client.validateBirthDate(currentDate.getYear() + "-" + currentDate.getMonthValue() + "-" +  (currentDate.getDayOfMonth()+1));
+        client.validateBirthDate(client.getBirthDate());
+        client.validateBirthDate("04-05-1871");
+        client.validateBirthDate(client.getBirthDate());
+
+        client.validateBirthDate("12-13-2000");
+
+        client.setBirthDate("04-05-187");
+        client.validateBirthDate(client.getBirthDate());
+
+        client.setBirthDate("     ");
+        client.validateBirthDate(client.getBirthDate());
+        client.validateBirthDate("              ");
 
         client.validateBirthDate(client.getBirthDate());
-        client2.validateBirthDate(client2.getBirthDate());
-        client3.validateBirthDate(client3.getBirthDate());
-        client4.validateBirthDate(client4.getBirthDate());
-        client5.validateBirthDate(client5.getBirthDate());
-        client6.validateBirthDate(client6.getBirthDate());
-        client7.validateBirthDate(client7.getBirthDate());
-        client8.validateBirthDate(client8.getBirthDate());
-        client9.validateBirthDate(client9.getBirthDate());
-        client10.validateBirthDate(client10.getBirthDate());
-        client.validateBirthDate("04-05-1871");
-        client.setBirthDate("     ");
-        client.validateBirthDate("              ");
         client.validateBirthDate("10-12-1999");
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate("10--1-1999");
+
+        client.validateBirthDate(currentDate.getYear() + "-" + currentDate.getMonthValue() + "-" + (currentDate.getDayOfMonth()+1));
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate("10-13-1999");
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate("-");
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate("");
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate("12-01-2070");
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate("12-01-1300");
+
+        client.validateBirthDate(client.getBirthDate());
         client.validateBirthDate(currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() - 150));
     }
 
