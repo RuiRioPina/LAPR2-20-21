@@ -18,4 +18,9 @@ public class ExternalAdapter2 implements ExternalModule {
         EMRefValue reference = externalModule2API.getReferenceFor(param.getCode());
         return new ReferenceValue(metric, reference.getMaxValue(), reference.getMinValue());
     }
+
+    @Override
+    public String getMetricFor(String parameterCode) {
+        return externalModule2API.getMetricsFor(parameterCode);
+    }
 }

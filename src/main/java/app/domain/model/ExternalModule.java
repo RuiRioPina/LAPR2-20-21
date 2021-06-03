@@ -8,4 +8,6 @@ public interface ExternalModule {
      */
     ReferenceValue getReferenceValue(Parameter param);
 
+    String getMetricFor(String parameterCode);
+
 }

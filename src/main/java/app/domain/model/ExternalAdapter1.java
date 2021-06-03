@@ -4,6 +4,9 @@ import com.example3.CovidReferenceValues1API;
 
 
 public class ExternalAdapter1 implements ExternalModule {
+
+    static final int API_KEY = 12345;
+
     CovidReferenceValues1API covidReferenceValues1API = new CovidReferenceValues1API();
 
     /**
@@ -13,12 +16,16 @@ public class ExternalAdapter1 implements ExternalModule {
      */
     @Override
     public ReferenceValue getReferenceValue(Parameter param) {
-        final int API_KEY = 12345;
         String usedMetric = covidReferenceValues1API.usedMetric(param.getCode(), API_KEY);
         double minValue = covidReferenceValues1API.getMinReferenceValue(param.getCode(), API_KEY);
         double maxValue = covidReferenceValues1API.getMaxReferenceValue(param.getCode(), API_KEY);
 
         return new ReferenceValue(usedMetric, maxValue, minValue);
+    }
+
+    @Override
+    public String getMetricFor(String parameterCode) {
+        return covidReferenceValues1API.usedMetric(parameterCode,API_KEY);
     }
 
 }

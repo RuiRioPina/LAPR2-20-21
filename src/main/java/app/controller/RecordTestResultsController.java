@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RecordTestResultsController {
     TestStore tests = App.getInstance().getCompany().getAllTestStore();
-
+    TestType testType = new TestType();
 
     /**
      * Constructor of the Class RecordTestResultsController
@@ -113,5 +113,12 @@ public class RecordTestResultsController {
      */
     public void initializeValidationList() {
         tests.initializeValidationList();
+    }
+
+    /**
+     * Initializes a new list everytime a new test has its results recorded
+     */
+    public String getMetricsFor(String parameter) {
+        return testType.getMetricsBasedOnTestType(parameter);
     }
 }
