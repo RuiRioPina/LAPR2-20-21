@@ -117,8 +117,8 @@ public class RegisterClientController {
      * @param ccn The client's Citizen card number
      */
 
-    public boolean validateCcn(long ccn) {
-        return clt.validateCcn(ccn);
+    public void validateCcn(long ccn) {
+        clt.validateCcn(ccn);
     }
 
     /**
@@ -127,8 +127,8 @@ public class RegisterClientController {
      * @param nhsNumber The client's NHS number
      */
 
-    public boolean validateNhsNumber(long nhsNumber) {
-        return clt.validateNhsNumber(nhsNumber);
+    public void validateNhsNumber(long nhsNumber) {
+        clt.validateNhsNumber(nhsNumber);
     }
 
     /**
@@ -136,8 +136,8 @@ public class RegisterClientController {
      *
      * @param birthDate The client's birth date
      */
-    public boolean validateBirthDate(String birthDate) {
-        return clt.validateBirthDate(birthDate);
+    public void validateBirthDate(String birthDate) {
+        clt.validateBirthDate(birthDate);
     }
 
     /**
@@ -146,8 +146,8 @@ public class RegisterClientController {
      * @param tin The client's Tax identification number
      */
 
-    public boolean validateTin(long tin) {
-        return clt.validateTin(tin);
+    public void validateTin(long tin) {
+        clt.validateTin(tin);
     }
 
     /**
@@ -156,8 +156,8 @@ public class RegisterClientController {
      * @param sex The client's sex.
      */
 
-    public boolean validateSex(String sex) {
-        return clt.validateSex(sex);
+    public void validateSex(String sex) {
+        clt.validateSex(sex);
     }
 
     /**
@@ -165,8 +165,8 @@ public class RegisterClientController {
      *
      * @param phoneNumber The client's phone number
      */
-    public boolean validatePhoneNumber(long phoneNumber) {
-        return clt.validatePhoneNumber(phoneNumber);
+    public void validatePhoneNumber(long phoneNumber) {
+        clt.validatePhoneNumber(phoneNumber);
     }
 
     /**
@@ -175,8 +175,8 @@ public class RegisterClientController {
      * @param name The client's name.
      */
 
-    public boolean validateName(String name) {
-        return clt.validateName(name);
+    public void validateName(String name) {
+        clt.validateName(name);
     }
 
     /**

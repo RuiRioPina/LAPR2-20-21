@@ -48,41 +48,35 @@ public class ClientTest {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validateCcn() {
 
         Client client4 = new Client();
+        Client client5 = new Client();
+        client5.setCcn(1000000000000000L);
 
-        boolean actual1 = client4.validateCcn(1000000000000000L);
-        boolean actual2 = client4.validateCcn(9999999999999999L);
-        boolean actual3 = client4.validateCcn(999999999999999L);
-        boolean actual4 = client4.validateCcn(99999999999999999L);
-        assertTrue(actual1);
-        assertFalse(actual2);
-        assertTrue(actual3);
-        assertFalse(actual4);
+        client4.validateCcn(1000000000000000L);
+        client4.validateCcn(9999999999999999L);
+        client4.validateCcn(999999999999999L);
+        client4.validateCcn(99999999999999999L);
 
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validateNhsNumber() {
         Client client4 = new Client();
 
-        boolean actual1 = client4.validateNhsNumber(1000000000L);
-        boolean actual2 = client4.validateNhsNumber(99999999999L);
-        boolean actual3 = client4.validateNhsNumber(9999999999L);
-        boolean actual4 = client4.validateNhsNumber(99999999999999999L);
-        assertTrue(actual1);
-        assertFalse(actual2);
-        assertTrue(actual3);
-        assertFalse(actual4);
+        client4.validateNhsNumber(1000000000L);
+        client4.validateNhsNumber(99999999999L);
+        client4.validateNhsNumber(9999999999L);
+        client4.validateNhsNumber(99999999999999999L);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validateBirthDate() {
 
-        Client client = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear()+1), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() + 1), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client2 = new Client(999999999999999L, 9999999999L, "10-03-1871", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client3 = new Client(999999999999999L, 9999999999L, "10-0-1890", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client4 = new Client(999999999999999L, 9999999999L, "10-03-187", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
@@ -94,93 +88,59 @@ public class ClientTest {
         Client client10 = new Client(9999999999999999L, 9999999999L, "10/10/1921", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
 
-        boolean actual1 = client.validateBirthDate(client.getBirthDate());
-        boolean actual2 = client2.validateBirthDate(client2.getBirthDate());
-        boolean actual3 = client3.validateBirthDate(client3.getBirthDate());
-        boolean actual4 = client4.validateBirthDate(client4.getBirthDate());
-        boolean actual5 = client5.validateBirthDate(client5.getBirthDate());
-        boolean actual6 = client6.validateBirthDate(client6.getBirthDate());
-        boolean actual7 = client7.validateBirthDate(client7.getBirthDate());
-        boolean actual8 = client8.validateBirthDate(client8.getBirthDate());
-        boolean actual9 = client9.validateBirthDate(client9.getBirthDate());
-        boolean actual10 = client10.validateBirthDate(client10.getBirthDate());
-        boolean actual11 = client.validateBirthDate("04-05-1871");
-        boolean actual12 = client.validateBirthDate("              ");
-        boolean actual13 = client.validateBirthDate("10-12-1999");
-        boolean actual14 = client.validateBirthDate("10--1-1999");
-        boolean actual15 = client.validateBirthDate("10-13-1999");
-        boolean actual16 = client.validateBirthDate("-");
-        boolean actual17 = client.validateBirthDate("");
-        boolean actual18 = client.validateBirthDate("12-01-2070");
-        boolean actual19 = client.validateBirthDate("12-01-1300");
-        boolean actual20 = client.validateBirthDate(currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() - 150));
-
-
-        assertFalse(actual1);
-        assertFalse(actual2);
-        assertFalse(actual3);
-        assertFalse(actual4);
-        assertFalse(actual5);
-        assertFalse(actual6);
-        assertFalse(actual7);
-        assertFalse(actual8);
-        assertFalse(actual9);
-        assertFalse(actual10);
-        assertFalse(actual11);
-        assertFalse(actual12);
-        assertTrue(actual13);
-        assertFalse(actual14);
-        assertFalse(actual15);
-        assertFalse(actual16);
-        assertFalse(actual17);
-        assertFalse(actual18);
-        assertFalse(actual19);
-        assertFalse(actual20);
-
-
+        client.validateBirthDate(client.getBirthDate());
+        client2.validateBirthDate(client2.getBirthDate());
+        client3.validateBirthDate(client3.getBirthDate());
+        client4.validateBirthDate(client4.getBirthDate());
+        client5.validateBirthDate(client5.getBirthDate());
+        client6.validateBirthDate(client6.getBirthDate());
+        client7.validateBirthDate(client7.getBirthDate());
+        client8.validateBirthDate(client8.getBirthDate());
+        client9.validateBirthDate(client9.getBirthDate());
+        client10.validateBirthDate(client10.getBirthDate());
+        client.validateBirthDate("04-05-1871");
+        client.validateBirthDate("              ");
+        client.validateBirthDate("10-12-1999");
+        client.validateBirthDate("10--1-1999");
+        client.validateBirthDate("10-13-1999");
+        client.validateBirthDate("-");
+        client.validateBirthDate("");
+        client.validateBirthDate("12-01-2070");
+        client.validateBirthDate("12-01-1300");
+        client.validateBirthDate(currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() - 150));
     }
 
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validateTin() {
         Client client4 = new Client();
 
-        boolean actual1 = client4.validateTin(1000000000L);
-        boolean actual2 = client4.validateTin(99999999999L);
-        boolean actual3 = client4.validateTin(9999999999L);
-        boolean actual4 = client4.validateTin(99999999999999999L);
-        assertTrue(actual1);
-        assertFalse(actual2);
-        assertTrue(actual3);
-        assertFalse(actual4);
+        client4.validateTin(1000000000L);
+        client4.validateTin(99999999999L);
+        client4.validateTin(9999999999L);
+        client4.validateTin(99999999999999999L);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validateSex() {
         Client client4 = new Client();
 
-        boolean actual1 = client4.validateSex("M");
-        boolean actual2 = client4.validateSex("table");
-        boolean actual3 = client4.validateSex("");
-        boolean actual4 = client4.validateSex("Jorge");
-        assertTrue(actual1);
-        assertFalse(actual2);
-        assertTrue(actual3);
-        assertFalse(actual4);
+        client4.validateSex("M");
+        client4.validateSex("table");
+        client4.validateSex("");
+        client4.validateSex("Jorge");
+
+
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validatePhoneNumber() {
         Client client4 = new Client();
 
-        boolean actual1 = client4.validatePhoneNumber(10000000000L);
-        boolean actual2 = client4.validatePhoneNumber(999999999999L);
-        boolean actual3 = client4.validatePhoneNumber(99999999999L);
-        boolean actual4 = client4.validatePhoneNumber(999999999999999999L);
-        assertTrue(actual1);
-        assertFalse(actual2);
-        assertTrue(actual3);
-        assertFalse(actual4);
+        client4.validatePhoneNumber(10000000000L);
+        client4.validatePhoneNumber(999999999999L);
+        client4.validatePhoneNumber(99999999999L);
+        client4.validatePhoneNumber(999999999999999999L);
     }
 
     @Test
@@ -197,24 +157,24 @@ public class ClientTest {
         }
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void validateName() {
 
         Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
         Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina312312");
         Client client2 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "       ");
-        boolean actual1 = client.validateName(client.getName());
-        boolean actual2 = client1.validateName(client1.getName());
-        boolean actual3 = client2.validateName(client2.getName());
-        boolean actual4 = client2.validateName("Hippopotomonstrosesquippedaliophob      ");
-        boolean actual5 = client2.validateName("Hippopotomonstrosesquippedaliophobia");
-        boolean actual6 = client2.validateName("Hippopotomonstrosesquippedaliophobi");
-        assertTrue(actual1);
-        assertFalse(actual2);
-        assertFalse(actual3);
-        assertTrue(actual4);
-        assertFalse(actual5);
-        assertTrue(actual6);
+        client.validateName(client.getName());
+        client1.validateName(client1.getName());
+        client2.validateName(client2.getName());
+        client2.validateName("Hippopotomonstrosesquippedaliophob      ");
+        client2.validateName("Hippopotomonstrosesquippedaliophobia");
+        client2.validateName("Hippopotomonstrosesquippedaliophobi");
+
+
+
+
+
+
 
 
     }

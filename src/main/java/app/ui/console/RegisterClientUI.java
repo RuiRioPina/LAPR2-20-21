@@ -3,7 +3,6 @@ package app.ui.console;
 
 import app.controller.RegisterClientController;
 import app.domain.model.Client;
-import app.domain.store.ClientList;
 import auth.AuthFacade;
 
 import java.io.IOException;
@@ -11,183 +10,247 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RegisterClientUI implements Runnable {
+
+
+    private final RegisterClientController registerClientController = new RegisterClientController();
+
+    private boolean passedValidation;
+    Client clt;
+
+
+    private static final Scanner sc = new Scanner(System.in);
+
     public RegisterClientUI() {
         // Do nothing because there is no need to construct the UI layer with anything. This is only used to be able to use the UI when selecting in menus.
     }
 
     public void run() {
-        RegisterClientController registerClientController = new RegisterClientController();
-        ClientList clientList;
-        long tin = 0L;
-        long phoneNumber = 0L;
-        long nhsNumber = 0L;
-        long ccn = 0L;
-        boolean result = false;
+
+        long ccn;
+        long tin;
+        long phoneNumber;
+        long nhsNumber;
+
         new AuthFacade();
-        String sex = "";
-        String birthDate = "";
-        String email = "";
+        String sex;
+        String birthDate;
+        String email;
         String name;
-        Scanner sc = new Scanner(System.in);
+
         System.out.println();
         System.out.println("Welcome to the Client Registration Page!");
         System.out.println();
 
+
+        ccn = inputCcn();
+
+        nhsNumber = inputNhsNumber();
+
+        sc.nextLine();
+
+        birthDate = inputBirthDate();
+
+        sex = inputSex();
+
+        tin = inputTin();
+
+        phoneNumber = inputPhoneNumber();
+
+        sc.nextLine();
+
+        email = inputEmail();
+
+        name = inputName();
+
+        if (sex.trim().isEmpty()) {
+            clt = registerClientController.createClient(ccn, nhsNumber, birthDate, phoneNumber, tin, email, name);
+        } else {
+            clt = registerClientController.createClient(ccn, nhsNumber, birthDate, sex, phoneNumber, tin, email, name);
+        }
+
+        registerClientController.showClient(clt);
+
+        confirmResult();
+
+    }
+
+    private long inputCcn() {
+        long ccn = 0L;
+
         do {
             try {
+                passedValidation = true;
                 System.out.println("Enter the Client's Citizen's card number (16 digits):");
                 ccn = sc.nextLong();
-                result = registerClientController.validateCcn(ccn);
-                if (!result) {
-                    System.out.println("The Client's Citizen's card number needs to have 16 digits. Please try again.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("The CCN can only have numbers. Please try again.");
+                registerClientController.validateCcn(ccn);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
                 sc.nextLine();
+                passedValidation = false;
+            } catch (InputMismatchException e) {
+                System.out.println("The ccn can only have numbers. Please try again.");
+                sc.nextLine();
+                passedValidation = false;
             }
-        } while (!result);
+        } while (!passedValidation);
 
-        result = false;
+        return ccn;
+    }
 
+    private long inputNhsNumber() {
+        long nhsNumber = 0L;
         do {
             try {
+                passedValidation = true;
                 System.out.println("Enter the Client's NHS Number(10 digits): ");
                 nhsNumber = sc.nextLong();
 
-                result = registerClientController.validateNhsNumber(nhsNumber);
-
-                if (!result) {
-                    System.out.println("The NHS number needs to have 10 digits. Please try again.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("The NHS number can only have numbers. Please try again.");
+                registerClientController.validateNhsNumber(nhsNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
                 sc.nextLine();
+                passedValidation = false;
+            } catch (InputMismatchException e) {
+                System.out.println("The ccn can only have numbers. Please try again.");
+                sc.nextLine();
+                passedValidation = false;
             }
-        } while (!result);
+        } while (!passedValidation);
+        return nhsNumber;
+    }
 
-        sc.nextLine();
-        result = false;
-
+    private String inputBirthDate() {
+        String birthDate = "";
         do {
             try {
+                passedValidation = true;
                 System.out.println("Enter the Client's birth date(DD-MM-YYYY): ");
                 birthDate = sc.nextLine();
-                result = registerClientController.validateBirthDate(birthDate);
+                registerClientController.validateBirthDate(birthDate);
 
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("All information asked must be inputted. Please insert a day of birth, month and year asked in the format (DD-MM-YYYY).");
-            } catch (NumberFormatException e) {
-                System.out.println("The was a problem while introducing the data. Please try again.");
+            } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
+                passedValidation = false;
+                System.out.println(e.getMessage());
             }
-        } while (!result);
+        } while (!passedValidation);
+        return birthDate;
+    }
 
-        result = false;
-
+    private String inputSex() {
+        String sex = "";
         do {
             try {
+                passedValidation = true;
                 System.out.println("Enter the Client's sex (optional: press enter): ");
                 sex = sc.nextLine();
-                result = registerClientController.validateSex(sex);
-                if (!result) {
-                    System.out.println("You have introduced an invalid sex. Please try again");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("The Sex can only have letters. Please try again.");
-                sc.nextLine();
+                registerClientController.validateSex(sex);
+            } catch (IllegalArgumentException e) {
+                passedValidation = false;
+                System.out.println(e.getMessage());
             }
-        } while (!result);
+        } while (!passedValidation);
+        return sex;
+    }
 
-        result = false;
+    private long inputTin() {
+        long tin = 0L;
         do {
             try {
+                passedValidation = true;
                 System.out.println("Enter the Client's Tax Identification Number (10 digits): ");
                 tin = sc.nextLong();
-                result = registerClientController.validateTin(tin);
-                if (!result) {
-                    System.out.println("The TIN needs to have 10 digits. Please try again");
-                }
-
+                registerClientController.validateTin(tin);
+            } catch (IllegalArgumentException e) {
+                passedValidation = false;
+                System.out.println(e.getMessage());
+                sc.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("The TIN can only have numbers. Please try again.");
+                passedValidation = false;
+                System.out.println("You have introduce letters. Please try again with only numbers.");
                 sc.nextLine();
             }
-        } while (!result);
+        } while (!passedValidation);
+        return tin;
+    }
 
-        result = false;
-
+    private long inputPhoneNumber() {
+        long phoneNumber = 0L;
         do {
             try {
+                passedValidation = true;
                 System.out.println("Enter the Client's phone number (11 digits): ");
                 phoneNumber = sc.nextLong();
 
-                result = registerClientController.validatePhoneNumber(phoneNumber);
+                registerClientController.validatePhoneNumber(phoneNumber);
 
-                if (!result) {
-                    System.out.println("The phone number needs to have 11 digits. Please try again");
-
-                }
+            } catch (IllegalArgumentException e) {
+                passedValidation = false;
+                System.out.println(e.getMessage());
+                sc.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("The phone number can only have numbers. Please try again.");
+                passedValidation = false;
+                System.out.println("You have introduce letters. Please try again with only numbers.");
                 sc.nextLine();
             }
-        } while (!result);
 
-        result = false;
-        sc.nextLine();
+        } while (!passedValidation);
+        return phoneNumber;
+    }
+    private String inputEmail() {
+        String email = "";
         do {
             try {
                 System.out.println("Enter the Client's email: ");
                 email = sc.nextLine();
                 registerClientController.validateEmail(email);
-                result = true;
+                passedValidation = true;
             } catch (IllegalArgumentException e) {
+                passedValidation = false;
+                System.out.println(e.getMessage());
+            } catch (InputMismatchException e) {
+                passedValidation = false;
+            }
+        } while (!passedValidation);
+        return email;
+    }
+
+    private String inputName() {
+        String name = "";
+        do {
+            try {
+                System.out.println("Enter the Client's name: ");
+                name = sc.nextLine();
+                registerClientController.validateName(name);
+                passedValidation = true;
+            } catch (IllegalArgumentException e) {
+                passedValidation = false;
                 System.out.println(e.getMessage());
             }
-        } while (!result);
-
-
-        do {
-            System.out.println("Enter the Client's name: ");
-            name = sc.nextLine();
-
-            result = registerClientController.validateName(name);
-
-        } while (!result);
-
-        Client clt;
-        if (sex.trim().isEmpty()) {
-            clt = registerClientController.createClient(ccn, nhsNumber, birthDate,phoneNumber , tin, email, name);
-        } else {
-            clt = registerClientController.createClient(ccn, nhsNumber, birthDate, sex,phoneNumber, tin , email, name);
-        }
-
-        registerClientController.showClient(clt);
-
-        do {
-            result = true;
-            System.out.println("Do you confirm this data? (y/n)");
-            String response = sc.nextLine();
-            if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
-                try {
-                    clientList = registerClientController.getClientList();
-                    for (Client c : clientList.getClients()) {
-                        System.out.println(c);
-                    }
-
-                    if (registerClientController.saveClient(clt) && clt != null) {
-                        System.out.println("The Client was sucessfully added!");
-                        registerClientController.sendEmailToClient(clt);
-                    }
-                } catch (IOException | InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
-            } else if (response.equalsIgnoreCase("n") || response.equalsIgnoreCase("no")) {
-                result = true;
-            } else {
-                System.out.println("Please insert a valid option (Y/N)");
-                result = false;
-
-            }
-        } while (!result);
+        } while (!passedValidation);
+        return name;
     }
+    public void confirmResult() {
+
+    do {
+        passedValidation = true;
+        System.out.println("Do you confirm this data? (y/n)");
+        String response = sc.nextLine();
+        if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
+            try {
+                if (registerClientController.saveClient(clt) && clt != null) {
+                    System.out.println("The Client was sucessfully added!");
+                    registerClientController.sendEmailToClient(clt);
+                }
+            } catch (IOException | InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Please insert a valid option (Y/N)");
+            passedValidation = false;
+        }
+    } while (!passedValidation);
+    }
+
+
 }
