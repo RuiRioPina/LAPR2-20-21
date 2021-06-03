@@ -129,9 +129,11 @@ public class RegisterClientUI implements Runnable {
                 birthDate = sc.nextLine();
                 registerClientController.validateBirthDate(birthDate);
 
-            } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 passedValidation = false;
                 System.out.println(e.getMessage());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("There was an error! Please try again with other values");
             }
         } while (!passedValidation);
         return birthDate;
@@ -197,6 +199,7 @@ public class RegisterClientUI implements Runnable {
         } while (!passedValidation);
         return phoneNumber;
     }
+
     private String inputEmail() {
         String email = "";
         do {
@@ -230,26 +233,27 @@ public class RegisterClientUI implements Runnable {
         } while (!passedValidation);
         return name;
     }
+
     public void confirmResult() {
 
-    do {
-        passedValidation = true;
-        System.out.println("Do you confirm this data? (y/n)");
-        String response = sc.nextLine();
-        if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
-            try {
-                if (registerClientController.saveClient(clt) && clt != null) {
-                    System.out.println("The Client was sucessfully added!");
-                    registerClientController.sendEmailToClient(clt);
+        do {
+            passedValidation = true;
+            System.out.println("Do you confirm this data? (y/n)");
+            String response = sc.nextLine();
+            if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
+                try {
+                    if (registerClientController.saveClient(clt) && clt != null) {
+                        System.out.println("The Client was sucessfully added!");
+                        registerClientController.sendEmailToClient(clt);
+                    }
+                } catch (IOException | InterruptedException e) {
+                    System.out.println(e.getMessage());
                 }
-            } catch (IOException | InterruptedException e) {
-                System.out.println(e.getMessage());
+            } else {
+                System.out.println("Please insert a valid option (Y/N)");
+                passedValidation = false;
             }
-        } else {
-            System.out.println("Please insert a valid option (Y/N)");
-            passedValidation = false;
-        }
-    } while (!passedValidation);
+        } while (!passedValidation);
     }
 
 
