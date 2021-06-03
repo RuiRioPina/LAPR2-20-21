@@ -87,6 +87,8 @@ public class ClientTest {
     public void validateBirthDate() {
         Client client = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() + 1), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
+        client.validateBirthDate(client.getBirthDate());
+
         client.validateBirthDate("         ");
 
         client.validateBirthDate("-12-2000");
@@ -146,16 +148,18 @@ public class ClientTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void validatePhoneNumber() {
-        Client client4 = new Client();
-        Client client5 = new Client();
+        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        client.validatePhoneNumber(client.getPhoneNumber());
+        client.setPhoneNumber(999999999999L);
+        client.validatePhoneNumber(client.getPhoneNumber());
+        client.setPhoneNumber(9999999999L);
+        client.validatePhoneNumber(client.getPhoneNumber());
+        client.setPhoneNumber(99999999999L);
+        clientList.saveClient(client);
+        Client client1 = new Client(9999999919999999L, 9999919999L, "10-10-2010", "M", "ruipisa@mail.com", 9999999199L, 99999999999L, "Rui Pina");
+        clientList.saveClient(client1);
+            client1.validatePhoneNumber(client1.getPhoneNumber());
 
-        client4.setPhoneNumber(10000000000L);
-        client5.setPhoneNumber(10000000000L);
-
-        client4.validatePhoneNumber(10000000000L);
-        client4.validatePhoneNumber(999999999999L);
-        client4.validatePhoneNumber(99999999999L);
-        client4.validatePhoneNumber(999999999999999999L);
     }
 
 
