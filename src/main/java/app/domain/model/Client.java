@@ -258,7 +258,7 @@ public class Client {
         }
         List<Client> clients = cmp.getClientList().getClients();
         for (Client client : clients) {
-            if (Long.toString(client.getCcn()).equals(nhsNumberInString)) {
+            if (Long.toString(client.getNhsNumber()).equals(nhsNumberInString)) {
                 throw new IllegalArgumentException("This NHS Number is already associated to a client. Please introduce " +
                         "an unique NHS Number.");
             }
@@ -278,7 +278,7 @@ public class Client {
         int day = 0;
         int month = 0;
         int year = 0;
-        if (birthDate.equals("")) {
+        if (birthDate.trim().isEmpty()) {
             throw new IllegalArgumentException("The date must be in the format DD/MM/YYYY. Please try again");
         }
         try {
