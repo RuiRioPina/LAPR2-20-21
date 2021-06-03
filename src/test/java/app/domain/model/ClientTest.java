@@ -87,46 +87,29 @@ public class ClientTest {
     public void validateBirthDate() {
         Client client = new Client(9999999999999999L, 9999999999L, currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() + 1), "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
 
-        client.validateBirthDate((currentDate.getYear() - 150) + "-" +  (currentDate.getMonthValue()) + "-" +  currentDate.getMonthValue() + "-" + currentDate.getDayOfMonth());
-        client.validateBirthDate(currentDate.getYear() + "-" + currentDate.getMonthValue() + "-" +  (currentDate.getDayOfMonth()+1));
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("04-05-1871");
-        client.validateBirthDate(client.getBirthDate());
+        client.validateBirthDate("         ");
 
-        client.validateBirthDate("12-13-2000");
+        client.validateBirthDate("-12-2000");
 
-        client.setBirthDate("04-05-187");
-        client.validateBirthDate(client.getBirthDate());
+        client.validateBirthDate("12--1999");
 
-        client.setBirthDate("     ");
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("              ");
+        client.validateBirthDate("12-12-");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("10-12-1999");
+        client.validateBirthDate("12-12-199");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("10--1-1999");
+        client.validateBirthDate("12-1-1999");
 
-        client.validateBirthDate(currentDate.getYear() + "-" + currentDate.getMonthValue() + "-" + (currentDate.getDayOfMonth()+1));
+        client.validateBirthDate("2-11-1994");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("10-13-1999");
+        client.validateBirthDate("02-16-1994");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("-");
+        client.validateBirthDate("02-12-1994");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("");
+        client.validateBirthDate("02-00-1994");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("12-01-2070");
+        client.validateBirthDate("37-11-1994");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate("12-01-1300");
 
-        client.validateBirthDate(client.getBirthDate());
-        client.validateBirthDate(currentDate.getDayOfMonth() + "-" + currentDate.getMonth() + "-" + (currentDate.getYear() - 150));
     }
 
 

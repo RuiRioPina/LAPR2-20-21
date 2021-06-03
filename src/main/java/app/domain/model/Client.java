@@ -285,7 +285,7 @@ public class Client {
             dateParts = birthDate.trim().split("-");
             int[] checkParts = new int[dateParts.length];
             if (checkParts.length == 0) {
-                throw new IllegalArgumentException("The date must be in the format DD/MM/YYYY. Please try again");
+                throw new IllegalArgumentException("The date must be in the format DD-MM-YYYY. Please try again");
             }
             if (dateParts[0].length() != 0 && dateParts[1].length() != 0 && dateParts[2].length() != 0) {
                 day = Integer.parseInt(dateParts[0]);
