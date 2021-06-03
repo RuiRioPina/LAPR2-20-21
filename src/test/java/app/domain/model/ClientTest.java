@@ -164,23 +164,6 @@ public class ClientTest {
         client4.validatePhoneNumber(999999999999999999L);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void validateEmail() {
-        ExpectedException exceptionRule = ExpectedException.none();
-
-        Client client = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-        Client client1 = new Client(9999999999999999L, 9999999999L, "10-10-2010", "M", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
-
-        client.validateEmail(client.getEmail());
-        client1.validateEmail(client1.getEmail());
-
-        client.setEmail("john@gmail.com");
-        client1.setEmail("john@gmail.com");
-
-        client.validateEmail(client.getEmail());
-        client1.validateEmail(client1.getEmail());
-
-    }
 
     @Test(expected = IllegalArgumentException.class)
     public void validateName() {

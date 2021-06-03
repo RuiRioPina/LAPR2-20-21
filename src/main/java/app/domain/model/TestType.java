@@ -16,6 +16,11 @@ public class TestType {
     private final String collectingMethod;
     private final List<ParameterCategory> parameterCategories;
 
+    private static final String CODE_DEFAULT = "No code";
+    private static final String DESCRIPTION_DEFAULT = "No description";
+    private static final String COLLECTING_METHOD_DEFAULT = "No collecting method";
+    private static final List<ParameterCategory> PARAMETER_CATEGORIES_DEFAULT = null;
+
     /**
      * Constructor for the test type.
      *
@@ -30,6 +35,14 @@ public class TestType {
         this.description = description;
         this.collectingMethod = collectingMethod;
         this.parameterCategories = parameterCategories;
+    }
+
+    public TestType() {
+        code = CODE_DEFAULT;
+        description = DESCRIPTION_DEFAULT;
+        collectingMethod = COLLECTING_METHOD_DEFAULT;
+        parameterCategories = PARAMETER_CATEGORIES_DEFAULT;
+
     }
 
     /**
@@ -83,21 +96,39 @@ public class TestType {
 
     /**
      * Checks what API will be used, using the testType of the parameter at stake to find the correct one.
+     *
      * @param parameterCode the parameter from where the test type will be seen
      * @return the reference value of the parameter containing its metric, its maximum value and its minimum value
      */
 
     public ReferenceValue checkExternalModuleBasedOnTestType(Parameter parameterCode) {
-        Class<?> oClass = null;
+        Class<?> oClass;
         ExternalModule em;
         try {
-            if(parameterCode.getCode().equals("IgGAN")){
+            if (parameterCode.getCode().equals("IgGAN")) {
                 oClass = Class.forName(Configuration.getAutomaticValidationCovid());
-            }else {
+            } else {
                 oClass = Class.forName(Configuration.getAutomaticValidationBlood());
             }
             em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
             return em.getReferenceValue(parameterCode);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getMetricsBasedOnTestType(String parameterCode) {
+        Class<?> oClass;
+        ExternalModule em;
+        try {
+            if (parameterCode.equals("IgGAN")) {
+                oClass = Class.forName(Configuration.getAutomaticValidationCovid());
+            } else {
+                oClass = Class.forName(Configuration.getAutomaticValidationBlood());
+            }
+            em = (ExternalModule) oClass.getDeclaredConstructor().newInstance();
+            return em.getMetricFor(parameterCode);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientList {
-    private List<Client> listOfClients;
+    private final List<Client> listOfClients;
 
     /**
      * empty constructor of the class ClientList which initializes the arraylist.

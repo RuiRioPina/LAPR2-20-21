@@ -144,19 +144,6 @@ public class RegisterClientControllerTest {
         }
     }
 
-    @Test
-    public void validateEmail() {
-        ExpectedException exceptionRule = ExpectedException.none();
-        RegisterClientController registerClientController = new RegisterClientController();
-        try {
-            registerClientController.validateEmail("rui@g.com");
-            registerClientController.validateEmail("rui32@.com");
-            registerClientController.validateEmail("rui32@gmcom");
-        } catch (IllegalArgumentException e) {
-            exceptionRule.expect(IllegalArgumentException.class);
-        }
-
-    }
 
     @Test
     public void isClientInList() {

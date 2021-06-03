@@ -403,8 +403,8 @@ public class Client {
 
         List<Client> clients = cmp.getClientList().getClients();
         for (Client client : clients) {
-            if (client.getEmail().equals(email)) {
-                throw new IllegalArgumentException("This Email already associated to a client. Please introduce an unique NHS Number.");
+            if (client.getEmail().equals(email) && client.getEmail()!=null) {
+                throw new IllegalArgumentException("This Email already associated to a client. Please introduce an unique email.");
             }
         }
 

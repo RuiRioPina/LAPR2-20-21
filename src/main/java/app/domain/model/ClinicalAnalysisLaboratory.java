@@ -11,13 +11,13 @@ public class ClinicalAnalysisLaboratory {
      * Object oriented Class to describe a Clinical analysis laboratory in a company context.
      */
 
-    private String laboratoryID;
-    private String name;
-    private String adress;
-    private long phoneNumber;
-    private long tin;
-    private List<TestType> testTypes;
-    private TestStore tStore;
+    private final String laboratoryID;
+    private final String name;
+    private final String adress;
+    private final long phoneNumber;
+    private final long tin;
+    private final List<TestType> testTypes;
+    private final TestStore tStore;
 
     /**
      * Constructor for the Clinical analysis laboratory
