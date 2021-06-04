@@ -86,7 +86,6 @@ public class App {
 
         Sample sample = new Sample("99999999999");
         Sample sample1 = new Sample("11111111111");
-        Sample sample3 = new Sample("55555555555");
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
 
         List<ParameterCategory> pc = new ArrayList<>();
@@ -167,15 +166,14 @@ public class App {
 
         Test test = new Test("333333abcdef", "999999999997", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("444444abcdef", "999999999996", c, tts.getTestTypes().get(0), pc, par, data);
-        Test test3 = new Test("555555abcdef", "999999999995", c, tts.getTestTypes().get(0), pCovid, parCovid, data);
 
         ts.saveTest(test);
         ts.saveTest(test1);
-        ts.saveTest(test3);
+
 
         ts.saveSample(test, sample);
         ts.saveSample(test1, sample1);
-        ts.saveSample(test3, sample3);
+
 
         this.company.setCLA(cla);
 

@@ -3,6 +3,7 @@ package app.domain.model;
 import java.io.IOException;
 import java.util.*;
 
+import app.controller.App;
 import app.domain.shared.EmailNotificationSender;
 import app.domain.store.ResultOfTestStore;
 
@@ -18,7 +19,7 @@ public class Test {
     private final List<ParameterCategory> parameterCategory;
     private final TestType testType;
     private final String sampleCollectionMethod;
-    private List<Parameter> parameter = new ArrayList<>();
+    private List<Parameter> parameter;
     private final Date registrationDate;
     private List<Sample> samples;
     private Date samplesCollectionDate;
@@ -27,6 +28,7 @@ public class Test {
     private Date validationDate;
     private Report report;
     private final ResultOfTestStore resultOfTestStore = new ResultOfTestStore();
+    private String labID;
 
 
     /**
@@ -59,6 +61,7 @@ public class Test {
         this.validationDate = null;
         this.samplesCollectionDate = null;
         this.samples = new ArrayList<>();
+        this.labID = App.getInstance().getCompany().getCLA().getLaboratoryID();
     }
 
     /**
@@ -230,6 +233,9 @@ public class Test {
         this.samplesCollectionDate = date;
     }
 
+    public void setLabID(String labID){
+        this.labID = labID;
+    }
 
 
     /**
@@ -256,6 +262,10 @@ public class Test {
         this.validationDate=newDate;
     }
 
+    public String getLabID() {
+        return labID;
+    }
+
     /**
      * Returns a string with test information.
      *
@@ -269,6 +279,7 @@ public class Test {
             str = "TEST" + '\n' +
                     "NHS Code = " + nhsCode + '\n' +
                     "Internal Code = " + internalCode + '\n' +
+                    "Lab ID = " + labID + '\n' +
                     "Client = " + client.getName() + '\n' +
                     "Test Type = " + testType + '\n' +
                     "Sample Collection Method = " + sampleCollectionMethod + '\n' +
@@ -281,6 +292,7 @@ public class Test {
             str = "TEST" + '\n' +
                     "NHS Code = " + nhsCode + '\n' +
                     "Internal Code = " + internalCode + '\n' +
+                    "Lab ID = " + labID + '\n' +
                     "Client = " + client + '\n' +
                     "Test Type = " + testType + '\n' +
                     "Sample Collection Method = " + sampleCollectionMethod + '\n' +

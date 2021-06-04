@@ -747,6 +747,7 @@ public class TestTest {
         String expected ="TEST" + '\n' +
                 "NHS Code = " + "abcdefghijkl" + '\n' +
                 "Internal Code = " + "900000000000" + '\n' +
+                "Lab ID = " + App.getInstance().getCompany().getCLA().getLaboratoryID() + '\n'+
                 "Client = " + c.getName() + '\n' +
                 "Test Type = " + tt1 + '\n' +
                 "Sample Collection Method = " + tt1.getCollectingMethod() + '\n' +

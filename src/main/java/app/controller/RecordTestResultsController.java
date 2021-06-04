@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class RecordTestResultsController {
-    TestStore tests = App.getInstance().getCompany().getAllTestStore();
+    TestStore tests = App.getInstance().getCompany().getTestStore();
     TestType testType = new TestType();
 
     /**

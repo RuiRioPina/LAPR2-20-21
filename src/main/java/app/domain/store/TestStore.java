@@ -220,8 +220,10 @@ public class TestStore {
     public List<Test> getTestsWithoutSamples() {
         List<Test> result = new ArrayList<>();
         for (Test t : this.tests) {
-            if (t.getSamplesCollectionDate() == null) {
-                result.add(t);
+            if (t.getLabID().equals(App.getInstance().getCompany().getCLA().getLaboratoryID())) {
+                if (t.getSamplesCollectionDate() == null) {
+                    result.add(t);
+                }
             }
         }
         return result;

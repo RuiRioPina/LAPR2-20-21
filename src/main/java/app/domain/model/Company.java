@@ -33,6 +33,7 @@ public class Company {
     private final ClinicalAnalysisLaboratoryStore clinicalAnalysisLaboratoryStore;
     private final ReportStore reportStore;
     private ClinicalAnalysisLaboratory cla;
+    private TestStore testStore;
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -55,9 +56,8 @@ public class Company {
         this.testCode = 0;
         this.reportStore = new ReportStore();
         this.cla = null;
+        this.testStore = new TestStore();
     }
-
-
 
     public ClinicalAnalysisLaboratory getCLA() {
         return this.cla;
@@ -110,7 +110,7 @@ public class Company {
     }
 
     public TestStore getTestStore() {
-        return this.cla.getTestStore();
+        return this.testStore;
     }
 
     public ReportStore getReportStore() {
@@ -134,28 +134,13 @@ public class Company {
 
     public List<Test> getAllTest() {
         List<Test> testes = new ArrayList<>();
-        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            testes.addAll(lab.getTestStore().getTests());
-        }
+        testes.addAll(getTestStore().getTests());
         return testes;
-    }
-
-    public TestStore getAllTestStore() {
-        List<Test> testes = new ArrayList<>();
-        TestStore testStore;
-        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            testes.addAll(lab.getTestStore().getTestsWithSamples());
-        }
-        testStore = new TestStore(testes);
-        return testStore;
     }
 
     public TestStore getAllTestCompleted(){
         List<Test> tests = new ArrayList<>();
-        TestStore testStore;
-        for(ClinicalAnalysisLaboratory lab : this.clinicalAnalysisLaboratoryStore.getCLA()) {
-            tests.addAll(lab.getTestStore().getTestsWithoutDiagnosis());
-        }
+        tests.addAll(testStore.getTestsWithoutDiagnosis());
         testStore = new TestStore(tests);
         return testStore;
     }

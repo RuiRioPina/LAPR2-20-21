@@ -17,7 +17,6 @@ public class ClinicalAnalysisLaboratory {
     private final long phoneNumber;
     private final long tin;
     private final List<TestType> testTypes;
-    private final TestStore tStore;
 
     /**
      * Constructor for the Clinical analysis laboratory
@@ -36,7 +35,6 @@ public class ClinicalAnalysisLaboratory {
         this.tin = tin;
         this.phoneNumber = phoneNumber;
         this.testTypes = testTypes;
-        this.tStore = new TestStore();
     }
 
 
@@ -90,10 +88,6 @@ public class ClinicalAnalysisLaboratory {
      */
     public List<TestType> getTestTypes() {
         return testTypes;
-    }
-
-    public TestStore getTestStore() {
-        return this.tStore;
     }
 
     @Override

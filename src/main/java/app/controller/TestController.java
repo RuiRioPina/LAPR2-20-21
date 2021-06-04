@@ -58,7 +58,7 @@ private Test test;
     }
 
     public void saveTest(Test t) {
-        TestStore testStore = this.company.getCLA().getTestStore();
+        TestStore testStore = this.company.getTestStore();
         testStore.saveTest(t);
     }
 }
