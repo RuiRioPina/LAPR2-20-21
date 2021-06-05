@@ -151,7 +151,10 @@ public class Test {
      * @return sample collection date of the test.
      */
     public Date getSamplesCollectionDate() {
-        return samplesCollectionDate;
+        if (samplesCollectionDate == null){
+            return null;
+        }
+        else return new Date(samplesCollectionDate.getTime());
     }
 
     /**
@@ -160,7 +163,10 @@ public class Test {
      * @return chemical analysis date of the test.
      */
     public Date getChemicalAnalysisDate() {
-        return chemicalAnalysisDate;
+        if (chemicalAnalysisDate == null){
+            return null;
+        }
+        else return new Date(chemicalAnalysisDate.getTime());
     }
 
     /**
@@ -177,7 +183,10 @@ public class Test {
      * @return diagnosis date of the test.
      */
     public Date getDiagnosisDate() {
-        return diagnosisDate;
+        if (diagnosisDate == null){
+            return null;
+        }
+        else return new Date(diagnosisDate.getTime());
     }
 
     /**
@@ -186,7 +195,10 @@ public class Test {
      * @return validation date of the test.
      */
     public Date getValidationDate() {
-        return validationDate;
+        if (validationDate == null){
+            return null;
+        }
+        else return new Date(validationDate.getTime());
     }
 
     /**
