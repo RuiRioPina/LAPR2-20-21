@@ -764,6 +764,20 @@ public class TestTest {
                 "Parameter(s) = " + par + '\n' +
                 "Registration Date = " + data;;
         assertEquals(t.toString(), expected);
+        t.setSamplesCollectionDate(new Date());
+        assertNotEquals(expected,t.toString());
+        t.setChemicalAnalysisDate(new Date());
+        assertNotEquals(expected, t.toString());
+        t.setDiagnosisDate(new Date());
+        assertNotEquals(expected, t.toString());
+        t.setValidationDate(new Date());
+        assertEquals(expected,t.toString());
+        Sample s1 = new Sample("33333333333");
+        List <Sample> s = new ArrayList<>();
+        s.add(s1);
+        t.setSamples(s);
+        assertEquals(expected,t.toString());
+
     }
     @Test
     public void getLabID() {
@@ -833,8 +847,7 @@ public class TestTest {
         TestStore ts = new TestStore();
         app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
         assertNotEquals(null,t.getChemicalAnalysisDate());
-        Date d1 = new Date();
-        t.setChemicalAnalysisDate(d1);
-        assertEquals(d1,t.getChemicalAnalysisDate());
+        t.setChemicalAnalysisDate(null);
+        assertNull(t.getChemicalAnalysisDate());
     }
 }
