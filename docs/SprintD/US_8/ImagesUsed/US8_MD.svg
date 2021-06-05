@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="344px" preserveAspectRatio="none" style="width:257px;height:344px;" version="1.1" viewBox="0 0 257 344" width="257px" zoomAndPan="magnify"><defs><filter height="300%" id="fcl22dfyri1zb" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[da547346deef918ea16944ba046651ef]
+class Administrator--><rect codeLine="5" fill="#FEFECE" filter="url(#fcl22dfyri1zb)" height="129.6328" id="Administrator" style="stroke:#A80036;stroke-width:1.5;" width="236" x="7" y="7"/><ellipse cx="80.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M83.0938,18.6719 C82.1563,18.2344 81.5625,18.0938 80.6875,18.0938 C78.0625,18.0938 76.0625,20.1719 76.0625,22.8906 L76.0625,24.0156 C76.0625,26.5938 78.1719,28.4844 81.0625,28.4844 C82.2813,28.4844 83.4375,28.1875 84.1875,27.6406 C84.7656,27.2344 85.0938,26.7813 85.0938,26.3906 C85.0938,25.9375 84.7031,25.5469 84.2344,25.5469 C84.0156,25.5469 83.8125,25.625 83.625,25.8125 C83.1719,26.2969 83.1719,26.2969 82.9844,26.3906 C82.5625,26.6563 81.875,26.7813 81.1094,26.7813 C79.0625,26.7813 77.7656,25.6875 77.7656,23.9844 L77.7656,22.8906 C77.7656,21.1094 79.0156,19.7969 80.75,19.7969 C81.3281,19.7969 81.9375,19.9531 82.4063,20.2031 C82.8906,20.4844 83.0625,20.7031 83.1563,21.1094 C83.2188,21.5156 83.25,21.6406 83.3906,21.7656 C83.5313,21.9063 83.7656,22.0156 83.9844,22.0156 C84.25,22.0156 84.5156,21.875 84.6875,21.6563 C84.7969,21.5 84.8281,21.3125 84.8281,20.8906 L84.8281,19.4688 C84.8281,19.0313 84.8125,18.9063 84.7188,18.75 C84.5625,18.4844 84.2813,18.3438 83.9844,18.3438 C83.6875,18.3438 83.4844,18.4375 83.2656,18.75 L83.0938,18.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="80" x="101.25" y="27.1543">Administrator</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="242" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="13" y="53.2104">-employeeID</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="13" y="66.0151">-organizationRole</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="37" x="13" y="78.8198">-name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="49" x="13" y="91.6245">-address</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="85" x="13" y="104.4292">-phoneNumber</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="34" x="13" y="117.2339">-eMail</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="224" x="13" y="130.0386">-standardOcupationalClassificationCode</text><!--MD5=[1934a092c0e7d4da7dc7075b6f4b6b03]
+class ClinicalAnalysisLaboratory--><rect codeLine="15" fill="#FEFECE" filter="url(#fcl22dfyri1zb)" height="116.8281" id="ClinicalAnalysisLaboratory" style="stroke:#A80036;stroke-width:1.5;" width="187" x="31.5" y="214"/><ellipse cx="46.5" cy="230" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M48.8438,225.6719 C47.9063,225.2344 47.3125,225.0938 46.4375,225.0938 C43.8125,225.0938 41.8125,227.1719 41.8125,229.8906 L41.8125,231.0156 C41.8125,233.5938 43.9219,235.4844 46.8125,235.4844 C48.0313,235.4844 49.1875,235.1875 49.9375,234.6406 C50.5156,234.2344 50.8438,233.7813 50.8438,233.3906 C50.8438,232.9375 50.4531,232.5469 49.9844,232.5469 C49.7656,232.5469 49.5625,232.625 49.375,232.8125 C48.9219,233.2969 48.9219,233.2969 48.7344,233.3906 C48.3125,233.6563 47.625,233.7813 46.8594,233.7813 C44.8125,233.7813 43.5156,232.6875 43.5156,230.9844 L43.5156,229.8906 C43.5156,228.1094 44.7656,226.7969 46.5,226.7969 C47.0781,226.7969 47.6875,226.9531 48.1563,227.2031 C48.6406,227.4844 48.8125,227.7031 48.9063,228.1094 C48.9688,228.5156 49,228.6406 49.1406,228.7656 C49.2813,228.9063 49.5156,229.0156 49.7344,229.0156 C50,229.0156 50.2656,228.875 50.4375,228.6563 C50.5469,228.5 50.5781,228.3125 50.5781,227.8906 L50.5781,226.4688 C50.5781,226.0313 50.5625,225.9063 50.4688,225.75 C50.3125,225.4844 50.0313,225.3438 49.7344,225.3438 C49.4375,225.3438 49.2344,225.4375 49.0156,225.75 L48.8438,225.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="155" x="60.5" y="234.1543">ClinicalAnalysisLaboratory</text><line style="stroke:#A80036;stroke-width:1.5;" x1="32.5" x2="217.5" y1="246" y2="246"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="37.5" y="260.2104">-laboratoryID</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="37" x="37.5" y="273.0151">-name</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="42" x="37.5" y="285.8198">-adress</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="85" x="37.5" y="298.6245">-phoneNumber</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="22" x="37.5" y="311.4292">-TIN</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="77" x="37.5" y="324.2339">-TypeOfTests</text><!--MD5=[23b8a99c177c2cd6d714b2cbaa81b3c4]
+link Administrator to ClinicalAnalysisLaboratory--><path codeLine="25" d="M125,137.173 C125,160.13 125,185.96 125,208.792 " fill="none" id="Administrator-to-ClinicalAnalysisLaboratory" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="125,213.918,129,204.918,125,208.918,121,204.918,125,213.918" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="126" y="180.0669">registers</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="116.5875" y="156.7601">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="117.5734" y="202.9497">*</text><!--MD5=[9193bf2a06ab9e4f78dadb5d64e84960]
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+
+
+class Administrator {
+-employeeID
+-organizationRole
+-name
+-address
+-phoneNumber
+-eMail
+-standardOcupationalClassificationCode
+}
+
+class ClinicalAnalysisLaboratory{
+-laboratoryID
+-name
+-adress
+-phoneNumber
+-TIN
+-TypeOfTests
+}
+
+
+Administrator "1" - -> "*" ClinicalAnalysisLaboratory: registers
+@enduml
+
+PlantUML version 1.2021.5(Sun Apr 25 11:20:28 UTC 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,60 @@
+@startuml
+class Company
+skinparam classAttributeIconSize 0
+Company : -designation
+
+Class Administrator{
+-employeeID
+-organizationRole
+-name
+-address
+-phoneNumber
+-eMail
+-standardOcupationalClassificationCode
+}
+
+Class ClinicalChemistTechnologist{
+-employeeID
+-organizationRole
+-name
+-address
+-phoneNumber
+-eMail
+-standardOcupationalClassificationCode
+}
+Class SpecialistDoctor{
+-employeeID
+-organizationRole
+-name
+-address
+-phoneNumber
+-eMail
+-standardOcupationalClassificationCode
+}
+
+Class Report{
+-bodyOfText
+}
+
+Class Test{
+-testCode
+-nhsCode
+-dates
+}
+
+Class TestResults{
+-parameterResults
+}
+
+Test "1" --> "*" TestResults : contains
+SpecialistDoctor "1" --> "*" Test : can check
+Diagnosis "1" <-- "1" Report: contains
+Administrator "1" --> "*" SpecialistDoctor: registers
+TestResults "*" <-- "1" ClinicalChemistTechnologist: produces
+TestResults "*" <-- "1" SpecialistDoctor: reviews
+Report "*" <-- "1" SpecialistDoctor: writes
+Diagnosis "*" <-- "1" SpecialistDoctor: performs
+TestResults "1" <-- "1" Report: contains
+TestResults "*" <-- "1" Diagnosis: to
+Company "1" --> "1" Administrator : knows
+@enduml

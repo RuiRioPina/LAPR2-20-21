@@ -1,0 +1,30 @@
+@startuml
+autonumber
+actor "SpecialistDoctor" as SD
+
+activate SD
+SD-> ":System" : asks to make a dignosis and write a report for a test
+activate ":System"
+loop until the doctor doesn't want to analyze more tests
+":System" --> SD: shows all tests ready to be analysed
+deactivate ":System"
+
+
+SD-> ":System" : chooses one test
+activate ":System"
+":System" --> SD: shows the chosen test and requests data(report)
+deactivate ":System"
+
+SD-> ":System" : types requested data 
+activate ":System"
+":System" --> SD: shows the data and requests a confirmation
+deactivate ":System"
+
+SD-> ":System" : confirms the data
+activate ":System"
+end
+":System" --> SD: informs operation success
+deactivate ":System"
+
+deactivate SD
+@enduml

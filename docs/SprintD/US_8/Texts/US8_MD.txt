@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide methods
+
+
+class Administrator {
+-employeeID
+-organizationRole
+-name
+-address
+-phoneNumber
+-eMail
+-standardOcupationalClassificationCode
+}
+
+class ClinicalAnalysisLaboratory{
+-laboratoryID
+-name
+-adress
+-phoneNumber
+-TIN
+-TypeOfTests
+}
+
+class Company{
+-designation
+}
+
+class TypeOfTests{
+-category
+-measuredParameters
+}
+
+
+Administrator "1" --> "*" ClinicalAnalysisLaboratory: registers
+Company "1" --> "*" Administrator: knows
+Company "1" --> "*" ClinicalAnalysisLaboratory: owns
+Company "1" --> "*" TypeOfTests: specifies
+@enduml

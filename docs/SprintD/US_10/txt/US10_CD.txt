@@ -1,0 +1,53 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Company
+{
+  -String designation
+  +getParameterCategoryStore()
+  +getParameterStore()
+}
+
+class ParameterStore {
+  +createParameter(code, shortname, description, category)
+  +validateParameter(p)
+  +saveParameter(p)
+  -addTestType(p)
+}
+
+class ParameterCategoryStore {
+  +getParameterCategories()
+  +getParameterCategoryByCode(category)
+}
+
+class Parameter {
+  -String code
+  -String shortname
+  -String description
+  -List<ParameterCategory> category
+  +Parameter(code, shortname, description, category)
+}
+
+class ParameterCategory {
+  -String code
+  -String name
+  +ParameterCategory(code, name)
+}
+
+class ParameterUI {
+}
+
+class ParameterController {
+  +createParameter(code, shortname, description, category)
+  +saveParameter()
+  +getParameterCategories()
+}
+
+ParameterUI ..> ParameterController
+ParameterController ..> Company
+Company "1" --> "1" ParameterStore
+Company "1" --> "1" ParameterCategoryStore
+ParameterStore "1" --> "*" Parameter 
+ParameterCategoryStore "1" --> "1" ParameterCategory
+Parameter "*" --> "1..*" ParameterCategory
+@enduml
