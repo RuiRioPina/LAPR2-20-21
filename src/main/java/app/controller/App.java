@@ -5,11 +5,6 @@ import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.UserSession;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.stage.WindowEvent;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
