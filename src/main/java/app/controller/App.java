@@ -208,6 +208,7 @@ public class App {
 		}
 	}
 	
+	
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
     private static App singleton = null;
 
