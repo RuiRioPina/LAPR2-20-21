@@ -5,6 +5,10 @@ import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.UserSession;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.stage.WindowEvent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -192,7 +196,22 @@ public class App {
         lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
 
     }
-
+    
+    /**
+	 * Sair da aplicação
+	 * @param event Evento que fez pedido para sair
+	 */
+	public void fechar(WindowEvent event) {
+		Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
+		aviso.setHeaderText("Confirmação da ação");
+		aviso.showAndWait();
+		ButtonType resultado = aviso.getResult();
+		if(resultado == ButtonType.NO) {
+			event.consume();
+			return;
+		}
+	}
+	
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
     private static App singleton = null;
 
