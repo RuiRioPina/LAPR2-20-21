@@ -1,0 +1,22 @@
+@startuml
+autonumber
+actor "Medical Lab Technician" as MEDLT
+
+activate MEDLT
+MEDLT-> ":System" : registing new samples. 
+activate ":System"
+":System" --> MEDLT : shows list of tests for which there are no samples collected.
+deactivate ":System"
+
+MEDLT -> ":System" : selects test.
+activate ":System"
+":System" --> MEDLT : ask for the number of samples to collect.
+deactivate ":System"
+
+MEDLT -> ":System" : selects the number of samples to collect.
+activate ":System"
+":System" --> MEDLT : generates the barcodes and informs of the operation success.
+deactivate ":System"
+
+deactivate MEDLT
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+autonumber
+
+participant ":GenerateSampleController" as CTRL
+participant ":Company" as CMP
+participant "ts:\nTestStore" as TS
+participant "bcc:\nBarcodeController" as BCC
+participant ":API" as API
+participant "s:\nSample" as S
+
+activate CTRL
+CTRL -> CMP : barcode=getNextBarcode()
+activate CMP
+deactivate CMP
+CTRL -> BCC : generateBarcode(barcode)
+activate BCC
+BCC -> API : bc = createUPCA(barcode)
+activate API
+BCC -> API : bc.setPrefferedBarHeight(100)
+BCC -> API : bc = savePNG(bc)
+deactivate API
+deactivate BCC
+CTRL -> TS : s=createSample(barcode)
+activate TS
+TS -> S** : create(barcode)
+CTRL -> TS : saveSample(t, s)
+deactivate TS
+deactivate CTRL
+@enduml
