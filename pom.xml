@@ -177,9 +177,18 @@
 		</dependency>
 		<dependency>
 	 		<groupId>org.openjfx</groupId>
-	 		<artifactId>javafx</artifactId>
+	 		<artifactId>javafx-base</artifactId>
 	 		<version>16</version>
-	 		<type>pom</type>
+	 	</dependency>
+		<dependency>
+	 		<groupId>org.openjfx</groupId>
+	 		<artifactId>javafx-controls</artifactId>
+	 		<version>16</version>
+	 	</dependency>
+	 	<dependency>
+	 		<groupId>org.openjfx</groupId>
+	 		<artifactId>javafx-fxml</artifactId>
+	 		<version>16</version>
 	 	</dependency>
 		<dependency>
 			<groupId>com.opencsv</groupId>
