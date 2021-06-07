@@ -17,8 +17,7 @@ public class AuthGUISceneController {
 	private App app;
 	
 	@FXML
-	private Label lblLogin;
-	
+	private Label lblLogin;	
 	@FXML
 	private TextField txtLogin;
 	@FXML

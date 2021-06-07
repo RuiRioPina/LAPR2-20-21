@@ -30,7 +30,6 @@ public class MainMenuGUISceneController implements Initializable {
 	@FXML
 	private Label lblInitial;
 	
-	
 	/**
 	 * 
 	 */
@@ -168,7 +167,7 @@ public class MainMenuGUISceneController implements Initializable {
 	}
 	@FXML
     private void menuDevTeamAction(ActionEvent event) {
-		String x = "Development Team:\n\t João Moreira - 1190709@isep.ipp.pt \n\t Jorge Ferreira - 1201564@isep.ipp.pt \n\t Rafael Leite - 1201566@isep.ipp.pt \n"
+		String x = "Development Team:\n\t Joï¿½o Moreira - 1190709@isep.ipp.pt \n\t Jorge Ferreira - 1201564@isep.ipp.pt \n\t Rafael Leite - 1201566@isep.ipp.pt \n"
 				+ "\t Rui Pina - 1201568@isep.ipp.pt \n\t Santiago Azevedo - 1201623@isep.ipp.pt \n";
         Utils.criarAlerta(Alert.AlertType.INFORMATION, "Acerca",
                 x);

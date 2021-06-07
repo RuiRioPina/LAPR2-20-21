@@ -34,8 +34,7 @@ public class Main extends Application {
             public void handle(WindowEvent event) {
             	App.getInstance().fechar(event);
             }
-        });
-			
+        });	
 		stage.show();
 	}
 
@@ -45,7 +44,7 @@ public class Main extends Application {
 	
 	public void Fechar(WindowEvent event) {
 		Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
-		aviso.setHeaderText("Confirmação da ação");
+		aviso.setHeaderText("Confirmaï¿½ï¿½o da aï¿½ï¿½o");
 		aviso.showAndWait();
 		ButtonType resultado = aviso.getResult();
 		if(resultado == ButtonType.NO) {

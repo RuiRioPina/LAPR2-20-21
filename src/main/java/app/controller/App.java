@@ -196,14 +196,10 @@ public class App {
         lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
 
     }
-    
-    /**
-	 * Sair da aplicação
-	 * @param event Evento que fez pedido para sair
-	 */
+
 	public void fechar(WindowEvent event) {
 		Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
-		aviso.setHeaderText("Confirmação da ação");
+		aviso.setHeaderText("Confirmaï¿½ï¿½o da aï¿½ï¿½o");
 		aviso.showAndWait();
 		ButtonType resultado = aviso.getResult();
 		if(resultado == ButtonType.NO) {
