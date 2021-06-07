@@ -196,18 +196,6 @@ public class App {
         lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
 
     }
-
-	public void fechar(WindowEvent event) {
-		Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
-		aviso.setHeaderText("Confirma��o da a��o");
-		aviso.showAndWait();
-		ButtonType resultado = aviso.getResult();
-		if(resultado == ButtonType.NO) {
-			event.consume();
-			return;
-		}
-	}
-	
 	
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
     private static App singleton = null;
