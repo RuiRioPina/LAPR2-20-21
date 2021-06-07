@@ -177,6 +177,11 @@
 		</dependency>
 		<dependency>
 	 		<groupId>org.openjfx</groupId>
+	 		<artifactId>javafx-base</artifactId>
+	 		<version>16</version>
+	 	</dependency>
+		<dependency>
+	 		<groupId>org.openjfx</groupId>
 	 		<artifactId>javafx-controls</artifactId>
 	 		<version>16</version>
 	 	</dependency>
