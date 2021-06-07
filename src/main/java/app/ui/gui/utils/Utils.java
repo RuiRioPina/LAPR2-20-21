@@ -9,8 +9,7 @@ public class Utils {
         
         alerta.setTitle("Aplica��o");
         alerta.setHeaderText(cabecalho);
-        alerta.setContentText(mensagem);
-        
+        alerta.setContentText(mensagem); 
         alerta.showAndWait();
     }
 }

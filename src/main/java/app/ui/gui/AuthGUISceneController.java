@@ -48,7 +48,6 @@ public class AuthGUISceneController {
         	erro.showAndWait();
         	return;
         }
-        
         menuLoginSairAction(event);
 	}
 }

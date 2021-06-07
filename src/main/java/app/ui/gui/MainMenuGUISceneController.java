@@ -29,10 +29,7 @@ public class MainMenuGUISceneController implements Initializable {
 	private App app;
 	@FXML
 	private Label lblInitial;
-	
-	/**
-	 * 
-	 */
+
 	public MainMenuGUISceneController() {
 		this.app = App.getInstance();
 	}
