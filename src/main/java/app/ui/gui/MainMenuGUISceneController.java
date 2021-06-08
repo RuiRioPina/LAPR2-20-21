@@ -32,31 +32,31 @@ public class MainMenuGUISceneController implements Initializable {
 	}
 
 	@Override
-    public void initialize(URL url, ResourceBundle rb) {
+	public void initialize(URL url, ResourceBundle rb) {
 
-    }
+	}
 
 	private Stage loadLoginUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AuthGUIScene.fxml"));
-	        Parent root = loader.load();
+			Parent root = loader.load();
 
-	        Scene scene = new Scene(root);
+			Scene scene = new Scene(root);
 
-	        Stage novoLoginStage = new Stage();
-	        novoLoginStage.initModality(Modality.APPLICATION_MODAL);
-	        novoLoginStage.setTitle("Login");
-	        novoLoginStage.setResizable(false);
-	        novoLoginStage.setScene(scene);
+			Stage novoLoginStage = new Stage();
+			novoLoginStage.initModality(Modality.APPLICATION_MODAL);
+			novoLoginStage.setTitle("Login");
+			novoLoginStage.setResizable(false);
+			novoLoginStage.setScene(scene);
 
-	        AuthGUISceneController novoLoginUI = loader.getController();
-	        novoLoginUI.associarParentUI(this);
+			AuthGUISceneController novoLoginUI = loader.getController();
+			novoLoginUI.associarParentUI(this);
 
-	        return novoLoginStage;
-        } catch (IOException ex) {
-        	Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            return null;
-        }
+			return novoLoginStage;
+		} catch (IOException ex) {
+			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			return null;
+		}
 	}
 
 	private Stage loadClientUi() {
@@ -122,48 +122,48 @@ public class MainMenuGUISceneController implements Initializable {
 	}
 
 	@FXML
-    private void menuExitAction(ActionEvent event) {
-        Window window = lblInitial.getScene().getWindow();
-        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-    }
+	private void menuExitAction(ActionEvent event) {
+		Window window = lblInitial.getScene().getWindow();
+		window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+	}
 
 	@FXML
-    private void menuLoginAction(ActionEvent event) {
-        Stage stage1 = loadLoginUi();
-        if(stage1 == null) {
-        	return;
-        }
-        stage1.showAndWait();
+	private void menuLoginAction(ActionEvent event) {
+		Stage stage1 = loadLoginUi();
+		if(stage1 == null) {
+			return;
+		}
+		stage1.showAndWait();
 
-        UserSession sessao = this.app.getCurrentUserSession();
-        if(sessao == null) {
-        	return;
-        }
+		UserSession sessao = this.app.getCurrentUserSession();
+		if(sessao == null) {
+			return;
+		}
 
-        Stage stage = null;
-        if(sessao.isLoggedInWithRole(Constants.ROLE_CLIENT)) {
-        	stage = loadClientUi();
-        } else if(sessao.isLoggedInWithRole(Constants.ROLE_ADMIN)) {
-        	stage = loadAdminUi();
-        }
-        if(stage == null) {
-        	return;
-        }
+		Stage stage = null;
+		if(sessao.isLoggedInWithRole(Constants.ROLE_CLIENT)) {
+			stage = loadClientUi();
+		} else if(sessao.isLoggedInWithRole(Constants.ROLE_ADMIN)) {
+			stage = loadAdminUi();
+		}
+		if(stage == null) {
+			return;
+		}
 
-        stage.show();
+		stage.show();
 
-        Window window = lblInitial.getScene().getWindow();
-        window.hide();
-    }
+		Window window = lblInitial.getScene().getWindow();
+		window.hide();
+	}
 
 	public Label getLabel() {
 		return this.lblInitial;
 	}
 	@FXML
-    private void menuDevTeamAction(ActionEvent event) {
+	private void menuDevTeamAction(ActionEvent event) {
 		String x = "Development Team:\n\t Jo�o Moreira - 1190709@isep.ipp.pt \n\t Jorge Ferreira - 1201564@isep.ipp.pt \n\t Rafael Leite - 1201566@isep.ipp.pt \n"
 				+ "\t Rui Pina - 1201568@isep.ipp.pt \n\t Santiago Azevedo - 1201623@isep.ipp.pt \n";
-        Utils.criarAlerta(Alert.AlertType.INFORMATION, "Acerca",
-                x);
-    }
+		Utils.criarAlerta(Alert.AlertType.INFORMATION, "Acerca",
+				x);
+	}
 }

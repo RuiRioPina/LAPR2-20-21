@@ -32,11 +32,11 @@ public class Main extends Application{
 		stage.setScene(scene);
 		stage.setMaximized(true);
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-            	App.getInstance().fechar(event);
-            }
-        });
+			@Override
+			public void handle(WindowEvent event) {
+				App.getInstance().fechar(event);
+			}
+		});
 		stage.show();
 	}
 
@@ -44,7 +44,7 @@ public class Main extends Application{
 		launch(args);
 	}
 
-	public void fechar(WindowEvent event) {
+	public void Fechar(WindowEvent event) {
 		Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
 		aviso.setHeaderText("Confirma��o da a��o");
 		aviso.showAndWait();

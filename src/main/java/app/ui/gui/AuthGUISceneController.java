@@ -28,30 +28,30 @@ public class AuthGUISceneController {
 	}
 
 	@FXML
-    private void menuLoginSairAction(ActionEvent event) {
-        Window window = lblLogin.getScene().getWindow();
-        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-    }
+	private void menuLoginSairAction(ActionEvent event) {
+		Window window = lblLogin.getScene().getWindow();
+		window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+	}
 
 	public void associarParentUI(MainMenuGUISceneController menuUI) {
-        this.menuUI = menuUI;
-    }
+		this.menuUI = menuUI;
+	}
 
 	public void menuLoginConfirmarAction(ActionEvent event) {
-        String user = txtLogin.getText();
-        String pass = txtPassword.getText();
-        boolean sucesso = false;
-        try {
-        	sucesso = app.doLogin(user, pass);
-        } catch(Exception ex) {
-        	if (!sucesso || user.isBlank() || pass.isBlank())
-        	{
-        		Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
-        		erro.showAndWait();
-        		return;
-        	}
-        }
+		String user = txtLogin.getText();
+		String pass = txtPassword.getText();
+		boolean sucesso = false;
+		try {
+			sucesso = app.doLogin(user, pass);
+		} catch(Exception ex) {
+			if (!sucesso || user.isBlank() || pass.isBlank())
+			{
+				Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
+				erro.showAndWait();
+				return;
+			}
+		}
 
-        menuLoginSairAction(event);
+		menuLoginSairAction(event);
 	}
 }
