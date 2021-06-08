@@ -40,14 +40,18 @@ public class AuthGUISceneController {
 	public void menuLoginConfirmarAction(ActionEvent event) {
         String user = txtLogin.getText();
         String pass = txtPassword.getText();
-
-        boolean sucesso = app.doLogin(user, pass);
-        if (!sucesso)
-        {
-        	Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
-        	erro.showAndWait();
-        	return;
+        boolean sucesso = false;
+        try {
+        	sucesso = app.doLogin(user, pass);
+        } catch(Exception ex) {
+        	if (!sucesso || user.isBlank() || pass.isBlank())
+        	{
+        		Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
+        		erro.showAndWait();
+        		return;
+        	}
         }
+
         menuLoginSairAction(event);
 	}
 }

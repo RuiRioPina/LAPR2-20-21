@@ -9,22 +9,19 @@ import app.domain.shared.Constants;
 import app.ui.gui.utils.Utils;
 import auth.UserSession;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
-public class MainMenuGUISceneController {
+public class MainMenuGUISceneController implements Initializable {
 
 	private App app;
 	@FXML
@@ -34,10 +31,10 @@ public class MainMenuGUISceneController {
 		this.app = App.getInstance();
 	}
 
-//	@Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//
-//    }
+	@Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
 
 	private Stage loadLoginUi() {
 		try {
@@ -63,65 +60,65 @@ public class MainMenuGUISceneController {
 	}
 
 	private Stage loadClientUi() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuAdminUiScene.fxml"));
-	        Parent root = loader.load();
-
-	        Scene scene = new Scene(root);
-
-	        Stage novoAdminStage = new Stage();
-	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
-	        novoAdminStage.setTitle("Administrador");
-	        novoAdminStage.setMaximized(true);
-	        novoAdminStage.setScene(scene);
-	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-	            @Override
-	            public void handle(WindowEvent event) {
+//		try {
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuAdminUiScene.fxml"));
+//	        Parent root = loader.load();
+//
+//	        Scene scene = new Scene(root);
+//
+//	        Stage novoAdminStage = new Stage();
+//	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
+//	        novoAdminStage.setTitle("Administrador");
+//	        novoAdminStage.setMaximized(true);
+//	        novoAdminStage.setScene(scene);
+//	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//	            @Override
+//	            public void handle(WindowEvent event) {
 //	            	Stage window = (Stage)lblInicial.getScene().getWindow();
 //	                window.show();
-	            }
-	        });
-
+//	            }
+//	        });
+//
 //	        MenuAdminUISceneController novoAdminUI = loader.getController();
 //	        novoAdminUI.associarParentUI(this);
-
-	        return novoAdminStage;
-		} catch (IOException ex) {
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            return null;
-        }
-//		return null;
+//
+//	        return novoAdminStage;
+//		} catch (IOException ex) {
+//			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+//            return null;
+//        }
+		return null;
 	}
 
 	private Stage loadAdminUi() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuAdminUiScene.fxml"));
-	        Parent root = loader.load();
-
-	        Scene scene = new Scene(root);
-
-	        Stage novoAdminStage = new Stage();
-	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
-	        novoAdminStage.setTitle("Administrador");
-	        novoAdminStage.setMaximized(true);
-	        novoAdminStage.setScene(scene);
-	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-	            @Override
-	            public void handle(WindowEvent event) {
-	            //	Stage window = (Stage)lblInicial.getScene().getWindow();
-	          //      window.show();
-	            }
-	        });
-
-	        //MenuAdminUISceneController novoAdminUI = loader.getController();
-	        //novoAdminUI.associarParentUI(this);
-
-	        return novoAdminStage;
-		} catch (IOException ex) {
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            return null;
-        }
-		//return null;
+//		try {
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuAdminUiScene.fxml"));
+//	        Parent root = loader.load();
+//
+//	        Scene scene = new Scene(root);
+//
+//	        Stage novoAdminStage = new Stage();
+//	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
+//	        novoAdminStage.setTitle("Administrador");
+//	        novoAdminStage.setMaximized(true);
+//	        novoAdminStage.setScene(scene);
+//	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//	            @Override
+//	            public void handle(WindowEvent event) {
+//	            	Stage window = (Stage)lblInicial.getScene().getWindow();
+//	                window.show();
+//	            }
+//	        });
+//
+//	        MenuAdminUISceneController novoAdminUI = loader.getController();
+//	        novoAdminUI.associarParentUI(this);
+//
+//	        return novoAdminStage;
+//		} catch (IOException ex) {
+//			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+//            return null;
+//        }
+		return null;
 	}
 
 	@FXML

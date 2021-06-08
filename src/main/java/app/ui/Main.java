@@ -1,5 +1,6 @@
 package app.ui;
 
+import app.controller.App;
 import app.ui.console.MainMenuUI;
 
 import javafx.application.Application;
@@ -17,7 +18,7 @@ import javafx.stage.WindowEvent;
  *
  * @author Paulo Maio [pam@isep.ipp.pt]
  */
-public class Main extends Application {
+public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -33,7 +34,7 @@ public class Main extends Application {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-
+            	App.getInstance().fechar(event);
             }
         });
 		stage.show();
@@ -43,7 +44,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	public void Fechar(WindowEvent event) {
+	public void fechar(WindowEvent event) {
 		Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
 		aviso.setHeaderText("Confirma��o da a��o");
 		aviso.showAndWait();

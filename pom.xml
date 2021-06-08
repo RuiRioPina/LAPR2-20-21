@@ -22,7 +22,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>view.MainApp</mainClass>
+                    <mainClass>app.ui.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -162,16 +162,16 @@
     		<artifactId>commons-math3</artifactId>
     		<version>3.5</version>
 		</dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>11</version>
-        </dependency>
+		<dependency>
+	 		<groupId>org.openjfx</groupId>
+	 		<artifactId>javafx-controls</artifactId>
+	 		<version>11</version>
+	 	</dependency>
+	 	<dependency>
+	 		<groupId>org.openjfx</groupId>
+	 		<artifactId>javafx-fxml</artifactId>
+	 		<version>11</version>
+	 	</dependency>
 		<dependency>
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
