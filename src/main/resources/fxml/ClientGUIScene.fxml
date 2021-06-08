@@ -12,12 +12,18 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="218.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="250.0" text="Button">
+            <Button mnemonicParsing="false" onAction="#menuViewTestsAction" prefHeight="150.0" prefWidth="350.0" text="View Tests">
                <HBox.margin>
                   <Insets right="100.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Arial Italic" size="35.0" />
+               </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="250.0" text="Button" />
+            <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="350.0" text="Change Data">
+               <font>
+                  <Font name="Arial Italic" size="35.0" />
+               </font></Button>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -29,7 +35,7 @@
          <children>
             <Label fx:id="lblNameClient" alignment="CENTER" prefHeight="118.0" prefWidth="1047.0" text="Label" textAlignment="CENTER">
                <font>
-                  <Font size="80.0" />
+                  <Font name="Arial Bold Italic" size="80.0" />
                </font></Label>
          </children>
       </VBox>
