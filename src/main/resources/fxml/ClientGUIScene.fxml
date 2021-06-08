@@ -6,8 +6,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MenuClientGUISceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MenuClientGUISceneController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="218.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +27,10 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblNameClient" alignment="CENTER" prefHeight="52.0" prefWidth="70.0" text="Label" />
+            <Label fx:id="lblNameClient" alignment="CENTER" prefHeight="118.0" prefWidth="1047.0" text="Label" textAlignment="CENTER">
+               <font>
+                  <Font size="80.0" />
+               </font></Label>
          </children>
       </VBox>
    </center>

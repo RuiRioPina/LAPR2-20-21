@@ -21,7 +21,7 @@ public class MenuClientGUISceneController implements Initializable {
 	
 	@Override
     public void initialize(URL url, ResourceBundle rb){
-        lblNameClient.setText(app.getCurrentUserSession().getUserName());
+        lblNameClient.setText(String.format("Welcome, %s", app.getCurrentUserSession().getUserName()));
     }
 
 	public void associarParentUI(MainMenuGUISceneController mainMenuGUISceneController) {

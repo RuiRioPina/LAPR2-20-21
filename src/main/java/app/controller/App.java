@@ -155,6 +155,7 @@ public class App {
         cl.saveClient(c);
         c.generatePassword();
         System.out.println(c.getPassword());
+        this.authFacade.addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
         ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("00001","LABLondon","London",99999979999L,9999999999L,ttList);
