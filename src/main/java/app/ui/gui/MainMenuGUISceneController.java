@@ -75,6 +75,7 @@ public class MainMenuGUISceneController implements Initializable {
 	        novoClientStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent event) {
+	            	app.doLogout();
 	            	Stage window = (Stage)lblInitial.getScene().getWindow();
 	                window.show();
 	            }

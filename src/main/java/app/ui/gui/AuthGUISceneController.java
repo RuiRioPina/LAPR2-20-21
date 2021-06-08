@@ -43,11 +43,17 @@ public class AuthGUISceneController {
         try {
         	sucesso = app.doLogin(user, pass);
         } catch(Exception ex) {
-        	Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
+        	Alert erro = new Alert(AlertType.ERROR, ex.getMessage());
         	erro.showAndWait();
         	return;
         }
          
+        if(!sucesso) {
+        	Alert erro = new Alert(AlertType.ERROR, "User or Password is incorrect.");
+        	erro.showAndWait();
+        	return;
+        }
+        
         menuLoginSairAction(event);
 	}
 }
