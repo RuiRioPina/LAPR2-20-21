@@ -43,12 +43,9 @@ public class AuthGUISceneController {
         try {
         	sucesso = app.doLogin(user, pass);
         } catch(Exception ex) {
-        	if (!sucesso || user.isBlank() || pass.isBlank())
-        	{
-        		Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
-        		erro.showAndWait();
-        		return;
-        	}
+        	Alert erro = new Alert(AlertType.ERROR, "Utilizador ou Palavra-Passe erradas.");
+        	erro.showAndWait();
+        	return;
         }
          
         menuLoginSairAction(event);
