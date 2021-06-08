@@ -1,0 +1,51 @@
+@startuml
+autonumber
+actor "Medical Lab Technician" as MEDLT
+
+participant ":GenerateSampleUI" as UI
+participant ":GenerateSampleController" as CTRL
+participant ":Company" as CMP
+participant ":ClinicalAnalysisLaboratory" as LAB
+participant "ts:\nTestStore" as TS
+participant "bcc:\nBarcodeController" as BCC
+participant ":API" as API
+participant "s:\nSample" as S
+
+activate MEDLT
+MEDLT -> UI : register new samples
+activate UI
+UI -> CTRL : lt=getTestsWithoutSamples()
+activate CTRL
+CTRL -> CMP : ts=getTestStore()
+activate CMP
+CMP -> LAB : ts=getTestStore()
+activate LAB
+deactivate LAB
+deactivate CMP
+CTRL -> TS : lt=getTestsWithoutSamples()
+activate TS
+deactivate TS
+deactivate CTRL
+UI --> MEDLT : shows tests list and ask to select one
+deactivate UI
+
+MEDLT -> UI : selects a test
+activate UI
+UI --> MEDLT : request how many samples to create
+deactivate UI
+
+MEDLT -> UI : types the number of samples to create
+activate UI
+UI -> CTRL : createSamples(testCode, numberOfSamples)
+activate CTRL
+CTRL -> TS : t=getTestByInternalCode(testCode)
+activate TS
+deactivate TS
+loop until all the samples are created
+    ref over CTRL, TS , S, BCC, API: UC5_SD_CreatingSamples.svg
+end loop
+UI --> MEDLT : informs operation success
+deactivate CTRL
+deactivate UI
+deactivate MEDLT
+@enduml

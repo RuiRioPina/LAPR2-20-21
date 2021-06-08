@@ -50,8 +50,9 @@ public class UserSession {
 
     public String getUserName()
     {
-        if (isLoggedIn())
-            this.user.getName();
+        if (isLoggedIn()) {
+            return this.user.getName();
+        }
         return null;
     }
 

@@ -5,6 +5,10 @@ import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
 import auth.UserSession;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.stage.WindowEvent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -81,6 +85,7 @@ public class App {
         this.authFacade.addUserWithRole("MedicalLabTechnician1", "medlabt@lei.sem2.pt", "123456", Constants.ROLE_MEDICAL_LAB_TECHNICIAN);
         this.authFacade.addUserWithRole("Specialist Doctor", "specd@lei.sem2.pt", "123456", Constants.ROLE_SPECIALIST_DOCTOR);
         this.authFacade.addUserWithRole("LabCoordinator", "labcoord@lab.pt", "123", Constants.ROLE_LABORATORY_COORDINATOR);
+        this.authFacade.addUserWithRole("Client", "client@lei.sem2.pt", "123456", Constants.ROLE_CLIENT);
         this.company.setNumberOfEmployees(0);
         this.company.setTestCode(0);
 
@@ -148,6 +153,9 @@ public class App {
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
         cl.saveClient(c);
+        c.generatePassword();
+        System.out.println(c.getPassword());
+        this.authFacade.addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
         ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("00001","LABLondon","London",99999979999L,9999999999L,ttList);
@@ -193,6 +201,7 @@ public class App {
 
     }
 
+
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
     private static App singleton = null;
 
@@ -204,5 +213,16 @@ public class App {
             }
         }
         return singleton;
+    }
+
+    public void fechar(WindowEvent event) {
+        Alert aviso = new Alert(AlertType.CONFIRMATION, "Deseja mesmo sair?", ButtonType.YES, ButtonType.NO);
+        aviso.setHeaderText("Confirmação da ação");
+        aviso.showAndWait();
+        ButtonType resultado = aviso.getResult();
+        if(resultado == ButtonType.NO) {
+            event.consume();
+            return;
+        }
     }
 }
