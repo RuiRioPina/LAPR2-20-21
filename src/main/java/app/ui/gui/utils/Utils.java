@@ -8,6 +8,7 @@ public class Utils {
         Alert alerta = new Alert(tipoAlerta);
 
         alerta.setTitle("Aplica��o");
+        alerta.setResizable(true);
         alerta.setHeaderText(cabecalho);
         alerta.setContentText(mensagem);
         alerta.showAndWait();

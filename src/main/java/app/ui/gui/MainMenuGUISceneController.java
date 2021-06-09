@@ -95,9 +95,9 @@ public class MainMenuGUISceneController implements Initializable {
 //		try {
 //			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuAdminUiScene.fxml"));
 //	        Parent root = loader.load();
-//	        
+//
 //	        Scene scene = new Scene(root);
-//	        
+//
 //	        Stage novoAdminStage = new Stage();
 //	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
 //	        novoAdminStage.setTitle("Administrador");
@@ -110,12 +110,12 @@ public class MainMenuGUISceneController implements Initializable {
 //	                window.show();
 //	            }
 //	        });
-//	        
+//
 //	        MenuAdminUISceneController novoAdminUI = loader.getController();
 //	        novoAdminUI.associarParentUI(this);
-//	        
+//
 //	        return novoAdminStage;
-//		} catch (IOException ex) {	
+//		} catch (IOException ex) {
 //			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
 //            return null;
 //        }
@@ -127,35 +127,75 @@ public class MainMenuGUISceneController implements Initializable {
         Window window = lblInitial.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-	
+
 	@FXML
-    private void menuLoginAction(ActionEvent event) {
-        Stage stage1 = loadLoginUi();
-        if(stage1 == null) {
-        	return;
-        }
-        stage1.showAndWait();
-        
-        UserSession sessao = this.app.getCurrentUserSession();
-        if(sessao == null) {
-        	return;
-        }
-        
-        Stage stage = null;
-        if(sessao.isLoggedInWithRole(Constants.ROLE_CLIENT)) {
-        	stage = loadClientUi();
-        } else if(sessao.isLoggedInWithRole(Constants.ROLE_ADMIN)) {
-        	stage = loadAdminUi();
-        }
-        if(stage == null) {
-        	return;
-        }
-       
-        stage.show();
-        
-        Window window = lblInitial.getScene().getWindow();
-        window.hide();
-    }
+	private void menuSeeTestDetailsAction(ActionEvent event) {
+		Window window = lblInitial.getScene().getWindow();
+		window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+	}
+
+	@FXML
+	private void menuLoginAction(ActionEvent event) {
+		Stage stage1 = loadLoginUi();
+		if(stage1 == null) {
+			return;
+		}
+		stage1.showAndWait();
+
+		UserSession sessao = this.app.getCurrentUserSession();
+		if(sessao == null) {
+			return;
+		}
+
+		Stage stage = null;
+		if(sessao.isLoggedInWithRole(Constants.ROLE_CLIENT)) {
+			stage = loadClientUi();
+		} else if(sessao.isLoggedInWithRole(Constants.ROLE_ADMIN)) {
+			stage = loadAdminUi();
+		}else if(sessao.isLoggedInWithRole(Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST)) {
+			stage = loadCctUi();
+		}
+		if(stage == null) {
+			return;
+		}
+
+		stage.show();
+
+		Window window = lblInitial.getScene().getWindow();
+		window.hide();
+	}
+
+	private Stage loadCctUi() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CctGUIScene.fxml"));
+			Parent root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			Stage novoClientStage = new Stage();
+			novoClientStage.initModality(Modality.APPLICATION_MODAL);
+			novoClientStage.setTitle("Clinical Chemistry Technologist");
+			novoClientStage.setMaximized(true);
+			novoClientStage.setScene(scene);
+			novoClientStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					Stage window = (Stage)lblInitial.getScene().getWindow();
+					window.show();
+				}
+			});
+
+			MenuCctGUISceneController cctUi = loader.getController();
+			cctUi.associarParentUI(this);
+
+			return novoClientStage;
+		} catch (IOException ex) {
+			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", "Foi aqui boi");
+			return null;
+		}
+	}
+
+
 	
 	public Label getLabel() {
 		return this.lblInitial;
