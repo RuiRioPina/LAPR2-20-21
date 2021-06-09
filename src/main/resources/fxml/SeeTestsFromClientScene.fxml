@@ -27,7 +27,7 @@
         </HBox>
     </bottom>
     <center>
-        <VBox alignment="CENTER" prefHeight="356.0" prefWidth="680.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="vBox" alignment="CENTER" prefHeight="356.0" prefWidth="680.0" BorderPane.alignment="CENTER">
             <children>
                 <Label fx:id="lblTest" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="659.0" text="Label" textAlignment="CENTER">
                     <VBox.margin>
@@ -37,7 +37,7 @@
                         <Font name="Arial Bold" size="24.0" />
                     </font>
                 </Label>
-                <TableView prefHeight="271.0" prefWidth="680.0">
+                <TableView fx:id="tableView" prefHeight="271.0" prefWidth="680.0">
                     <columns>
                         <TableColumn fx:id="collumNameClient" prefWidth="228.0" text="Client's name" />
                         <TableColumn fx:id="collumTinNumber" minWidth="0.0" prefWidth="286.4000244140625" text="Tax Identification Number" />

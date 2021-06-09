@@ -152,8 +152,9 @@ public class App {
 
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
+        Client c1 = new Client(1234567890123156L, 1234564890, "22-01-2002", "ruipina@gmail.com", 9999999999L, 22221222222L, "Rui Pina");
         cl.saveClient(c);
-        c.generatePassword();
+        cl.saveClient(c1);
         System.out.println(c.getPassword());
         this.authFacade.addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
 
