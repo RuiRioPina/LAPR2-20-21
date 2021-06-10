@@ -36,8 +36,6 @@ public class ShowClientTestsController implements Initializable {
         return testSelected;
     }
 
-    private MyDataType myDataType = new MyDataType();
-
     @FXML
     private Label lblTest;
 
