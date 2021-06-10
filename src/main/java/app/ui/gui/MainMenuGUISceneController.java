@@ -190,7 +190,7 @@ public class MainMenuGUISceneController implements Initializable {
 
 			return novoClientStage;
 		} catch (IOException ex) {
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", "Foi aqui boi");
+			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
 			return null;
 		}
 	}

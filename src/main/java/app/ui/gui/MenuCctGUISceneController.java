@@ -40,7 +40,7 @@ public class MenuCctGUISceneController implements Initializable {
 
     private Stage loadViewTestsUi() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SeeTestsFromClientScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowListOfClientsScene.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -51,7 +51,7 @@ public class MenuCctGUISceneController implements Initializable {
             novoViewTestsStage.setResizable(false);
             novoViewTestsStage.setScene(scene);
 
-            SeeTestsFromClientController novoViewTestsUI = loader.getController();
+            ShowListOfClientsController novoViewTestsUI = loader.getController();
             novoViewTestsUI.associarParentUI(this);
 
             return novoViewTestsStage;

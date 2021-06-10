@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.SeeTestsFromClientController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.ShowClientTestsController">
     <bottom>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Test Details" textAlignment="CENTER">
+                <Button fx:id="btnTestDetails" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickTestDetails" text="Test Details" textAlignment="CENTER">
                     <font>
                         <Font name="Arial Italic" size="18.0" />
                     </font></Button>
@@ -39,8 +39,8 @@
                 </Label>
                 <TableView fx:id="tableView" prefHeight="271.0" prefWidth="680.0">
                     <columns>
-                        <TableColumn fx:id="collumNameClient" prefWidth="228.0" text="Client's name" />
-                        <TableColumn fx:id="collumTinNumber" minWidth="0.0" prefWidth="286.4000244140625" text="Tax Identification Number" />
+                        <TableColumn fx:id="columnnNhsCode" prefWidth="228.0" text="NHS Code" />
+                  <TableColumn fx:id="columnInternalNumber" prefWidth="228.0" text="Internal Number" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -22,6 +22,7 @@ public class TestStore {
     public TestStore() {
         tests = new ArrayList<>();
     }
+
     public TestStore(List<Test> tests) {
         this.tests = tests;
     }
@@ -29,7 +30,7 @@ public class TestStore {
     public List<Test> getTestsWithoutDiagnosis() {
         List<Test> complete = new ArrayList<>();
         for (Test t : this.tests) {
-            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate()!=null && t.getDiagnosisDate() == null) {
+            if (t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() == null) {
                 complete.add(t);
             }
         }
@@ -39,6 +40,7 @@ public class TestStore {
 
     /**
      * Checks the TestStore's Test List to get all the UnvalidatedTests.
+     *
      * @return- List with all of the Unvalidated tests.
      */
     public List<Test> getUnvalidatedTests() {
@@ -53,19 +55,20 @@ public class TestStore {
 
     /**
      * Getter for all the parameters that have passed through the automatic validation done by the API
+     *
      * @param parameterCode parameter where it is going to be validated
-     * @param barcode barcode of a sample of the test
+     * @param barcode       barcode of a sample of the test
      * @return a list containing a list of parameters that passed sucessfully through the automatic validation
      */
 
     public List<Parameter> getValidatedParameters(String parameterCode, String barcode) {
 
         Test test = getTestByBarcode(barcode);
-        List<Parameter> parameters =test.getParameter();
-        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode,parameters);
+        List<Parameter> parameters = test.getParameter();
+        Parameter parameterFromWhichTestResultWillBeExtracted = testParam.findParameterInTestParameter(parameterCode, parameters);
         TestResult testResultBeingValidated = parameterFromWhichTestResultWillBeExtracted.getTestResult();
 
-        if (isTestResultInBetweenReferenceValue(testResultBeingValidated) && parameter!=null) {
+        if (isTestResultInBetweenReferenceValue(testResultBeingValidated) && parameter != null) {
             validatedParameterList.add(parameterFromWhichTestResultWillBeExtracted);
         }
 
@@ -76,6 +79,7 @@ public class TestStore {
 
     /**
      * Getter for the tests that have at least one sample
+     *
      * @return a list containg only tests that have samples
      */
 
@@ -100,6 +104,7 @@ public class TestStore {
 
     /**
      * Getter for the parameters associated to a test
+     *
      * @param barcode barcode of a sample that is contained on a test
      * @return list of parameters of a test
      */
@@ -110,6 +115,7 @@ public class TestStore {
 
     /**
      * Getter for a test that has a sample associated to that barcode
+     *
      * @param barcode barcode of a sample that is contained on a test
      * @return test if it was found
      */
@@ -125,9 +131,9 @@ public class TestStore {
     }
 
 
-
     /**
      * Setter for the testParam
+     *
      * @param testParam an instance of the class testParam
      */
     public void setTestParam(TestParam testParam) {
@@ -154,6 +160,7 @@ public class TestStore {
 
     /**
      * Creates an object of Test class.
+     *
      * @param nhsCode           - NHS code of the test.
      * @param internalCode      - Internal code of the test.
      * @param client            - Client that performs the test.
@@ -172,6 +179,7 @@ public class TestStore {
 
     /**
      * Saves a test.
+     *
      * @param t - Test.
      */
     public void saveTest(Test t) {
@@ -181,6 +189,7 @@ public class TestStore {
 
     /**
      * Validates a test.
+     *
      * @param t - Test.
      */
     private void validateTest(Test t) {
@@ -189,6 +198,7 @@ public class TestStore {
 
     /**
      * Checks Test NHS Code rules.
+     *
      * @param nhsCode - NHS Code of the test.
      */
     private void checkNhsCode(String nhsCode) {
@@ -201,6 +211,7 @@ public class TestStore {
 
     /**
      * Adds a test to the list.
+     *
      * @param t - Test.
      */
     private void addTest(Test t) {
@@ -209,6 +220,7 @@ public class TestStore {
 
     /**
      * Method to get all tests.
+     *
      * @return - all test stored in list.
      */
     public List<Test> getTests() {
@@ -216,6 +228,32 @@ public class TestStore {
         testList.addAll(this.tests);
         return testList;
     }
+
+    public List<Test> getTestsFromClient(Client client) {
+        List<Test> testListFromTargetClient = new ArrayList<>();
+        for (Test test : tests) {
+            if (test.getClient().equals(client) && test.getValidationDate() != null) {
+                testListFromTargetClient.add(test);
+            }
+        }
+        return testListFromTargetClient;
+    }
+
+
+
+    public List<Client> getClientsThatHaveAtLeastOneTestValidated() {
+        List<Client> clients = App.getInstance().getCompany().getClientList().getClients();
+        List<Client> clientsThatHaveAtLeastOneTestValidated = new ArrayList<>();
+        for (Test test : tests) {
+            for (Client client1 : clients) {
+                if (test.getClient() == client1 && test.getValidationDate() != null) {
+                    clientsThatHaveAtLeastOneTestValidated.add(client1);
+                }
+            }
+        }
+        return clientsThatHaveAtLeastOneTestValidated;
+    }
+
 
     public List<Test> getTestsWithoutSamples() {
         List<Test> result = new ArrayList<>();
@@ -232,6 +270,7 @@ public class TestStore {
 
     /**
      * Seeks for a test containing a sample that as associated to itself the given barcode
+     *
      * @param barcode barcode of a sample that is contained on a test
      * @return the test if it found it
      */
@@ -266,12 +305,12 @@ public class TestStore {
         }
         Company cmp = App.getInstance().getCompany();
         List<Test> tests = cmp.getAllTest();
-        for(Test test : tests) {
-        	for(Sample sample : test.getSamples()) {
-        		if(s.getBarcode().equals(sample.getBarcode())) {
-        			throw new IllegalArgumentException("Barcode must be unique");
-        		}
-        	}
+        for (Test test : tests) {
+            for (Sample sample : test.getSamples()) {
+                if (s.getBarcode().equals(sample.getBarcode())) {
+                    throw new IllegalArgumentException("Barcode must be unique");
+                }
+            }
         }
     }
 
@@ -282,6 +321,7 @@ public class TestStore {
 
     /**
      * Checks if the test associated to a given barcode exists
+     *
      * @param barcode barcode of a sample that is contained on a test
      * @return boolean asserting if it found the test with that barcode associated or not
      */
@@ -300,6 +340,7 @@ public class TestStore {
 
     /**
      * See if a given test has passed through the medical lab technician already
+     *
      * @param barcode barcode of a sample that is contained on a test
      * @return boolean asserting if it has passed through the medical lab technician or not
      */
@@ -310,6 +351,7 @@ public class TestStore {
 
     /**
      * Checks whether the parameter has passed through the automatic validation test
+     *
      * @param parameterBeingTested parameter where it is validated
      * @return boolean containing the result on whether the result is between the reference values or not
      */
@@ -322,19 +364,19 @@ public class TestStore {
     }
 
 
-
     /**
      * Save the test result of the test
+     *
      * @param parameterCode parameter code from where the test result will be associated to the parameter
-     * @param barcode barcode from a sample of the test
+     * @param barcode       barcode from a sample of the test
      */
 
 
-    public void saveTestResult(String parameterCode,String barcode) {
+    public void saveTestResult(String parameterCode, String barcode) {
         Test test = getTestByBarcode(barcode);
         List<Parameter> parameters = test.getParameter();
-        parameter = testParam.findParameterInTestParameter(parameterCode,parameters);
-        if(parameter!=null) {
+        parameter = testParam.findParameterInTestParameter(parameterCode, parameters);
+        if (parameter != null) {
             parameter.setTestResult(testResult);
         }
     }
@@ -343,6 +385,7 @@ public class TestStore {
     /**
      * Method used to check if a test is ready to be used by the Laboratory Coordinator. Checks if the
      * registrationDate, the sampleCollectionDate, the chemicalAnalysisDate and the diagnosisDate aren't null,while the validationDate is.
+     *
      * @param t- Test Object to be checked
      * @return - boolean value saying if the Object is ready to be used or not.
      */
@@ -353,7 +396,8 @@ public class TestStore {
 
     /**
      * Method used to change the validationDate of a List of Test Objects.
-     * @param lTests- List to be changed.
+     *
+     * @param lTests-  List to be changed.
      * @param newDate- Date used for the validationDate.
      */
     public void validateTests(List<Test> lTests, Date newDate) {
@@ -367,7 +411,6 @@ public class TestStore {
 
         }
     }
-
 
 
 }
