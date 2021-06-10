@@ -73,28 +73,6 @@ public class ShowListOfClientsController implements Initializable {
 
     }
 
-    private Stage loadViewTestsUi() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsFromSelectedClientsScene.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage novoViewTestsStage = new Stage();
-            novoViewTestsStage.initModality(Modality.APPLICATION_MODAL);
-            novoViewTestsStage.setTitle("Tests");
-            novoViewTestsStage.setResizable(false);
-            novoViewTestsStage.setScene(scene);
-
-            ShowClientTestsController novoViewTestsUI = loader.getController();
-            novoViewTestsUI.associarParentUI(this);
-
-            return novoViewTestsStage;
-        } catch (IOException ex) {
-            Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            return null;
-        }
-    }
     /**
      * This method will return an ObservableList of Client objects
      * @return observable list containg client objects
@@ -125,7 +103,6 @@ public class ShowListOfClientsController implements Initializable {
         clientSelected(event);
         stage.setScene(scene);
         stage.show();
-        clientSelected(event);
 
     }
 

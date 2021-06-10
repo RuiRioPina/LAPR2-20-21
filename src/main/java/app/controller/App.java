@@ -169,6 +169,12 @@ public class App {
         Date data = new Date(System.currentTimeMillis());
 
         Test testSemSample1 = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
+
+        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
+        testTestarJavaFX.setSamplesCollectionDate(data);
+        testTestarJavaFX.setChemicalAnalysisDate(data);
+        testTestarJavaFX.setDiagnosisDate(data);
+        testTestarJavaFX.setValidationDate(data);
         Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);

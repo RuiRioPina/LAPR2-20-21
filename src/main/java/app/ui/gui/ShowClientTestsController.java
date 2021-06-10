@@ -30,8 +30,13 @@ public class ShowClientTestsController implements Initializable {
     private ShowListOfClientsController menuCctUI;
     private App app;
     private List<Test> listOfTestsFromClient;
-
     private Test testSelected;
+
+    public Test getTestSelected() {
+        return testSelected;
+    }
+
+    private MyDataType myDataType = new MyDataType();
 
     @FXML
     private Label lblTest;
@@ -72,9 +77,9 @@ public class ShowClientTestsController implements Initializable {
     }
 
 
-
     /**
      * This method will return an ObservableList of Client objects
+     *
      * @return observable list containg client objects
      */
     public ObservableList<Test> getClientsTests() {
@@ -90,37 +95,36 @@ public class ShowClientTestsController implements Initializable {
         vBox.getChildren().addAll(tableView);*/
     }
 
-    @FXML
-    void clickShowTests(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/ShowTestsFromSelectedClientsScene.fxml"))));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void sendTestToOtherScene(Test testSelected) {
+        this.testSelected = testSelected;
     }
+
 
     @FXML
     void clickTestDetails(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/ShowTestsDetailsFromSelectedTest.fxml"))));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsDetailsFromSelectedTest.fxml"));
+        Parent root = loader.load();
+
+        ShowTestDetailsFromTestSelectedController controller;
+
+        controller = loader.getController();
+
+        controller.setTest(getTestSelected());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        testSelected(event);
         stage.setScene(scene);
         stage.show();
     }
 
-
-
-    public void associarParentUI(ShowListOfClientsController menuCctGUISceneController) {
-        this.menuCctUI = menuCctGUISceneController;
-    }
-
     @FXML
-    void testSelected(ActionEvent event) {
-        Test testSelectedOnScene = tableView.getSelectionModel().getSelectedItem();
-        if(testSelectedOnScene!=null) {
-            setTestSelected(testSelectedOnScene);
-        }else{
+    void testSelected(ActionEvent event) throws IOException {
+
+        Test testSelected = tableView.getSelectionModel().getSelectedItem();
+
+        if (testSelected != null) {
+            sendTestToOtherScene(testSelected);
+        } else {
             Utils.criarAlerta(Alert.AlertType.ERROR, "Error", "There was a problem with the selection " +
                     "of the test. Please report it to the administrator of the software");
         }
@@ -128,13 +132,8 @@ public class ShowClientTestsController implements Initializable {
     }
 
 
-
-    public void setTestSelected(Test testSelect) {
-        this.testSelected = testSelect;
-    }
-
-    public Test getTestSelected() {
-        return testSelected;
+    public void associarParentUI(ShowListOfClientsController menuCctGUISceneController) {
+        this.menuCctUI = menuCctGUISceneController;
     }
 
 
