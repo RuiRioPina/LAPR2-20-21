@@ -59,7 +59,36 @@ public class MainMenuGUISceneController implements Initializable {
             return null;
         }
 	}
-	
+	private Stage loadLabCooUi() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LabCGUIScene.fxml"));
+			Parent root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			Stage Stage = new Stage();
+			Stage.initModality(Modality.APPLICATION_MODAL);
+			Stage.setTitle("Laboratory Coordinator");
+			Stage.setMaximized(true);
+			Stage.setScene(scene);
+			Stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					app.doLogout();
+					Stage window = (Stage)lblInitial.getScene().getWindow();
+					window.show();
+				}
+			});
+
+			MenuLabCooGUISceneController labCooUI = loader.getController();
+			labCooUI.associarParentUI(this);
+
+			return Stage;
+		} catch (IOException ex) {
+			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			return null;
+		}
+	}
 	private Stage loadClientUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ClientGUIScene.fxml"));
@@ -154,6 +183,8 @@ public class MainMenuGUISceneController implements Initializable {
 			stage = loadAdminUi();
 		}else if(sessao.isLoggedInWithRole(Constants.ROLE_CLINICAL_CHEMISTRY_TECHNOLOGIST)) {
 			stage = loadCctUi();
+		} else if (sessao.isLoggedInWithRole(Constants.ROLE_LABORATORY_COORDINATOR)){
+			stage = loadLabCooUi();
 		}
 		if(stage == null) {
 			return;
