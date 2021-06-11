@@ -9,6 +9,7 @@ import java.util.List;
 public class TestController {
 private Company company;
 private Test test;
+private Client clt;
 
     public TestController() {
         this.company = App.getInstance().getCompany();
@@ -61,4 +62,23 @@ private Test test;
         TestStore testStore = this.company.getTestStore();
         testStore.saveTest(t);
     }
+
+    public void saveClient(Client c) {
+        ClientList cList = this.company.getClientList();
+        cList.saveClient(c);
+    }
+
+    public Client createClient(long ccn, long nhsNumber, String birthDate,
+                               long tin, long phoneNumber, String email, String name) {
+        ClientList cl = this.company.getClientList();
+
+        this.clt = cl.createClient(ccn, nhsNumber, birthDate, email, phoneNumber, tin, name);
+        return this.clt;
+    }
+
+    public List <ClinicalAnalysisLaboratory> getLabs(){
+        ClinicalAnalysisLaboratoryStore claStore = this.company.getClinicalAnalysisLaboratoryStore();
+        return claStore.getLabs();
+    }
+
 }

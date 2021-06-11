@@ -3,6 +3,7 @@ package app.domain.model;
 import app.controller.App;
 import app.domain.shared.Constants;
 import app.domain.store.*;
+import app.ui.console.ImportTests;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
@@ -34,6 +35,8 @@ public class Company {
     private final ReportStore reportStore;
     private ClinicalAnalysisLaboratory cla;
     private TestStore testStore;
+    // Used to pass the imported tests beetween classes.
+    private List <Test> importedTests = new ArrayList<>();
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -57,6 +60,13 @@ public class Company {
         this.reportStore = new ReportStore();
         this.cla = null;
         this.testStore = new TestStore();
+    }
+    public List<Test> getImportedTests(){
+        return this.importedTests;
+    }
+
+    public void setImportedTests(List <Test> importedTests) {
+        this.importedTests = importedTests;
     }
 
     public ClinicalAnalysisLaboratory getCLA() {

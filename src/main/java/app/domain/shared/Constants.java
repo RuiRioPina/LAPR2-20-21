@@ -1,6 +1,8 @@
 package app.domain.shared;
 
 
+import app.domain.model.ClinicalAnalysisLaboratory;
+
 /**
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -24,4 +26,6 @@ public class Constants {
 
     public static final String PARAMS_FILENAME = "config.properties";
     public static final String PARAMS_COMPANY_DESIGNATION = "Company.Designation";
+
+    public static final ClinicalAnalysisLaboratory calNull = new ClinicalAnalysisLaboratory(null,null,null,0,0,null);
 }

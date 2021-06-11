@@ -94,12 +94,16 @@ public class App {
         ParameterCategoryStore cs = this.company.getParameterCategoryStore();
 
         List<ParameterCategory> pc = new ArrayList<>();
+        List<ParameterCategory> pc1 = new ArrayList<>();
         List<ParameterCategory> pCovid = new ArrayList<>();
-        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
+        ParameterCategory p1 = new ParameterCategory("CAT00", "Hemogram");
         ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
-        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
+        ParameterCategory p4 = new ParameterCategory("CAT02","Cholestrol");
+        ParameterCategory P3 = new ParameterCategory("CAT03", "Covid");
         pc.add(p1);
         pc.add(P2);
+        pc1.add(p1);
+        pc1.add(p4);
         pCovid.add(P3);
 
         List<ParameterCategory> p = new ArrayList<>();
@@ -107,6 +111,9 @@ public class App {
 
         List<ParameterCategory> cat = new ArrayList<>();
         cat.add(pc.get(0));
+
+        List<ParameterCategory> catt = new ArrayList<>();
+        catt.add(p4);
 
         List<ParameterCategory> cat1 = new ArrayList<>();
         cat1.add(P2);
@@ -117,9 +124,11 @@ public class App {
         cs.saveParameterCategory(p1);
         cs.saveParameterCategory(P2);
         cs.saveParameterCategory(P3);
+        cs.saveParameterCategory(p4);
         ParameterStore ps = this.company.getParameterStore();
         ParameterStore psCovid = this.company.getParameterStore();
         psCovid.saveParameter(new Parameter("IgGAN", "IgC", "Antibodies", cat2));
+        ps.saveParameter(new Parameter("HDL00","HDL","High Den Lipoprotein",catt));
 
         ps.saveParameter(new Parameter("HB000", "HB", "Haemoglobin", cat));
         ps.saveParameter(new Parameter("WBC00", "WBC", "White Cell Count", cat));
@@ -141,8 +150,10 @@ public class App {
         parCovid.add(ps.getParameters().get(0));
 
         TestTypeStore tts = this.company.getTestTypeStore();
-        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
-        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
+        TestType tt1 = new TestType("BLT00", "Blood", "Venipuncture", pc);
+        TestType tt3 = new TestType("BLT01","Blood","Venipuncture",pc1);
+        TestType tt2 = new TestType("CVD00", "Covid", "Nasopharyngeal", p);
+        tts.saveTestType(tt3);
         tts.saveTestType(tt1);
         tts.saveTestType(tt2);
 
@@ -159,11 +170,12 @@ public class App {
         this.authFacade.addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
-        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("00001","LABLondon","London",99999979999L,9999999999L,ttList);
-        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("00002","ManLAB","Manchester",88888888888L,8888888888L,ttList);
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("001LN","LABLondon","London",99999979999L,9999999999L,ttList);
+        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("001MA","ManLAB","Manchester",88888888888L,8888888888L,ttList);
         clas.saveClinicalAnalysisLaboratory(cla);
         clas.saveClinicalAnalysisLaboratory(cla2);
         this.company.setCLA(cla2);
+
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
