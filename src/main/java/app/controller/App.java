@@ -168,7 +168,7 @@ public class App {
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
 
-        Test testSemSample1 = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 
         Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         testTestarJavaFX.setSamplesCollectionDate(data);
@@ -178,12 +178,13 @@ public class App {
         Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
+        ts.saveTest(testTestarJavaFX);
 
         Test test = new Test("333333abcdef", "999999999997", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("444444abcdef", "999999999996", c, tts.getTestTypes().get(0), pc, par, data);
 
-        ts.saveTest(test);
         ts.saveTest(test1);
+        ts.saveTest(test);
 
 
         ts.saveSample(test, sample);

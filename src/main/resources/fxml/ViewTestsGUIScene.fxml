@@ -32,10 +32,11 @@
                   <Font name="Arial Bold" size="24.0" />
                </font>
             </Label>
-            <TableView prefHeight="271.0" prefWidth="680.0">
+            <TableView fx:id="tbvListTest" prefHeight="271.0" prefWidth="680.0">
               <columns>
-                <TableColumn prefWidth="228.0" text="C1" />
-                <TableColumn minWidth="0.0" prefWidth="286.4000244140625" text="C2" />
+                <TableColumn fx:id="tbcCode" prefWidth="228.0" text="Internal Code" />
+                <TableColumn fx:id="tbcClient" minWidth="0.0" prefWidth="286.4000244140625" text="NHS Code" />
+                  <TableColumn fx:id="tbcDate" prefWidth="75.0" text="Registration Date" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
