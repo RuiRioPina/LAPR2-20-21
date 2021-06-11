@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ShowClientTestsController implements Initializable {
@@ -31,6 +32,7 @@ public class ShowClientTestsController implements Initializable {
     private App app;
     private List<Test> listOfTestsFromClient;
     private Test testSelected;
+    private Client client;
 
     public Test getTestSelected() {
         return testSelected;
@@ -55,22 +57,6 @@ public class ShowClientTestsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ShowListOfClientsController showListOfClientsController = new ShowListOfClientsController();
-        lblTest.setText(String.format("%s tests", app.getCurrentUserSession().getUserName()));
-
-
-        //Temporario até houver testes validados associados a clientes.
-
-        listOfTestsFromClient = App.getInstance().getCompany().getTestStore().getTests();
-
-
-        //listOfTestsFromClient = App.getInstance().getCompany().getTestStore().getTestsFromClient(showListOfClientsController.getClientSelected());
-
-        //set up the columns
-        columnnNhsCode.setCellValueFactory(new PropertyValueFactory<>("nhsCode"));
-        columnInternalNumber.setCellValueFactory(new PropertyValueFactory<>("internalCode"));
-        //load data
-        tableView.setItems(getClientsTests());
 
     }
 
@@ -100,38 +86,57 @@ public class ShowClientTestsController implements Initializable {
 
     @FXML
     void clickTestDetails(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsDetailsFromSelectedTest.fxml"));
-        Parent root = loader.load();
-
-        ShowTestDetailsFromTestSelectedController controller;
-
-        controller = loader.getController();
-
-        controller.setTest(getTestSelected());
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void testSelected(ActionEvent event) throws IOException {
-
-        Test testSelected = tableView.getSelectionModel().getSelectedItem();
-
-        if (testSelected != null) {
-            sendTestToOtherScene(testSelected);
-        } else {
-            Utils.criarAlerta(Alert.AlertType.ERROR, "Error", "There was a problem with the selection " +
-                    "of the test. Please report it to the administrator of the software");
+        Stage stage1 = loadViewTestsUi();
+        if (stage1 == null) {
+            return;
         }
-
+        stage1.showAndWait();
     }
 
 
-    public void associarParentUI(ShowListOfClientsController menuCctGUISceneController) {
+    public void associarParentUI(ShowListOfClientsController menuCctGUISceneController, Client client) {
         this.menuCctUI = menuCctGUISceneController;
+        this.client = client;
+        listOfTestsFromClient = App.getInstance().getCompany().getTestStore().getTestsFromClient(client);
+        lblTest.setText(String.format("%s tests", app.getCurrentUserSession().getUserName()));
+
+
+        //Temporario até houver testes validados associados a clientes.
+
+        //listOfTestsFromClient = App.getInstance().getCompany().getTestStore().getTests();
+
+        //set up the columns
+        columnnNhsCode.setCellValueFactory(new PropertyValueFactory<>("nhsCode"));
+        columnInternalNumber.setCellValueFactory(new PropertyValueFactory<>("internalCode"));
+        //load data
+        tableView.setItems(getClientsTests());
+
+    }
+
+    private Stage loadViewTestsUi() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsDetailsFromSelectedTest.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            Stage novoViewTestsStage = new Stage();
+            novoViewTestsStage.initModality(Modality.APPLICATION_MODAL);
+            novoViewTestsStage.setTitle("Tests");
+            novoViewTestsStage.setResizable(false);
+            novoViewTestsStage.setScene(scene);
+
+            Test test = tableView.getSelectionModel().getSelectedItem();
+
+            ShowTestDetailsFromTestSelectedController novoViewTestsUI = loader.getController();
+            novoViewTestsUI.associarParentUI(this, test);
+
+            return novoViewTestsStage;
+        } catch (IOException ex) {
+            Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
 

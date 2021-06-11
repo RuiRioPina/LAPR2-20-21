@@ -18,9 +18,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Parameter Code" />
@@ -31,12 +28,6 @@
             <Label fx:id="lblMaxValue" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Min Value For Parameter" GridPane.rowIndex="3" />
             <Label fx:id="lblMinValue" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Test Registration Date" GridPane.rowIndex="4" />
-            <Label fx:id="lblRegistrationDate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="Test Chemical Analysis Date" GridPane.rowIndex="5" />
-            <Label fx:id="lblChemicalAnalysisDate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="Test Validation Date" GridPane.rowIndex="6" />
-            <Label fx:id="lblValidationDate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <ComboBox fx:id="cmbBoxParameters" layoutX="225.0" layoutY="39.0" onAction="#selectFromComboBox" prefWidth="150.0" />

@@ -232,7 +232,7 @@ public class TestStore {
     public List<Test> getTestsFromClient(Client client) {
         List<Test> testListFromTargetClient = new ArrayList<>();
         for (Test test : tests) {
-            if (test.getClient().equals(client) && test.getValidationDate() != null) {
+            if (test.getClient().equals(client)) {
                 testListFromTargetClient.add(test);
             }
         }

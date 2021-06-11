@@ -75,6 +75,7 @@ public class ShowListOfClientsController implements Initializable {
 
     /**
      * This method will return an ObservableList of Client objects
+     *
      * @return observable list containg client objects
      */
     public ObservableList<Client> getClient() {
@@ -97,39 +98,50 @@ public class ShowListOfClientsController implements Initializable {
 
     @FXML
     void clickShowTests(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/fxml/ShowTestsFromSelectedClientsScene.fxml"))));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        clientSelected(event);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
-
-
-    @FXML
-    void clientSelected(ActionEvent event) {
         Client client = tableView.getSelectionModel().getSelectedItem();
-        if(client!=null) {
-            sendClientToOtherScene(client);
-        }else{
-            Utils.criarAlerta(Alert.AlertType.ERROR, "Error", "There was a problem with the selection " +
-                    "of the client. Please report it to the administrator of the software");
+        Stage stage1 = loadViewTestsUi(client);
+        if (stage1 == null) {
+            return;
         }
-
+        stage1.showAndWait();
     }
+
+    private Stage loadViewTestsUi(Client client) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsFromSelectedClientsScene.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            Stage novoViewTestsStage = new Stage();
+            novoViewTestsStage.initModality(Modality.APPLICATION_MODAL);
+            novoViewTestsStage.setTitle("Tests");
+            novoViewTestsStage.setResizable(false);
+            novoViewTestsStage.setScene(scene);
+
+
+            ShowClientTestsController novoViewTestsUI = loader.getController();
+            novoViewTestsUI.associarParentUI(this, client);
+
+            return novoViewTestsStage;
+        } catch (IOException ex) {
+            Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+
+
 
 
     public void sendClientToOtherScene(Client client) {
-         this.client = client;
+        this.client = client;
     }
 
     public Client getClientSelected() {
         return client;
     }
-
-
 
 
     public void associarParentUI(MenuCctGUISceneController menuCctGUISceneController) {
