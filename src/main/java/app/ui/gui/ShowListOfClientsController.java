@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
-import app.domain.model.sortingAlgorithms.SelectionSort;
 import app.ui.gui.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,8 +27,6 @@ public class ShowListOfClientsController implements Initializable {
     private App app;
     private List<Client> listOfClients;
     Client client;
-    private SelectionSort selectionSort = new SelectionSort();
-
 
     @FXML
     private Label lblTest;
