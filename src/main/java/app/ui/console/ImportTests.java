@@ -195,6 +195,7 @@ public class ImportTests{
                 System.out.println("Test " + internalCode + " wasn't imported.");
             }
         }
+        leitor2.close();
     }
     }
 
