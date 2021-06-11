@@ -1,14 +1,11 @@
 package app.ui.gui;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import app.controller.App;
-import app.domain.model.Client;
 import app.domain.model.Test;
 import javafx.fxml.Initializable;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ViewTestDetailsGUISceneController implements Initializable {
 	

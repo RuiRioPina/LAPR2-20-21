@@ -50,6 +50,7 @@ public class MenuClientGUISceneController implements Initializable {
 	        novoViewTestsStage.initModality(Modality.APPLICATION_MODAL);
 	        novoViewTestsStage.setTitle("Tests");
 	        novoViewTestsStage.setResizable(false); 
+	        novoViewTestsStage.setMaximized(true);
 	        novoViewTestsStage.setScene(scene);
 	        
 	        ViewTestsGUISceneController novoViewTestsUI = loader.getController();

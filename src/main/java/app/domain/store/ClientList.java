@@ -60,7 +60,14 @@ public class ClientList {
         return c;
     }
 
-
+    public Client getClientByEmail(String email) {
+    	for(Client c : this.listOfClients) {
+        	if(c.getEmail().equalsIgnoreCase(email)) {
+        		return c;
+        	}
+        }
+    	return null;
+    }
 
     private void add(Client c) {
         if (!listOfClients.contains(c)) {

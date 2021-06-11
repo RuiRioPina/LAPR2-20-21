@@ -167,15 +167,19 @@ public class App {
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());
-
+        Date data1 = new Date(2021-1900, 06, 11, 13, 10, 5);
+        Date data2 = new Date(2021-1900, 05, 12, 12, 10, 5);
+        
+        
         Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 
-        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
+        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data1);
         testTestarJavaFX.setSamplesCollectionDate(data);
         testTestarJavaFX.setChemicalAnalysisDate(data);
         testTestarJavaFX.setDiagnosisDate(data);
         testTestarJavaFX.setValidationDate(data);
-        Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data);
+        testTestarJavaFX.setReport(new Report("Parece um jovem de 15 anos"));
+        Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data2);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
         ts.saveTest(testTestarJavaFX);

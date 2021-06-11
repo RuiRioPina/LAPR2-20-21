@@ -5,34 +5,36 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.ViewTestsGUISceneController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Test Details" textAlignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seeTest" text="Test Details" textAlignment="CENTER">
                <font>
                   <Font name="Arial Italic" size="18.0" />
                </font></Button>
          </children>
       </HBox>
    </bottom>
+   <top>
+      <Label fx:id="lblTest" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="659.0" text="Label" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="20.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="356.0" prefWidth="680.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="342.0" prefWidth="14.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTest" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="659.0" text="Label" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-            </Label>
-            <TableView fx:id="tbvListTest" prefHeight="271.0" prefWidth="680.0">
+            <TableView fx:id="tbvListTest" prefHeight="342.4" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="tbcCode" prefWidth="228.0" text="Internal Code" />
                 <TableColumn fx:id="tbcClient" minWidth="0.0" prefWidth="286.4000244140625" text="NHS Code" />
@@ -43,6 +45,6 @@
                </columnResizePolicy>
             </TableView>
          </children>
-      </VBox>
+      </AnchorPane>
    </center>
 </BorderPane>
