@@ -89,8 +89,6 @@ public class ShowTestDetailsFromTestSelectedController implements Initializable 
     void selectFromComboBox(ActionEvent event) {
         Parameter parameterSelected = cmbBoxParameters.getSelectionModel().getSelectedItem();
 
-        parameterSelected.setTestResult(new TestResult(parameterSelected, 170, new ReferenceValue("g/L", 200, 150)));
-
         String resultString = String.format("%s %s", parameterSelected.getTestResult().getResult(), getMetricsFor(parameterSelected.getCode()));
 
         String maxValueString = String.format("%s %s", parameterSelected.getTestResult().getReferenceValue().getMaxValue(), getMetricsFor(parameterSelected.getCode()));
