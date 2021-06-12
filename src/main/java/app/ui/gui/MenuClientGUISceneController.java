@@ -16,6 +16,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class MenuClientGUISceneController implements Initializable {
 	
@@ -46,8 +48,7 @@ public class MenuClientGUISceneController implements Initializable {
 	        
 	        Stage novoViewTestsStage = new Stage();
 	        novoViewTestsStage.initModality(Modality.APPLICATION_MODAL);
-	        novoViewTestsStage.setTitle("Tests");
-	        novoViewTestsStage.setResizable(false); 
+	        novoViewTestsStage.setTitle("Tests"); 
 	        novoViewTestsStage.setMaximized(true);
 	        novoViewTestsStage.setScene(scene);
 	        
@@ -70,4 +71,10 @@ public class MenuClientGUISceneController implements Initializable {
         
         stage1.showAndWait();
 	}
+	
+	@FXML
+    private void menuExitAction(ActionEvent event) {
+        Window window = lblNameClient.getScene().getWindow();
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
 }

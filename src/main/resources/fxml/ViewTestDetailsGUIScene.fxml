@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.ViewTestDetailsGUISceneController">
    <top>
-      <Label text="Test View" BorderPane.alignment="CENTER">
+      <Label fx:id="lblTestView" text="Test View" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -48,26 +48,26 @@
                      <children>
                         <Label text="Internal Code:" />
                         <Label text="NHS Code:" GridPane.rowIndex="1" />
-                        <TextField disable="true" GridPane.columnIndex="1" />
-                        <TextField disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txfInternalCode" disable="true" GridPane.columnIndex="1" />
+                        <TextField fx:id="txfNhsCode" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Test Type:" GridPane.columnIndex="3" />
                         <Label text="Registration Date:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <TextField disable="true" GridPane.columnIndex="4" />
-                        <TextField disable="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <TextField fx:id="txfTestType" disable="true" GridPane.columnIndex="4" />
+                        <TextField fx:id="txfDate" disable="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </content>
             </TitledPane>
             <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Parameter values">
                <content>
-                  <TableView prefHeight="90.0" prefWidth="781.0">
+                  <TableView fx:id="tbvParameterValues" prefHeight="90.0" prefWidth="781.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Category" />
-                      <TableColumn prefWidth="75.0" text="Parameter" />
-                        <TableColumn prefWidth="75.0" text="Result" />
-                        <TableColumn prefWidth="75.0" text="Metric" />
-                        <TableColumn prefWidth="75.0" text="Min. Value" />
-                        <TableColumn prefWidth="75.0" text="Max. Value" />
+                      <TableColumn fx:id="tbcCategory" prefWidth="75.0" text="Category" />
+                      <TableColumn fx:id="tbcParameter" prefWidth="75.0" text="Parameter" />
+                        <TableColumn fx:id="tbcResult" prefWidth="75.0" text="Result" />
+                        <TableColumn fx:id="tbcMetric" prefWidth="75.0" text="Metric" />
+                        <TableColumn fx:id="tbcMinValue" prefWidth="75.0" text="Min. Value" />
+                        <TableColumn fx:id="tbcMaxValue" prefWidth="75.0" text="Max. Value" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -77,14 +77,14 @@
             </TitledPane>
             <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Test report">
                <content>
-                  <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                  <TextArea fx:id="txaReport" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                </content>
             </TitledPane>
          </children>
       </VBox>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" text="Exit" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#menuExitAction" prefHeight="26.0" prefWidth="71.0" text="Exit" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" top="10.0" />
          </BorderPane.margin>

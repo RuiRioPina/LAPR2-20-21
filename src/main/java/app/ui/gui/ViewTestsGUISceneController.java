@@ -31,6 +31,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 public class ViewTestsGUISceneController implements Initializable {
 	
@@ -95,7 +97,6 @@ public class ViewTestsGUISceneController implements Initializable {
 	        Stage novoViewTestDetailsStage = new Stage();
 	        novoViewTestDetailsStage.initModality(Modality.APPLICATION_MODAL);
 	        novoViewTestDetailsStage.setTitle("Test Details");
-	        novoViewTestDetailsStage.setResizable(false); 
 	        novoViewTestDetailsStage.setMaximized(true);
 	        novoViewTestDetailsStage.setScene(scene);
 	        
@@ -129,4 +130,10 @@ public class ViewTestsGUISceneController implements Initializable {
         
         stage1.showAndWait();
 	}
+	
+	@FXML
+    private void menuExitAction(ActionEvent event) {
+        Window window = lblTest.getScene().getWindow();
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
 }

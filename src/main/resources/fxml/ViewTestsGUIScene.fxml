@@ -17,7 +17,15 @@
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#seeTest" text="Test Details" textAlignment="CENTER">
                <font>
                   <Font name="Arial Italic" size="18.0" />
-               </font></Button>
+               </font>
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#menuExitAction" prefHeight="33.0" prefWidth="119.0" text="Exit" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Italic" size="18.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
    </bottom>
