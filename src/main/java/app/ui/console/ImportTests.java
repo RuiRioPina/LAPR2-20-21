@@ -10,10 +10,7 @@ import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ImportTests{
     private final TestController importTestsController;
@@ -157,18 +154,14 @@ public class ImportTests{
             }
 
             DateFormat formatter = new SimpleDateFormat("dd/MM/yy HH:mm");
-            Date dat1 = null;
-            Date dat2 = null;
-            Date dat3 = null;
-            Date dat4 = null;
-            try {
-                dat1 = formatter.parse(rDateHour);
-                dat2 = formatter.parse(tChemicalDateHour);
-                dat3 = formatter.parse(tDoctorDateHour);
-                dat4 = formatter.parse(tValidationDateHour);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Calendar dat1 = null;
+            Calendar dat2 = null;
+            Calendar dat3 = null;
+            Calendar dat4 = null;
+            dat1 = Calendar.getInstance();
+            dat2 = Calendar.getInstance();
+            dat3 = Calendar.getInstance();
+            dat4 = Calendar.getInstance();
             String intCode = String.format("%012d", Integer.parseInt(internalCode));
 
             Test t = importTestsController.createTest(nhsCode,intCode, cl,tt,catSelected,parSelected,dat1);

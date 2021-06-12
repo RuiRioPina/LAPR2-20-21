@@ -13,10 +13,7 @@ import javafx.stage.WindowEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -178,20 +175,19 @@ public class App {
 
 
         TestStore ts = this.company.getTestStore();
-        Date data = new Date(System.currentTimeMillis());
-        Date data1 = new Date(2021-1900, 06, 11, 13, 10, 5);
-        Date data2 = new Date(2021-1900, 05, 12, 12, 10, 5);
+        Calendar data = Calendar.getInstance();
+
         
         
         Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 
-        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data1);
+        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         testTestarJavaFX.setSamplesCollectionDate(data);
         testTestarJavaFX.setChemicalAnalysisDate(data);
         testTestarJavaFX.setDiagnosisDate(data);
         testTestarJavaFX.setValidationDate(data);
         testTestarJavaFX.setReport(new Report("Parece um jovem de 15 anos"));
-        Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data2);
+        Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
         ts.saveTest(testTestarJavaFX);
@@ -199,6 +195,7 @@ public class App {
         Test test = new Test("333333abcdef", "999999999997", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("444444abcdef", "999999999996", c, tts.getTestTypes().get(0), pc, par, data);
 
+        ts.saveTest(test);
         ts.saveTest(test1);
         ts.saveTest(test);
 
