@@ -115,7 +115,12 @@ public class ViewTestsGUISceneController implements Initializable {
 		Client client = app.getCompany().getClientList().getClientByEmail(email);
 		List<Test> tests = app.getCompany().getTestStore().getTestsFromClient(client);
 		ObservableList<Test> data = FXCollections.observableArrayList();
-		data.addAll(tests);
+		for(Test t : tests) {
+			if(t.getReport() != null && t.getValidationDate() != null) {
+				data.addAll(t);
+			}
+		}
+		
         data.sort(Comparator.comparing(Test::getRegistrationDate).reversed());
 
         return data;
@@ -123,6 +128,10 @@ public class ViewTestsGUISceneController implements Initializable {
 	
 	public void seeTest(ActionEvent event) {
 		Test t = tbvListTest.getSelectionModel().getSelectedItem();
+		if(t == null) {
+			return;
+		}
+		
 		Stage stage1 = loadViewTestDetailUi(t);
         if(stage1 == null) {
         	return;

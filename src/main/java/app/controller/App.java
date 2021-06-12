@@ -185,16 +185,26 @@ public class App {
         
         Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 
-        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data1);
+        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data);
         testTestarJavaFX.setSamplesCollectionDate(data);
         testTestarJavaFX.setChemicalAnalysisDate(data);
         testTestarJavaFX.setDiagnosisDate(data);
         testTestarJavaFX.setValidationDate(data);
         testTestarJavaFX.setReport(new Report("Parece um jovem de 15 anos"));
+        
+        Test testTestarJavaFX2 = new Test("abcefd123412", "123781912412", c, tts.getTestTypes().get(0), pc, par, data1);
+        testTestarJavaFX2.setSamplesCollectionDate(data1);
+        testTestarJavaFX2.setChemicalAnalysisDate(data1);
+        testTestarJavaFX2.setDiagnosisDate(data1);
+        testTestarJavaFX2.setValidationDate(data1);
+        testTestarJavaFX2.setReport(new Report("Parece um adulto de 70 anos"));
+        
         Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data2);
+        
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
         ts.saveTest(testTestarJavaFX);
+        ts.saveTest(testTestarJavaFX2);
 
         Test test = new Test("333333abcdef", "999999999997", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("444444abcdef", "999999999996", c, tts.getTestTypes().get(0), pc, par, data);
