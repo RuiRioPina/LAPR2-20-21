@@ -71,6 +71,7 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 //        tbcCategory.setCellValueFactory(new PropertyValueFactory<Test, String>("parameterCategory"));
 //        tbcClient.setCellValueFactory(new PropertyValueFactory<Test, Client>("nhsCode"));
 //        tbcDate.setCellValueFactory(new PropertyValueFactory<Test, Date>("registrationDate"));
+		txaReport.setText(this.test.getReport().getReport());
 		txfInternalCode.setEditable(false);
 		txfNhsCode.setEditable(false);
 		txfTestType.setEditable(false);
@@ -78,6 +79,7 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 //        tbcCode.setSortable(false);
 //        tbcClient.setSortable(false);
 //        tbcDate.setSortable(false);
+		txaReport.setEditable(false);
 	}
 	
 //	private ObservableList<Test> loadData() {
