@@ -2,11 +2,13 @@ package app.ui.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
+import app.domain.model.sortingAlgorithms.SelectionSort;
 import app.ui.gui.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,13 +60,20 @@ public class ShowListOfClientsController implements Initializable {
 
         listOfClients = App.getInstance().getCompany().getClientList().getClients();
         //listOfClients = App.getInstance().getCompany().getTestStore().getClientsThatHaveAtLeastOneTestValidated();
-
+        List<String> names = new ArrayList<>();
+        List<Long> tins = new ArrayList<>();
+        for (Client clts:listOfClients) {
+            names.add(clts.getName());
+            tins.add(clts.getTin());
+        }
         //set up the columns
         collumNameClient.setCellValueFactory(new PropertyValueFactory<>("name"));
         collumTinNumber.setCellValueFactory(new PropertyValueFactory<>("tin"));
         //load data
         tableView.setItems(getClient());
 
+        collumNameClient.setSortType(SelectionSort.selectionSort(names,listOfClients,1));
+        collumTinNumber.setSortType(SelectionSort.selectionSort(tins,listOfClients));
     }
 
     /**
@@ -76,28 +85,22 @@ public class ShowListOfClientsController implements Initializable {
         ObservableList<Client> clients = FXCollections.observableArrayList();
         clients.addAll(listOfClients);
         return clients;
-        /*collumNameClient.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        collumTinNumber.setCellValueFactory(new PropertyValueFactory<>("tin"));
-
-        tableView.setItems(getClient());
-        tableView.getColumns().addAll(collumNameClient,collumTinNumber);
-        vBox.getChildren().addAll(tableView);*/
     }
 
-    @FXML
-    void showTestsFromSelectedClient(ActionEvent event, Client client) {
 
-    }
 
     @FXML
     void clickShowTests(ActionEvent event) throws IOException {
         Client client = tableView.getSelectionModel().getSelectedItem();
-        Stage stage1 = loadViewTestsUi(client);
-        if (stage1 == null) {
-            return;
+        if(client==null){
+            Utils.createAlert(Alert.AlertType.ERROR, "Erro", "You must select a client");
+        }else {
+            Stage stage1 = loadViewTestsUi(client);
+            if (stage1 == null) {
+                return;
+            }
+            stage1.showAndWait();
         }
-        stage1.showAndWait();
     }
 
     private Stage loadViewTestsUi(Client client) {
@@ -119,8 +122,7 @@ public class ShowListOfClientsController implements Initializable {
 
             return novoViewTestsStage;
         } catch (IOException ex) {
-            Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            System.out.println(ex.getMessage());
+            Utils.createAlert(Alert.AlertType.ERROR, "Error", ex.getMessage());
             return null;
         }
     }

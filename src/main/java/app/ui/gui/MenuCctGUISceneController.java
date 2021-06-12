@@ -56,7 +56,7 @@ public class MenuCctGUISceneController implements Initializable {
 
             return novoViewTestsStage;
         } catch (IOException ex) {
-            Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
             System.out.println(ex.getMessage());
             return null;
         }

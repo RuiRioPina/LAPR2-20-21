@@ -3,26 +3,22 @@ package app.ui.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
 import app.domain.model.Test;
 import app.ui.gui.utils.Utils;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -100,12 +96,6 @@ public class ShowClientTestsController implements Initializable {
         listOfTestsFromClient = App.getInstance().getCompany().getTestStore().getTestsFromClient(client);
         lblTest.setText(String.format("%s tests", app.getCurrentUserSession().getUserName()));
 
-
-        //Temporario até houver testes validados associados a clientes.
-
-        //listOfTestsFromClient = App.getInstance().getCompany().getTestStore().getTests();
-
-        //set up the columns
         columnnNhsCode.setCellValueFactory(new PropertyValueFactory<>("nhsCode"));
         columnInternalNumber.setCellValueFactory(new PropertyValueFactory<>("internalCode"));
         //load data
@@ -125,18 +115,20 @@ public class ShowClientTestsController implements Initializable {
             novoViewTestsStage.setTitle("Tests");
             novoViewTestsStage.setResizable(false);
             novoViewTestsStage.setScene(scene);
-
             Test test = tableView.getSelectionModel().getSelectedItem();
+            if(test != null) {
 
-            ShowTestDetailsFromTestSelectedController novoViewTestsUI = loader.getController();
-            novoViewTestsUI.associarParentUI(this, test);
+                ShowTestDetailsFromTestSelectedController novoViewTestsUI = loader.getController();
+                novoViewTestsUI.associarParentUI(this, test);
+                return novoViewTestsStage;
+            }
 
-            return novoViewTestsStage;
         } catch (IOException ex) {
-            Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            Utils.createAlert(Alert.AlertType.ERROR, "Error", ex.getMessage());
             System.out.println(ex.getMessage());
             return null;
         }
+        return null;
     }
 
 

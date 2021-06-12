@@ -55,7 +55,7 @@ public class MainMenuGUISceneController implements Initializable {
 	        
 	        return novoLoginStage;
         } catch (IOException ex) {	
-        	Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+        	Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
             return null;
         }
 	}
@@ -85,7 +85,7 @@ public class MainMenuGUISceneController implements Initializable {
 
 			return Stage;
 		} catch (IOException ex) {
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
 			return null;
 		}
 	}
@@ -115,7 +115,7 @@ public class MainMenuGUISceneController implements Initializable {
 	        
 	        return novoClientStage;
 		} catch (IOException ex) {	
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
             return null;
         }
 	}
@@ -221,7 +221,7 @@ public class MainMenuGUISceneController implements Initializable {
 
 			return novoClientStage;
 		} catch (IOException ex) {
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
 			return null;
 		}
 	}
@@ -235,7 +235,7 @@ public class MainMenuGUISceneController implements Initializable {
     private void menuDevTeamAction(ActionEvent event) {
 		String x = "Development Team:\n\t Jo�o Moreira - 1190709@isep.ipp.pt \n\t Jorge Ferreira - 1201564@isep.ipp.pt \n\t Rafael Leite - 1201566@isep.ipp.pt \n"
 				+ "\t Rui Pina - 1201568@isep.ipp.pt \n\t Santiago Azevedo - 1201623@isep.ipp.pt \n";
-        Utils.criarAlerta(Alert.AlertType.INFORMATION, "Acerca",
+        Utils.createAlert(Alert.AlertType.INFORMATION, "Acerca",
                 x);
     }
 }

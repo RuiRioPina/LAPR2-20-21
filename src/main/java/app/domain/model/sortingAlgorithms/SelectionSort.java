@@ -1,4 +1,7 @@
-package app.domain.model;
+package app.domain.model.sortingAlgorithms;
+
+import app.domain.model.Client;
+import javafx.scene.control.TableColumn;
 
 import java.util.Comparator;
 import java.util.List;
@@ -19,10 +22,10 @@ public class SelectionSort implements Comparator<Client> {
      * @param clients the list of clients that will be sorted and where the information to be sorted is.
      * @return sorted list of clients
      */
-    public List<Client> selectionSort(List<Long> arr, List<Client> clients) {
+    public static TableColumn.SortType selectionSort(List<Long> arr, List<Client> clients) {
         List<Client> sortedClients = clients;
         int n = arr.size();
-
+        TableColumn.SortType sortType = null;
         // One by one move boundary of unsorted subarray
         for (int i = 0; i < n - 1; i++) {
             // Find the minimum element in unsorted array
@@ -39,7 +42,7 @@ public class SelectionSort implements Comparator<Client> {
             swap(sortedClients, min_idx, i);
         }
 
-        return sortedClients;
+        return sortType;
     }
 
     /**
@@ -49,26 +52,26 @@ public class SelectionSort implements Comparator<Client> {
      * @param clients the list of clients that will be sorted and where the information to be sorted is.
      * @return sorted list of clients
      */
-    public List<Client> selectionSort(String[] arr, List<Client> clients) {
-        int n = arr.length;
-
+    public static TableColumn.SortType selectionSort(List<String> arr, List<Client> clients, int dummy) {
+        int n = arr.size();
+        TableColumn.SortType sortType = null;
         // One by one move boundary of unsorted subarray
         for (int i = 0; i < n - 1; i++) {
             // Find the minimum element in unsorted array
             int min_idx = i;
             for (int j = i + 1; j < n; j++)
-                if (arr[j].compareTo(arr[min_idx]) < 0)
+                if (arr.get(j).compareTo(arr.get(min_idx)) < 0)
                     min_idx = j;
 
             // Swap the found minimum element with the first
             // element
-            String temp = arr[min_idx];
-            arr[min_idx] = arr[i];
-            arr[i] = temp;
+            String temp = arr.get(min_idx);
+            arr.set(min_idx,arr.get(i));
+            arr.set(i,temp);
             swap(clients, min_idx, i);
         }
 
-        return clients;
+        return sortType;
     }
 
     public static List<Client> swap(List<Client> clients, int indexA, int indexB) {

@@ -21,8 +21,6 @@ public class ShowTestDetailsFromTestSelectedController implements Initializable 
     private List<Parameter> listOfParametersFromTest;
 
 
-
-
     @FXML
     private ComboBox<Parameter> cmbBoxParameters;
 
@@ -53,7 +51,10 @@ public class ShowTestDetailsFromTestSelectedController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        lblParameter.setText("");
+        lblResult.setText("");
+        lblMaxValue.setText("");
+        lblMinValue.setText("");
     }
 
     /**
@@ -88,13 +89,21 @@ public class ShowTestDetailsFromTestSelectedController implements Initializable 
     @FXML
     void selectFromComboBox(ActionEvent event) {
         Parameter parameterSelected = cmbBoxParameters.getSelectionModel().getSelectedItem();
+        String resultString = "";
+        String maxValueString = "";
+        String minValueString = "";
+        if (!parameterSelected.getCode().equals("HDL00")) {
 
-        String resultString = String.format("%s %s", parameterSelected.getTestResult().getResult(), getMetricsFor(parameterSelected.getCode()));
+            resultString = String.format("%s %s", parameterSelected.getTestResult().getResult(), getMetricsFor(parameterSelected.getCode()));
 
-        String maxValueString = String.format("%s %s", parameterSelected.getTestResult().getReferenceValue().getMaxValue(), getMetricsFor(parameterSelected.getCode()));
+            maxValueString = String.format("%s %s", parameterSelected.getTestResult().getReferenceValue().getMaxValue(), getMetricsFor(parameterSelected.getCode()));
 
-        String minValueString = String.format("%s %s", parameterSelected.getTestResult().getReferenceValue().getMinValue(), getMetricsFor(parameterSelected.getCode()));
-
+            minValueString = String.format("%s %s", parameterSelected.getTestResult().getReferenceValue().getMinValue(), getMetricsFor(parameterSelected.getCode()));
+        }else {
+            resultString = String.format("%s %s", parameterSelected.getTestResult().getResult(), getMetricsFor(parameterSelected.getCode()));
+            maxValueString = "Doesn't contain reference value";
+            minValueString = "Doesn't contain reference value";
+        }
 
         lblParameter.setText(parameterSelected.getCode());
         lblResult.setText(resultString);

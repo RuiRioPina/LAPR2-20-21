@@ -104,7 +104,7 @@ public class ViewTestsGUISceneController implements Initializable {
 	        
 	        return novoViewTestDetailsStage;
 		} catch (IOException ex) {	
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
             return null;
         }
 	}

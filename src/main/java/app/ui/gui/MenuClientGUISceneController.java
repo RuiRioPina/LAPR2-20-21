@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import app.controller.App;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +16,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class MenuClientGUISceneController implements Initializable {
 	
@@ -58,7 +56,7 @@ public class MenuClientGUISceneController implements Initializable {
 	        
 	        return novoViewTestsStage;
 		} catch (IOException ex) {	
-			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
             return null;
         }
 	}
