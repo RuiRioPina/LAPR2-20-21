@@ -73,7 +73,7 @@ public class ClientList {
         if (!listOfClients.contains(c)) {
             this.listOfClients.add(c);
         } else {
-            System.out.println("At least one attribute needs to be unique. Please try again");
+            //System.out.println("At least one attribute needs to be unique. Please try again");
         }
     }
 

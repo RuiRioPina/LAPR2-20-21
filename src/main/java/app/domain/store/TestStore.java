@@ -412,5 +412,20 @@ public class TestStore {
         }
     }
 
-
+    /**
+     * Method to validate the imported tests and prevent equals nhsCodes.
+     * @param t - Test.
+     * @return - true if the test is not valid.
+     */
+    public boolean validateImportedTests (Test t){
+        boolean validation = false;
+        List<Test> testList = new ArrayList<>();
+        testList.addAll(this.tests);
+        for (int i = 0; i < testList.size(); i++) {
+            if (testList.get(i).getNhsCode().equals(t.getNhsCode())) {
+                validation = true;
+            }
+        }
+        return validation;
+    }
 }

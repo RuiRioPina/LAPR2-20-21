@@ -98,7 +98,7 @@ public class App {
         List<ParameterCategory> pCovid = new ArrayList<>();
         ParameterCategory p1 = new ParameterCategory("CAT00", "Hemogram");
         ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
-        ParameterCategory p4 = new ParameterCategory("CAT02","Cholestrol");
+        ParameterCategory p4 = new ParameterCategory("CAT02","Cholesterol");
         ParameterCategory P3 = new ParameterCategory("CAT03", "Covid");
         pc.add(p1);
         pc.add(P2);
@@ -170,12 +170,19 @@ public class App {
         this.authFacade.addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
-        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("001LN","LABLondon","London",99999979999L,9999999999L,ttList);
-        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("001MA","ManLAB","Manchester",88888888888L,8888888888L,ttList);
+        ClinicalAnalysisLaboratory cla = new ClinicalAnalysisLaboratory("001LN","LabLondon","London",99999979991L,9999979991L,ttList);
+        ClinicalAnalysisLaboratory cla2 = new ClinicalAnalysisLaboratory("001MA","LabManchester","Manchester",99999979992L,9999979992L,ttList);
+        ClinicalAnalysisLaboratory cla3 = new ClinicalAnalysisLaboratory("001DO","LABDoncaster","Doncaster",99999979993L,9999979993L,ttList);
+        ClinicalAnalysisLaboratory cla4 = new ClinicalAnalysisLaboratory("001LR","LABLeicester","Leicester",99999979994L,9999979994L,ttList);
+        ClinicalAnalysisLaboratory cla5 = new ClinicalAnalysisLaboratory("001SO","LABSouthampton","Southampton",99999979995L,9999979995L,ttList);
+        ClinicalAnalysisLaboratory cla6 = new ClinicalAnalysisLaboratory("001WA","LABWalsall","Walsall",99999979996L,9999979996L,ttList);
         clas.saveClinicalAnalysisLaboratory(cla);
         clas.saveClinicalAnalysisLaboratory(cla2);
+        clas.saveClinicalAnalysisLaboratory(cla3);
+        clas.saveClinicalAnalysisLaboratory(cla4);
+        clas.saveClinicalAnalysisLaboratory(cla5);
+        clas.saveClinicalAnalysisLaboratory(cla6);
         this.company.setCLA(cla2);
-
 
         TestStore ts = this.company.getTestStore();
         Date data = new Date(System.currentTimeMillis());

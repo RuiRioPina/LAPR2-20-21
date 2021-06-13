@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,7 @@ public class ShowImportedTestsController  implements Initializable {
         ObservableList<Test> obsTest;
         obsTest = FXCollections.observableArrayList(importedTests);
         listView.setItems(obsTest);
-        App.getInstance().getCompany().setImportedTests(null);
+        List <Test> newImpTests = new ArrayList<>();
+        App.getInstance().getCompany().setImportedTests(newImpTests);
     }
 }
