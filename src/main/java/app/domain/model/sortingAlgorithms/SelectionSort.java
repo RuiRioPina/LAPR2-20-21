@@ -3,17 +3,13 @@ package app.domain.model.sortingAlgorithms;
 import app.domain.model.Client;
 import javafx.scene.control.TableColumn;
 
-import java.util.Comparator;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class SelectionSort implements Comparator<Client> {
-
-    @Override
-    public int compare(Client client, Client otherClient) {
-        return Long.compare(client.getTin(), otherClient.getTin());
-        //TODO POR OS ALGORITMOS DO LADO DE FORA DO COMPARE E DEPOIS USAR JAVA REFLECTION PARA IR BUSCAR O ALGORITMO A USAR PARA CADA CASO, PELO CONFIGURATION FILE
-
-    }
+public class SelectionSort {
 
     /**
      * Selection sort algorithm to sort the clients by tin
@@ -22,7 +18,7 @@ public class SelectionSort implements Comparator<Client> {
      * @param clients the list of clients that will be sorted and where the information to be sorted is.
      * @return sorted list of clients
      */
-    public static TableColumn.SortType selectionSort(List<Long> arr, List<Client> clients) {
+    public static List<Client> selectionSort(List<Long> arr, List<Client> clients) {
         List<Client> sortedClients = clients;
         int n = arr.size();
         TableColumn.SortType sortType = null;
@@ -37,12 +33,12 @@ public class SelectionSort implements Comparator<Client> {
             // Swap the found minimum element with the first
             // element
             long temp = arr.get(min_idx);
-            arr.set(min_idx,arr.get(i));
-            arr.set(i,temp);
-            swap(sortedClients, min_idx, i);
+            arr.set(min_idx, arr.get(i));
+            arr.set(i, temp);
+            sortedClients=swap(sortedClients, min_idx, i);
         }
 
-        return sortType;
+        return sortedClients;
     }
 
     /**
@@ -52,9 +48,9 @@ public class SelectionSort implements Comparator<Client> {
      * @param clients the list of clients that will be sorted and where the information to be sorted is.
      * @return sorted list of clients
      */
-    public static TableColumn.SortType selectionSort(List<String> arr, List<Client> clients, int dummy) {
+    public static List<Client> selectionSort(List<String> arr, List<Client> clients, int dummy) {
         int n = arr.size();
-        TableColumn.SortType sortType = null;
+        List<Client> sorted = new ArrayList<>();
         // One by one move boundary of unsorted subarray
         for (int i = 0; i < n - 1; i++) {
             // Find the minimum element in unsorted array
@@ -66,12 +62,12 @@ public class SelectionSort implements Comparator<Client> {
             // Swap the found minimum element with the first
             // element
             String temp = arr.get(min_idx);
-            arr.set(min_idx,arr.get(i));
-            arr.set(i,temp);
-            swap(clients, min_idx, i);
+            arr.set(min_idx, arr.get(i));
+            arr.set(i, temp);
+            sorted = swap(clients, min_idx, i);
         }
 
-        return sortType;
+        return sorted;
     }
 
     public static List<Client> swap(List<Client> clients, int indexA, int indexB) {
@@ -83,3 +79,4 @@ public class SelectionSort implements Comparator<Client> {
 
 
 }
+

@@ -58,9 +58,9 @@ public class ShowTestDetailsFromTestSelectedController implements Initializable 
     }
 
     /**
-     * This method will return an ObservableList of Client objects
+     * This method will return an ObservableList of Parameter objects
      *
-     * @return observable list containg client objects
+     * @return observable list containing parameter objects
      */
     public ObservableList<Parameter> getParametersFromTest(Test test) {
         listOfParametersFromTest = App.getInstance().getCompany().getTestStore().getTestByInternalCode(test.getInternalCode()).getParameter();
@@ -82,12 +82,8 @@ public class ShowTestDetailsFromTestSelectedController implements Initializable 
     }
 
 
-    public void btnTestDetails(ActionEvent actionEvent) {
-
-    }
-
     @FXML
-    void selectFromComboBox(ActionEvent event) {
+    private void selectFromComboBox(ActionEvent event) {
         Parameter parameterSelected = cmbBoxParameters.getSelectionModel().getSelectedItem();
         String resultString = "";
         String maxValueString = "";
