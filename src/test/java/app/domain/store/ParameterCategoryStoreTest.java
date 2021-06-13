@@ -97,7 +97,7 @@ public class ParameterCategoryStoreTest {
 		}
 
 		assertNotNull(exception);
-		assertEquals("Name must have 1 to 10 chars.", exception.getMessage());
+		assertEquals("Name must have 1 to 15 chars.", exception.getMessage());
     }
 	
 	@Test
@@ -117,6 +117,6 @@ public class ParameterCategoryStoreTest {
 		}
 
 		assertNotNull(exception);
-		assertEquals("Name must have 1 to 10 chars.", exception.getMessage());
+		assertEquals("Name must have 1 to 15 chars.", exception.getMessage());
     }
 }
