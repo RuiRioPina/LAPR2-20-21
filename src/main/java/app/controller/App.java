@@ -183,21 +183,28 @@ public class App {
 
         TestStore ts = this.company.getTestStore();
         Calendar data = Calendar.getInstance();
-        Calendar data1 = new GregorianCalendar(2021-1900 ,06,11,13,10,5);
-        Calendar data2 = new GregorianCalendar(2021-1900 ,05,12,12,10,5);
+        Calendar data1 = new GregorianCalendar(2021,04,11,13,10,5);
+        Calendar data2 = new GregorianCalendar(2021,03,12,12,10,5);
         
         Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 
         Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data1);
-        testTestarJavaFX.setSamplesCollectionDate(data);
-        testTestarJavaFX.setChemicalAnalysisDate(data);
-        testTestarJavaFX.setDiagnosisDate(data);
-        testTestarJavaFX.setValidationDate(data);
+        testTestarJavaFX.setSamplesCollectionDate(data1);
+        testTestarJavaFX.setChemicalAnalysisDate(data1);
+        testTestarJavaFX.setDiagnosisDate(data1);
+        testTestarJavaFX.setValidationDate(data1);
         testTestarJavaFX.setReport(new Report("Parece um jovem de 15 anos"));
+        Test testTestarJavaFX2 = new Test("111111abcdef", "123412349871", c, tts.getTestTypes().get(0), pc, par, data);
+        testTestarJavaFX2.setSamplesCollectionDate(data);
+        testTestarJavaFX2.setChemicalAnalysisDate(data);
+        testTestarJavaFX2.setDiagnosisDate(data);
+        testTestarJavaFX2.setValidationDate(data);
+        testTestarJavaFX2.setReport(new Report("Parece um adulto de 70 anos"));
         Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data2);
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
         ts.saveTest(testTestarJavaFX);
+        ts.saveTest(testTestarJavaFX2);
 
         Test test = new Test("333333abcdef", "999999999997", c, tts.getTestTypes().get(0), pc, par, data);
         Test test1 = new Test("444444abcdef", "999999999996", c, tts.getTestTypes().get(0), pc, par, data);

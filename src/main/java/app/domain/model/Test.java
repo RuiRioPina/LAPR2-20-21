@@ -141,7 +141,7 @@ public class Test {
      * @return registration date of the test.
      */
     public Calendar getRegistrationDate() {
-        return Calendar.getInstance();
+        return this.registrationDate;
     }
 
     /**

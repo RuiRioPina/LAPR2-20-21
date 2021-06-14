@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 import app.controller.App;
 import app.domain.model.Client;
 import app.domain.model.Test;
+import app.domain.model.TestResult;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,19 +38,19 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 	@FXML
 	private TextField txfDate;
 	@FXML
-	private TableView<Test> tbvParameterValues;
+	private TableView<ParameterTableDetail> tbvParameterValues;
 	@FXML
-	private TableColumn<Test, String> tbcCategory;
+	private TableColumn<ParameterTableDetail, String> tbcCategory;
 	@FXML
-	private TableColumn<Test, Client> tbcParameter;
+	private TableColumn<ParameterTableDetail, String> tbcParameter;
 	@FXML
-	private TableColumn<Test, Date> tbcResult;
+	private TableColumn<ParameterTableDetail, Double> tbcResult;
 	@FXML
-	private TableColumn<Test, Date> tbcMetric;
+	private TableColumn<ParameterTableDetail, String> tbcMetric;
 	@FXML
-	private TableColumn<Test, Date> tbcMinValue;
+	private TableColumn<ParameterTableDetail, Double> tbcMinValue;
 	@FXML
-	private TableColumn<Test, Date> tbcMaxValue;
+	private TableColumn<ParameterTableDetail, Double> tbcMaxValue;
 	@FXML
 	private TextArea txaReport;
 
@@ -67,35 +70,65 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 		txfNhsCode.setText(this.test.getNhsCode());
 		txfTestType.setText(this.test.getTestType().getDescription());
 		txfDate.setText(this.test.getDate());
-//		tbvListTest.setItems(loadData());
-//        tbcCategory.setCellValueFactory(new PropertyValueFactory<Test, String>("parameterCategory"));
-//        tbcClient.setCellValueFactory(new PropertyValueFactory<Test, Client>("nhsCode"));
-//        tbcDate.setCellValueFactory(new PropertyValueFactory<Test, Date>("registrationDate"));
+		tbvParameterValues.setItems(loadData());
+        tbcCategory.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, String>("category"));
+        tbcParameter.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, String>("parameter"));
+        tbcResult.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, Double>("result"));
+        tbcMetric.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, String>("metric"));
+        tbcMinValue.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, Double>("minValue"));
+        tbcMaxValue.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, Double>("maxValue"));
 		txaReport.setText(this.test.getReport().getReport());
 		txfInternalCode.setEditable(false);
 		txfNhsCode.setEditable(false);
 		txfTestType.setEditable(false);
 		txfDate.setEditable(false);
-//        tbcCode.setSortable(false);
-//        tbcClient.setSortable(false);
-//        tbcDate.setSortable(false);
+		tbcCategory.setSortable(false);
+		tbcParameter.setSortable(false);
+		tbcResult.setSortable(false);
+		tbcMetric.setSortable(false);
+		tbcMinValue.setSortable(false);
+		tbcMaxValue.setSortable(false);
 		txaReport.setEditable(false);
 	}
 	
-//	private ObservableList<Test> loadData() {
-//		String email = app.getCurrentUserSession().getUserId().getEmail();
-//		Client client = app.getCompany().getClientList().getClientByEmail(email);
-//		List<Test> tests = app.getCompany().getTestStore().getTestsFromClient(client);
-//		ObservableList<Test> data = FXCollections.observableArrayList();
-//		data.addAll(tests);
-//        data.sort(Comparator.comparing(Test::getRegistrationDate).reversed());
-//
-//        return data;
-//	}
+	private ObservableList<ParameterTableDetail> loadData() {
+		ObservableList<ParameterTableDetail> data = FXCollections.observableArrayList();
+		for(TestResult result : this.test.getTestResult()) {
+			String category = result.getParameter().getPc().get(0).getName();
+			ParameterTableDetail item = new ParameterTableDetail(category, 
+					result.getParameter().getDescription(), 
+					result.getResult(), 
+					result.getReferenceValue().getMetric(), 
+					result.getReferenceValue().getMinValue(), 
+					result.getReferenceValue().getMaxValue());
+			data.add(item);
+		}
+
+        return data;
+	}
 	
 	@FXML
     private void menuExitAction(ActionEvent event) {
         Window window = lblTestView.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+	
+	private class ParameterTableDetail {
+		private String category;
+		private String parameter;
+		private double result;
+		private String metric;
+		private double minValue;
+		private double maxValue;
+		
+		public ParameterTableDetail(String category, String parameter, double result, String metric,
+				double minValue, double maxValue) {
+			this.category = category;
+			this.parameter = parameter;
+			this.result = result;
+			this.metric = metric;
+			this.minValue = minValue;
+			this.maxValue = maxValue;
+		}
+	}
 }

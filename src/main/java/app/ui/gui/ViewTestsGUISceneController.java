@@ -3,17 +3,14 @@ package app.ui.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
 import app.domain.model.Test;
-import app.domain.store.ClientList;
 import app.ui.gui.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,7 +44,7 @@ public class ViewTestsGUISceneController implements Initializable {
 	@FXML
 	private TableColumn<Test, Client> tbcClient;
 	@FXML
-	private TableColumn<Test, Date> tbcDate;
+	private TableColumn<Test, Calendar> tbcDate;
 	
 	public ViewTestsGUISceneController() {
 		this.app = App.getInstance();
@@ -59,19 +56,19 @@ public class ViewTestsGUISceneController implements Initializable {
         tbvListTest.setItems(loadData());
         tbcCode.setCellValueFactory(new PropertyValueFactory<Test, String>("internalCode"));
         tbcClient.setCellValueFactory(new PropertyValueFactory<Test, Client>("nhsCode"));
-        tbcDate.setCellValueFactory(new PropertyValueFactory<Test, Date>("registrationDate"));
+        tbcDate.setCellValueFactory(new PropertyValueFactory<Test, Calendar>("registrationDate"));
         tbcDate.setCellFactory(column -> {
-            TableCell<Test, Date> cell = new TableCell<Test, Date>() {
+            TableCell<Test, Calendar> cell = new TableCell<Test, Calendar>() {
                 private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
 
                 @Override
-                protected void updateItem(Date item, boolean empty) {
+                protected void updateItem(Calendar item, boolean empty) {
                     super.updateItem(item, empty);
                     if(empty) {
                         setText(null);
                     }
                     else {
-                        setText(format.format(item));
+                        setText(format.format(item.getTime()));
                     }
                 }
             };
@@ -113,7 +110,7 @@ public class ViewTestsGUISceneController implements Initializable {
 	private ObservableList<Test> loadData() {
 		String email = app.getCurrentUserSession().getUserId().getEmail();
 		Client client = app.getCompany().getClientList().getClientByEmail(email);
-		List<Test> tests = app.getCompany().getTestStore().getTestsFromClient(client);
+		List<Test> tests = app.getCompany().getTestStore().getValidatedTestsFromClient(client);
 		ObservableList<Test> data = FXCollections.observableArrayList();
 		data.addAll(tests);
         data.sort(Comparator.comparing(Test::getRegistrationDate).reversed());

@@ -35,6 +35,15 @@ public class TestResult {
     public ReferenceValue getReferenceValue() {
         return referenceValue;
     }
+    
+    /**
+     * Getter for the parameter object
+     * @return the parameter of the test result
+     */
+
+    public Parameter getParameter() {
+        return this.parameter;
+    }
 
     /**
      * Method toString overwritten to expose information about the test result to the user.

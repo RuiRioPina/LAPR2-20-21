@@ -239,6 +239,15 @@ public class TestStore {
         return testListFromTargetClient;
     }
 
+    public List<Test> getValidatedTestsFromClient(Client client) {
+        List<Test> testListFromTargetClient = new ArrayList<>();
+        for (Test test : tests) {
+            if (test.getClient().equals(client) && isValidatedTest(test)) {
+                testListFromTargetClient.add(test);
+            }
+        }
+        return testListFromTargetClient;
+    }
 
 
     public List<Client> getClientsThatHaveAtLeastOneTestValidated() {
@@ -393,6 +402,16 @@ public class TestStore {
         return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() == null;
     }
 
+    /**
+     * Method used to check if a test is validated. Checks if the
+     * registrationDate, the sampleCollectionDate, the chemicalAnalysisDate, the diagnosisDate and validationDate aren't null.
+     *
+     * @param t- Test Object to be checked
+     * @return - boolean value saying if the Object is ready to be used or not.
+     */
+    private boolean isValidatedTest(Test t) {
+        return t.getRegistrationDate() != null && t.getSamplesCollectionDate() != null && t.getChemicalAnalysisDate() != null && t.getDiagnosisDate() != null && t.getValidationDate() != null;
+    }
 
     /**
      * Method used to change the validationDate of a List of Test Objects.

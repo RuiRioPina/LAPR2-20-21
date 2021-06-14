@@ -51,6 +51,15 @@ public class ReferenceValue {
     }
 
     /**
+     * Getter for the metric of a given test result
+     * @return the metric of the test result
+     */
+
+    public String getMetric() {
+        return this.metric;
+    }
+    
+    /**
      * Method toString overwritten in order to be able to view the relevant information in regards to the reference value
      * @return String containing the information about the reference value.
      */
