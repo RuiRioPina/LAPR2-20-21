@@ -25,7 +25,8 @@ public class ImportTests{
         this.path = path;
         this.app = App.getInstance();
         File arquivoCSV = new File(this.path);
-
+        int j = 1;
+        int a = App.getInstance().getCompany().getTestCode();
         String lines;
         Scanner leitor2 = null;
         try {
@@ -41,9 +42,8 @@ public class ImportTests{
 
         while (leitor2.hasNextLine()) {
             lines = leitor2.nextLine();
-
+            j++;
             String[] text = lines.split(";");
-            String internalCode = text[0];
             String nhsCode = text[1];
             String labId = text[2];
             String ccn = text[3];
@@ -88,7 +88,7 @@ public class ImportTests{
                     if (catList.get(i).getName().equals(bcat1)) {
                         catSelected.add(catList.get(i));
                     }
-                    if (catList.get(i).getName().equals("Cholestrol")) {
+                    if (catList.get(i).getName().equals(bcat2)) {
                         catSelected.add(catList.get(i));
                     }
                 }
@@ -169,7 +169,8 @@ public class ImportTests{
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            String intCode = String.format("%012d", Integer.parseInt(internalCode));
+            a++;
+            String intCode = String.format("%012d", a);
 
             Test t = importTestsController.createTest(nhsCode,intCode, cl,tt,catSelected,parSelected,dat1);
             t.setSamplesCollectionDate(dat1);
@@ -187,14 +188,15 @@ public class ImportTests{
             boolean val2 = email.contains("#");
             boolean val3 = email.contains("@");
 
-            if (t.getLabID() != null && !val && !val1 && !val2 && val3){
+            if (t.getLabID() != null && !val && !val1 && !val2 && val3 && !importTestsController.validateTest(t)) {
                 importTestsController.saveClient(cl);
                 importTestsController.saveTest(t);
                 this.app.getCompany().getImportedTests().add(t);
             } else {
-                System.out.println("Test " + internalCode + " wasn't imported.");
+                System.out.println("Test in line " + j + " wasn't imported.");
             }
         }
+        App.getInstance().getCompany().setTestCode(a);
         leitor2.close();
     }
     }

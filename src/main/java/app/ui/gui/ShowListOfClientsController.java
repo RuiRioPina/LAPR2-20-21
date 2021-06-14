@@ -72,8 +72,6 @@ public class ShowListOfClientsController implements Initializable {
         //load data
         tableView.setItems(getClient());
 
-        collumNameClient.setSortType(SelectionSort.selectionSort(names,listOfClients,1));
-        collumTinNumber.setSortType(SelectionSort.selectionSort(tins,listOfClients));
     }
 
     /**
@@ -90,7 +88,7 @@ public class ShowListOfClientsController implements Initializable {
 
 
     @FXML
-    void clickShowTests(ActionEvent event) throws IOException {
+    private void clickShowTests(ActionEvent event) throws IOException {
         Client client = tableView.getSelectionModel().getSelectedItem();
         if(client==null){
             Utils.createAlert(Alert.AlertType.ERROR, "Erro", "You must select a client");
@@ -126,19 +124,6 @@ public class ShowListOfClientsController implements Initializable {
             return null;
         }
     }
-
-
-
-
-
-    public void sendClientToOtherScene(Client client) {
-        this.client = client;
-    }
-
-    public Client getClientSelected() {
-        return client;
-    }
-
 
     public void associarParentUI(MenuCctGUISceneController menuCctGUISceneController) {
         this.menuCctUI = menuCctGUISceneController;

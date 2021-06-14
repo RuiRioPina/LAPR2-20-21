@@ -6,9 +6,6 @@ import java.util.List;
 
 public class InsertionSort {
 
-    private InsertionSort(){
-
-    }
 
     public static List<Client> insertionSortArrayList(List<Client> clients, int dummy) {
         List<Client> sortedClients = clients;

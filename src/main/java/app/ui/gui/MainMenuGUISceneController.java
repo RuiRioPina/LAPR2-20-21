@@ -119,6 +119,35 @@ public class MainMenuGUISceneController implements Initializable {
             return null;
         }
 	}
+	private Stage loadCctUi() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CctGUIScene.fxml"));
+			Parent root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			Stage novoClientStage = new Stage();
+			novoClientStage.initModality(Modality.APPLICATION_MODAL);
+			novoClientStage.setTitle("Clinical Chemistry Technologist");
+			novoClientStage.setMaximized(true);
+			novoClientStage.setScene(scene);
+			novoClientStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					Stage window = (Stage)lblInitial.getScene().getWindow();
+					window.show();
+				}
+			});
+
+			MenuCctGUISceneController cctUi = loader.getController();
+			cctUi.associarParentUI(this);
+
+			return novoClientStage;
+		} catch (IOException ex) {
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			return null;
+		}
+	}
 	
 	private Stage loadAdminUi() {
 //		try {
@@ -196,38 +225,6 @@ public class MainMenuGUISceneController implements Initializable {
 		window.hide();
 	}
 
-	private Stage loadCctUi() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CctGUIScene.fxml"));
-			Parent root = loader.load();
-
-			Scene scene = new Scene(root);
-
-			Stage novoClientStage = new Stage();
-			novoClientStage.initModality(Modality.APPLICATION_MODAL);
-			novoClientStage.setTitle("Clinical Chemistry Technologist");
-			novoClientStage.setMaximized(true);
-			novoClientStage.setScene(scene);
-			novoClientStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-				@Override
-				public void handle(WindowEvent event) {
-					Stage window = (Stage)lblInitial.getScene().getWindow();
-					window.show();
-				}
-			});
-
-			MenuCctGUISceneController cctUi = loader.getController();
-			cctUi.associarParentUI(this);
-
-			return novoClientStage;
-		} catch (IOException ex) {
-			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-			return null;
-		}
-	}
-
-
-	
 	public Label getLabel() {
 		return this.lblInitial;
 	}

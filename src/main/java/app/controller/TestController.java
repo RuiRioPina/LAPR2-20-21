@@ -81,4 +81,8 @@ private Client clt;
         return claStore.getLabs();
     }
 
+    public boolean validateTest (Test t) {
+        TestStore ts = this.company.getTestStore();
+        return ts.validateImportedTests(t);
+    }
 }

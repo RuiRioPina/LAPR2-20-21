@@ -53,7 +53,7 @@ public class ShowClientTestsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+//
     }
 
 
@@ -66,22 +66,11 @@ public class ShowClientTestsController implements Initializable {
         ObservableList<Test> testsFromClient = FXCollections.observableArrayList();
         testsFromClient.addAll(listOfTestsFromClient);
         return testsFromClient;
-        /*collumNameClient.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        collumTinNumber.setCellValueFactory(new PropertyValueFactory<>("tin"));
-
-        tableView.setItems(getClient());
-        tableView.getColumns().addAll(collumNameClient,collumTinNumber);
-        vBox.getChildren().addAll(tableView);*/
-    }
-
-    public void sendTestToOtherScene(Test testSelected) {
-        this.testSelected = testSelected;
     }
 
 
     @FXML
-    void clickTestDetails(ActionEvent event) throws IOException {
+    private void clickTestDetails(ActionEvent event) throws IOException {
         Stage stage1 = loadViewTestsUi();
         if (stage1 == null) {
             return;
@@ -131,8 +120,4 @@ public class ShowClientTestsController implements Initializable {
         return null;
     }
 
-
-    public void btnTestDetails(ActionEvent actionEvent) {
-
-    }
 }
