@@ -4,6 +4,7 @@ import app.domain.model.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class ReportStoreTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 

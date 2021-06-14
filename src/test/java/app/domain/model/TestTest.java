@@ -8,6 +8,7 @@ import app.domain.store.TestTypeStore;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class TestTest {
         parameters.add(new Parameter("HE011", "HB", "Haemoglobin", pc));
         pc.add(p1);
         pc.add(P2);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
         tts.saveTestType(new TestType("BTT10", "Blood Test", "Venipuncture", pc));
         app.domain.model.Test test = new app.domain.model.Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, parameters, data);
         String actual = test.getNhsCode();
@@ -48,7 +49,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -84,7 +85,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -119,7 +120,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -155,7 +156,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -190,7 +191,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -225,7 +226,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -260,7 +261,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -295,7 +296,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -330,7 +331,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -352,7 +353,47 @@ public class TestTest {
         TestStore ts = new TestStore();
         app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
         assertNull(t.getSamplesCollectionDate());
-        Date d1 = new Date();
+        Calendar d1 = new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        };
         t.setSamplesCollectionDate(d1);
         assertEquals(d1,t.getSamplesCollectionDate());
     }
@@ -367,7 +408,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -389,7 +430,47 @@ public class TestTest {
         TestStore ts = new TestStore();
         app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
         assertNull(t.getDiagnosisDate());
-        Date d1 = new Date();
+        Calendar d1 = new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        };
         t.setDiagnosisDate(d1);
         assertEquals(d1,t.getDiagnosisDate());
     }
@@ -405,7 +486,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -427,7 +508,47 @@ public class TestTest {
         TestStore ts = new TestStore();
         app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
         assertNull(t.getValidationDate());
-        Date d1 = new Date();
+        Calendar d1 = new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        };
         t.setValidationDate(d1);
         assertEquals(d1,t.getValidationDate());
     }
@@ -443,7 +564,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -482,7 +603,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -543,7 +664,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -616,7 +737,7 @@ public class TestTest {
 
         ClientList cl = this.company.getClientList();
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
         app.domain.model.Test testSemSample1 = new app.domain.model.Test("123454abcdeg", "932992999998", c, tts.getTestTypes().get(0), pc, part, data);
         String string1 ="Internal code: 932992999998 Registration Date:"+data+" Chemical Analysis Date:"+data+" Diagnosis Date:"+data;
         assertNotEquals(testSemSample1.toString(),string1);
@@ -641,7 +762,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -662,10 +783,10 @@ public class TestTest {
 
         TestStore ts = new TestStore();
         app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
-        Date date = new Date(System.currentTimeMillis());
+        Calendar date = Calendar.getInstance();
         t.setChemicalAnalysisDate(date);
-        Date actual = t.getChemicalAnalysisDate();
-        Date expected = t.getChemicalAnalysisDate();
+        Calendar actual = t.getChemicalAnalysisDate();
+        Calendar expected = t.getChemicalAnalysisDate();
         assertEquals(expected,actual);
     }
     @Test
@@ -679,7 +800,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -711,13 +832,173 @@ public class TestTest {
                 "Parameter(s) = " + par + '\n' +
                 "Registration Date = " + data;;
         assertEquals(t.toString(), expected);
-        t.setSamplesCollectionDate(new Date());
+        t.setSamplesCollectionDate(new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        });
         assertNotEquals(expected,t.toString());
-        t.setChemicalAnalysisDate(new Date());
+        t.setChemicalAnalysisDate(new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        });
         assertNotEquals(expected, t.toString());
-        t.setDiagnosisDate(new Date());
+        t.setDiagnosisDate(new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        });
         assertNotEquals(expected, t.toString());
-        t.setValidationDate(new Date());
+        t.setValidationDate(new Calendar() {
+            @Override
+            protected void computeTime() {
+
+            }
+
+            @Override
+            protected void computeFields() {
+
+            }
+
+            @Override
+            public void add(int field, int amount) {
+
+            }
+
+            @Override
+            public void roll(int field, boolean up) {
+
+            }
+
+            @Override
+            public int getMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getMaximum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getGreatestMinimum(int field) {
+                return 0;
+            }
+
+            @Override
+            public int getLeastMaximum(int field) {
+                return 0;
+            }
+        });
         assertEquals(expected,t.toString());
         Sample s1 = new Sample("33333333333");
         List <Sample> s = new ArrayList<>();
@@ -737,7 +1018,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 
@@ -772,7 +1053,7 @@ public class TestTest {
 
         List<ParameterCategory> p = new ArrayList<>();
         p.add(P3);
-        Date data = new Date(System.currentTimeMillis());
+        Calendar data = Calendar.getInstance();
 
         List<TestType> tt = new ArrayList<>();
 

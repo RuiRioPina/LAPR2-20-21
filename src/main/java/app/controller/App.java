@@ -13,10 +13,7 @@ import javafx.stage.WindowEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -185,10 +182,9 @@ public class App {
         this.company.setCLA(cla2);
 
         TestStore ts = this.company.getTestStore();
-        Date data = new Date(System.currentTimeMillis());
-        Date data1 = new Date(2021-1900, 06, 11, 13, 10, 5);
-        Date data2 = new Date(2021-1900, 05, 12, 12, 10, 5);
-        
+        Calendar data = Calendar.getInstance();
+        Calendar data1 = new GregorianCalendar(2021-1900 ,06,11,13,10,5);
+        Calendar data2 = new GregorianCalendar(2021-1900 ,05,12,12,10,5);
         
         Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 

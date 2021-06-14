@@ -20,12 +20,12 @@ public class Test {
     private final TestType testType;
     private final String sampleCollectionMethod;
     private List<Parameter> parameter;
-    private final Date registrationDate;
+    private final Calendar registrationDate;
     private List<Sample> samples;
-    private Date samplesCollectionDate;
-    private Date chemicalAnalysisDate;
-    private Date diagnosisDate;
-    private Date validationDate;
+    private Calendar samplesCollectionDate;
+    private Calendar chemicalAnalysisDate;
+    private Calendar diagnosisDate;
+    private Calendar validationDate;
     private Report report;
     private final ResultOfTestStore resultOfTestStore = new ResultOfTestStore();
     private String labID;
@@ -33,8 +33,7 @@ public class Test {
 
     /**
      * Constructor for the test.
-     *
-     * @param nhsCode           - NHS code of the test.
+     *  @param nhsCode           - NHS code of the test.
      * @param internalCode      - Internal code of the test.
      * @param client            - Client that performs the test.
      * @param testType          - Test Type of the test.
@@ -43,7 +42,7 @@ public class Test {
      * @param registrationDate  - Test registration date.
      */
     public Test(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
-            parameterCategory, List<Parameter> parameter, Date registrationDate) {
+            parameterCategory, List<Parameter> parameter, Calendar registrationDate) {
         this.nhsCode = nhsCode;
         this.internalCode = internalCode;
         this.client = client;
@@ -51,11 +50,11 @@ public class Test {
         this.sampleCollectionMethod = this.testType.getCollectingMethod();
         this.parameterCategory = Collections.unmodifiableList(parameterCategory);
         this.parameter = Collections.unmodifiableList(parameter);
-        this.registrationDate = new Date(registrationDate.getTime());
+        this.registrationDate = Calendar.getInstance();;
         if(getTestResult()==null) {
             this.chemicalAnalysisDate = null;
         }else {
-            this.chemicalAnalysisDate = new Date(System.currentTimeMillis());
+            this.chemicalAnalysisDate = Calendar.getInstance();
         }
         this.diagnosisDate = null;
         this.validationDate = null;
@@ -141,8 +140,8 @@ public class Test {
      *
      * @return registration date of the test.
      */
-    public Date getRegistrationDate() {
-        return new Date(registrationDate.getTime());
+    public Calendar getRegistrationDate() {
+        return Calendar.getInstance();
     }
 
     /**
@@ -150,11 +149,11 @@ public class Test {
      *
      * @return sample collection date of the test.
      */
-    public Date getSamplesCollectionDate() {
+    public Calendar getSamplesCollectionDate() {
         if (samplesCollectionDate == null){
             return null;
         }
-        else return new Date(samplesCollectionDate.getTime());
+        else return samplesCollectionDate;
     }
 
     /**
@@ -162,11 +161,11 @@ public class Test {
      *
      * @return chemical analysis date of the test.
      */
-    public Date getChemicalAnalysisDate() {
+    public Calendar getChemicalAnalysisDate() {
         if (chemicalAnalysisDate == null){
             return null;
         }
-        else return new Date(chemicalAnalysisDate.getTime());
+        else return chemicalAnalysisDate;
     }
 
     /**
@@ -182,11 +181,11 @@ public class Test {
      *
      * @return diagnosis date of the test.
      */
-    public Date getDiagnosisDate() {
+    public Calendar getDiagnosisDate() {
         if (diagnosisDate == null){
             return null;
         }
-        else return new Date(diagnosisDate.getTime());
+        else return diagnosisDate;
     }
 
     /**
@@ -194,11 +193,11 @@ public class Test {
      *
      * @return validation date of the test.
      */
-    public Date getValidationDate() {
+    public Calendar getValidationDate() {
         if (validationDate == null){
             return null;
         }
-        else return new Date(validationDate.getTime());
+        else return validationDate;
     }
 
     /**
@@ -241,7 +240,7 @@ public class Test {
      * @param date date to be changed to.
      */
 
-    public void setSamplesCollectionDate(Date date) {
+    public void setSamplesCollectionDate(Calendar date) {
         this.samplesCollectionDate = date;
     }
 
@@ -252,25 +251,25 @@ public class Test {
 
     /**
      * Setter for the ChemicalAnalysisDate.
-     * @param newDate- new Date object to replace the old value.
+     * @param newDate - new Date object to replace the old value.
      */
-    public void setChemicalAnalysisDate(Date newDate){
+    public void setChemicalAnalysisDate(Calendar newDate){
         this.chemicalAnalysisDate=newDate;
     }
 
     /**
      * Setter for the diagnosisDate.
-     * @param newDate- new Date object to replace the old value.
+     * @param newDate - new Date object to replace the old value.
      */
-    public void setDiagnosisDate(Date newDate){
+    public void setDiagnosisDate(Calendar newDate){
         this.diagnosisDate=newDate;
     }
 
     /**
      * Setter for the validationDate.
-     * @param newDate- new Date object to replace the old value.
+     * @param newDate - new Date object to replace the old value.
      */
-    public void setValidationDate(Date newDate){
+    public void setValidationDate(Calendar newDate){
         this.validationDate=newDate;
     }
 
@@ -364,8 +363,8 @@ public class Test {
      * @throws InterruptedException if the thread that is sleeping is interrupted.
      */
     public void sendTestCompletedNotification()throws InterruptedException, IOException {
-         EmailNotificationSender ens= new EmailNotificationSender(this.client);
-         ens.sendTestCompletedNotification();
+        EmailNotificationSender ens= new EmailNotificationSender(this.client);
+        ens.sendTestCompletedNotification();
     }
 
 

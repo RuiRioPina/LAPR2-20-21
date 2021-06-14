@@ -10,10 +10,7 @@ import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ImportTests{
     private final TestController importTestsController;
@@ -156,27 +153,35 @@ public class ImportTests{
                 }
             }
 
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yy HH:mm");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy HH:mm");
             Date dat1 = null;
             Date dat2 = null;
             Date dat3 = null;
             Date dat4 = null;
+            Calendar calendar1 = Calendar.getInstance();
+            Calendar calendar2 = Calendar.getInstance();
+            Calendar calendar3 = Calendar.getInstance();
+            Calendar calendar4 = Calendar.getInstance();
             try {
                 dat1 = formatter.parse(rDateHour);
                 dat2 = formatter.parse(tChemicalDateHour);
                 dat3 = formatter.parse(tDoctorDateHour);
                 dat4 = formatter.parse(tValidationDateHour);
+                calendar1.setTime(dat1);
+                calendar2.setTime(dat2);
+                calendar3.setTime(dat3);
+                calendar4.setTime(dat4);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             a++;
             String intCode = String.format("%012d", a);
 
-            Test t = importTestsController.createTest(nhsCode,intCode, cl,tt,catSelected,parSelected,dat1);
-            t.setSamplesCollectionDate(dat1);
-            t.setChemicalAnalysisDate(dat2);
-            t.setDiagnosisDate(dat3);
-            t.setValidationDate(dat4);
+            Test t = importTestsController.createTest(nhsCode,intCode, cl,tt,catSelected,parSelected,calendar1);
+            t.setSamplesCollectionDate(calendar1);
+            t.setChemicalAnalysisDate(calendar2);
+            t.setDiagnosisDate(calendar3);
+            t.setValidationDate(calendar4);
 
             for (ClinicalAnalysisLaboratory clinicalAnalysisLaboratory : claList) {
                 if (clinicalAnalysisLaboratory.getLaboratoryID().equals(labId)) {

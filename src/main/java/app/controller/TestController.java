@@ -3,6 +3,7 @@ package app.controller;
 import app.domain.model.*;
 import app.domain.store.*;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +51,7 @@ private Client clt;
     }
 
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
-            parameterCategory, List<Parameter> parameter,Date registrationDate) throws IllegalArgumentException{
+            parameterCategory, List<Parameter> parameter, Calendar registrationDate) throws IllegalArgumentException{
 
         TestStore tStore = this.company.getTestStore();
         Test t = tStore.createTest(nhsCode, internalCode, client, testType,parameterCategory, parameter, registrationDate);

@@ -4,7 +4,7 @@ import app.controller.App;
 import app.domain.model.*;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class TestStore {
@@ -171,7 +171,7 @@ public class TestStore {
      * @return Object of Test class.
      */
     public Test createTest(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
-            parameterCategory, List<Parameter> parameter, Date registrationDate) {
+            parameterCategory, List<Parameter> parameter, Calendar registrationDate) {
 
         return new Test(nhsCode, internalCode, client, testType,
                 parameterCategory, parameter, registrationDate);
@@ -316,7 +316,7 @@ public class TestStore {
 
     private void addSample(Test t, Sample s) {
         t.getSamples().add(s);
-        t.setSamplesCollectionDate(new Date(System.currentTimeMillis()));
+        t.setSamplesCollectionDate(Calendar.getInstance());
     }
 
     /**
@@ -396,11 +396,10 @@ public class TestStore {
 
     /**
      * Method used to change the validationDate of a List of Test Objects.
-     *
-     * @param lTests-  List to be changed.
-     * @param newDate- Date used for the validationDate.
+     *  @param lTests -  List to be changed.
+     * @param newDate - Date used for the validationDate.
      */
-    public void validateTests(List<Test> lTests, Date newDate) {
+    public void validateTests(List<Test> lTests, Calendar newDate) {
         for (int i = 0; i < lTests.size(); i++) {
             lTests.get(i).setValidationDate(newDate);
             try {

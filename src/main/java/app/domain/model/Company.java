@@ -35,6 +35,7 @@ public class Company {
     private final ReportStore reportStore;
     private ClinicalAnalysisLaboratory cla;
     private TestStore testStore;
+    private LabCoordinatorStore labCoorStore;
     // Used to pass the imported tests beetween classes.
     private List <Test> importedTests = new ArrayList<>();
 
@@ -60,6 +61,7 @@ public class Company {
         this.reportStore = new ReportStore();
         this.cla = null;
         this.testStore = new TestStore();
+        this.labCoorStore = new LabCoordinatorStore();
     }
     public List<Test> getImportedTests(){
         return this.importedTests;
@@ -121,6 +123,10 @@ public class Company {
 
     public TestStore getTestStore() {
         return this.testStore;
+    }
+
+    public LabCoordinatorStore getLabCoorStore() {
+        return this.labCoorStore;
     }
 
     public ReportStore getReportStore() {
