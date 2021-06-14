@@ -4,7 +4,6 @@ import app.domain.model.Company;
 import app.domain.model.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -79,7 +78,7 @@ public class ValidateWorkController {
      * @param selectedTestString
      */
     public void validateTests(String selectedTestString){
-        Calendar currentDate= Calendar.getInstance();
+        Date currentDate= new Date(System.currentTimeMillis());
         List<Test> lTestsToBeValidated=getTestsToBeValidated(selectedTestString);
         App.getInstance().getCompany().getTestStore().validateTests(lTestsToBeValidated,currentDate);
     }

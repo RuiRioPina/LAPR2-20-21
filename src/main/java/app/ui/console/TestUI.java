@@ -5,7 +5,10 @@ import app.controller.TestController;
 import app.domain.model.*;
 import app.ui.console.utils.Utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class TestUI implements Runnable {
@@ -78,7 +81,7 @@ public class TestUI implements Runnable {
         String testCode = generateTestCode();
         Test t;
         try {
-            Calendar rDate = Calendar.getInstance();
+            Date rDate = new Date(System.currentTimeMillis());
             t = this.testController.createTest(nhsCode, testCode, client, tt, lcs, parameters, rDate);
             System.out.println(t);
             Utils.confirm("Confirm this TEST? (y/n)");

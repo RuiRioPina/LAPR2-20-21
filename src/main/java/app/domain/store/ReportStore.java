@@ -4,7 +4,6 @@ import app.domain.model.Report;
 import app.domain.model.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
 
@@ -56,7 +55,7 @@ public class ReportStore {
 
     public void addReport(Test t,Report r){
         t.setReport(r);
-        t.setDiagnosisDate(Calendar.getInstance());
+        t.setDiagnosisDate(new Date(System.currentTimeMillis()));
     }
 
     /**

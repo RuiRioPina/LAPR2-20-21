@@ -3,7 +3,6 @@ package app.controller;
 import app.domain.model.*;
 import app.domain.store.TestStore;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -106,7 +105,7 @@ public class RecordTestResultsController {
      */
 
     public void setChemicalAnalysis(Test test) {
-        test.setChemicalAnalysisDate(Calendar.getInstance());
+        test.setChemicalAnalysisDate(new Date(System.currentTimeMillis()));
     }
 
     /**

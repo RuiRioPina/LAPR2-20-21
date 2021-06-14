@@ -20,12 +20,12 @@ public class Test {
     private final TestType testType;
     private final String sampleCollectionMethod;
     private List<Parameter> parameter;
-    private final Calendar registrationDate;
+    private final Date registrationDate;
     private List<Sample> samples;
-    private Calendar samplesCollectionDate;
-    private Calendar chemicalAnalysisDate;
-    private Calendar diagnosisDate;
-    private Calendar validationDate;
+    private Date samplesCollectionDate;
+    private Date chemicalAnalysisDate;
+    private Date diagnosisDate;
+    private Date validationDate;
     private Report report;
     private final ResultOfTestStore resultOfTestStore = new ResultOfTestStore();
     private String labID;
@@ -33,7 +33,8 @@ public class Test {
 
     /**
      * Constructor for the test.
-     *  @param nhsCode           - NHS code of the test.
+     *
+     * @param nhsCode           - NHS code of the test.
      * @param internalCode      - Internal code of the test.
      * @param client            - Client that performs the test.
      * @param testType          - Test Type of the test.
@@ -42,7 +43,7 @@ public class Test {
      * @param registrationDate  - Test registration date.
      */
     public Test(String nhsCode, String internalCode, Client client, TestType testType, List<ParameterCategory>
-            parameterCategory, List<Parameter> parameter, Calendar registrationDate) {
+            parameterCategory, List<Parameter> parameter, Date registrationDate) {
         this.nhsCode = nhsCode;
         this.internalCode = internalCode;
         this.client = client;
@@ -50,11 +51,11 @@ public class Test {
         this.sampleCollectionMethod = this.testType.getCollectingMethod();
         this.parameterCategory = Collections.unmodifiableList(parameterCategory);
         this.parameter = Collections.unmodifiableList(parameter);
-        this.registrationDate = Calendar.getInstance();;
+        this.registrationDate = new Date(registrationDate.getTime());
         if(getTestResult()==null) {
             this.chemicalAnalysisDate = null;
         }else {
-            this.chemicalAnalysisDate = Calendar.getInstance();
+            this.chemicalAnalysisDate = new Date(System.currentTimeMillis());
         }
         this.diagnosisDate = null;
         this.validationDate = null;
@@ -140,8 +141,8 @@ public class Test {
      *
      * @return registration date of the test.
      */
-    public Calendar getRegistrationDate() {
-        return Calendar.getInstance();
+    public Date getRegistrationDate() {
+        return new Date(registrationDate.getTime());
     }
 
     /**
@@ -153,7 +154,7 @@ public class Test {
         if (samplesCollectionDate == null){
             return null;
         }
-            else return samplesCollectionDate.getTime();
+        else return new Date(samplesCollectionDate.getTime());
     }
 
     /**
@@ -161,11 +162,11 @@ public class Test {
      *
      * @return chemical analysis date of the test.
      */
-    public Calendar getChemicalAnalysisDate() {
+    public Date getChemicalAnalysisDate() {
         if (chemicalAnalysisDate == null){
             return null;
         }
-        else return chemicalAnalysisDate;
+        else return new Date(chemicalAnalysisDate.getTime());
     }
 
     /**
@@ -181,11 +182,11 @@ public class Test {
      *
      * @return diagnosis date of the test.
      */
-    public Calendar getDiagnosisDate() {
+    public Date getDiagnosisDate() {
         if (diagnosisDate == null){
             return null;
         }
-        else return diagnosisDate;
+        else return new Date(diagnosisDate.getTime());
     }
 
     /**
@@ -197,7 +198,7 @@ public class Test {
         if (validationDate == null){
             return null;
         }
-        else return validationDate.getTime();
+        else return new Date(validationDate.getTime());
     }
 
     /**
@@ -240,7 +241,7 @@ public class Test {
      * @param date date to be changed to.
      */
 
-    public void setSamplesCollectionDate(Calendar date) {
+    public void setSamplesCollectionDate(Date date) {
         this.samplesCollectionDate = date;
     }
 
@@ -251,25 +252,25 @@ public class Test {
 
     /**
      * Setter for the ChemicalAnalysisDate.
-     * @param newDate - new Date object to replace the old value.
+     * @param newDate- new Date object to replace the old value.
      */
-    public void setChemicalAnalysisDate(Calendar newDate){
+    public void setChemicalAnalysisDate(Date newDate){
         this.chemicalAnalysisDate=newDate;
     }
 
     /**
      * Setter for the diagnosisDate.
-     * @param newDate - new Date object to replace the old value.
+     * @param newDate- new Date object to replace the old value.
      */
-    public void setDiagnosisDate(Calendar newDate){
+    public void setDiagnosisDate(Date newDate){
         this.diagnosisDate=newDate;
     }
 
     /**
      * Setter for the validationDate.
-     * @param newDate - new Date object to replace the old value.
+     * @param newDate- new Date object to replace the old value.
      */
-    public void setValidationDate(Calendar newDate){
+    public void setValidationDate(Date newDate){
         this.validationDate=newDate;
     }
 

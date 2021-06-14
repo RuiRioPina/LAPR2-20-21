@@ -8,7 +8,6 @@ import app.domain.store.TestTypeStore;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +64,7 @@ public class TestParamTest {
         cl.saveClient(c);
 
         TestStore ts = this.company.getTestStore();
-        Calendar data = Calendar.getInstance();
+        Date data = new Date(System.currentTimeMillis());
         app.domain.model.Test testSemSample1 = new app.domain.model.Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, par, data);
         TestParam testParam = new TestParam(testSemSample1);
         Parameter actual1 = testParam.findParameterInTestParameter("PLT00");
@@ -126,7 +125,7 @@ public class TestParamTest {
         cl.saveClient(c);
 
         TestStore ts = this.company.getTestStore();
-        Calendar data = Calendar.getInstance();
+        Date data = new Date(System.currentTimeMillis());
 
         app.domain.model.Test testSemSample1 = new app.domain.model.Test("123454abcdef", "932992999999", c, tts.getTestTypes().get(0), pc, part, data);
         TestParam testParam = new TestParam(testSemSample1);
