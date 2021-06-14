@@ -789,76 +789,7 @@ public class TestTest {
         Calendar expected = t.getChemicalAnalysisDate();
         assertEquals(expected,actual);
     }
-//    @Test
-//    public void toString2() {
-//        List<ParameterCategory> pc = new ArrayList<>();
-//        ParameterCategory p1 = new ParameterCategory("CAT00", "Category00");
-//        ParameterCategory P2 = new ParameterCategory("CAT01", "Category01");
-//        ParameterCategory P3 = new ParameterCategory("CAT02", "Category02");
-//        pc.add(p1);
-//        pc.add(P2);
-//
-//        List<ParameterCategory> p = new ArrayList<>();
-//        p.add(P3);
-//        Calendar data = Calendar.getInstance();
-//
-//        List<TestType> tt = new ArrayList<>();
-//
-//        TestType tt1 = new TestType("BLT00", "Blood Test", "Venipuncture", pc);
-//        TestType tt2 = new TestType("CVD00", "Covid-19 Test", "Nasopharyngeal", p);
-//
-//        tt.add(tt2);
 
-//        tt.add(tt1);
-//
-//        List<Parameter> par = new ArrayList<>();
-//        List<ParameterCategory> cat = new ArrayList<>();
-//        cat.add(pc.get(0));
-//        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
-//        Parameter par1= new Parameter("HB000", "HB", "Haemoglobin", cat);
-//        Parameter par2 = new Parameter("WBC00", "WBC", "White Cell Count", cat);
-//        par.add(par1);
-//        par.add(par2);
-
-    //        TestStore ts = new TestStore();
-//        app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
-//        String expected ="TEST" + '\n' +
-//                "NHS Code = " + "abcdefghijkl" + '\n' +
-//                "Internal Code = " + "900000000000" + '\n' +
-//                "Lab ID = " + App.getInstance().getCompany().getCLA().getLaboratoryID() + '\n'+
-//                "Client = " + c.getName() + '\n' +
-//                "Test Type = " + tt1 + '\n' +
-//                "Sample Collection Method = " + tt1.getCollectingMethod() + '\n' +
-//                "Category(ies) = " + pc + '\n' +
-//                "Parameter(s) = " + par + '\n' +
-//                "Registration Date = " + data;;
-//        assertEquals(t.toString(), expected);
-//        t.setSamplesCollectionDate(new Calendar() {
-//            @Override
-//            protected void computeTime() {
-//
-//            }
-//
-//
-//        });
-//
-//        t.setChemicalAnalysisDate(new Calendar() {
-//        assertNotEquals(expected, t.toString());
-//        t.setDiagnosisDate(new Calendar() {
-//
-//        });
-//        assertNotEquals(expected, t.toString());
-//       t.setValidationDate(new Calendar() {
-//
-//        });
-//        assertEquals(expected,t.toString());
-//        Sample s1 = new Sample("33333333333");
-//        List <Sample> s = new ArrayList<>();
-//        s.add(s1);
-//        t.setSamples(s);
-//        assertEquals(expected,t.toString());
-//
-//    }
     @Test
     public void getLabID() {
         List<ParameterCategory> pc = new ArrayList<>();
