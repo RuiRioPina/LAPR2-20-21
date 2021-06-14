@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -120,6 +121,10 @@ public class ViewTestsGUISceneController implements Initializable {
 	
 	public void seeTest(ActionEvent event) {
 		Test t = tbvListTest.getSelectionModel().getSelectedItem();
+		if(t == null) {
+			Utils.createAlert(AlertType.WARNING, "Invalid", "Please select a test.");
+			return;
+		}
 		Stage stage1 = loadViewTestDetailUi(t);
         if(stage1 == null) {
         	return;

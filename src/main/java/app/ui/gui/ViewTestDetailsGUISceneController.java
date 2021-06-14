@@ -1,11 +1,13 @@
 package app.ui.gui;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
+import app.domain.model.ParameterCategory;
 import app.domain.model.Test;
 import app.domain.model.TestResult;
 import javafx.collections.FXCollections;
@@ -69,7 +71,8 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 		txfInternalCode.setText(test.getInternalCode());
 		txfNhsCode.setText(this.test.getNhsCode());
 		txfTestType.setText(this.test.getTestType().getDescription());
-		txfDate.setText(this.test.getDate());
+		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+		txfDate.setText(format.format(this.test.getRegistrationDate().getTime()));
 		tbvParameterValues.setItems(loadData());
         tbcCategory.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, String>("category"));
         tbcParameter.setCellValueFactory(new PropertyValueFactory<ParameterTableDetail, String>("parameter"));
@@ -93,15 +96,19 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 	
 	private ObservableList<ParameterTableDetail> loadData() {
 		ObservableList<ParameterTableDetail> data = FXCollections.observableArrayList();
-		for(TestResult result : this.test.getTestResult()) {
-			String category = result.getParameter().getPc().get(0).getName();
-			ParameterTableDetail item = new ParameterTableDetail(category, 
-					result.getParameter().getDescription(), 
-					result.getResult(), 
-					result.getReferenceValue().getMetric(), 
-					result.getReferenceValue().getMinValue(), 
-					result.getReferenceValue().getMaxValue());
-			data.add(item);
+		for(ParameterCategory pc : this.test.getParameterCategory()) {
+			for(TestResult result : this.test.getTestResult()) {
+				if(result.getParameter().getPc().contains(pc)) {
+					String category = pc.getName();
+					ParameterTableDetail item = new ParameterTableDetail(category, 
+							result.getParameter().getDescription(), 
+							result.getResult(), 
+							result.getReferenceValue().getMetric(), 
+							result.getReferenceValue().getMinValue(), 
+							result.getReferenceValue().getMaxValue());
+					data.add(item);	
+				}
+			}
 		}
 
         return data;
@@ -113,7 +120,7 @@ public class ViewTestDetailsGUISceneController implements Initializable {
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 	
-	private class ParameterTableDetail {
+	public class ParameterTableDetail {
 		private String category;
 		private String parameter;
 		private double result;
@@ -129,6 +136,30 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 			this.metric = metric;
 			this.minValue = minValue;
 			this.maxValue = maxValue;
+		}
+
+		public String getCategory() {
+			return category;
+		}
+
+		public String getParameter() {
+			return parameter;
+		}
+
+		public double getResult() {
+			return result;
+		}
+
+		public String getMetric() {
+			return metric;
+		}
+
+		public double getMinValue() {
+			return minValue;
+		}
+
+		public double getMaxValue() {
+			return maxValue;
 		}
 	}
 }

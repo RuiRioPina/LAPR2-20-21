@@ -188,19 +188,30 @@ public class App {
         
         Test testSemSample1 = new Test("111111abcdef", "999999991999", c, tts.getTestTypes().get(0), pc, par, data);
 
-        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc, par, data1);
+        Test testTestarJavaFX = new Test("111111abcdef", "999999999999", c, tts.getTestTypes().get(0), pc1, par, data1);
         testTestarJavaFX.setSamplesCollectionDate(data1);
         testTestarJavaFX.setChemicalAnalysisDate(data1);
         testTestarJavaFX.setDiagnosisDate(data1);
         testTestarJavaFX.setValidationDate(data1);
         testTestarJavaFX.setReport(new Report("Parece um jovem de 15 anos"));
-        Test testTestarJavaFX2 = new Test("111111abcdef", "123412349871", c, tts.getTestTypes().get(0), pc, par, data);
+        testTestarJavaFX.addTestResult(testTestarJavaFX.getParameter().get(0), 27.5);
+        testTestarJavaFX.addTestResult(testTestarJavaFX.getParameter().get(1), 7.5);
+        testTestarJavaFX.addTestResult(testTestarJavaFX.getParameter().get(2), 30.0);
+        testTestarJavaFX.addTestResult(testTestarJavaFX.getParameter().get(3), 20.0);
+        
+        Test testTestarJavaFX2 = new Test("abcdef912134", "123412349871", c, tts.getTestTypes().get(0), pc1, par, data);
         testTestarJavaFX2.setSamplesCollectionDate(data);
         testTestarJavaFX2.setChemicalAnalysisDate(data);
         testTestarJavaFX2.setDiagnosisDate(data);
         testTestarJavaFX2.setValidationDate(data);
         testTestarJavaFX2.setReport(new Report("Parece um adulto de 70 anos"));
+        testTestarJavaFX2.addTestResult(testTestarJavaFX2.getParameter().get(0), 17.0);
+        testTestarJavaFX2.addTestResult(testTestarJavaFX2.getParameter().get(1), 10.0);
+        testTestarJavaFX2.addTestResult(testTestarJavaFX2.getParameter().get(2), 20.5);
+        testTestarJavaFX2.addTestResult(testTestarJavaFX2.getParameter().get(3), 40.7);
+        
         Test testSemSample2 = new Test("222222abcdef", "999999999998", c, tts.getTestTypes().get(0), pc, par, data2);
+        
         ts.saveTest(testSemSample1);
         ts.saveTest(testSemSample2);
         ts.saveTest(testTestarJavaFX);
