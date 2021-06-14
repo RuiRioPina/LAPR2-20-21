@@ -1,7 +1,6 @@
 package app.ui.gui;
 
 import app.controller.App;
-import app.ui.console.ImportTests;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -86,4 +86,9 @@ private Client clt;
         TestStore ts = this.company.getTestStore();
         return ts.validateImportedTests(t);
     }
+
+    public Parameter getParameterByCode (String p){
+        ParameterStore pStore = this.company.getParameterStore();
+        return pStore.getParameterByCode(p);
+    }
 }

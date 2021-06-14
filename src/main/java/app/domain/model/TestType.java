@@ -14,7 +14,7 @@ public class TestType {
     private final String code;
     private final String description;
     private final String collectingMethod;
-    private final List<ParameterCategory> parameterCategories;
+    private List<ParameterCategory> parameterCategories;
 
     private static final String CODE_DEFAULT = "No code";
     private static final String DESCRIPTION_DEFAULT = "No description";
@@ -135,4 +135,7 @@ public class TestType {
         return null;
     }
 
+    public void setParameterCategories(List<ParameterCategory> parameterCategories) {
+        this.parameterCategories = parameterCategories;
+    }
 }

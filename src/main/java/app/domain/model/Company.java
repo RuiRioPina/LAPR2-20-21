@@ -3,7 +3,6 @@ package app.domain.model;
 import app.controller.App;
 import app.domain.shared.Constants;
 import app.domain.store.*;
-import app.ui.console.ImportTests;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 

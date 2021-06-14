@@ -50,11 +50,11 @@ public class Test {
         this.sampleCollectionMethod = this.testType.getCollectingMethod();
         this.parameterCategory = Collections.unmodifiableList(parameterCategory);
         this.parameter = Collections.unmodifiableList(parameter);
-        this.registrationDate = Calendar.getInstance();;
+        this.registrationDate = registrationDate;
         if(getTestResult()==null) {
             this.chemicalAnalysisDate = null;
         }else {
-            this.chemicalAnalysisDate = Calendar.getInstance();
+            this.chemicalAnalysisDate = null;
         }
         this.diagnosisDate = null;
         this.validationDate = null;
@@ -285,6 +285,19 @@ public class Test {
     @Override
     public String toString() {
         String str = "";
+        Date cDate = null;
+        Date dDate = null;
+        Date vDate = null;
+        Date rDate = registrationDate.getTime();
+        if (chemicalAnalysisDate != null){
+                cDate = chemicalAnalysisDate.getTime();
+        }
+        if (diagnosisDate != null){
+            dDate = diagnosisDate.getTime();
+        }
+        if (validationDate != null){
+            vDate = validationDate.getTime();
+        }
         if (samples != null || samplesCollectionDate != null ||
                 chemicalAnalysisDate != null || diagnosisDate != null || validationDate != null) {
             str = "TEST" + '\n' +
@@ -296,7 +309,20 @@ public class Test {
                     "Sample Collection Method = " + sampleCollectionMethod + '\n' +
                     "Category(ies) = " + parameterCategory + '\n' +
                     "Parameter(s) = " + parameter + '\n' +
-                    "Registration Date = " + registrationDate;
+                    "Registration Date = " + rDate;
+        }
+        if (samples != null || samplesCollectionDate != null ||
+                chemicalAnalysisDate != null || diagnosisDate != null || validationDate != null) {
+            str = "TEST" + '\n' +
+                    "NHS Code = " + nhsCode + '\n' +
+                    "Internal Code = " + internalCode + '\n' +
+                    "Lab ID = " + labID + '\n' +
+                    "Client = " + client.getName() + '\n' +
+                    "Test Type = " + testType + '\n' +
+                    "Sample Collection Method = " + sampleCollectionMethod + '\n' +
+                    "Category(ies) = " + parameterCategory + '\n' +
+                    "Parameter(s) = " + parameter + '\n' +
+                    "Registration Date = " + rDate;
         }
 
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
@@ -309,11 +335,11 @@ public class Test {
                     "Sample Collection Method = " + sampleCollectionMethod + '\n' +
                     "Category(ies) = " + parameterCategory + '\n' +
                     "Parameter(s) = " + parameter + '\n' +
-                    "Registration Date = " + registrationDate;
+                    "Registration Date = " + rDate;
         }
 
         if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate!= null && validationDate==null){
-            str= "Internal code: "+ internalCode +" Registration Date:"+registrationDate+" Chemical Analysis Date:"+chemicalAnalysisDate + " Diagnosis Date:"+diagnosisDate;
+            str= "Internal code: "+ internalCode +" Registration Date:"+rDate+" Chemical Analysis Date:"+cDate + " Diagnosis Date:"+dDate;
         }
 
 
