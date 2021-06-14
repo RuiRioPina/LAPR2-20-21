@@ -71,10 +71,41 @@ public class MenuClientGUISceneController implements Initializable {
         
         stage1.showAndWait();
 	}
-	
+
 	@FXML
     private void menuExitAction(ActionEvent event) {
         Window window = lblNameClient.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+
+	@FXML
+	void menuChangeClientData(ActionEvent event) {
+		Stage stage1 = loadChangeClientData();
+		if(stage1 == null) {
+			return;
+		}
+		stage1.showAndWait();
+	}
+
+	private Stage loadChangeClientData() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UpdateClientDataScene.fxml"));
+			Parent root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			Stage Stage = new Stage();
+			Stage.initModality(Modality.APPLICATION_MODAL);
+			Stage.setTitle("Update Data");
+			Stage.setMaximized(true);
+			Stage.setScene(scene);
+
+			UpdateClientDataController novoView = loader.getController();
+			novoView.associarParentUI(this);
+			return Stage;
+		} catch (IOException ex) {
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			return null;
+		}
+	}
 }

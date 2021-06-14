@@ -36,14 +36,14 @@ public class ImportTests{
 
         assert leitor2 != null;
         String l = leitor2.nextLine();
-        String[] check = l.split(";");
+        String[] header = l.split(";");
         int posTt = 0;
         int posRegDate = 0;
-        for (int i = 0; i < check.length; i++) {
-            if (check[i].equals("TestType")) {
+        for (int i = 0; i < header.length; i++) {
+            if (header[i].equals("TestType")) {
                 posTt = i;
             }
-            if (check[i].equals("Test_Reg_DateHour")) {
+            if (header[i].equals("Test_Reg_DateHour")) {
                 posRegDate = i;
             }
         }
@@ -56,7 +56,7 @@ public class ImportTests{
         }
         List<String> elements = new ArrayList<>();
         for (int i = posTt + 1; i < posRegDate; i++) {
-            elements.add(check[i]);
+            elements.add(header[i]);
         }
 
         while (leitor2.hasNextLine()) {
@@ -97,7 +97,7 @@ public class ImportTests{
             for (int i = 0; i < elements.size(); i++) {
                 Parameter p = importTestsController.getParameterByCode(elements.get(i));
                 for (int n = posTt; n < posRegDate; n++) {
-                    if (p != null && p.getCode().equals(check[n]) && !text[n].equals("NA")) {
+                    if (p != null && p.getCode().equals(header[n]) && !text[n].equals("NA")) {
                         Parameter cloned = new Parameter(p);
                         text[n] = text[n].replace(",", ".");
                         cloned.setTestResult(new TestResult(cloned, Double.parseDouble(text[n]), tt1.checkExternalModuleBasedOnTestType(cloned)));
