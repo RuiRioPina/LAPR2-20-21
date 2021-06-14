@@ -36,7 +36,7 @@ public class TestTypeStoreTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "5431";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "colheita";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
@@ -63,7 +63,7 @@ public class TestTypeStoreTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "5431$";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "colheita";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
@@ -90,7 +90,7 @@ public class TestTypeStoreTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "94321";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "colheita";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
@@ -175,7 +175,7 @@ public class TestTypeStoreTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "14321";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
@@ -202,7 +202,7 @@ public class TestTypeStoreTest {
 		csStore.saveParameterCategory(pc);
 		
 		String code = "AB2D1";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 		String categoryCode = pc.getCode();
 		List<String> parameterCategoryCodes = new ArrayList<String>();
@@ -227,7 +227,7 @@ public class TestTypeStoreTest {
 		cmp.getTestTypeStore();
 		
 		String code = "81321";
-		String description = "uma descrição";
+		String description = "uma descriï¿½ï¿½o";
 		String collectingMethod = "colheita";
 		List<String> parameterCategoryCodes = new ArrayList<String>();
 		
@@ -243,5 +243,4 @@ public class TestTypeStoreTest {
 		assertNotNull(exception);
 		assertEquals("Parameter categories cannot be empty.", exception.getMessage());
     }
-
 }
