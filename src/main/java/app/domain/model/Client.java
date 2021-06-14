@@ -47,14 +47,14 @@ public class Client {
      */
 
     public Client(long ccn, long nhsNumber, String birthDate, String sex, String email, long tin, long phoneNumber, String name) {
-        setCcn(ccn);
-        setTin(tin);
-        setNhsNumber(nhsNumber);
-        setBirthDate(birthDate);
-        setSex(sex);
-        setPhoneNumber(phoneNumber);
-        setEmail(email);
-        setName(name);
+        this.ccn = ccn;
+        this.tin = tin;
+        this.nhsNumber = nhsNumber;
+        this.birthDate = birthDate;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.name = name;
         this.password = generatePassword();
 
     }
@@ -73,13 +73,13 @@ public class Client {
      */
 
     public Client(long ccn, long nhsNumber, String birthDate, String email, long tin, long phoneNumber, String name) {
-        setCcn(ccn);
-        setTin(tin);
-        setNhsNumber(nhsNumber);
-        setBirthDate(birthDate);
-        setPhoneNumber(phoneNumber);
-        setEmail(email);
-        setName(name);
+        this.ccn = ccn;
+        this.nhsNumber = nhsNumber;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.tin = tin;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
         this.password = generatePassword();
 
     }
@@ -193,75 +193,35 @@ public class Client {
     }
 
     public void setCcn(long ccn) {
-        try {
-            validateCcn(ccn);
-            this.ccn = ccn;
-        }catch (IllegalArgumentException e) {
-
-        }
+        this.ccn = ccn;
     }
 
     public void setNhsNumber(long nhsNumber) {
-        try {
-            validateNhsNumber(nhsNumber);
-            this.nhsNumber = nhsNumber;
-        }catch (IllegalArgumentException e) {
-
-        }
+        this.nhsNumber = nhsNumber;
     }
 
     public void setBirthDate(String birthDate) {
-        try {
-            validateBirthDate(birthDate);
-            this.birthDate = birthDate;
-        }catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
-
-        }
+        this.birthDate = birthDate;
     }
 
     public void setTin(long tin) {
-        try {
-        validateTin(tin);
         this.tin = tin;
-        }catch (IllegalArgumentException e) {
-
-        }
     }
 
     public void setPhoneNumber(long phoneNumber) {
-        try {
-            validatePhoneNumber(phoneNumber);
-            this.phoneNumber = phoneNumber;
-        }catch (IllegalArgumentException e) {
-
-        }
+        this.phoneNumber = phoneNumber;
     }
 
     public void setSex(String sex) {
-        try {
-        validateSex(sex);
         this.sex = sex;
-        }catch (IllegalArgumentException e) {
-
-        }
     }
 
     public void setEmail(String email) {
-        try {
-        validateEmail(email);
         this.email = email;
-        }catch (IllegalArgumentException e) {
-
-        }
     }
 
     public void setName(String name) {
-        try{
-        validateName(name);
         this.name = name;
-        }catch (IllegalArgumentException e) {
-
-    }
     }
 
     /**
