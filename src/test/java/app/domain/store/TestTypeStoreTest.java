@@ -243,4 +243,5 @@ public class TestTypeStoreTest {
 		assertNotNull(exception);
 		assertEquals("Parameter categories cannot be empty.", exception.getMessage());
     }
+
 }
