@@ -91,7 +91,7 @@ public class MenuLabCooGUISceneController {
 
     private Stage loadMaximunSumUi() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MaximunSum.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DatesInterval.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage novoViewTestDetailsStage = new Stage();
@@ -99,8 +99,8 @@ public class MenuLabCooGUISceneController {
             novoViewTestDetailsStage.setTitle("Max Sum");
             novoViewTestDetailsStage.setMaximized(true);
             novoViewTestDetailsStage.setScene(scene);
-            MaxSum maxSum = loader.getController();
-            maxSum.associarParentUI(this);
+            TwoDatesInterval twoDatesInterval = loader.getController();
+            twoDatesInterval.associarParentUI(this);
 
             return novoViewTestDetailsStage;
         } catch (IOException ex) {

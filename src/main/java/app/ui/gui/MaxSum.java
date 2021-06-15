@@ -1,113 +1,98 @@
 package app.ui.gui;
 
-import java.io.IOException;
-import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import app.controller.App;
-import app.controller.IntervalController;
 import app.domain.model.Test;
-import app.ui.gui.utils.Utils;
+import app.domain.store.LabCoordinatorStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
-public class MaxSum implements Initializable {
+public class MaxSum {
 
-    private MenuLabCooGUISceneController menu;
-    private App app;
-    private List<Test> tests;
-    private IntervalController controller;
-
+    private TwoDatesInterval twoDatesInterval;
     @FXML
-    private Label lblTest;
-    @FXML
-    private Label lblAlert;
+    private Label lblTestView;
     @FXML
     private TextField txtStart;
     @FXML
-    private Button btn;
-    @FXML
     private TextField txtEnd;
+
+    private App app;
+    private List<Test> tests;
+    /*
+    private LabCoordinatorStore labCoordinatorStore;
+
+
     @FXML
-    private Button cancel;
+    private Calendar sDate;
+    @FXML
+    private Calendar eDate;
+    @FXML
+    private int[] sum;
+    @FXML
+    private TextField finalSum;
 
 
+    public TudoJunto() {
+        this.app = App.getInstance();
+    }
 
-    /**
-     * Initializes the UI class.
-     */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
- //       lblTest.setText(String.format("Introduce two dates"));
+    public void initialize(URL url, ResourceBundle rb){
+
+    }
+*/
+    public void associarParentUI(TwoDatesInterval twoDatesInterval) {
+        this.twoDatesInterval = twoDatesInterval;
 
 
     }
 
-    public IntervalController getController() {
-        return this.controller;
-    }
-
-    public void associarParentUI(MenuLabCooGUISceneController menu) {
-        this.menu = menu;
-    }
-
-
-
-    private Stage loadMaxSumUi(String s, String e) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TudJunto.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage novoViewTestDetailsStage = new Stage();
-            novoViewTestDetailsStage.initModality(Modality.APPLICATION_MODAL);
-            novoViewTestDetailsStage.setTitle("Max Sum");
-            novoViewTestDetailsStage.setMaximized(true);
-            novoViewTestDetailsStage.setScene(scene);
-
-            TudoJunto tudoJunto = loader.getController();
-            tudoJunto.associarParentUI(this);
-            tudoJunto.showInformation(txtStart.getText(),txtEnd.getText());
-            return novoViewTestDetailsStage;
-        } catch (IOException ex) {
-            Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            return null;
+    public void showInformation(String start, String end) {
+        Calendar sDate = LabCoordinatorStore.tStringToCalendar(start);
+        Calendar eDate = LabCoordinatorStore.tStringToCalendar(end);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (sDate == null) {
+            txtStart.setText("Start Date invalid");
         }
+        if (eDate == null) {
+            txtStart.setText("Ending Date invalid");
+        }
+        if (sDate == null && eDate == null) {
+            txtStart.setText("Both dates are invalid");
+        }
+        if (sDate != null && eDate != null) {
+            txtStart.setText(dateFormat.format(sDate.getTime()) + " - " + dateFormat.format(eDate.getTime()));
+        }
+
     }
 
+
+
+
+
+    /*
+    public void setMaxSum(MaxSum maxSum) {
+        this.maxSum = maxSum;
+    }
+
+    public void showCategory() {
+        this.lblTestView.setText(LabCoordinatorStore.getMax(sDate,eDate,sum));
+        System.out.println(lblTestView);
+    }
+     */
     @FXML
-    private void menuView(ActionEvent event) {
-        String s=txtStart.getText();
-        String e=txtEnd.getText();
-        if(s == null || e == null) {
-            return;
-        }
-        Stage stage1 = loadMaxSumUi(s, e);
-        if(stage1 == null) {
-            return;
-        }
-
-        stage1.showAndWait();
-    }
-
-    @FXML
-
     private void menuExitAction(ActionEvent event) {
-        Window window = lblTest.getScene().getWindow();
+        Window window = lblTestView.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
+
 
 }
