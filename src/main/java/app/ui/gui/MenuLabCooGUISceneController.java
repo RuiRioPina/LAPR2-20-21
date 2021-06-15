@@ -1,6 +1,7 @@
 package app.ui.gui;
 
 import app.controller.App;
+import app.controller.IntervalController;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ public class MenuLabCooGUISceneController {
 
     private MainMenuGUISceneController menuUI;
     private App app;
+    private IntervalController controller;
 
     public void associarParentUI(MainMenuGUISceneController mainMenuGUISceneController) {
         menuUI = mainMenuGUISceneController;
@@ -33,6 +35,10 @@ public class MenuLabCooGUISceneController {
 
     @FXML
     private Label lblNameClient;
+
+    public IntervalController getController() {
+        return this.controller;
+    }
 
     @FXML
 
@@ -70,6 +76,37 @@ public class MenuLabCooGUISceneController {
         Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
         return null;
     }
+    }
+
+    @FXML
+    private void menuViewMaxSum(ActionEvent event) {
+
+        Stage stage1 = loadMaximunSumUi();
+        if(stage1 == null) {
+            return;
+        }
+
+        stage1.showAndWait();
+    }
+
+    private Stage loadMaximunSumUi() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MaximunSum.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage novoViewTestDetailsStage = new Stage();
+            novoViewTestDetailsStage.initModality(Modality.APPLICATION_MODAL);
+            novoViewTestDetailsStage.setTitle("Max Sum");
+            novoViewTestDetailsStage.setMaximized(true);
+            novoViewTestDetailsStage.setScene(scene);
+            MaxSum maxSum = loader.getController();
+            maxSum.associarParentUI(this);
+
+            return novoViewTestDetailsStage;
+        } catch (IOException ex) {
+            Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            return null;
+        }
     }
 
 }

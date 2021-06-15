@@ -10,7 +10,10 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -158,6 +161,20 @@ public class Company {
         tests.addAll(testStore.getTestsWithoutDiagnosis());
         testStore = new TestStore(tests);
         return testStore;
+    }
+
+    public Calendar tStringToCalendar (String txt) {
+        String message="Wrong date";
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date dt = df.parse(txt);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dt);
+            return calendar;
+        } catch (Exception ex) {
+            System.out.println(message);
+        }
+        return null;
     }
 
     public ClinicalAnalysisLaboratoryStore getClinicalAnalysisLaboratoryStore() {

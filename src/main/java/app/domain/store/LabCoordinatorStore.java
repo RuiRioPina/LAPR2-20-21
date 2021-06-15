@@ -3,7 +3,6 @@ package app.domain.store;
 import app.domain.model.DateInterval;
 import app.domain.model.Test;
 
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -125,21 +124,76 @@ public class LabCoordinatorStore {
         return test.after(str) && test.before(end);
     }
 
-    public Calendar tStringToCalendar (String txt) {
-        String message="Wrong date";
+    public static Calendar tStringToCalendar(String txt) {
+        String message = "Wrong date";
+        String save="";
         try {
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            Date dt = df.parse(txt);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dt);
+            String[] data = txt.split("/");
+            if (data.length != 3) {
+                throw new NumberFormatException();
+            }
+            save=data[0];
+            data[0]=data[2];
+            data[2]=save;
+            int ano = Integer.parseInt(data[0]);
+            int mes = Integer.parseInt(data[1]);
+            int dia = Integer.parseInt(data[2]);
+            Calendar calendar = new GregorianCalendar();
+            calendar.set(Calendar.YEAR,ano);
+            calendar.set(Calendar.MONTH,mes);
+            calendar.add(Calendar.MONTH,-1);
+            calendar.set(Calendar.DAY_OF_MONTH,dia);
+
             return calendar;
-        } catch (Exception ex) {
+        } catch (Exception e) {
             System.out.println(message);
+            return null;
         }
-        return null;
+
     }
 
-    public Calendar newCategory(String Date) {
-        return tStringToCalendar(Date);
+    public static String getMax(Calendar s, Calendar e, int[] sum){
+        s.add(Calendar.MONTH,+1);
+        e.add(Calendar.MONTH,+1);
+        StringBuilder max = new StringBuilder();
+        long count=0;
+        int bHour=8;
+        int eHour=20;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        s.add(Calendar.HOUR,+bHour);
+        Calendar j = new GregorianCalendar(s.get(Calendar.YEAR),s.get(Calendar.MONTH),s.get(Calendar.DAY_OF_MONTH),bHour,0,0);
+        for (; s.before(e); s.add(Calendar.MINUTE, +30)) {
+            j.add(Calendar.MINUTE,30);
+            if ((s.get(Calendar.HOUR_OF_DAY)==eHour && (s.get(Calendar.MINUTE)==0)) || s.get(Calendar.DAY_OF_WEEK)==0){
+                s.add(Calendar.DAY_OF_MONTH,+1);
+                s.set(Calendar.HOUR_OF_DAY,bHour);
+                j.add(Calendar.DAY_OF_MONTH,+1);
+                j.set(Calendar.HOUR_OF_DAY,bHour);
+            }else{
+                count++;
+                if (sum[0]==count){
+                    Calendar begin=s;
+                    begin.add(Calendar.MONTH,-1);
+                    max.append(sdf.format(begin.getTime()));
+                    max.append(" - ");
+                }
+                if (sum[sum.length-1]==count){
+                    Calendar end=j;
+                    end.add(Calendar.MONTH,-1);
+                    max.append(sdf.format(end.getTime()));
+                }
+            }
+        }
+        return max.toString();
     }
+
+
+    public int[] maxPlaces(Calendar s, Calendar e) {
+        s.add(Calendar.HOUR,+8);
+        e.add(Calendar.HOUR,+20);
+        int[]lm= listMax(s, e);
+        return maxSubArraySum(lm);
+    }
+
+
 }
