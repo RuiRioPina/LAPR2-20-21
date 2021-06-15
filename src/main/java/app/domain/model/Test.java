@@ -1,6 +1,8 @@
 package app.domain.model;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 import app.controller.App;
@@ -417,5 +419,13 @@ public class Test {
 
     public String getDate() {
         return String.format("%s",this.chemicalAnalysisDate);
+    }
+
+    public int calculateAge(){
+        LocalDate currentDate= LocalDate.now();
+        String date = this.getClient().getBirthDate();
+        String[] arrString= date.split("-");
+        LocalDate birthDate= LocalDate.of(Integer.parseInt(arrString[2]),Integer.parseInt(arrString[1]),Integer.parseInt(arrString[0]));
+        return Period.between(birthDate,currentDate).getYears();
     }
 }
