@@ -106,6 +106,15 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 							result.getReferenceValue().getMetric(), 
 							result.getReferenceValue().getMinValue(), 
 							result.getReferenceValue().getMaxValue());
+					if(result.getReferenceValue().getMetric() == "-1" || result.getReferenceValue().getMinValue() == -1
+							|| result.getReferenceValue().getMaxValue() == -1) {
+						item = new ParameterTableDetail(category, 
+								result.getParameter().getDescription(), 
+								0, 
+								"No metric", 
+								0, 
+								0);
+					}
 					data.add(item);	
 				}
 			}
