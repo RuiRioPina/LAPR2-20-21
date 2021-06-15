@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import app.controller.App;
@@ -40,6 +41,7 @@ public class TudoJunto {
     private TextField txtEnd;
 
     private App app;
+    private List<Test> tests;
     /*
     private LabCoordinatorStore labCoordinatorStore;
 
@@ -69,18 +71,29 @@ public class TudoJunto {
 
     }
 
-    public void showInformation(String a, String b) {
-        Calendar s=app.getCompany().getLabCoorStore().tStringToCalendar(a);
-        Date data=s.getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String strDate = dateFormat.format(data);
-        System.out.println(strDate);
-
-        txtStart.setText(strDate);
-
-
+    public void showInformation(String start, String end) {
+        Calendar sDate = LabCoordinatorStore.tStringToCalendar(start);
+        Calendar eDate = LabCoordinatorStore.tStringToCalendar(end);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (sDate == null) {
+            txtStart.setText("Start Date invalid");
+        }
+        if (eDate == null) {
+            txtStart.setText("Ending Date invalid");
+        }
+        if (sDate == null && eDate == null) {
+            txtStart.setText("Both dates are invalid");
+        }
+        if (sDate != null && eDate != null) {
+            txtStart.setText(dateFormat.format(sDate.getTime()) + " - " + dateFormat.format(eDate.getTime()));
+        }
 
     }
+
+
+
+
+
     /*
     public void setMaxSum(MaxSum maxSum) {
         this.maxSum = maxSum;

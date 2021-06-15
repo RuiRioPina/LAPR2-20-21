@@ -128,6 +128,9 @@ public class LabCoordinatorStore {
         String message = "Wrong date";
         String save="";
         try {
+            if(!dateValidation(txt)) {
+                throw new NumberFormatException();
+            }
             String[] data = txt.split("/");
             if (data.length != 3) {
                 throw new NumberFormatException();
@@ -138,11 +141,14 @@ public class LabCoordinatorStore {
             int ano = Integer.parseInt(data[0]);
             int mes = Integer.parseInt(data[1]);
             int dia = Integer.parseInt(data[2]);
+
             Calendar calendar = new GregorianCalendar();
             calendar.set(Calendar.YEAR,ano);
             calendar.set(Calendar.MONTH,mes);
             calendar.add(Calendar.MONTH,-1);
             calendar.set(Calendar.DAY_OF_MONTH,dia);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            dateFormat.setLenient(false);
 
             return calendar;
         } catch (Exception e) {
@@ -151,6 +157,22 @@ public class LabCoordinatorStore {
         }
 
     }
+
+    private static boolean dateValidation(String date)
+    {
+        boolean status = false;
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            dateFormat.setLenient(false);
+            try {
+                dateFormat.parse(date);
+                status = true;
+            } catch (Exception e) {
+                status = false;
+            }
+        return status;
+        }
+
 
     public static String getMax(Calendar s, Calendar e, int[] sum){
         s.add(Calendar.MONTH,+1);
@@ -195,5 +217,14 @@ public class LabCoordinatorStore {
         return maxSubArraySum(lm);
     }
 
+    public static int countNumber(int num) {
+        int count = 0;
+
+        while (num != 0) {
+            num = num / 10;
+            count++;
+        }
+        return count;
+    }
 
 }
