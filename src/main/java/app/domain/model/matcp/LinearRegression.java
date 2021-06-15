@@ -153,8 +153,7 @@ public class LinearRegression {
     public double r2Adjusted() {
         double topRow = (1 - this.R2()) * (this.n - 1);
         double bottomRow = this.n - k - 1;
-        double r2Adjusted = 1 - (topRow / bottomRow);
-        return r2Adjusted;
+        return 1 - (topRow / bottomRow);
     }
 
     public double[] arrayYthroughRegressionModel() {
