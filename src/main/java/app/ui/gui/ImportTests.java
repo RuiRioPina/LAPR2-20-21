@@ -3,12 +3,9 @@ package app.ui.gui;
 import app.controller.App;
 import app.controller.TestController;
 import app.domain.model.*;
-import app.domain.store.ParameterStore;
-//import app.domain.shared.Constants;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -72,6 +69,7 @@ public class ImportTests{
             String phoneNumber = text[7];
             String name = text[8];
             String email = text[9];
+            String address = text [10];
             String testType = text[11];
             String rDateHour = text[posRegDate];
             String tChemicalDateHour = text[posRegDate + 1];
@@ -82,6 +80,7 @@ public class ImportTests{
             String ccnFormatted = String.format("%010d", Integer.parseInt(ccn));
             Client cl = this.importTestsController.createClient(Long.parseLong(ccnFormatted), Long.parseLong(nhsNumber), bDay,
                     Long.parseLong(tin), Long.parseLong(phoneNumber), email, name);
+            cl.setAddress(address);
 
             //Information needed
             TestType tt1 = new TestType();
@@ -154,7 +153,7 @@ public class ImportTests{
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            a++;
+
             String intCode = String.format("%012d", a);
 
             Test t = importTestsController.createTest(nhsCode, intCode, cl, tt, catList, parSelected, calendar1);
@@ -178,6 +177,7 @@ public class ImportTests{
             if (t.getLabID() != null && !val && !val1 && !val2 && val3 && !importTestsController.validateTest(t)) {
                 importTestsController.saveClient(cl);
                 importTestsController.saveTest(t);
+                a++;
                 this.app.getCompany().getImportedTests().add(t);
             } else {
                 System.out.println("Test in line " + j + " wasn't imported.");

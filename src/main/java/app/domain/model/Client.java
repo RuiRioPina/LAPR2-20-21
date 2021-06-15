@@ -20,6 +20,7 @@ public class Client {
     private String email;
     private String name;
     private String password;
+    private String address;
     private final Company cmp = App.getInstance().getCompany();
 
 
@@ -55,8 +56,8 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.name = name;
+        this.address = "No address";
         this.password = generatePassword();
-
     }
 
     /**
@@ -148,6 +149,12 @@ public class Client {
         return password;
     }
 
+    /**
+     * @return address of the client
+     */
+    public String getAddress() {
+        return address;
+    }
 
     /**
      * Present in the console the output contain all the information about the client
@@ -222,6 +229,10 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**
@@ -439,5 +450,6 @@ public class Client {
         }
         return password;
     }
+
 
 }

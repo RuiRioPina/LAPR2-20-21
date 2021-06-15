@@ -288,7 +288,11 @@ public class Test {
         Date cDate = null;
         Date dDate = null;
         Date vDate = null;
+        Date sDate = null;
         Date rDate = registrationDate.getTime();
+        if (samplesCollectionDate != null){
+            sDate = samplesCollectionDate.getTime();
+        }
         if (chemicalAnalysisDate != null){
                 cDate = chemicalAnalysisDate.getTime();
         }
@@ -342,7 +346,24 @@ public class Test {
             str= "Internal code: "+ internalCode +" Registration Date:"+rDate+" Chemical Analysis Date:"+cDate + " Diagnosis Date:"+dDate;
         }
 
+        if ( validationDate != null){
 
+            str = "TEST" + '\n' +
+                    "NHS Code = " + nhsCode + '\n' +
+                    "Internal Code = " + internalCode + '\n' +
+                    "Lab ID = " + labID + '\n' +
+                    "Client = " + client.getName() + '\n' +
+                    "Test Type = " + testType + '\n' +
+                    "Sample Collection Method = " + sampleCollectionMethod + '\n' +
+                    "Category(ies) = " + parameterCategory + '\n' +
+                    "Parameter(s) = " + parameter + '\n' +
+                    "Registration Date = " + rDate + '\n' +
+                    "Sample Collection Date = " + sDate + '\n' +
+                    "Chemical Analysis Date = " + cDate + '\n' +
+                    "Diagnosis Date = " + dDate + '\n' +
+                    "Validation Date = " + vDate;
+
+        }
 
         return str;
     }
