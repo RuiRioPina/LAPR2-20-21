@@ -163,7 +163,7 @@ public class App {
         Client c1 = new Client(1234567890123156L, 1234564890, "22-01-2002", "ruipina@gmail.com", 9999999999L, 22221222222L, "Rui Pina");
         cl.saveClient(c);
         cl.saveClient(c1);
-        System.out.println(c.getPassword());
+        c.setPassword("123456");
         this.authFacade.addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
 
         ClinicalAnalysisLaboratoryStore clas = this.company.getClinicalAnalysisLaboratoryStore();
