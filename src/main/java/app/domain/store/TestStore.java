@@ -3,9 +3,10 @@ package app.domain.store;
 import app.controller.App;
 import app.domain.model.*;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 public class TestStore {
     /**
@@ -415,7 +416,8 @@ public class TestStore {
 
     /**
      * Method used to change the validationDate of a List of Test Objects.
-     *  @param lTests -  List to be changed.
+     *
+     * @param lTests  -  List to be changed.
      * @param newDate - Date used for the validationDate.
      */
     public void validateTests(List<Test> lTests, Calendar newDate) {
@@ -432,10 +434,11 @@ public class TestStore {
 
     /**
      * Method to validate the imported tests and prevent equals nhsCodes.
+     *
      * @param t - Test.
      * @return - true if the test is not valid.
      */
-    public boolean validateImportedTests (Test t){
+    public boolean validateImportedTests(Test t) {
         boolean validation = false;
         List<Test> testList = new ArrayList<>();
         testList.addAll(this.tests);
@@ -445,5 +448,91 @@ public class TestStore {
             }
         }
         return validation;
+    }
+
+    public List<Test> getTestsInInterval(Calendar olderDate, Calendar newerDate) {
+        List<Test> lTestsInInterval = new ArrayList<>();
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        for (int i = 0; i < tests.size(); i++) {
+            if (getLocalDate(tests.get(i).getValidationDate()).isBefore(newerDateL.plusDays(1)) && getLocalDate(tests.get(i).getValidationDate()).isAfter(olderDateL.plusDays(-1))) {
+                lTestsInInterval.add(tests.get(i));
+            }
+        }
+        return lTestsInInterval;
+    }
+    public double[] getTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
+        int cont=0;
+        List<Test> lTestsInInterval =getTestsInInterval(olderDate,newerDate);
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!olderDateL.isAfter(newerDateL)) {
+            totalDates.add(olderDateL);
+            olderDateL = olderDateL.plusDays(1);
+        }
+        double[] arrDouble= new double[totalDates.size()];
+        for (int i =0;i<arrDouble.length;i++){
+            for (Test test:lTestsInInterval
+                 ) {
+                if (getLocalDate(test.getValidationDate()).equals(totalDates.get(i))){
+                   cont++;
+                }
+            }
+            arrDouble[i]=cont;
+            cont=0;
+        }
+        return arrDouble;
+    }
+    private LocalDate getLocalDate(Calendar calendar){
+        return  LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId()).toLocalDate();
+    }
+    public double[] getPositiveCovidTestsPerformedOnDay(Calendar olderDate,Calendar newerDate){
+        int cont=0;
+        List<Test> lTestsInInterval =getTestsInInterval(olderDate,newerDate);
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!olderDateL.isAfter(newerDateL)) {
+            totalDates.add(olderDateL);
+            olderDateL = olderDateL.plusDays(1);
+        }
+        double[] arrDouble= new double[totalDates.size()];
+        for (int i =0;i<arrDouble.length;i++){
+            for (Test test:lTestsInInterval
+            ) {
+                if (getLocalDate(test.getValidationDate()).equals(totalDates.get(i))&& test.getTestType().getDescription().equals("Covid")&&test.getParameter().get(0).getTestResult().getResult()>1.4){
+                    cont++;
+                }
+            }
+            arrDouble[i]=cont;
+            cont=0;
+        }
+        return arrDouble;
+    }
+    public double[] getMeanAgeOfTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
+        int cont=0;
+        double totalAge=0;
+        List<Test> lTestsInInterval =getTestsInInterval(olderDate,newerDate);
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!olderDateL.isAfter(newerDateL)) {
+            totalDates.add(olderDateL);
+            olderDateL = olderDateL.plusDays(1);
+        }
+        double[] arrDouble= new double[totalDates.size()];
+        for (int i =0;i<arrDouble.length;i++){
+            for (Test test:lTestsInInterval
+            ) {
+                if (getLocalDate(test.getValidationDate()).equals(totalDates.get(i))){
+                    totalAge+=test.calculateAge();
+                    cont++;
+                }
+            }
+            arrDouble[i]=totalAge/cont;
+            cont=0;
+        }
+        return arrDouble;
     }
 }
