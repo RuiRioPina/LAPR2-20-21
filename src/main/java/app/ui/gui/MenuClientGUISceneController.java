@@ -97,7 +97,7 @@ public class MenuClientGUISceneController implements Initializable {
 			Stage Stage = new Stage();
 			Stage.initModality(Modality.APPLICATION_MODAL);
 			Stage.setTitle("Update Data");
-			Stage.setMaximized(true);
+			Stage.setMaximized(false);
 			Stage.setScene(scene);
 
 			UpdateClientDataController novoView = loader.getController();

@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.UpdateClientDataController">
-
+<AnchorPane prefHeight="649.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.UpdateClientDataController">
+   <children>
+      <TextField fx:id="updateOne" layoutX="462.0" layoutY="156.0" prefHeight="31.0" prefWidth="267.0" />
+      <Label layoutX="26.0" layoutY="20.0" prefHeight="81.0" prefWidth="799.0" text="                                      Update Data" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="198.0" layoutY="71.0" />
+      <TextField fx:id="updateFour" layoutX="462.0" layoutY="458.0" prefHeight="31.0" prefWidth="267.0" />
+      <TextField fx:id="updateThree" layoutX="462.0" layoutY="357.0" prefHeight="31.0" prefWidth="267.0" />
+      <TextField fx:id="updateTwo" layoutX="462.0" layoutY="254.0" prefHeight="31.0" prefWidth="267.0" />
+      <Label fx:id="labelOne" layoutX="269.0" layoutY="158.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTwo" layoutX="269.0" layoutY="256.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelThree" layoutX="269.0" layoutY="359.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelFour" layoutX="269.0" layoutY="460.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="113.0" layoutY="158.0" text="Name" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="256.0" text="Phone Number" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="110.0" layoutY="359.0" text="Adress" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="460.0" text="Sex" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnUpdate" layoutX="311.0" layoutY="546.0" mnemonicParsing="false" onAction="#updateInfo" prefHeight="55.0" prefWidth="230.0" text="Update">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>
