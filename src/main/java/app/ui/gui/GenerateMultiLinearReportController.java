@@ -35,7 +35,7 @@ public class GenerateMultiLinearReportController implements Initializable {
     private TextField txfNewerDate;
 
     @FXML
-    private Label lblOlderDate;
+    private Label lblOlderDateM;
 
     @FXML
     private Label lblNewerDate;
