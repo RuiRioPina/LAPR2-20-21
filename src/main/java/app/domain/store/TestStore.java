@@ -472,7 +472,8 @@ if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!
             }
         }
         return lTestsInInterval;
-    }
+
+   }
     public double[] getTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
         List<Test> lTestsInInterval =getTestsInDayInterval(olderDate,newerDate);
