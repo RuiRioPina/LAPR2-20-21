@@ -15,6 +15,7 @@ import app.ui.gui.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,9 +25,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -53,7 +57,9 @@ public class ViewTestsGUISceneController implements Initializable {
 	
 	@Override
     public void initialize(URL url, ResourceBundle rb){
-        lblTest.setText(String.format("%s tests", app.getCurrentUserSession().getUserName()));
+		String email = String.valueOf(app.getCurrentUserSession().getUserId());
+        Client client = app.getCompany().getClientList().getClientByEmail(email);
+        lblTest.setText(String.format("%s tests", client.getName()));
         tbvListTest.setItems(loadData());
         tbcCode.setCellValueFactory(new PropertyValueFactory<Test, String>("internalCode"));
         tbcClient.setCellValueFactory(new PropertyValueFactory<Test, Client>("nhsCode"));
@@ -125,6 +131,27 @@ public class ViewTestsGUISceneController implements Initializable {
 			Utils.createAlert(AlertType.WARNING, "Invalid", "Please select a test.");
 			return;
 		}
+//		tbvListTest.setRowFactory( tv -> {
+//		    TableRow<Test> row = tbvListTest.getRowFactory();
+//		    row.setOnMouseClicked(event -> {
+//		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+//		            Test rowData = row.getItem();
+//		            System.out.println(rowData);
+//		        }
+//		    });
+//		    return row ;
+//		});
+//		EventHandler<MouseEvent> dblClick = new EventHandler<MouseEvent>(){
+//		    @Override
+//		    public void handle(MouseEvent event) {
+//		        if(event.getButton().equals(MouseButton.PRIMARY)){
+//		            if(event.getClickCount() == 2){
+//		                Test t1 = tbvListTest.getItems().get(0);
+//		            }
+//		        }
+//		        event.consume();
+//		    }
+//		};
 		Stage stage1 = loadViewTestDetailUi(t);
         if(stage1 == null) {
         	return;

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import app.controller.App;
+import app.domain.model.Client;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +33,9 @@ public class MenuClientGUISceneController implements Initializable {
 	
 	@Override
     public void initialize(URL url, ResourceBundle rb){
-        lblNameClient.setText(String.format("Welcome, %s", app.getCurrentUserSession().getUserName()));
+		String email = String.valueOf(app.getCurrentUserSession().getUserId());
+        Client client = app.getCompany().getClientList().getClientByEmail(email);
+        lblNameClient.setText(String.format("Welcome, %s", client.getName()));
     }
 
 	public void associarParentUI(MainMenuGUISceneController mainMenuGUISceneController) {
@@ -85,6 +88,10 @@ public class MenuClientGUISceneController implements Initializable {
 			return;
 		}
 		stage1.showAndWait();
+		
+		String email = String.valueOf(app.getCurrentUserSession().getUserId());
+        Client client = app.getCompany().getClientList().getClientByEmail(email);
+        lblNameClient.setText(String.format("Welcome, %s", client.getName()));
 	}
 
 	private Stage loadChangeClientData() {
