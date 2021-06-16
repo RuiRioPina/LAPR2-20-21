@@ -14,6 +14,7 @@ public class RecordTestResultsUI implements Runnable {
     List<Parameter> parametersToShow;
     public RecordTestResultsUI() {
         // Do nothing because there is no need to construct the UI layer with any value. This is only used to be able to use the UI when selecting in menus.
+
     }
 
 

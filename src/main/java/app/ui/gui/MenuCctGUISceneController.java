@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import app.controller.App;
+import app.ui.console.RecordTestResultsUI;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -23,6 +25,11 @@ public class MenuCctGUISceneController implements Initializable {
     private App app;
     @FXML
     private Label lblNameClient;
+
+    @FXML
+    private Button btnTestResults;
+
+
 
     public MenuCctGUISceneController() {
         this.app = App.getInstance();
@@ -70,5 +77,11 @@ public class MenuCctGUISceneController implements Initializable {
         }
 
         stage1.showAndWait();
+    }
+
+    @FXML
+    void menuRecordTestsAction(ActionEvent event) {
+        RecordTestResultsUI recordTestResultsUI = new RecordTestResultsUI();
+        recordTestResultsUI.run();
     }
 }

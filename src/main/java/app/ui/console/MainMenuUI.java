@@ -11,7 +11,7 @@ import java.util.List;
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class MainMenuUI {
-
+    private Runnable ui;
     public MainMenuUI() {
         // Do nothing because there is no need to construct the UI layer with anything. This is only used to be able to use the UI when selecting in menus.
     }

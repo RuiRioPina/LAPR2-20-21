@@ -25,6 +25,19 @@
                   <Font name="Arial Italic" size="35.0" />
                </font>
             </Button>
+            <HBox prefHeight="218.0" prefWidth="347.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnTestResults" contentDisplay="CENTER" layoutY="34.0" mnemonicParsing="false" onAction="#menuRecordTestsAction" prefHeight="151.0" prefWidth="323.0" text="Record Test Results" wrapText="true">
+                           <font>
+                              <Font name="Arial Italic" size="35.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </bottom>
