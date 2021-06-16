@@ -3,9 +3,7 @@ package app.domain.store;
 import app.controller.App;
 import app.domain.model.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.*;
 
 public class TestStore {
@@ -481,8 +479,10 @@ if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!
         LocalDate newerDateL= getLocalDate(newerDate);
         List<LocalDate> totalDates = new ArrayList<>();
         while (!olderDateL.isAfter(newerDateL)) {
-            totalDates.add(olderDateL);
-            olderDateL = olderDateL.plusDays(1);
+            if (olderDateL.getDayOfWeek()!= DayOfWeek.SUNDAY) {
+                totalDates.add(olderDateL);
+                olderDateL = olderDateL.plusDays(1);
+            }
         }
         double[] arrDouble= new double[totalDates.size()];
         for (int i =0;i<arrDouble.length;i++){
@@ -598,8 +598,10 @@ if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!
         LocalDate newerDateL= getLocalDate(newerDate);
         List<LocalDate> totalDates = new ArrayList<>();
         while (!olderDateL.isAfter(newerDateL)) {
-            totalDates.add(olderDateL);
-            olderDateL = olderDateL.plusDays(1);
+            if (olderDateL.getDayOfWeek()!= DayOfWeek.SUNDAY) {
+                totalDates.add(olderDateL);
+                olderDateL = olderDateL.plusDays(1);
+            }
         }
         double[] arrDouble= new double[totalDates.size()];
         for (int i =0;i<arrDouble.length;i++){
@@ -622,8 +624,10 @@ if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!
         LocalDate newerDateL= getLocalDate(newerDate);
         List<LocalDate> totalDates = new ArrayList<>();
         while (!olderDateL.isAfter(newerDateL)) {
-            totalDates.add(olderDateL);
-            olderDateL = olderDateL.plusDays(1);
+            if (olderDateL.getDayOfWeek()!= DayOfWeek.SUNDAY) {
+                totalDates.add(olderDateL);
+                olderDateL = olderDateL.plusDays(1);
+            }
         }
         double[] arrDouble= new double[totalDates.size()];
         for (int i =0;i<arrDouble.length;i++){

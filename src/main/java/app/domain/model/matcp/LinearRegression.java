@@ -145,15 +145,17 @@ public class LinearRegression {
      */
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(String.format("%.2f n + %.2f", slope(), intercept()));
-        s.append("  (R^2 = " + String.format("%.3f", R2()) + ")");
+        s.append(String.format("^y=%.2fx+%.2f", slope(), intercept()));
         return s.toString();
     }
 
-    public double r2Adjusted() {
+    public double R2Adjusted() {
         double topRow = (1 - this.R2()) * (this.n - 1);
         double bottomRow = this.n - k - 1;
         return 1 - (topRow / bottomRow);
+    }
+    public double R(){
+        return Math.sqrt(this.R2());
     }
 
     public double[] arrayYthroughRegressionModel() {
@@ -219,10 +221,6 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         return critTD;
     }
 
-    public boolean isAParameterHypothesisRejected(double significance, double aParameter) {
-        TDistribution td = new TDistribution(arrayX.length - 2);
-        return true;
-    }
 
     private double arrayAverage(double[] arr) {
         double Total = 0;
@@ -268,7 +266,13 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         return critFD;
 
     }
+    public int getResidualDF(){
+        return arrayX.length-2;
+    }
     public double delta(double significance,double x){
         return getTStudentFromTable(significance)*calculateS()*Math.sqrt(((double) 1/arrayX.length)+(Math.pow(x-arrayAverage(arrayX),2)/xxBar()));
+    }
+    public int getRegressionDF(){
+        return  1;
     }
 }

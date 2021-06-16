@@ -116,9 +116,20 @@ cboxIndependentVariable.getItems().add("Total tests Performed");
 cboxIndependentVariable.getItems().add("Mean Age of Clients");
 cboxHistoricalPointType.getItems().add("Days");
 cboxHistoricalPointType.getItems().add("Weeks");
+cboxIndependentVariable.getSelectionModel().selectFirst();
+cboxHistoricalPointType.getSelectionModel().selectFirst();
     }
     public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
         this.chooseLinearRegressionController = chooseLinearRegressionController;
+    }
+    private boolean verifySignificanceNumber(String numberString){
+        if (numberString.contentEquals("^[0-9]{1,2}([,.][0-9]{1,2})?$")){
+            return true;
+        }
+        if (Double.parseDouble(numberString)>100||Double.parseDouble(numberString)<0){
+            return false;
+        }
+        else return false;
     }
 
 }

@@ -3,7 +3,7 @@ package app.domain.model.matcp;
 import org.apache.commons.math3.distribution.FDistribution;
 import org.apache.commons.math3.distribution.TDistribution;
 
-import java.util.Arrays;
+
 
 public class MultiLinearRegression {
     private final double[] arrayX1;
@@ -12,7 +12,7 @@ public class MultiLinearRegression {
     private final double b0;
     private final double b1;
     private final double b2;
-    private final int NUMBER_OF_VARIABLES=3;
+    private final static int NUMBER_OF_VARIABLES=3;
     private final double[][] bColumn;
     private final double [][] xMatrix;
     private final double [][] yVector;
@@ -32,12 +32,8 @@ public class MultiLinearRegression {
             xMatrix[i][2] = arrayX2[i];
         }
 double[][] xMatrixTransposed=transposeMatrix(xMatrix);
-        System.out.println(Arrays.deepToString(xMatrix));
-        System.out.println(Arrays.deepToString(xMatrixTransposed));
         double[][] xMatrixTimesXMatrixTransposed=multiplyMatrices(xMatrixTransposed,xMatrix);
-        System.out.println(Arrays.deepToString(xMatrixTimesXMatrixTransposed));
         double[][] xMatrixTimesXMatrixTransposedInverse=invert(xMatrixTimesXMatrixTransposed);
-        System.out.println(Arrays.deepToString(xMatrixTimesXMatrixTransposedInverse));
         this.xMatrixInverse=xMatrixTimesXMatrixTransposedInverse;
         double[][]yVector=new double[arrayY.length][1];
         for (int i =0;i< arrayY.length;i++){
@@ -45,9 +41,7 @@ double[][] xMatrixTransposed=transposeMatrix(xMatrix);
         }
         this.yVector=yVector;
         double [][] xMatrixTransposedTimesYVector=multiplyMatrices(xMatrixTransposed,yVector);
-        System.out.println(Arrays.deepToString(xMatrixTransposedTimesYVector));
         double [][] finalRegressionModelMatrix=multiplyMatrices(xMatrixTimesXMatrixTransposedInverse,xMatrixTransposedTimesYVector);
-        System.out.println(Arrays.deepToString(finalRegressionModelMatrix));
         b0=finalRegressionModelMatrix[0][0];
         b1=finalRegressionModelMatrix[1][0];
         b2=finalRegressionModelMatrix[2][0];
