@@ -440,17 +440,29 @@ public class TestStore {
      */
     public boolean validateImportedTests(Test t) {
         boolean validation = false;
-        List<Test> testList = new ArrayList<>();
-        testList.addAll(this.tests);
-        for (int i = 0; i < testList.size(); i++) {
-            if (testList.get(i).getNhsCode().equals(t.getNhsCode())) {
+        List<Test> testList = new ArrayList<>(this.tests);
+        for (Test test : testList) {
+            if (test.getNhsCode().equals(t.getNhsCode())) {
                 validation = true;
             }
         }
         return validation;
     }
 
-    public List<Test> getTestsInInterval(Calendar olderDate, Calendar newerDate) {
+    private  List<Test> getTestsInDayInterval(Calendar olderDate, Calendar newerDate) {
+        List<Test> lTestsInInterval = new ArrayList<>();
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        for (int i = 0; i < tests.size(); i++) {
+            if (getLocalDate(tests.get(i).getValidationDate()).isBefore(newerDateL.plusDays(1)) && getLocalDate(tests.get(i).getValidationDate()).isAfter(olderDateL.plusDays(-1))) {
+                lTestsInInterval.add(tests.get(i));
+            }
+        }
+        return lTestsInInterval;
+    }private List<Test> getTestsInWeekListInterval(Calendar olderDate,Calendar newerDate){
+if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!=2){
+    throw new IllegalArgumentException("o dia da semana so pode ser segunda feira");
+}
         List<Test> lTestsInInterval = new ArrayList<>();
         LocalDate olderDateL = getLocalDate(olderDate);
         LocalDate newerDateL= getLocalDate(newerDate);
@@ -463,7 +475,7 @@ public class TestStore {
     }
     public double[] getTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
-        List<Test> lTestsInInterval =getTestsInInterval(olderDate,newerDate);
+        List<Test> lTestsInInterval =getTestsInDayInterval(olderDate,newerDate);
         LocalDate olderDateL = getLocalDate(olderDate);
         LocalDate newerDateL= getLocalDate(newerDate);
         List<LocalDate> totalDates = new ArrayList<>();
@@ -484,12 +496,103 @@ public class TestStore {
         }
         return arrDouble;
     }
+    public double[] getTestsPerformedPerWeek(Calendar olderDate,Calendar newerDate){
+        int cont=0;
+        List<Test> lTestsInInterval =getTestsInWeekListInterval(olderDate,newerDate);
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!olderDateL.isAfter(newerDateL)) {
+            totalDates.add(olderDateL);
+            olderDateL = olderDateL.plusDays(1);
+        }
+        double[] arrDouble= new double[totalDates.size()/7];
+        for (int i =0;i<arrDouble.length;i++){
+            for (Test test:lTestsInInterval
+            ) {
+                Calendar calendar1= toCalendar(getLocalDate(test.getValidationDate()));
+                Calendar calendar2= toCalendar(totalDates.get(i));
+                if (calendar1.get(Calendar.YEAR)==calendar2.get(Calendar.YEAR)&&calendar1.get(Calendar.WEEK_OF_YEAR)==calendar2.get(Calendar.WEEK_OF_YEAR)){
+                    cont++;
+                }
+            }
+            arrDouble[i]=cont;
+            cont=0;
+        }
+        return arrDouble;
+   }
+    public double[] getTestsPositivePerWeek(Calendar olderDate,Calendar newerDate){
+        int cont=0;
+        List<Test> lTestsInInterval =getTestsInWeekListInterval(olderDate,newerDate);
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!olderDateL.isAfter(newerDateL)) {
+            totalDates.add(olderDateL);
+            olderDateL = olderDateL.plusDays(1);
+        }
+        double[] arrDouble= new double[totalDates.size()/7];
+        for (int i =0;i<arrDouble.length;i++){
+            for (Test test:lTestsInInterval
+            ) {
+                Calendar calendar1= toCalendar(getLocalDate(test.getValidationDate()));
+                Calendar calendar2= toCalendar(totalDates.get(i));
+                if (calendar1.get(Calendar.YEAR)==calendar2.get(Calendar.YEAR)&&calendar1.get(Calendar.WEEK_OF_YEAR)==calendar2.get(Calendar.WEEK_OF_YEAR)&&test.getTestType().getDescription().equals("Covid")&&test.getParameter().get(0).getTestResult().getResult()>1.4){
+                    cont++;
+                }
+            }
+            arrDouble[i]=cont;
+            cont=0;
+        }
+        return arrDouble;
+    }
+    public double[] getMeanAgePerWeek(Calendar olderDate,Calendar newerDate){
+        int cont=0;
+        double total=0;
+        List<Test> lTestsInInterval =getTestsInWeekListInterval(olderDate,newerDate);
+        LocalDate olderDateL = getLocalDate(olderDate);
+        LocalDate newerDateL= getLocalDate(newerDate);
+        List<LocalDate> totalDates = new ArrayList<>();
+        while (!olderDateL.isAfter(newerDateL)) {
+            totalDates.add(olderDateL);
+            olderDateL = olderDateL.plusDays(1);
+        }
+        double[] arrDouble= new double[totalDates.size()/7];
+        for (int i =0;i<arrDouble.length;i++){
+            for (Test test:lTestsInInterval
+            ) {
+                Calendar calendar1= toCalendar(getLocalDate(test.getValidationDate()));
+                Calendar calendar2= toCalendar(totalDates.get(i));
+                if (calendar1.get(Calendar.YEAR)==calendar2.get(Calendar.YEAR)&&calendar1.get(Calendar.WEEK_OF_YEAR)==calendar2.get(Calendar.WEEK_OF_YEAR)&&test.getTestType().getDescription().equals("Covid")&&test.getParameter().get(0).getTestResult().getResult()>1.4){
+                    cont++;
+                    total+=test.calculateAge();
+                }
+            }
+            arrDouble[i]=total/cont;
+            cont=0;
+        }
+        return arrDouble;
+    }
+    private Calendar toCalendar(LocalDate localDate) {
+        Date date = convertToDateViaInstant(localDate);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
+    private Date convertToDateViaInstant(LocalDate dateToConvert) {
+        return java.util.Date.from(dateToConvert.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+    }
+
     private LocalDate getLocalDate(Calendar calendar){
         return  LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId()).toLocalDate();
     }
+
     public double[] getPositiveCovidTestsPerformedOnDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
-        List<Test> lTestsInInterval =getTestsInInterval(olderDate,newerDate);
+        List<Test> lTestsInInterval =getTestsInDayInterval(olderDate,newerDate);
         LocalDate olderDateL = getLocalDate(olderDate);
         LocalDate newerDateL= getLocalDate(newerDate);
         List<LocalDate> totalDates = new ArrayList<>();
@@ -513,7 +616,7 @@ public class TestStore {
     public double[] getMeanAgeOfTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
         double totalAge=0;
-        List<Test> lTestsInInterval =getTestsInInterval(olderDate,newerDate);
+        List<Test> lTestsInInterval =getTestsInDayInterval(olderDate,newerDate);
         LocalDate olderDateL = getLocalDate(olderDate);
         LocalDate newerDateL= getLocalDate(newerDate);
         List<LocalDate> totalDates = new ArrayList<>();

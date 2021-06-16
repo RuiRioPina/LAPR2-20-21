@@ -150,34 +150,34 @@ public class MainMenuGUISceneController implements Initializable {
 	}
 	
 	private Stage loadAdminUi() {
-//		try {
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuAdminUiScene.fxml"));
-//	        Parent root = loader.load();
-//
-//	        Scene scene = new Scene(root);
-//
-//	        Stage novoAdminStage = new Stage();
-//	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
-//	        novoAdminStage.setTitle("Administrador");
-//	        novoAdminStage.setMaximized(true);
-//	        novoAdminStage.setScene(scene);
-//	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//	            @Override
-//	            public void handle(WindowEvent event) {
-//	            	Stage window = (Stage)lblInicial.getScene().getWindow();
-//	                window.show();
-//	            }
-//	        });
-//
-//	        MenuAdminUISceneController novoAdminUI = loader.getController();
-//	        novoAdminUI.associarParentUI(this);
-//
-//	        return novoAdminStage;
-//		} catch (IOException ex) {
-//			Utils.criarAlerta(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-//            return null;
-//        }
-		return null;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdminGUIScene.fxml"));
+	        Parent root = loader.load();
+
+	        Scene scene = new Scene(root);
+
+	        Stage novoAdminStage = new Stage();
+	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
+	        novoAdminStage.setTitle("Administrador");
+	        novoAdminStage.setMaximized(true);
+	        novoAdminStage.setScene(scene);
+	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	            @Override
+	            public void handle(WindowEvent event) {
+	            	app.doLogout();
+	            	Stage window = (Stage)lblInitial.getScene().getWindow();
+	                window.show();
+	            }
+	        });
+
+	        MenuAdminGUISceneController novoAdminUI = loader.getController();
+	        novoAdminUI.associarParentUI(this);
+
+	        return novoAdminStage;
+		} catch (IOException ex) {
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            return null;
+        }
 	}
 	
 	@FXML
