@@ -6,6 +6,7 @@ import java.util.Scanner;
 import app.controller.GenerateSampleController;
 import app.domain.model.Test;
 import app.ui.console.utils.Utils;
+import app.ui.gui.MenuMedicalLabTechnicianGUISceneController;
 
 public class GenerateSampleUI implements Runnable {
 	
