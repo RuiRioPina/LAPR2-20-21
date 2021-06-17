@@ -75,4 +75,27 @@ public class SelectionSortTest {
         List<Client> actual = SelectionSort.swap(clients,1,0);
         assertEquals(expected,actual);
     }
+    @Test
+    public void testSortMethod() {
+        List<Client> clients = new ArrayList<>();
+        List<String>names= new ArrayList<>();
+        List<Long>tins= new ArrayList<>();
+        List<Client> swappedClients = new ArrayList<>();
+        Client c1 = new Client(1234567890123251L, 1231564290, "22-01-2002", "ts@gmail.com", 9111111110L, 22221221222L, "Ana Saul");
+        Client c2 = new Client(1234567890123151L, 1234564290, "22-01-2002", "ruipinas@gmail.com", 1111111110L, 22221222222L, "Rui Pina");
+        Client c3 = new Client(1234567220123151L, 1234561290, "22-01-2002", "ruipinat@gmail.com", 1111121110L, 22221222212L, "Jorge Ferreira");
+        clients.add(c1);
+        clients.add(c2);
+        clients.add(c3);
+        swappedClients.add(c2);
+        swappedClients.add(c1);
+        swappedClients.add(c3);
+        for (Client clts:clients) {
+
+        }
+        SelectionSort selectionSort = new SelectionSort();
+        InsertionSort insertionSort = new InsertionSort();
+        selectionSort.sortMethod(names,tins,clients,1);
+        insertionSort.sortMethod(names,tins,clients,1);
+    }
 }
