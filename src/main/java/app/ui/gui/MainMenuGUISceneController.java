@@ -126,12 +126,12 @@ public class MainMenuGUISceneController implements Initializable {
 
 			Scene scene = new Scene(root);
 
-			Stage novoClientStage = new Stage();
-			novoClientStage.initModality(Modality.APPLICATION_MODAL);
-			novoClientStage.setTitle("Clinical Chemistry Technologist");
-			novoClientStage.setMaximized(true);
-			novoClientStage.setScene(scene);
-			novoClientStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			Stage novoCttStage = new Stage();
+			novoCttStage.initModality(Modality.APPLICATION_MODAL);
+			novoCttStage.setTitle("Clinical Chemistry Technologist");
+			novoCttStage.setMaximized(true);
+			novoCttStage.setScene(scene);
+			novoCttStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				@Override
 				public void handle(WindowEvent event) {
 					Stage window = (Stage)lblInitial.getScene().getWindow();
@@ -142,7 +142,7 @@ public class MainMenuGUISceneController implements Initializable {
 			MenuCctGUISceneController cctUi = loader.getController();
 			cctUi.associarParentUI(this);
 
-			return novoClientStage;
+			return novoCttStage;
 		} catch (IOException ex) {
 			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
 			return null;
@@ -185,12 +185,6 @@ public class MainMenuGUISceneController implements Initializable {
         Window window = lblInitial.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
-
-	@FXML
-	private void menuSeeTestDetailsAction(ActionEvent event) {
-		Window window = lblInitial.getScene().getWindow();
-		window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
-	}
 
 	@FXML
 	private void menuLoginAction(ActionEvent event) {
