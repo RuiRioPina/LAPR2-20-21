@@ -430,6 +430,15 @@ public class TestStore implements Serializable {
 
         }
     }
+    private List<Test> getValidatedTests(){
+        List<Test> resultList=new ArrayList<>();
+        for (int i=0;i<tests.size();i++){
+            if (tests.get(i).getValidationDate()!=null){
+                resultList.add(tests.get(i));
+            }
+        }
+        return resultList;
+    }
 
     /**
      * Method to validate the imported tests and prevent equals nhsCodes.
@@ -448,17 +457,20 @@ public class TestStore implements Serializable {
         return validation;
     }
 
-    private  List<Test> getTestsInDayInterval(Calendar olderDate, Calendar newerDate) {
+   public List<Test> getTestsInDayInterval(Calendar olderDate, Calendar newerDate) {
         List<Test> lTestsInInterval = new ArrayList<>();
-        LocalDate olderDateL = getLocalDate(olderDate);
-        LocalDate newerDateL= getLocalDate(newerDate);
-        for (int i = 0; i < tests.size(); i++) {
-            if (getLocalDate(tests.get(i).getValidationDate()).isBefore(newerDateL.plusDays(1)) && getLocalDate(tests.get(i).getValidationDate()).isAfter(olderDateL.plusDays(-1))) {
-                lTestsInInterval.add(tests.get(i));
+        Calendar olderDateUsed= (Calendar)olderDate.clone();
+        Calendar newerDateUsed= (Calendar)newerDate.clone();
+        olderDateUsed.add(Calendar.DAY_OF_MONTH,-1);
+        newerDateUsed.add(Calendar.DAY_OF_MONTH,1);
+        for (int i = 0; i < getValidatedTests().size(); i++) {
+            if (getValidatedTests().get(i).getValidationDate().before(newerDateUsed)&& getValidatedTests().get(i).getValidationDate().after(olderDateUsed)) {
+                lTestsInInterval.add(getValidatedTests().get(i));
             }
         }
         return lTestsInInterval;
-    }private List<Test> getTestsInWeekListInterval(Calendar olderDate,Calendar newerDate){
+    }
+    private List<Test> getTestsInWeekListInterval(Calendar olderDate,Calendar newerDate){
 if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!=2){
     throw new IllegalArgumentException("o dia da semana so pode ser segunda feira");
 }
@@ -473,23 +485,34 @@ if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!
         return lTestsInInterval;
 
    }
+   public  List<Calendar> getTotalDateList(Calendar olderDate,Calendar newerDate){
+       Calendar olderDateUsed=(Calendar)olderDate.clone();
+       Calendar newerDateUsed=(Calendar)newerDate.clone();
+       List<Calendar> totalDates = new ArrayList<>();
+       newerDateUsed.add(Calendar.DAY_OF_MONTH,1);
+       do {
+           Calendar tempDateUsed=(Calendar) olderDateUsed.clone();
+           if (tempDateUsed.get(Calendar.DAY_OF_WEEK)!= Calendar.SUNDAY){
+               totalDates.add(tempDateUsed);
+           }
+           olderDateUsed.add(Calendar.DAY_OF_MONTH,1);
+       }while (olderDateUsed.before(newerDateUsed));
+       return totalDates;
+   }
     public double[] getTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
-        List<Test> lTestsInInterval =getTestsInDayInterval(olderDate,newerDate);
-        LocalDate olderDateL = getLocalDate(olderDate);
-        LocalDate newerDateL= getLocalDate(newerDate);
-        List<LocalDate> totalDates = new ArrayList<>();
-        while (!olderDateL.isAfter(newerDateL)) {
-            if (olderDateL.getDayOfWeek()!= DayOfWeek.SUNDAY) {
-                totalDates.add(olderDateL);
-                olderDateL = olderDateL.plusDays(1);
-            }
-        }
+        Calendar olderDateUsed=(Calendar)olderDate.clone();
+        Calendar newerDateUsed=(Calendar)newerDate.clone();
+        List<Test> lTestsInInterval =getTestsInDayInterval(olderDateUsed,newerDateUsed);
+        List<Calendar> totalDates = getTotalDateList(olderDateUsed,newerDateUsed);
         double[] arrDouble= new double[totalDates.size()];
         for (int i =0;i<arrDouble.length;i++){
+            Calendar dayDate= totalDates.get(i);
             for (Test test:lTestsInInterval
                  ) {
-                if (getLocalDate(test.getValidationDate()).equals(totalDates.get(i))){
+                Calendar testDate= test.getValidationDate();
+
+                if (testDate.get(Calendar.YEAR)==dayDate.get(Calendar.YEAR)&&testDate.get(Calendar.MONTH)==dayDate.get(Calendar.MONTH)&&testDate.get(Calendar.DAY_OF_MONTH)==dayDate.get(Calendar.DAY_OF_MONTH)){
                    cont++;
                 }
             }
@@ -594,24 +617,21 @@ if (olderDate.get(Calendar.DAY_OF_WEEK)!=2||olderDate.get(Calendar.DAY_OF_WEEK)!
 
     public double[] getPositiveCovidTestsPerformedOnDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
-        List<Test> lTestsInInterval =getTestsInDayInterval(olderDate,newerDate);
-        LocalDate olderDateL = getLocalDate(olderDate);
-        LocalDate newerDateL= getLocalDate(newerDate);
-        List<LocalDate> totalDates = new ArrayList<>();
-        while (!olderDateL.isAfter(newerDateL)) {
-            if (olderDateL.getDayOfWeek()!= DayOfWeek.SUNDAY) {
-                totalDates.add(olderDateL);
-                olderDateL = olderDateL.plusDays(1);
-            }
-        }
+        Calendar olderDateUsed=(Calendar)olderDate.clone();
+        Calendar newerDateUsed=(Calendar)newerDate.clone();
+        List<Test> lTestsInInterval =getTestsInDayInterval(olderDateUsed,newerDateUsed);
+        List<Calendar> totalDates = getTotalDateList(olderDateUsed,newerDateUsed);
         double[] arrDouble= new double[totalDates.size()];
-        for (int i =0;i<arrDouble.length;i++){
-            for (Test test:lTestsInInterval
-            ) {
-                if (getLocalDate(test.getValidationDate()).equals(totalDates.get(i))&& test.getTestType().getDescription().equals("Covid")&&test.getParameter().get(0).getTestResult().getResult()>1.4){
-                    cont++;
+            for (int i =0;i<arrDouble.length;i++){
+                Calendar dayDate= totalDates.get(i);
+                for (Test test:lTestsInInterval
+                ) {
+                    Calendar testDate= test.getValidationDate();
+
+                    if (testDate.get(Calendar.YEAR)==dayDate.get(Calendar.YEAR)&&testDate.get(Calendar.MONTH)==dayDate.get(Calendar.MONTH)&&testDate.get(Calendar.DAY_OF_MONTH)==dayDate.get(Calendar.DAY_OF_MONTH)&& test.getTestType().getDescription().equals("Covid")&&test.getParameter().get(0).getTestResult().getResult()>1.4){
+                        cont++;
+                    }
                 }
-            }
             arrDouble[i]=cont;
             cont=0;
         }

@@ -29,7 +29,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0">
+            <TitledPane collapsible="false" prefHeight="241.0" prefWidth="782.0">
                <content>
                   <GridPane hgap="5.0" vgap="5.0">
                      <columnConstraints>
@@ -46,31 +46,34 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label fx:id="lblHistoricalPointType" text="Historical Point Type" />
                         <Label fx:id="lblHistoricalPointNumber" prefHeight="30.0" prefWidth="138.0" text="Number Of Historical Points" GridPane.rowIndex="1" />
-                        <TextField fx:id="txfNumberOfHistoricalPoints" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="lblIndependentVariable" text="Independent Variable" GridPane.columnIndex="2" />
+                        <TextField fx:id="txfNumberOfHistoricalPoints" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblIndependentVariable" text="Independent Variable" GridPane.columnIndex="3" />
                         <Label fx:id="lblRegressionInterval" text="Interval to fit the regression model" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <TextField fx:id="txfOlderDate" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <TextField fx:id="txfNewerDate" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                         <Label fx:id="lblOlderDate" text="Older Date(dd-mm-yyyy)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label fx:id="lblNewerDate" text="Newer Date(dd-mm-yyyy)" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                        <Label fx:id="lblBParameterForHypothesis" text="B Parameter for hypothesis test" GridPane.rowIndex="3" />
-                        <TextField fx:id="txfBParameterHypothesisTest" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="lblAParameterForHypothesisTest" text="A Parameter for hypothesis test" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <TextField fx:id="txfAParameterHypothesisTest" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label fx:id="lblBHypothesisSignificance" text="B Hypothesis test significance" GridPane.rowIndex="4" />
-                        <TextField fx:id="txfBHypothesisTestSignificance" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="lblAHypothesisTestSignificance" text="A Hypothesis test significance" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <TextField fx:id="txfAHypothesisTestSignificance" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <TextField fx:id="txfConfidenceIntervalSignificance" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="lblConfidenceIntervalSignificance" text="Confidence Interval significance" GridPane.rowIndex="5" />
-                        <Label fx:id="lblFDecisionSignficance" text="FDecision significance" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <TextField fx:id="txfFDecisionSignificance" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label fx:id="lblBParameterForHypothesis" text="B Parameter for hypothesis test" GridPane.rowIndex="4" />
+                        <TextField fx:id="txfBParameterHypothesisTest" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="lblAParameterForHypothesisTest" text="A Parameter for hypothesis test" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="txfAParameterHypothesisTest" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Label fx:id="lblBHypothesisSignificance" text="B Hypothesis test significance" GridPane.rowIndex="5" />
+                        <TextField fx:id="txfBHypothesisTestSignificance" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="lblAHypothesisTestSignificance" text="A Hypothesis test significance" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <TextField fx:id="txfAHypothesisTestSignificance" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <TextField fx:id="txfConfidenceIntervalSignificance" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lblConfidenceIntervalSignificance" text="Confidence Interval significance" GridPane.rowIndex="6" />
+                        <Label fx:id="lblFDecisionSignficance" text="FDecision significance" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <TextField fx:id="txfFDecisionSignificance" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                         <ComboBox fx:id="cboxHistoricalPointType" onAction="#cBoxHistoricalPointVariable" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ComboBox fx:id="cboxIndependentVariable" onAction="#cboxIndependentVariableOpen" prefWidth="150.0" GridPane.columnIndex="3" />
+                        <ComboBox fx:id="cboxIndependentVariable" onAction="#cboxIndependentVariableOpen" prefWidth="150.0" GridPane.columnIndex="4" />
+                        <Label fx:id="lblCurrentDay" text="Current Day (dd-mm-yyyy)" GridPane.rowIndex="2" />
+                        <TextField fx:id="txfCurrentDay" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </content>

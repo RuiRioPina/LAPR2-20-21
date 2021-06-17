@@ -1,12 +1,13 @@
 package app.domain.model;
 
 import app.controller.App;
+import app.domain.model.matcp.LinearRegression;
 import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,7 +41,7 @@ public class Company implements Serializable {
     private TestStore testStore;
     private LabCoordinatorStore labCoorStore;
     // Used to pass the imported tests beetween classes.
-    private List <Test> importedTests = new ArrayList<>();
+    private List<Test> importedTests = new ArrayList<>();
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -66,11 +67,12 @@ public class Company implements Serializable {
         this.testStore = new TestStore();
         this.labCoorStore = new LabCoordinatorStore();
     }
-    public List<Test> getImportedTests(){
+
+    public List<Test> getImportedTests() {
         return this.importedTests;
     }
 
-    public void setImportedTests(List <Test> importedTests) {
+    public void setImportedTests(List<Test> importedTests) {
         this.importedTests = importedTests;
     }
 
@@ -157,15 +159,15 @@ public class Company implements Serializable {
         return testes;
     }
 
-    public TestStore getAllTestCompleted(){
+    public TestStore getAllTestCompleted() {
         List<Test> tests = new ArrayList<>();
         tests.addAll(testStore.getTestsWithoutDiagnosis());
         testStore = new TestStore(tests);
         return testStore;
     }
 
-    public Calendar tStringToCalendar (String txt) {
-        String message="Wrong date";
+    public Calendar tStringToCalendar(String txt) {
+        String message = "Wrong date";
         try {
             SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             Date dt = df.parse(txt);
@@ -266,5 +268,32 @@ public class Company implements Serializable {
     private void addClientToSystem(Client c) {
         App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
+
+    public String generateSimpleNhsReport(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance) {
+        LinearRegression linearRegression = new LinearRegression(testStore.getTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
+
+        NHSReport report = new NHSReport(linearRegression, testStore.getPositiveCovidTestsPerformedOnDay(getHistoricalPointOlderDate(currentDate, historicalPoints), currentDate), testStore.getTestsPerformedPerDay(getHistoricalPointOlderDate(currentDate, historicalPoints), currentDate));
+
+        return report.getReportString(getHistoricalPointOlderDate(currentDate, historicalPoints), currentDate, aParameterSignificance, aTestParameter, bParamatereSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+    }
+
+    public Calendar getHistoricalPointOlderDate(Calendar currentDate, int historicalPointAmount) {
+        int i = historicalPointAmount;
+        Calendar olderDate = Calendar.getInstance();
+        Calendar currentDateUsed = (Calendar) currentDate.clone();
+        currentDateUsed.add(Calendar.DAY_OF_MONTH,-1);
+        olderDate.set(currentDateUsed.get(Calendar.YEAR), currentDateUsed.get(Calendar.MONTH), currentDateUsed.get(Calendar.DAY_OF_MONTH));
+        do {
+            if (olderDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                olderDate.add(Calendar.DAY_OF_MONTH, -2);
+            } else {
+                olderDate.add(Calendar.DAY_OF_MONTH, -1);
+
+            }
+            i--;
+        } while (i != 0);
+        return (Calendar) olderDate.clone();
+    }
+
 
 }
