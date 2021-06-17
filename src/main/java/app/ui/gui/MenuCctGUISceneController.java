@@ -70,7 +70,7 @@ public class MenuCctGUISceneController implements Initializable {
     }
 
     @FXML
-    private void menuShowClientsAction(ActionEvent event) {
+    void menuViewTestsAction(ActionEvent event) {
         Stage stage = loadShowClientsUi();
         if(stage == null) {
             return;

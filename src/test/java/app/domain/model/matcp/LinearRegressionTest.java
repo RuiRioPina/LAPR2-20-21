@@ -79,7 +79,7 @@ public class LinearRegressionTest {
     @Test
     public void testTestToString() {
         LinearRegression linearRegression = new LinearRegression(x, y);
-        String actual = linearRegression.toString();
+        String actual = linearRegression.toString().replace(",",".");
         String expected = "^y=0.0036x+0.1181";
         Assert.assertEquals(expected, actual);
     }
