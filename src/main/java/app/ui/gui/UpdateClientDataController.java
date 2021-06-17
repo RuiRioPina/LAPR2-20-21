@@ -2,6 +2,7 @@ package app.ui.gui;
 
 import app.controller.App;
 import app.domain.model.Client;
+import app.domain.shared.EmailNotificationSender;
 import app.ui.Main;
 import auth.domain.model.Email;
 import javafx.application.Platform;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -76,7 +78,7 @@ public class UpdateClientDataController implements Initializable {
     }
 
     @FXML
-    public void updateInfo(javafx.event.ActionEvent actionEvent) throws MalformedURLException {
+    public void updateInfo(javafx.event.ActionEvent actionEvent) throws IOException, InterruptedException {
         String name = updateOne.getText();
         String phoneNumber = updateTwo.getText();
         String address = updateThree.getText();
@@ -101,7 +103,7 @@ public class UpdateClientDataController implements Initializable {
                 JOptionPane.showMessageDialog(null, "Client Data has been updated.");
                 Stage stage = (Stage) btnUpdate.getScene().getWindow();
                 stage.close();
-                System.out.println(App.getInstance().getCurrentUserSession().getUserName());
+                new EmailNotificationSender(client).sendTestCompletedNotification2();
             } else {
                 JOptionPane.showMessageDialog(null,"Client Data has not been updated." + '\n' + '\n'+
                         "Be aware that: " + '\n' + '\n' +
