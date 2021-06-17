@@ -66,4 +66,17 @@ public class ClientListTest {
         assertNotEquals(expected, actual2);
         assertNotEquals(expected2, actual1);
     }
+    @Test
+    public void testGetClientByEmail() {
+        List<Client> c = new ArrayList<>();
+        ClientList clientList = new ClientList();
+        Client client1 = clientList.createClient(9999999999999999L, 9999999999L, "10-10-2010", "ruipina@mail.com", 9999999999L, 99999999999L, "Rui Pina");
+        Client client2 = clientList.createClient(1111111111111111L, 9999999999L, "10-10-2010", "M", "ruipina123@mail.com", 9999999999L, 99999999999L, "Rui fPina");
+        clientList.saveClient(client1);
+        Client actual = clientList.getClientByEmail("ruipina@mail.com");
+        Client actual1 = clientList.getClientByEmail("ruipina123123@mail.com");
+        c.add(client1);
+        assertEquals(client1, actual);
+        assertNull(actual1);
+    }
 }

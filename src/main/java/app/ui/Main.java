@@ -28,7 +28,7 @@ public class Main extends Application{
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("/styles/Styles.css");
 
-		stage.setTitle("Menu Inicial");
+		stage.setTitle("Main Menu");
 		stage.setScene(scene);
 		stage.setMaximized(true);
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

@@ -16,15 +16,17 @@ import org.apache.commons.math3.distribution.TDistribution;
  */
 
 public class LinearRegression {
-    private final double intercept, slope;
+    private final double intercept;
+    private double slope = 0;
     private final double r2;
-    private final double svar0, svar1;
+    private final double svar0;
+    private final double svar1;
     private final double n;
     private final double[] arrayX;
     private final double[] arrayY;
-    private final static double k = 1;
-    private final static double SR_DEGREES_OF_FREEDOM=1;
-    private final double SEDegreesOfFreedom;
+    private static final double K = 1;
+    private static final double SR_DEGREES_OF_FREEDOM = 1;
+    private double sEDegreesOfFreedom;
 
     /**
      * Performs a linear regression on the data points (y[i], x[i]).
@@ -39,43 +41,47 @@ public class LinearRegression {
         if (x.length != y.length) {
             throw new IllegalArgumentException("array lengths are not equal");
         }
-        int n = x.length;
-        this.n = n;
+        int lengthOfX = x.length;
+        this.n = lengthOfX;
         // first pass
-        double sumx = 0.0, sumy = 0.0, sumx2 = 0.0;
-        for (int i = 0; i < n; i++) {
+        double sumx = 0.00;
+        double sumy = 0.00;
+        double sumx2 = 0.0;
+        for (int i = 0; i < lengthOfX; i++) {
             sumx += x[i];
             sumx2 += x[i] * x[i];
             sumy += y[i];
         }
-        double xbar = sumx / n;
-        double ybar = sumy / n;
+        double xbar = sumx / lengthOfX;
+        double ybar = sumy / lengthOfX;
 
         // second pass: compute summary statistics
         double xxbar = 0.0, yybar = 0.0, xybar = 0.0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < lengthOfX; i++) {
             xxbar += (x[i] - xbar) * (x[i] - xbar);
             yybar += (y[i] - ybar) * (y[i] - ybar);
             xybar += (x[i] - xbar) * (y[i] - ybar);
         }
-        slope = xybar / xxbar;
+        if (xxbar != 0) {
+            slope = xybar / xxbar;
+        }
         intercept = ybar - slope * xbar;
 
         // more statistical analysis
         double rss = 0.0;      // residual sum of squares
         double ssr = 0.0;      // regression sum of squares
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < lengthOfX; i++) {
             double fit = slope * x[i] + intercept;
             rss += (fit - y[i]) * (fit - y[i]);
             ssr += (fit - ybar) * (fit - ybar);
         }
 
-        int degreesOfFreedom = n - 2;
+        int degreesOfFreedom = lengthOfX - 2;
         r2 = ssr / yybar;
         double svar = rss / degreesOfFreedom;
         svar1 = svar / xxbar;
-        svar0 = svar / n + xbar * xbar * svar1;
-        this.SEDegreesOfFreedom=arrayX.length-2;
+        svar0 = svar / lengthOfX + xbar * xbar * svar1;
+        this.sEDegreesOfFreedom = arrayX.length - 2;
     }
 
     /**
@@ -145,16 +151,17 @@ public class LinearRegression {
      */
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(String.format("^y=%.2fx+%.2f", slope(), intercept()));
+        s.append(String.format("^y=%.4fx+%.4f", slope(), intercept()));
         return s.toString();
     }
 
     public double R2Adjusted() {
         double topRow = (1 - this.R2()) * (this.n - 1);
-        double bottomRow = this.n - k - 1;
+        double bottomRow = this.n - K - 1;
         return 1 - (topRow / bottomRow);
     }
-    public double R(){
+
+    public double R() {
         return Math.sqrt(this.R2());
     }
 
@@ -176,13 +183,12 @@ public class LinearRegression {
             yThroughRegressionModelMinusGivenYarray[i] = Math.pow(yThroughRegressionModelMinusGivenYarray[i], 2);
             total += yThroughRegressionModelMinusGivenYarray[i];
         }
-        double resultadoFinal = Math.sqrt((double) 1 / (this.arrayX.length - 2) * (total));
-        return resultadoFinal;
+        return Math.sqrt((double) 1 / (this.arrayX.length - 2) * (total));
     }
 
     public double testCalculationforAparameter(double aParameter) {
         double xxbar = xxBar();
-        return ((this.intercept - aParameter) / (this.calculateS() * (Math.sqrt((double) 1 / this.arrayX.length + (Math.pow(arrayAverage(arrayX), 2) / xxbar)))));
+        return Math.abs((this.intercept - aParameter) / (this.calculateS() * (Math.sqrt((double) 1 / this.arrayX.length + (Math.pow(arrayAverage(arrayX), 2) / xxbar)))));
     }
 
     public double xxBar() {
@@ -203,11 +209,12 @@ public class LinearRegression {
 
     public double testCalculationforBparameter(double bParameter) {
         double xxbar = xxBar();
-        return (this.slope - bParameter) / this.calculateS() * (Math.sqrt(xxbar));
+        return Math.abs((this.slope - bParameter) / this.calculateS() * (Math.sqrt(xxbar)));
     }
-/*
-significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
- */
+
+    /*
+    significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
+     */
     public double getTStudentFromTable(double significance) {
         TDistribution td = new TDistribution(arrayX.length - 2);
         double alphaTD = significance / 2;
@@ -223,12 +230,11 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
 
 
     private double arrayAverage(double[] arr) {
-        double Total = 0;
+        double total = 0;
         for (int i = 0; i < arr.length; i++) {
-            Total += arr[i];
+            total += arr[i];
         }
-        double Average = Total / arr.length;
-        return Average;
+        return total / arr.length;
     }
 
     public double calculateAnovaSR() {
@@ -239,6 +245,7 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         }
         return SRValue;
     }
+
     public double calculateAnovaSE() {
         double SEValue = 0;
         double[] yThroughRegressionModel = this.arrayYthroughRegressionModel();
@@ -247,32 +254,40 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         }
         return SEValue;
     }
-    public double calculateAnovaST(){
-        return  calculateAnovaSR()+calculateAnovaSE();
+
+    public double calculateAnovaST() {
+        return calculateAnovaSR() + calculateAnovaSE();
     }
-    public double calculateAnovaMSR(){
-        return  calculateAnovaSR()/1;
+
+    public double calculateAnovaMSR() {
+        return calculateAnovaSR() / 1;
     }
-    public double calculateAnovaMSE(){
-        return calculateAnovaSE()/(arrayX.length-2);
+
+    public double calculateAnovaMSE() {
+        return calculateAnovaSE() / (arrayX.length - 2);
     }
-    public double calculateTestF(){
-        return calculateAnovaMSR()/calculateAnovaMSE();
+
+    public double calculateTestF() {
+        return calculateAnovaMSR() / calculateAnovaMSE();
     }
-    public double getFSnedcorFromTable(double significance){
-        FDistribution fd= new FDistribution(SR_DEGREES_OF_FREEDOM,SEDegreesOfFreedom);
-        double alphaFD= significance;
-        double critFD= fd.inverseCumulativeProbability(1- alphaFD);
+
+    public double getFSnedcorFromTable(double significance) {
+        FDistribution fd = new FDistribution(SR_DEGREES_OF_FREEDOM, sEDegreesOfFreedom);
+        double alphaFD = significance;
+        double critFD = fd.inverseCumulativeProbability(1 - alphaFD);
         return critFD;
 
     }
-    public int getResidualDF(){
-        return arrayX.length-2;
+
+    public int getResidualDF() {
+        return arrayX.length - 2;
     }
-    public double delta(double significance,double x){
-        return getTStudentFromTable(significance)*calculateS()*Math.sqrt(((double) 1/arrayX.length)+(Math.pow(x-arrayAverage(arrayX),2)/xxBar()));
+
+    public double delta(double significance, double x) {
+        return getTStudentFromTable(significance) * calculateS() * Math.sqrt(((double) 1 / arrayX.length) + (Math.pow(x - arrayAverage(arrayX), 2) / xxBar()));
     }
-    public int getRegressionDF(){
-        return  1;
+
+    public int getRegressionDF() {
+        return 1;
     }
 }

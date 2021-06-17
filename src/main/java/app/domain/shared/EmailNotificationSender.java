@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class EmailNotificationSender {
-    private Client client;
+    private final Client client;
     public EmailNotificationSender(Client client){
         this.client=client;
     }
@@ -28,5 +28,21 @@ public class EmailNotificationSender {
         Thread.sleep(500);
         desktop.open(file);
         return true;
+    }
+    public void sendTestCompletedNotification2()throws  IOException,InterruptedException{
+        String nomeficheiro = "E-mail.txt";
+        try (PrintWriter out = new PrintWriter(nomeficheiro)) {
+            out.println("Dear "+ client.getName() +",");
+            out.println();
+            out.println("Your personal data has been updated.");
+            out.println();
+            out.println("Many Labs");
+        } catch (IOException e) {
+           //
+        }
+        File file = new File(nomeficheiro);
+        Desktop desktop = Desktop.getDesktop();
+        Thread.sleep(500);
+        desktop.open(file);
     }
 }
