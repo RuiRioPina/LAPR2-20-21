@@ -45,23 +45,23 @@ public class MenuCctGUISceneController implements Initializable {
         this.menuUI = mainMenuGUISceneController;
     }
 
-    private Stage loadViewTestsUi() {
+    private Stage loadShowClientsUi() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowListOfClientsScene.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
 
-            Stage novoViewTestsStage = new Stage();
-            novoViewTestsStage.initModality(Modality.APPLICATION_MODAL);
-            novoViewTestsStage.setTitle("Tests");
-            novoViewTestsStage.setResizable(false);
-            novoViewTestsStage.setScene(scene);
+            Stage novoShowClientsStage = new Stage();
+            novoShowClientsStage.initModality(Modality.APPLICATION_MODAL);
+            novoShowClientsStage.setTitle("Tests");
+            novoShowClientsStage.setResizable(false);
+            novoShowClientsStage.setScene(scene);
 
             ShowListOfClientsController novoViewTestsUI = loader.getController();
             novoViewTestsUI.associarParentUI(this);
 
-            return novoViewTestsStage;
+            return novoShowClientsStage;
         } catch (IOException ex) {
             Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
             System.out.println(ex.getMessage());
@@ -70,13 +70,13 @@ public class MenuCctGUISceneController implements Initializable {
     }
 
     @FXML
-    private void menuViewTestsAction(ActionEvent event) {
-        Stage stage1 = loadViewTestsUi();
-        if(stage1 == null) {
+    private void menuShowClientsAction(ActionEvent event) {
+        Stage stage = loadShowClientsUi();
+        if(stage == null) {
             return;
         }
 
-        stage1.showAndWait();
+        stage.showAndWait();
     }
 
     @FXML
