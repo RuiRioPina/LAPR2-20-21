@@ -3,6 +3,7 @@ package app.domain.model;
 import app.domain.model.matcp.LinearRegression;
 import app.domain.model.matcp.MultiLinearRegression;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -6,6 +6,7 @@ import auth.domain.model.UserRole;
 import auth.mappers.UserRoleMapper;
 import auth.mappers.dto.UserRoleDTO;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class UserSession {
+public class UserSession implements Serializable {
 
     private User user = null;
 

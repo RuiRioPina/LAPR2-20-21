@@ -2,10 +2,11 @@ package app.domain.store;
 
 import app.domain.model.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultOfTestStore {
+public class ResultOfTestStore implements Serializable {
     private final List<TestResult> resultOfTestsStore;
 
 

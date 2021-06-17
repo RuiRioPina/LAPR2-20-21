@@ -10,6 +10,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class Company {
+public class Company implements Serializable {
 
     private int numberOfEmployees;
     private long lastBarcode;

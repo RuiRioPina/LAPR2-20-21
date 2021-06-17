@@ -1,8 +1,9 @@
 package app.domain.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TestParam {
+public class TestParam implements Serializable {
 
     /**
      * Object oriented Class for the manipulation of Parameters that were selected for a test.

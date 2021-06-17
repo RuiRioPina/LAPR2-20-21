@@ -3,10 +3,11 @@ package app.domain.store;
 import app.controller.App;
 import app.domain.model.*;
 
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
-public class TestStore {
+public class TestStore implements Serializable {
     /**
      * Object Oriented class used to store the Tests.
      */

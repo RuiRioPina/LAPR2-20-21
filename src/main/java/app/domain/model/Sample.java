@@ -1,6 +1,8 @@
 package app.domain.model;
 
-public class Sample {
+import java.io.Serializable;
+
+public class Sample implements Serializable {
 
 	/**
      * Object oriented Class to the creation of a sample in a company context.

@@ -2,10 +2,11 @@ package app.domain.model;
 
 import app.domain.shared.Configuration;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-public class TestType {
+public class TestType implements Serializable {
 
     /**
      * Object oriented Class to the specification of a test type in a company context.

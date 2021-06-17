@@ -2,10 +2,11 @@ package app.domain.model;
 
 import app.domain.store.TestStore;
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class ClinicalAnalysisLaboratory {
+public class ClinicalAnalysisLaboratory implements Serializable {
 
     /**
      * Object oriented Class to describe a Clinical analysis laboratory in a company context.

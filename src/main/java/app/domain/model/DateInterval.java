@@ -1,12 +1,8 @@
 package app.domain.model;
 
-import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.io.Serializable;
 
-public class DateInterval {
+public class DateInterval implements Serializable {
 
     private String sDate;
     private String eDate;

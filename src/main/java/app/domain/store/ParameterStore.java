@@ -3,10 +3,11 @@ package app.domain.store;
 import app.domain.model.Parameter;
 import app.domain.model.ParameterCategory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParameterStore {
+public class ParameterStore implements Serializable {
     /**
      * Object oriented class used to Store the parameters within the company.
      */

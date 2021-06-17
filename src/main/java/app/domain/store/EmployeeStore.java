@@ -4,10 +4,11 @@ import app.controller.App;
 import app.domain.model.Employee;
 import app.domain.model.Role;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeStore {
+public class EmployeeStore implements Serializable {
     /**
      * Object oriented class used to Store the Employees within the company.
      */

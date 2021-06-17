@@ -1,10 +1,11 @@
 package app.domain.store;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import app.domain.model.ParameterCategory;
 
-public class ParameterCategoryStore {
+public class ParameterCategoryStore implements Serializable {
 
 	private final List<ParameterCategory> parameterCategories;
 	

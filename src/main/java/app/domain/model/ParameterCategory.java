@@ -1,6 +1,8 @@
 package app.domain.model;
 
-public class ParameterCategory {
+import java.io.Serializable;
+
+public class ParameterCategory implements Serializable {
 
     private final String code;
 	private final String name;

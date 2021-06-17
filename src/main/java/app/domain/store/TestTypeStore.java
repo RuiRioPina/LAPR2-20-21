@@ -1,5 +1,6 @@
 package app.domain.store;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
 import app.domain.model.ParameterCategory;
 import app.domain.model.TestType;
 
-public class TestTypeStore {
+public class TestTypeStore implements Serializable {
 	/**
      * Object oriented class used to Store the test types within the company.
      */

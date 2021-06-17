@@ -3,6 +3,7 @@ package app.controller;
 import app.domain.model.*;
 import app.domain.shared.Constants;
 import app.domain.store.*;
+import app.ui.gui.utils.Utils;
 import auth.AuthFacade;
 import auth.UserSession;
 import javafx.scene.control.Alert;
@@ -11,21 +12,50 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.WindowEvent;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
-public class App {
+public class App  {
 
     private Company company;
     private AuthFacade authFacade;
+    private boolean doBootStrap;
 
     private App() {
         Properties props = getProperties();
-        this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
+        
+        Company cmp = null;
+        try
+        {    
+            FileInputStream file = new FileInputStream(Constants.PARAMS_FICHEIRO_DADOS); 
+            ObjectInputStream in = new ObjectInputStream(file); 
+              
+            cmp = (Company)in.readObject(); 
+              
+            in.close(); 
+            file.close(); 
+        }
+        catch(ClassNotFoundException e) {
+            Utils.createAlert(AlertType.WARNING, "Read data", "Value of file invalid");
+        }
+        catch(IOException e) 
+        { 
+        } 
+        
+        this.doBootStrap = false;
+        if(cmp == null) {
+        	cmp = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
+        	this.doBootStrap = true;
+        }
+        
+        this.company = cmp;
         this.authFacade = this.company.getAuthFacade();
     }
 
@@ -256,7 +286,10 @@ public class App {
         if (singleton == null) {
             synchronized (App.class) {
                 singleton = new App();
-                singleton.bootstrap();
+                if(singleton.doBootStrap) {
+                	singleton.bootstrap();
+                	singleton.doBootStrap = false;
+                }
             }
         }
         return singleton;
@@ -270,6 +303,22 @@ public class App {
         if(resultado == ButtonType.NO) {
             event.consume();
             return;
+        }
+        
+        try
+        {    
+            FileOutputStream file = new FileOutputStream(Constants.PARAMS_FICHEIRO_DADOS); 
+            ObjectOutputStream out = new ObjectOutputStream(file); 
+              
+            out.writeObject(this.company); 
+              
+            out.close(); 
+            file.close(); 
+        } 
+        catch(IOException e) 
+        { 
+            Utils.createAlert(AlertType.WARNING, "Save data", "Error saving: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

@@ -3,10 +3,11 @@ package app.domain.store;
 import app.controller.App;
 import app.domain.model.Client;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientList {
+public class ClientList implements Serializable {
     private final List<Client> listOfClients;
 
     /**

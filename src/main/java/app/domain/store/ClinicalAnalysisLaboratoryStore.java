@@ -4,10 +4,11 @@ import app.domain.model.ClinicalAnalysisLaboratory;
 import app.domain.model.Test;
 import app.domain.model.TestType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClinicalAnalysisLaboratoryStore {
+public class ClinicalAnalysisLaboratoryStore implements Serializable {
 
     /**
      * Object oriented class used to Store the Clinical analysis laboratories within the company.

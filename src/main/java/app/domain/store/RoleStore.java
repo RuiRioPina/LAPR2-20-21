@@ -3,11 +3,12 @@ package app.domain.store;
 
 import app.domain.model.Role;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class RoleStore {
+public class RoleStore implements Serializable {
     /**
      * Object oriented class used to Store the roles within the company.
      */

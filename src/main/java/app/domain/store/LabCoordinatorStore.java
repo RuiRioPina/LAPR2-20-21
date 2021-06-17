@@ -3,11 +3,12 @@ package app.domain.store;
 import app.domain.model.DateInterval;
 import app.domain.model.Test;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-public class LabCoordinatorStore {
+public class LabCoordinatorStore implements Serializable {
 
     List<Test> tests;
 

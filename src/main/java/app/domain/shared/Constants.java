@@ -28,4 +28,5 @@ public class Constants {
     public static final String PARAMS_COMPANY_DESIGNATION = "Company.Designation";
 
     public static final ClinicalAnalysisLaboratory calNull = new ClinicalAnalysisLaboratory(null,null,null,0,0,null);
+	public static final String PARAMS_FICHEIRO_DADOS = "data.dat";
 }

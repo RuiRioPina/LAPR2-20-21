@@ -1,8 +1,9 @@
 package app.domain.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Parameter {
+public class Parameter implements Serializable {
 
     /**
      * Object oriented Class to the specification of a parameter in a company context.

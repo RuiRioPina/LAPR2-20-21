@@ -3,11 +3,12 @@ package app.domain.store;
 import app.domain.model.Report;
 import app.domain.model.Test;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ReportStore {
+public class ReportStore implements Serializable {
 
     /**
      * Object oriented class used to Store the Reports within the company.

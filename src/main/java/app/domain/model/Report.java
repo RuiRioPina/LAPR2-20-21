@@ -1,7 +1,8 @@
 package app.domain.model;
 
+import java.io.Serializable;
 
-public class Report {
+public class Report implements Serializable {
     /**
      * Object oriented class to describe a report in a company text
      */

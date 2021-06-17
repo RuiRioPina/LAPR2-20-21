@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,7 +12,7 @@ import app.domain.shared.EmailNotificationSender;
 import app.domain.store.ResultOfTestStore;
 
 
-public class Test {
+public class Test implements Serializable {
 
     /**
      * Object oriented Class to the registration of a test.

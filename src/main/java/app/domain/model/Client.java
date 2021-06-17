@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,7 @@ import app.domain.shared.Utils;
 import auth.domain.model.Email;
 
 
-public class Client {
+public class Client implements Serializable {
     private long ccn;
     private long nhsNumber;
     private String birthDate;

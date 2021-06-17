@@ -2,11 +2,11 @@ package app.domain.model;
 
 import app.domain.shared.Utils;
 
-
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Employee {
+public class Employee implements Serializable {
     /**
      * Object oriented Class to the describe an employee in a company context.
      */

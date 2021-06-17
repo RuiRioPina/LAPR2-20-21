@@ -1,7 +1,8 @@
 package app.domain.model;
 
+import java.io.Serializable;
 
-public class TestResult {
+public class TestResult implements Serializable {
     ReferenceValue referenceValue;
     double result;
     Parameter parameter;

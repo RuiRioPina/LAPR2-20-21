@@ -1,6 +1,8 @@
 package app.domain.model;
 
-public class ReferenceValue {
+import java.io.Serializable;
+
+public class ReferenceValue implements Serializable {
     /**
      * Class assigned to the creating of a object where the values brought by the API will be stored
      */
