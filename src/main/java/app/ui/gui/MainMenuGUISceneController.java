@@ -180,6 +180,29 @@ public class MainMenuGUISceneController implements Initializable {
         }
 	}
 	
+	private Stage loadChooseLabUi() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseLabGUIScene.fxml"));
+	        Parent root = loader.load();
+	        
+	        Scene scene = new Scene(root);
+	        
+	        Stage novoLabStage = new Stage();
+	        novoLabStage.initModality(Modality.APPLICATION_MODAL);
+	        novoLabStage.setTitle("Login");
+	        novoLabStage.setResizable(false);
+	        novoLabStage.setScene(scene);
+	        
+	        ChooseLabGUISceneController novoLoginUI = loader.getController();
+	        novoLoginUI.associarParentUI(this);
+	        
+	        return novoLabStage;
+        } catch (IOException ex) {	
+        	Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+            return null;
+        }
+	}
+	
 	private Stage loadMedLabTechUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MedLabTechGUIScene.fxml"));
@@ -240,6 +263,11 @@ public class MainMenuGUISceneController implements Initializable {
 		} else if (sessao.isLoggedInWithRole(Constants.ROLE_LABORATORY_COORDINATOR)){
 			stage = loadLabCooUi();
 		} else if (sessao.isLoggedInWithRole(Constants.ROLE_MEDICAL_LAB_TECHNICIAN)){
+			Stage stage2 = loadChooseLabUi();
+			if(stage2 == null) {
+				return;
+			}
+			stage2.showAndWait();
 			stage = loadMedLabTechUi();
 		}
 		if(stage == null) {
