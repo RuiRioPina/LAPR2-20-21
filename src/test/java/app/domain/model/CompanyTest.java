@@ -178,7 +178,7 @@ public class CompanyTest {
         cmp.setNumberOfEmployees(1);
         assertEquals(cmp.getNumberOfEmployees(),1);
     }
-/*
+
     @Test
     public void sendEmailToClient() throws IOException, InterruptedException {
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
@@ -190,8 +190,6 @@ public class CompanyTest {
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
         assertTrue(App.getInstance().getCompany().saveClient(c));
     }
-
-     */
     @Test(expected = IllegalArgumentException.class)
     public void company() throws Exception {
         new Company("");
