@@ -72,8 +72,6 @@ public class ClientList {
     private void add(Client c) {
         if (!listOfClients.contains(c)) {
             this.listOfClients.add(c);
-        } else {
-            //System.out.println("At least one attribute needs to be unique. Please try again");
         }
     }
 
@@ -97,11 +95,4 @@ public class ClientList {
         return this.listOfClients.contains(c);
     }
 
-    public void showList() {
-        ClientList listOfClientsToShow = App.getInstance().getCompany().getClientList();
-        for (Client c : listOfClientsToShow.getClients()) {
-            System.out.println(c);
-        }
-
-    }
 }
