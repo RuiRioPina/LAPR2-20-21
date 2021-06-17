@@ -3,10 +3,6 @@ package app.ui.gui;
 import app.controller.App;
 import app.domain.model.Client;
 import app.domain.shared.EmailNotificationSender;
-import app.ui.Main;
-import auth.domain.model.Email;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,13 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class UpdateClientDataController implements Initializable {

@@ -23,7 +23,7 @@ import javafx.stage.WindowEvent;
 public class MenuClientGUISceneController implements Initializable {
 	
 	private MainMenuGUISceneController menuUI;
-	private App app;
+	private final App app;
 	@FXML
 	private Label lblNameClient;
 	
@@ -101,15 +101,15 @@ public class MenuClientGUISceneController implements Initializable {
 
 			Scene scene = new Scene(root);
 
-			Stage Stage = new Stage();
-			Stage.initModality(Modality.APPLICATION_MODAL);
-			Stage.setTitle("Update Data");
-			Stage.setMaximized(false);
-			Stage.setScene(scene);
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Update Data");
+			stage.setMaximized(false);
+			stage.setScene(scene);
 
 			UpdateClientDataController novoView = loader.getController();
 			novoView.associarParentUI(this);
-			return Stage;
+			return stage;
 		} catch (IOException ex) {
 			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
 			return null;

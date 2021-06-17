@@ -2,11 +2,9 @@ package app.ui.gui;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import app.controller.App;
-import app.domain.model.Client;
 import app.domain.model.ParameterCategory;
 import app.domain.model.Test;
 import app.domain.model.TestResult;
@@ -27,7 +25,7 @@ import javafx.stage.WindowEvent;
 public class ViewTestDetailsGUISceneController implements Initializable {
 	
 	private ViewTestsGUISceneController menuViewTestsGUI;
-	private App app;
+	private final App app;
 	private Test test;
 	@FXML
 	private Label lblTestView;
