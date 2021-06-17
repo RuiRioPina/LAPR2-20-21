@@ -151,7 +151,7 @@ public class LinearRegression {
      */
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(String.format("^y=%.2fx+%.2f", slope(), intercept()));
+        s.append(String.format("^y=%.4fx+%.4f", slope(), intercept()));
         return s.toString();
     }
 
@@ -188,7 +188,7 @@ public class LinearRegression {
 
     public double testCalculationforAparameter(double aParameter) {
         double xxbar = xxBar();
-        return ((this.intercept - aParameter) / (this.calculateS() * (Math.sqrt((double) 1 / this.arrayX.length + (Math.pow(arrayAverage(arrayX), 2) / xxbar)))));
+        return Math.abs((this.intercept - aParameter) / (this.calculateS() * (Math.sqrt((double) 1 / this.arrayX.length + (Math.pow(arrayAverage(arrayX), 2) / xxbar)))));
     }
 
     public double xxBar() {
@@ -209,7 +209,7 @@ public class LinearRegression {
 
     public double testCalculationforBparameter(double bParameter) {
         double xxbar = xxBar();
-        return (this.slope - bParameter) / this.calculateS() * (Math.sqrt(xxbar));
+        return Math.abs((this.slope - bParameter) / this.calculateS() * (Math.sqrt(xxbar)));
     }
 
     /*
