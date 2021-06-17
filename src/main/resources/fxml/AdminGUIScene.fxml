@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MenuAdminGUISceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MenuAdminGUISceneController">
    <top>
       <Label fx:id="lblAdmin" alignment="CENTER" prefHeight="74.0" prefWidth="161.0" text="Administrator" BorderPane.alignment="CENTER">
          <font>
@@ -17,7 +17,8 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSendReportToNHS" alignment="CENTER" layoutX="238.0" layoutY="204.0" mnemonicParsing="false" onAction="#btnSendReportToNhsClick" text="Send a report to the NHS" />
+            <Button fx:id="btnSendReportToNHS" alignment="CENTER" layoutX="349.0" layoutY="204.0" mnemonicParsing="false" onAction="#btnSendReportToNhsClick" text="Send a report to the NHS" />
+            <Button layoutX="95.0" layoutY="204.0" mnemonicParsing="false" onAction="#menuSpecifyTestTypeAction" text="Specify a new Test Type" />
          </children>
       </AnchorPane>
    </center>

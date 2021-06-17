@@ -1,5 +1,7 @@
 package app.ui.gui;
 import app.controller.App;
+import app.ui.console.GenerateSampleUI;
+import app.ui.console.TestTypeUI;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,4 +69,12 @@ stage1.showAndWait();
         }
     }
 
+    @FXML 
+	private void menuSpecifyTestTypeAction(ActionEvent event) {
+		Stage stg = (Stage) lblAdmin.getScene().getWindow();
+		stg.hide();
+		TestTypeUI testTypeUI = new TestTypeUI();
+		testTypeUI.run();
+		stg.show();
+	}
 }
