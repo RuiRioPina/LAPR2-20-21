@@ -66,8 +66,7 @@ public class ViewTestsGUISceneController implements Initializable {
         tbcDate.setCellValueFactory(new PropertyValueFactory<Test, String>("registrationDateStr"));
         tbcCode.setSortable(false);
         tbcClient.setSortable(false);
-        tbcDate.setSortable(false);
-        
+        tbcDate.setSortable(false);      
 		tbvListTest.setRowFactory( tv -> {
 		    TableRow<Test> row = new TableRow<Test>();
 		    row.setOnMouseClicked(event -> {
