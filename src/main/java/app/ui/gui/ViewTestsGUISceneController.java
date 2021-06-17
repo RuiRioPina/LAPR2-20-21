@@ -39,7 +39,7 @@ import javafx.stage.WindowEvent;
 public class ViewTestsGUISceneController implements Initializable {
 	
 	private MenuClientGUISceneController menuClientUI;
-	private App app;
+	private final App app;
 	@FXML
 	private Label lblTest;
 	@FXML
@@ -49,7 +49,7 @@ public class ViewTestsGUISceneController implements Initializable {
 	@FXML
 	private TableColumn<Test, Client> tbcClient;
 	@FXML
-	private TableColumn<Test, Calendar> tbcDate;
+	private TableColumn<Test, String> tbcDate;
 	
 	public ViewTestsGUISceneController() {
 		this.app = App.getInstance();
@@ -63,28 +63,21 @@ public class ViewTestsGUISceneController implements Initializable {
         tbvListTest.setItems(loadData());
         tbcCode.setCellValueFactory(new PropertyValueFactory<Test, String>("internalCode"));
         tbcClient.setCellValueFactory(new PropertyValueFactory<Test, Client>("nhsCode"));
-        tbcDate.setCellValueFactory(new PropertyValueFactory<Test, Calendar>("registrationDate"));
-        tbcDate.setCellFactory(column -> {
-            TableCell<Test, Calendar> cell = new TableCell<Test, Calendar>() {
-                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
-
-                @Override
-                protected void updateItem(Calendar item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if(empty) {
-                        setText(null);
-                    }
-                    else {
-                        setText(format.format(item.getTime()));
-                    }
-                }
-            };
-
-            return cell;
-        });
+        tbcDate.setCellValueFactory(new PropertyValueFactory<Test, String>("registrationDateStr"));
         tbcCode.setSortable(false);
         tbcClient.setSortable(false);
         tbcDate.setSortable(false);
+        
+		tbvListTest.setRowFactory( tv -> {
+		    TableRow<Test> row = new TableRow<Test>();
+		    row.setOnMouseClicked(event -> {
+		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		            Test rowData = row.getItem();
+		            showTest(rowData);
+		        }
+		    });
+		    return row ;
+		});
     }
 	
 	public void associarParentUI(MenuClientGUISceneController menuClientGUISceneController) {
@@ -131,27 +124,11 @@ public class ViewTestsGUISceneController implements Initializable {
 			Utils.createAlert(AlertType.WARNING, "Invalid", "Please select a test.");
 			return;
 		}
-//		tbvListTest.setRowFactory( tv -> {
-//		    TableRow<Test> row = tbvListTest.getRowFactory();
-//		    row.setOnMouseClicked(event -> {
-//		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-//		            Test rowData = row.getItem();
-//		            System.out.println(rowData);
-//		        }
-//		    });
-//		    return row ;
-//		});
-//		EventHandler<MouseEvent> dblClick = new EventHandler<MouseEvent>(){
-//		    @Override
-//		    public void handle(MouseEvent event) {
-//		        if(event.getButton().equals(MouseButton.PRIMARY)){
-//		            if(event.getClickCount() == 2){
-//		                Test t1 = tbvListTest.getItems().get(0);
-//		            }
-//		        }
-//		        event.consume();
-//		    }
-//		};
+		
+		showTest(t);
+	}
+	
+	private void showTest(Test t) {
 		Stage stage1 = loadViewTestDetailUi(t);
         if(stage1 == null) {
         	return;

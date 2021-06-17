@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -146,6 +147,16 @@ public class Test {
         return this.registrationDate;
     }
 
+    /**
+     * Returns the test registration date.
+     *
+     * @return registration date of the test.
+     */
+    public String getRegistrationDateStr() {
+    	SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+        return format.format(this.registrationDate.getTime());
+    }
+    
     /**
      * Returns the test sample collection date.
      *
