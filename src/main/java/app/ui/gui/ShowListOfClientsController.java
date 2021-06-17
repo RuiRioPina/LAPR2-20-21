@@ -1,6 +1,7 @@
 package app.ui.gui;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,8 @@ import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
-import app.domain.model.sortingAlgorithms.SelectionSort;
+import app.domain.model.sortingAlgorithms.SortingAlgorithms;
+import app.domain.shared.Configuration;
 import app.ui.gui.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,10 +28,10 @@ import javafx.stage.Stage;
 public class ShowListOfClientsController implements Initializable {
 
     private MenuCctGUISceneController menuCctUI;
-    private App app;
+    private final App app;
     private List<Client> listOfClients;
-    Client client;
-
+    List<String> names = new ArrayList<>();
+    List<Long> tins = new ArrayList<>();
     @FXML
     private Label lblTest;
 
@@ -40,8 +42,24 @@ public class ShowListOfClientsController implements Initializable {
     @FXML
     private Button clientsTest;
 
+
+    // even though it says that tableView can be final, it can't as otherwise it wouldn't be able to show the clients nor the tests
     @FXML
-    private TableView<Client> tableView;
+    private TableView<Client> tableView = new TableView<>() {
+
+        @Override
+        public void sort() {
+            Class<?> oClass;
+            SortingAlgorithms sortingMethod;
+            try {
+                oClass = Class.forName(Configuration.getSortingAlogrithm());
+                sortingMethod = (SortingAlgorithms) oClass.getDeclaredConstructor().newInstance();
+                sortingMethod.sortMethod(names,tins,listOfClients,1);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     @FXML
     private TableColumn<Client, String> collumNameClient;
@@ -58,10 +76,8 @@ public class ShowListOfClientsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         lblTest.setText(String.format("%s tests", app.getCurrentUserSession().getUserName()));
 
-        listOfClients = App.getInstance().getCompany().getClientList().getClients();
-        //listOfClients = App.getInstance().getCompany().getTestStore().getClientsThatHaveAtLeastOneTestValidated();
-        List<String> names = new ArrayList<>();
-        List<Long> tins = new ArrayList<>();
+        listOfClients = App.getInstance().getCompany().getTestStore().getClientsThatHaveAtLeastOneTestValidated();
+
         for (Client clts:listOfClients) {
             names.add(clts.getName());
             tins.add(clts.getTin());
@@ -88,10 +104,10 @@ public class ShowListOfClientsController implements Initializable {
 
 
     @FXML
-    private void clickShowTests(ActionEvent event) throws IOException {
+    private void clickShowTests(ActionEvent event) {
         Client client = tableView.getSelectionModel().getSelectedItem();
         if(client==null){
-            Utils.createAlert(Alert.AlertType.ERROR, "Erro", "You must select a client");
+            Utils.createAlert(Alert.AlertType.ERROR, "Error", "You must select a client");
         }else {
             Stage stage1 = loadViewTestsUi(client);
             if (stage1 == null) {
