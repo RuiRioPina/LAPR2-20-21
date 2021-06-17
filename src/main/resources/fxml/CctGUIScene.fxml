@@ -20,7 +20,7 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <Button fx:id="menuViewTests" alignment="CENTER" mnemonicParsing="false" onAction="#menuViewTestsAction" prefHeight="150.0" prefWidth="350.0" text="View Tests">
+            <Button fx:id="menuViewTests" alignment="CENTER" mnemonicParsing="false" onAction="menuShowClientsAction" prefHeight="150.0" prefWidth="350.0" text="View Tests">
                <font>
                   <Font name="Arial Italic" size="35.0" />
                </font>
