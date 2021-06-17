@@ -79,7 +79,7 @@ public class LinearRegressionTest {
     public void testTestToString() {
         LinearRegression linearRegression = new LinearRegression(x, y);
         String actual = linearRegression.toString();
-        String expected = "^y=0,0036x+0,1181";
+        String expected = "^y=0.0036x+0.1181";
         Assert.assertEquals(expected, actual);
     }
 
@@ -106,9 +106,7 @@ public class LinearRegressionTest {
         double[] actual = linearRegression.arrayYthroughRegressionModel();
         double[] expected = {3.075863344274421, 0.8889325505062183, 3.954220794230502, 2.08995192085433, 1.8389926494383062, 3.416450926910452, 4.958057879894595, 1.2832971198742549, 2.520167814710369, 4.474064999306551};
 
-        String actualString = Arrays.toString(actual);
-        String expectedString = Arrays.toString(expected).replace(",",".");
-        Assert.assertEquals(actualString,expectedString);
+        Assert.assertEquals(actual,expected);
     }
 
     @Test
