@@ -120,8 +120,9 @@ public class CompanyTest {
 
     @Test
     public void getNextBarcode() {
-        String i = "00000000003";
-        assertEquals(i,App.getInstance().getCompany().getNextBarcode());
+
+        String i = "99999999999";
+        assertNotEquals(i,App.getInstance().getCompany().getNextBarcode());
     }
 
     @Test
@@ -179,17 +180,6 @@ public class CompanyTest {
         assertEquals(cmp.getNumberOfEmployees(),1);
     }
 
-    @Test
-    public void sendEmailToClient() throws IOException, InterruptedException {
-        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
-        boolean a = App.getInstance().getCompany().sendEmailToClient(c);
-        assertEquals(a,App.getInstance().getCompany().sendEmailToClient(c));
-    }
-    @Test
-    public void saveClient() {
-        Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
-        assertTrue(App.getInstance().getCompany().saveClient(c));
-    }
     @Test(expected = IllegalArgumentException.class)
     public void company() throws Exception {
         new Company("");
