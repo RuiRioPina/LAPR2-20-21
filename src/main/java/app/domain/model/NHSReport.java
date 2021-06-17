@@ -28,7 +28,7 @@ public NHSReport(MultiLinearRegression multiLinearRegression){
 }
     public String nhsReport() {
 
-        return String.format("%s%s%s%s%s%s",regressionModelLine(),otherStatistics(),hypothesisTests(0.05,0,0.05,0), linePredictionValues(),predictionValues("12-02-2000",13,13.2,"12-13"));
+        return String.format("%s%s%s%s%s%s",regressionModelLine(),otherStatistics(),hypothesisTests(0.05,0,0.05,0), linePredictionValues(),predictionValues("12-02-2000",13,13.2,"12-13"),"2");
     }
 
    private String regressionModelLine() {
@@ -58,7 +58,7 @@ public NHSReport(MultiLinearRegression multiLinearRegression){
     else return "xx";
         }
 
-    private String Anova(double fTestSignificance) {
+    private String anova(double fTestSignificance) {
     if (this.multiLinearRegression==null&&this.linearRegression!=null) {
         return String.format("%nSignificance model with Anova \n" +
                 "H0: b=0  H1:b<>0 \n %15s %12s %12s %12s \n" +
@@ -85,25 +85,25 @@ public NHSReport(MultiLinearRegression multiLinearRegression){
         return String.format("%n%n%s %40s %40s %30s","Date","Number of OBSERVED positive cases","Number of ESTIMATED positive cases ", confidencenceLevel+"% intervals ");
     }
 
-private String isARejectedOrNot(double TestParameter,double TestSignificance){
+private String isARejectedOrNot(double testParameter,double testSignificance){
     if (linearRegression!=null && multiLinearRegression==null) {
-        if (this.linearRegression.testCalculationforAparameter(TestParameter) > this.linearRegression.getTStudentFromTable(TestSignificance)) {
+        if (this.linearRegression.testCalculationforAparameter(testParameter) > this.linearRegression.getTStudentFromTable(testSignificance)) {
             return "rejected";
         } else return "not rejected";
     }
     else return "multilinear,";
 }
-    private String isBRejectedOrNot(double TestParameter,double TestSignificance){
+    private String isBRejectedOrNot(double testParameter,double testSignificance){
         if (linearRegression!=null && multiLinearRegression==null) {
-            if (this.linearRegression.testCalculationforBparameter(TestParameter) > this.linearRegression.getTStudentFromTable(TestSignificance)) {
+            if (this.linearRegression.testCalculationforBparameter(testParameter) > this.linearRegression.getTStudentFromTable(testSignificance)) {
                 return "rejected";
             } else return "not rejected";
         }
         else return "multilinear";
     }
-    private String isFRejectedOrNot(double FTestSignificance){
+    private String isFRejectedOrNot(double fTestSignificance){
         if (linearRegression!=null && multiLinearRegression==null) {
-            if (linearRegression.calculateTestF() > linearRegression.getFSnedcorFromTable(FTestSignificance)) {
+            if (linearRegression.calculateTestF() > linearRegression.getFSnedcorFromTable(fTestSignificance)) {
                 return String.format("Reject H0 %n The regression model is significant %n");
             } else return String.format("Not Reject H0 %n The regression model is not significant %n\"");
         }else return "multilinear";
@@ -111,19 +111,19 @@ private String isARejectedOrNot(double TestParameter,double TestSignificance){
 
     public String printFinalTable(Calendar olderDate, Calendar newerDate,double confidenceIntervalSignificance){
     int i=0;
-    String resultString="";
+    StringBuilder resultString= new StringBuilder();
         List<Test> lTestsInInterval = new ArrayList<>();
         LocalDate olderDateL = getLocalDate(olderDate);
         LocalDate newerDateL= getLocalDate(newerDate);
         do{
             if (olderDateL.getDayOfWeek()!= DayOfWeek.SUNDAY){
-                resultString+= String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n",newerDateL.getDayOfMonth(),newerDateL.getMonthValue(),newerDateL.getYear(),receivedYData[i],linearRegression.predict(receivedX1Data[i]),linearRegression.predict(receivedX1Data[i])+linearRegression.delta(confidenceIntervalSignificance,receivedX1Data[i]),linearRegression.predict(receivedX1Data[i])+linearRegression.delta(confidenceIntervalSignificance,receivedX1Data[i]));
+                resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", newerDateL.getDayOfMonth(), newerDateL.getMonthValue(), newerDateL.getYear(), receivedYData[i], linearRegression.predict(receivedX1Data[i]), linearRegression.predict(receivedX1Data[i]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i]), linearRegression.predict(receivedX1Data[i]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i])));
 
             }
             newerDateL=newerDateL.plusDays(-1);
             i++;
         }while (newerDateL.isAfter(olderDateL.plusDays(-1)));
-        return resultString;
+        return resultString.toString();
     }
     private LocalDate getLocalDate(Calendar calendar){
         return  LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId()).toLocalDate();

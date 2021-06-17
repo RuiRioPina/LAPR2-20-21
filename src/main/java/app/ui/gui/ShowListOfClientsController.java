@@ -45,21 +45,20 @@ public class ShowListOfClientsController implements Initializable {
 
     // even though it says that tableView can be final, it can't as otherwise it wouldn't be able to show the clients nor the tests
     @FXML
-    private TableView<Client> tableView = new TableView<>() {
+    private TableView<Client> tableView;
 
-        @Override
-        public void sort() {
-            Class<?> oClass;
-            SortingAlgorithms sortingMethod;
-            try {
-                oClass = Class.forName(Configuration.getSortingAlogrithm());
-                sortingMethod = (SortingAlgorithms) oClass.getDeclaredConstructor().newInstance();
-                sortingMethod.sortMethod(names,tins,listOfClients,1);
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
+    public void sort() {
+        Class<?> oClass;
+        SortingAlgorithms sortingMethod;
+        try {
+            oClass = Class.forName(Configuration.getSortingAlogrithm());
+            sortingMethod = (SortingAlgorithms) oClass.getDeclaredConstructor().newInstance();
+            sortingMethod.sortMethod(names, tins, listOfClients, 1);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
         }
-    };
+    }
+
 
     @FXML
     private TableColumn<Client, String> collumNameClient;
@@ -78,7 +77,7 @@ public class ShowListOfClientsController implements Initializable {
 
         listOfClients = App.getInstance().getCompany().getTestStore().getClientsThatHaveAtLeastOneTestValidated();
 
-        for (Client clts:listOfClients) {
+        for (Client clts : listOfClients) {
             names.add(clts.getName());
             tins.add(clts.getTin());
         }
@@ -87,6 +86,7 @@ public class ShowListOfClientsController implements Initializable {
         collumTinNumber.setCellValueFactory(new PropertyValueFactory<>("tin"));
         //load data
         tableView.setItems(getClient());
+        tableView.sort();
 
     }
 
@@ -102,13 +102,12 @@ public class ShowListOfClientsController implements Initializable {
     }
 
 
-
     @FXML
     private void clickShowTests(ActionEvent event) {
         Client client = tableView.getSelectionModel().getSelectedItem();
-        if(client==null){
+        if (client == null) {
             Utils.createAlert(Alert.AlertType.ERROR, "Error", "You must select a client");
-        }else {
+        } else {
             Stage stage1 = loadViewTestsUi(client);
             if (stage1 == null) {
                 return;
