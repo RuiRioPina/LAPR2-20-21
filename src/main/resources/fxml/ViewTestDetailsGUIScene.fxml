@@ -84,7 +84,7 @@
       </VBox>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" onAction="#menuExitAction" prefHeight="26.0" prefWidth="71.0" text="Exit" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#menuExitAction" prefHeight="26.0" prefWidth="71.0" text="Back" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" top="10.0" />
          </BorderPane.margin>

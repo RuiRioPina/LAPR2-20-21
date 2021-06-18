@@ -111,16 +111,6 @@ public class ViewTestsGUISceneController implements Initializable {
         return data;
 	}
 	
-	public void seeTest(ActionEvent event) {
-		Test t = tbvListTest.getSelectionModel().getSelectedItem();
-		if(t == null) {
-			Utils.createAlert(AlertType.WARNING, "Invalid", "Please select a test.");
-			return;
-		}
-		
-		showTest(t);
-	}
-	
 	private void showTest(Test t) {
 		Stage stage1 = loadViewTestDetailUi(t);
         if(stage1 == null) {
