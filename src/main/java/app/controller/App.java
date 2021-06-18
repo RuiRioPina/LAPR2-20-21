@@ -30,13 +30,7 @@ public class App  {
     private boolean doBootStrap;
 
     private App() {
-//        Calendar today = Calendar.getInstance();
-//        today.set(Calendar.HOUR_OF_DAY, 6);
-//        today.set(Calendar.MINUTE, 0);
-//        today.set(Calendar.SECOND, 0);
-//        SendReportToNHSTask sendReportTask = new SendReportToNHSTask();
-//        Timer timer = new Timer();
-//        timer.schedule(sendReportTask,today.getTime(), TimeUnit.MICROSECONDS.convert(1,TimeUnit.DAYS));
+
         Properties props = getProperties();
         
         Company cmp = null;
@@ -66,6 +60,17 @@ public class App  {
         this.company = cmp;
         this.authFacade = this.company.getAuthFacade();
 
+
+
+
+
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 6);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        SendReportToNHSTask sendReportTask = new SendReportToNHSTask();
+        Timer timer = new Timer();
+        timer.schedule(sendReportTask,today.getTime(), TimeUnit.MICROSECONDS.convert(1,TimeUnit.DAYS));
     }
 
     public Company getCompany() {
@@ -284,6 +289,7 @@ public class App  {
         lRole.add(lRole.create("Has the responsibility of interacting with the software on a deeper level", Constants.ROLE_MEDICAL_LAB_TECHNICIAN, "MDT"));
         lRole.add(lRole.create("Coordinates the activity on the laboratory", Constants.ROLE_LABORATORY_COORDINATOR, "LC"));
         lRole.add(lRole.create("Responsible for interacting with the client and their tests", Constants.ROLE_SPECIALIST_DOCTOR, "SD"));
+
 
     }
 

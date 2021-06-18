@@ -24,9 +24,9 @@ public class SendReportToNHSTask extends TimerTask {
         Calendar currentDate = Calendar.getInstance();
         currentDate.set(2021, 04, 31);
         Calendar old = Calendar.getInstance();
-        old.set(2021, 04, 17);
+        old.set(2021, 04, 3);
         Calendar newt = Calendar.getInstance();
-        newt.set(2021, 04, 22);
+        newt.set(2021, 04, 24);
 
         int historicalPoints = Integer.parseInt(Configuration.getHistoricalPoints());
         double significance = Double.parseDouble(Configuration.getSignificanceValue());
@@ -39,21 +39,22 @@ public class SendReportToNHSTask extends TimerTask {
             double[] x2 = App.getInstance().getCompany().getTestStore().getPositiveCovidTestsPerformedOnDay(old, newt);
             double[] y = App.getInstance().getCompany().getTestStore().getTestsPerformedPerDay(old, newt);
             report = new NHSReport(new MultiLinearRegression(x1, x2, y), x1, x2, y).getReportString(old, newt, significance, 0, significance, 0, significance, significance, Configuration.getTypeOfDate());
-        }
+        }else {
 
-        String bestModelSLR = company.getTheBestModelSLR(currentDate, historicalPoints, newt, old, significance, 0, significance, 0, significance, significance);
+            String bestModelSLR = company.getTheBestModelSLR(currentDate, historicalPoints, newt, old, significance, 0, significance, 0, significance, significance);
 
-        if (bestModelSLR.equalsIgnoreCase("meanAge")) {
-            if (Configuration.getTypeOfDate().equalsIgnoreCase("Weeks")) {
-                report = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, 15, old, newt, significance, 0, significance, 0, significance, significance);
+            if (bestModelSLR.equalsIgnoreCase("meanAge")) {
+                if (Configuration.getTypeOfDate().equalsIgnoreCase("Weeks")) {
+                    report = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, 4, newt, old, significance, 0, significance, 0, significance, significance);
+                } else {
+                    report = company.generateSimpleNhsReportMeanAge(currentDate, 15, newt, old, significance, 0, significance, 0, significance, significance);
+                }
             } else {
-                report = company.generateSimpleNhsReportMeanAge(currentDate, 15, newt,old , significance, 0, significance, 0, significance, significance);
-            }
-        } else {
-            if (Configuration.getTypeOfDate().equalsIgnoreCase("Weeks")) {
-                report = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, 15, old, newt, significance, 0, significance, 0, significance, significance);
-            } else {
-                report = company.generateSimpleNhsReportTestsPerformed(currentDate, 15,old , newt, significance, 0, significance, 0, significance, significance);
+                if (Configuration.getTypeOfDate().equalsIgnoreCase("Weeks")) {
+                    report = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, 4, newt, old, significance, 0, significance, 0, significance, significance);
+                } else {
+                    report = company.generateSimpleNhsReportTestsPerformed(currentDate, 15, newt, old, significance, 0, significance, 0, significance, significance);
+                }
             }
         }
 
@@ -69,4 +70,6 @@ public class SendReportToNHSTask extends TimerTask {
     public long scheduledExecutionTime() {
         return super.scheduledExecutionTime();
     }
+
+
 }
