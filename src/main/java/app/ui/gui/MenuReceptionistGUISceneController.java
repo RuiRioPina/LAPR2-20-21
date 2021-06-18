@@ -41,11 +41,11 @@ public class MenuReceptionistGUISceneController extends Application {
 
         @FXML
         void menuRegisterClient(ActionEvent event) {
-            Stage stg1 = (Stage) lblReceptionist.getScene().getWindow();
-            //stg1.hide();
+            Stage stg = (Stage) lblReceptionist.getScene().getWindow();
+            stg.hide();
             RegisterClientUI clientUI = new RegisterClientUI();
             clientUI.run();
-            //stg1.show();
+            stg.show();
         }
 
         @FXML

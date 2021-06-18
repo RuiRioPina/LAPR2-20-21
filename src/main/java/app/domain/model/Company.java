@@ -226,9 +226,7 @@ public class Company implements Serializable {
         if (file.createNewFile()) {
             System.out.println("Email sent!");
         }
-        Desktop desktop = Desktop.getDesktop();
-        Thread.sleep(500); // Faz com que o java tenha tempo de criar o ficheiro antes de o ler.
-        desktop.open(file);
+
         return true;
     }
 

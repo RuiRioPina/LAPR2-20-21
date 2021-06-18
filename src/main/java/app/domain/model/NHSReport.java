@@ -44,7 +44,7 @@ public class NHSReport {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.linearRegression.R2(), this.linearRegression.R2Adjusted(), this.linearRegression.R());
         } else if (this.multiLinearRegression != null && this.linearRegression == null) {
-            return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.multiLinearRegression.rSquared(), this.multiLinearRegression.rSquaredAdjusted(), this.multiLinearRegression.r());
+            return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.multiLinearRegression.rSquared(), this.multiLinearRegression.rSquaredAdjusted(), this.multiLinearRegression.mqr());
         }
         return "123123123";
     }
@@ -65,7 +65,7 @@ public class NHSReport {
                             "tobs(a)=%.4f tobs(b)=%.4f %n" +
                             "Decison:%n" +
                             "Regarding the test for the a parameter h0 is %s %n" +
-                            "Regarding the test for the b parameter h0 is %s %n", aTestParameter, bTestParameter, aTestParameter, bTestParameter, this.multiLinearRegression.getB2()
+                            "Regarding the test for the b parameter h0 is %s %n", aTestParameter, bTestParameter, aTestParameter, bTestParameter, this.multiLinearRegression
                     , this.multiLinearRegression.coeficientRegressionTestAuxiliaryCalculus(bTestParameter), isARejectedOrNot(aTestParameter, aParemeterSignificance), isBRejectedOrNot(bTestParameter, bParameterSignificance))
                     ;
         }
@@ -179,7 +179,7 @@ public class NHSReport {
         data2.set(2021, 5, 12);
 //       System.out.println(nhsReport.regressionModelLine());
 //         System.out.println(nhsReport.otherStatistics());
-       System.out.println(nhsReport.hypothesisTests(0.05,0,0.05,0));
+//       System.out.println(nhsReport.hypothesisTests(0.05,0,0.05,0));
 //        System.out.println(nhsReport.Anova());
 //        System.out.println(nhsReport.decisionF(0.05));
 //        System.out.println(nhsReport.printFinalTable(data1, data2, 0.95));
