@@ -59,6 +59,7 @@ public class MainMenuGUISceneController implements Initializable {
             return null;
         }
 	}
+
 	private Stage loadLabCooUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LabCGUIScene.fxml"));
@@ -89,6 +90,7 @@ public class MainMenuGUISceneController implements Initializable {
 			return null;
 		}
 	}
+
 	private Stage loadClientUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ClientGUIScene.fxml"));
@@ -116,9 +118,10 @@ public class MainMenuGUISceneController implements Initializable {
 	        return novoClientStage;
 		} catch (IOException ex) {	
 			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
-            return null;
-        }
+			return null;
+		}
 	}
+
 	private Stage loadCctUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CctGUIScene.fxml"));
@@ -134,7 +137,7 @@ public class MainMenuGUISceneController implements Initializable {
 			novoCttStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				@Override
 				public void handle(WindowEvent event) {
-					Stage window = (Stage)lblInitial.getScene().getWindow();
+					Stage window = (Stage) lblInitial.getScene().getWindow();
 					window.show();
 				}
 			});
@@ -179,7 +182,38 @@ public class MainMenuGUISceneController implements Initializable {
             return null;
         }
 	}
-	
+
+	private Stage loadSpeDocUi() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SpecialistDoctorGUIScene.fxml"));
+			Parent root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			Stage novoAdminStage = new Stage();
+			novoAdminStage.initModality(Modality.APPLICATION_MODAL);
+			novoAdminStage.setTitle("Specialist Doctor");
+			novoAdminStage.setMaximized(true);
+			novoAdminStage.setScene(scene);
+			novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					app.doLogout();
+					Stage window = (Stage) lblInitial.getScene().getWindow();
+					window.show();
+				}
+			});
+
+			MenuSpeDocGUISceneController speDocUI = loader.getController();
+			speDocUI.associarParentUI(this);
+
+			return novoAdminStage;
+		} catch (IOException ex) {
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			return null;
+		}
+}
+
 	private Stage loadChooseLabUi() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseLabGUIScene.fxml"));
@@ -291,6 +325,8 @@ public class MainMenuGUISceneController implements Initializable {
 			stage = loadCctUi();
 		} else if (sessao.isLoggedInWithRole(Constants.ROLE_LABORATORY_COORDINATOR)){
 			stage = loadLabCooUi();
+		} else if (sessao.isLoggedInWithRole(Constants.ROLE_SPECIALIST_DOCTOR)){
+			stage = loadSpeDocUi();
 		} else if (sessao.isLoggedInWithRole(Constants.ROLE_MEDICAL_LAB_TECHNICIAN)){
 			Stage stage2 = loadChooseLabUi();
 			if(stage2 == null) {
@@ -316,6 +352,8 @@ public class MainMenuGUISceneController implements Initializable {
 		Window window = lblInitial.getScene().getWindow();
 		window.hide();
 	}
+
+
 
 	public Label getLabel() {
 		return this.lblInitial;
