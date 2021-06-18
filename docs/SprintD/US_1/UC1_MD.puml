@@ -3,22 +3,15 @@ skinparam classAttributeIconSize 0
 hide methods
 left to right direction
 
-class Sample {
-  -barcodeNumber
-}
-
 class Company {
   -designation
 }
 
-class ClinicalAnalysisLaboratory {
-  -String name
-  -String adress
-  -long phoneNumber
-  -long tin
-  -TestStore testStore
-  +getTestStore()
+Class TestStore {
+  -testParam
+  -parameter
 }
+
 class Test {
   -nhsCode;
   -internalCode;
@@ -35,19 +28,32 @@ class Test {
   -validationDate;
 }
 
-class MedicalLabTechnician {
-  -employeeID
-  -organizationRole
+class Client {
   -name
   -address
   -phoneNumber
   -eMail
-  -standardOcupationalClassificationCode
+  -sex
+  -cnn
+  -nhsNumber
+  -birthDate
+  -tin
 }
 
-Company "1" -- "1..*" ClinicalAnalysisLaboratory : has >
-ClinicalAnalysisLaboratory "1" -- "*" Test : has >
-MedicalLabTechnician "1..*" -- "1..*" ClinicalAnalysisLaboratory : works for >
-Test "1" -- "*" Sample : has >
-Sample "1" -- "1" MedicalLabTechnician : created by >
+Class TestResult {
+  -referenceValue
+  -result
+  -parameter
+}
+
+Class Report {
+  -reportText
+}
+
+Company "1" -- "1..*" TestStore : has >
+Company "1" -- "*" Client : has >
+TestStore "1" -- "*" Test : has >
+Client "1" -- "1..*" Test : performs >
+Test "1" -- "1" TestResult : have >
+Test "1" -- "1" Report : have >
 @enduml
