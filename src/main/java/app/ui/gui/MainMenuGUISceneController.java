@@ -233,7 +233,36 @@ public class MainMenuGUISceneController implements Initializable {
             return null;
         }
 	}
-	
+	private Stage loadReceptionistUi() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ReceptionistGUIScene.fxml"));
+			Parent root = loader.load();
+
+			Scene scene = new Scene(root);
+
+			Stage novoMedLabStage = new Stage();
+			novoMedLabStage.initModality(Modality.APPLICATION_MODAL);
+			novoMedLabStage.setTitle("Receptionist");
+			novoMedLabStage.setMaximized(true);
+			novoMedLabStage.setScene(scene);
+			novoMedLabStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					app.doLogout();
+					Stage window = (Stage)lblInitial.getScene().getWindow();
+					window.show();
+				}
+			});
+
+			MenuReceptionistGUISceneController rec = loader.getController();
+			rec.associarParentUI(this);
+
+			return novoMedLabStage;
+		} catch (IOException ex) {
+			Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
+			return null;
+		}
+	}
 	@FXML
     private void menuExitAction(ActionEvent event) {
         Window window = lblInitial.getScene().getWindow();
@@ -270,6 +299,14 @@ public class MainMenuGUISceneController implements Initializable {
 			stage2.showAndWait();
 			stage = loadMedLabTechUi();
 		}
+	    else if (sessao.isLoggedInWithRole(Constants.ROLE_RECEPTIONIST)){
+		Stage stage3 = loadChooseLabUi();
+		if(stage3 == null) {
+			return;
+		}
+		stage3.showAndWait();
+		stage = loadReceptionistUi();
+	}
 		if(stage == null) {
 			return;
 		}
