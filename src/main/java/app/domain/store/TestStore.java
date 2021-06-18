@@ -635,6 +635,7 @@ public class TestStore implements Serializable {
 
                 arrDouble[i] = total / cont;
                 cont = 0;
+                total=0;
 
         }
         return arrDouble;
@@ -685,6 +686,7 @@ public class TestStore implements Serializable {
             }
             arrDouble[i]=totalAge/cont;
             cont=0;
+            totalAge=0;
         }
         return arrDouble;
     }
