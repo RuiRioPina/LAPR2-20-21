@@ -2,6 +2,7 @@ package app.domain.model;
 
 import app.controller.App;
 import app.domain.model.matcp.LinearRegression;
+import app.domain.model.matcp.MultiLinearRegression;
 import app.domain.shared.Constants;
 import app.domain.store.*;
 import auth.AuthFacade;
@@ -299,6 +300,12 @@ public class Company implements Serializable {
         NHSReport report = new NHSReport(linearRegression, testStore.getTestsPositivePerWeek(getHistoricalPointWeekOlderDate(currentDate, historicalPoints), currentDate), testStore.getMeanAgePerWeek(getHistoricalPointWeekOlderDate(currentDate, historicalPoints), currentDate));
         return report.getReportString(getHistoricalPointWeekOlderDate(currentDate, historicalPoints), currentDate, aParameterSignificance, aTestParameter, bParamatereSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance, "weeks");
     }
+
+    public String generateMultilienearNHSReportDays(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double b0ParameterSignificance, double b1ParamaterSignificance, double b2ParameterSignificance, double fTestSignificance, double confidenceIntervalSignificance){
+MultiLinearRegression multiLinearRegression= new MultiLinearRegression(testStore.getTestsPerformedPerDay(olderRegressionIntervalDate,newerRegressionIntervalDate),testStore.getMeanAgeOfTestsPerformedPerDay(olderRegressionIntervalDate,newerRegressionIntervalDate),testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate,newerRegressionIntervalDate));
+NHSReport report= new NHSReport(multiLinearRegression,testStore.getTestsPerformedPerDay(getHistoricalPointDayOlderDate(currentDate,historicalPoints),currentDate),testStore.getMeanAgeOfTestsPerformedPerDay(getHistoricalPointDayOlderDate(currentDate,historicalPoints),currentDate),testStore.getPositiveCovidTestsPerformedOnDay(getHistoricalPointDayOlderDate(currentDate,historicalPoints),currentDate));
+return report.getReportString(getHistoricalPointDayOlderDate(currentDate,historicalPoints),currentDate,b0ParameterSignificance,b1ParamaterSignificance,b2ParameterSignificance,0,fTestSignificance,confidenceIntervalSignificance,"days");
+}
 
     public Calendar getHistoricalPointDayOlderDate(Calendar currentDate, int historicalPointAmount) {
         int i = historicalPointAmount;

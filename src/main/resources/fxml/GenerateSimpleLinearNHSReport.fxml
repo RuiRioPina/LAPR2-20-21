@@ -55,8 +55,6 @@
                         <TextField fx:id="txfNumberOfHistoricalPoints" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lblIndependentVariable" text="Independent Variable" GridPane.columnIndex="3" />
                         <Label fx:id="lblRegressionInterval" text="Interval to fit the regression model" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <TextField fx:id="txfOlderDate" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <TextField fx:id="txfNewerDate" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                         <Label fx:id="lblOlderDate" text="Older Date(dd-mm-yyyy)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label fx:id="lblNewerDate" text="Newer Date(dd-mm-yyyy)" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                         <Label fx:id="lblBParameterForHypothesis" text="B Parameter for hypothesis test" GridPane.rowIndex="4" />
@@ -75,6 +73,8 @@
                         <ComboBox fx:id="cboxIndependentVariable" onAction="#cboxIndependentVariableOpen" prefWidth="150.0" GridPane.columnIndex="4" />
                         <Label fx:id="lblCurrentDay" text="Current Day (dd-mm-yyyy)" GridPane.rowIndex="2" />
                         <DatePicker fx:id="dtpCurrentDay" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dtpOlderDate" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dtpNewerDate" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </content>

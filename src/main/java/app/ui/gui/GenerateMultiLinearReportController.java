@@ -1,14 +1,14 @@
 package app.ui.gui;
 
+import app.controller.App;
+import app.domain.model.Company;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class GenerateMultiLinearReportController implements Initializable {
@@ -29,10 +29,14 @@ public class GenerateMultiLinearReportController implements Initializable {
     private Label lblRegressionInterval;
 
     @FXML
-    private TextField txfOlderDate;
+    private DatePicker dtpCurrentDate;
 
     @FXML
-    private TextField txfNewerDate;
+    private DatePicker dtpOlderDate;
+
+    @FXML
+    private DatePicker dtpNewerDate;
+
 
     @FXML
     private Label lblOlderDateM;
@@ -106,12 +110,35 @@ public class GenerateMultiLinearReportController implements Initializable {
 
     @FXML
     void generateReportButton(ActionEvent event) {
+        String resultString = "dsada";
+        Company company = App.getInstance().getCompany();
+        Calendar olderDate = getDateFromDatePicker(dtpOlderDate.getValue().getYear(), dtpOlderDate.getValue().getMonthValue(),dtpOlderDate.getValue().getDayOfMonth());
+        Calendar newerDate = getDateFromDatePicker(dtpNewerDate.getValue().getYear(),dtpNewerDate.getValue().getMonthValue(),dtpNewerDate.getValue().getDayOfMonth());
+        Calendar currentDate = getDateFromDatePicker(dtpCurrentDate.getValue().getYear(),dtpCurrentDate.getValue().getMonthValue(),dtpCurrentDate.getValue().getDayOfMonth());
+        int historicalPoints = Integer.parseInt(txfNumberOfHistoricalPoints.getText());
+        double x1TestParameter = Double.parseDouble(txfX1ParameterHypothesisTest.getText());
+        double x1TestSignificance = Double.parseDouble(txfX1HypothesisTestSignificance.getText());
+        double x2TestParameter = Double.parseDouble(txfX2ParameterHypothesisTest.getText());
+        double x2TestSignificance = Double.parseDouble(txfX2HypothesisTestSignificance.getText());
+        double B0TestParameter= Double.parseDouble(txfB0ParameterForHypothesis.getText());
+        double fTestSignificance = Double.parseDouble(txfFDecisionSignificance.getText());
+        double confidenceIntervalSignificance = Double.parseDouble(txfConfidenceIntervalSignificance.getText());
+        String historicalPointType = cboxHistoricalPointType.getValue();
+        if (historicalPointType.equals("Days")){
+            resultString=company.generateMultilienearNHSReportDays(currentDate,historicalPoints,newerDate,olderDate,B0TestParameter,x1TestParameter,x2TestParameter,fTestSignificance,confidenceIntervalSignificance);
+            System.out.println(resultString);
 
+        }
     }
 
     @FXML
     void menuExitAction(ActionEvent event) {
 
+    }
+    private Calendar getDateFromDatePicker(int year, int month, int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month-1, day);
+        return calendar;
     }
 
 }

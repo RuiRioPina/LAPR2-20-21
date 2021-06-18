@@ -305,6 +305,9 @@ public class MultiLinearRegression {
         double resultOfMatrixMultiplication = multiplyMatrices(multiplyMatrices(auxiliaryLine, xMatrixInverse), auxiliaryLineTransposed)[0][0];
         return t * Math.sqrt(mqe() * resultOfMatrixMultiplication);
     }
+    double hypothesisTest(double parameter){
+        return parameter/Math.sqrt(this.mqe()*xMatrixInverse[2][2]);
+    }
 
     public double hypothesisB0() {
         return b0 / Math.sqrt(mqe() * xMatrixTimesXMatrixTransposedInverse[0][0]);

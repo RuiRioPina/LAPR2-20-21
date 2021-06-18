@@ -16,7 +16,6 @@ public class NHSReport {
     private static String confidencenceLevel = "95";
     private LinearRegression linearRegression = null;
     private MultiLinearRegression multiLinearRegression = null;
-    private boolean isDays;
     private double[] receivedYData;
     private double[] receivedX1Data;
     private double[] receivedX2Data;

@@ -42,10 +42,10 @@ public class GenerateSimpleLinearReportController implements Initializable {
     private ComboBox<String> cboxIndependentVariable;
 
     @FXML
-    private TextField txfOlderDate;
+    private DatePicker dtpOlderDate;
 
     @FXML
-    private TextField txfNewerDate;
+    private DatePicker dtpNewerDate;
 
     @FXML
     private Label lblOlderDate;
@@ -99,8 +99,8 @@ public class GenerateSimpleLinearReportController implements Initializable {
     void generateReportButton(ActionEvent event) {
         String resultString = "dsada";
         Company company = App.getInstance().getCompany();
-        Calendar olderDate = getDateFromString(txfOlderDate.getText());
-        Calendar newerDate = getDateFromString(txfNewerDate.getText());
+        Calendar olderDate = getDateFromDatePicker(dtpOlderDate.getValue().getYear(), dtpOlderDate.getValue().getMonthValue(),dtpOlderDate.getValue().getDayOfMonth());
+        Calendar newerDate = getDateFromDatePicker(dtpNewerDate.getValue().getYear(),dtpNewerDate.getValue().getMonthValue(),dtpNewerDate.getValue().getDayOfMonth());
         Calendar currentDate = getDateFromDatePicker(dtpCurrentDay.getValue().getYear(),dtpCurrentDay.getValue().getMonthValue(),dtpCurrentDay.getValue().getDayOfMonth());
         int historicalPoints = Integer.parseInt(txfNumberOfHistoricalPoints.getText());
         double aTestParameter = Double.parseDouble(txfAParameterHypothesisTest.getText());

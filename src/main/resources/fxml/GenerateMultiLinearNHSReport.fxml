@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -51,12 +52,10 @@
                      <children>
                         <Label fx:id="lblHistoricalPointType" text="Historical Point Type" />
                         <Label fx:id="lblHistoricalPointNumber" prefHeight="30.0" prefWidth="138.0" text="Number Of Historical Points" GridPane.rowIndex="1" />
-                        <TextField fx:id="txfNumberOfHistoricalPoints" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="lblRegressionInterval" text="Interval to fit the regression model" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <TextField fx:id="txfOlderDate" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <TextField fx:id="txfNewerDate" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Label fx:id="lblOlderDateM" text="Older Date(dd-mm-yyyy)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label fx:id="lblNewerDate" text="Newer Date(dd-mm-yyyy)" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <TextField fx:id="txfNumberOfHistoricalPoints" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblRegressionInterval" text="Interval to fit the regression model" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Label fx:id="lblOlderDateM" text="Older Date(dd-mm-yyyy)" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label fx:id="lblNewerDate" text="Newer Date(dd-mm-yyyy)" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                         <Label fx:id="lblX1ParameterForHypothesis" text="X1 Parameter for hypothesis test" GridPane.rowIndex="3" />
                         <TextField fx:id="txfX1ParameterHypothesisTest" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="lblX2ParameterForHypothesisTest" text="X2 Parameter for hypothesis test" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -74,6 +73,9 @@
                         <Label fx:id="lblB0HypothesisTestSignificance" text="B0 Hypothesis test significance" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                         <TextField fx:id="txfB0ParameterForHypothesis" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                         <TextField fx:id="txfB0HypothesisTestSignificance" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="dtpOlderDate" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dtpNewerDate" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dtpCurrentDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </content>
