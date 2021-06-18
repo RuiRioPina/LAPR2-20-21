@@ -30,13 +30,13 @@ public class App  {
     private boolean doBootStrap;
 
     private App() {
-        Calendar today = Calendar.getInstance();
-        today.set(Calendar.HOUR_OF_DAY, 6);
-        today.set(Calendar.MINUTE, 0);
-        today.set(Calendar.SECOND, 0);
-        SendReportToNHSTask sendReportTask = new SendReportToNHSTask();
-        Timer timer = new Timer();
-        timer.schedule(sendReportTask,today.getTime(), TimeUnit.MICROSECONDS.convert(1,TimeUnit.DAYS));
+//        Calendar today = Calendar.getInstance();
+//        today.set(Calendar.HOUR_OF_DAY, 6);
+//        today.set(Calendar.MINUTE, 0);
+//        today.set(Calendar.SECOND, 0);
+//        SendReportToNHSTask sendReportTask = new SendReportToNHSTask();
+//        Timer timer = new Timer();
+//        timer.schedule(sendReportTask,today.getTime(), TimeUnit.MICROSECONDS.convert(1,TimeUnit.DAYS));
         Properties props = getProperties();
         
         Company cmp = null;
