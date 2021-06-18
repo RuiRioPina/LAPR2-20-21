@@ -16,6 +16,7 @@ public class NHSReport {
     private static String confidencenceLevel = "95";
     private LinearRegression linearRegression = null;
     private MultiLinearRegression multiLinearRegression = null;
+    private boolean isDays;
     private double[] receivedYData;
     private double[] receivedX1Data;
 
@@ -48,7 +49,6 @@ public class NHSReport {
         }
         return "123123123";
     }
-
 
     private String hypothesisTests(double aParemeterSignificance, double aTestParameter, double bParameterSignificance, double bTestParameter) {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
@@ -136,34 +136,56 @@ public class NHSReport {
         return "1t31t";
     }
 
-    public String printFinalTable(Calendar olderDate, Calendar newerDate, double confidenceIntervalSignificance) {
-        int i = 1;
-        StringBuilder resultString = new StringBuilder();
-        Calendar olderDateUsed = (Calendar) olderDate.clone();
-        Calendar newerDateUsed = (Calendar) newerDate.clone();
+    public String printFinalTable(Calendar olderDate, Calendar newerDate, double confidenceIntervalSignificance,String identifier) {
+        if (identifier.equals("days")) {
+            int i = 1;
+            StringBuilder resultString = new StringBuilder();
+            Calendar olderDateUsed = (Calendar) olderDate.clone();
+            Calendar newerDateUsed = (Calendar) newerDate.clone();
 
-        do {
-            if (olderDateUsed.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
-                if (i != 1) {
-                    resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH), olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
+            do {
+                if (olderDateUsed.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+                    if (i != 1) {
+                        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH), olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
+                    }
+                    i++;
                 }
-                i++;
-            }
-            olderDateUsed.add(Calendar.DAY_OF_MONTH, 1);
+                olderDateUsed.add(Calendar.DAY_OF_MONTH, 1);
 
-        } while (newerDateUsed.after(olderDateUsed));
-        return resultString.toString();
-    }
+            } while (newerDateUsed.after(olderDateUsed));
+            return resultString.toString();
+        }
+        if (identifier.equals("weeks")){
+            int i = 1;
+            StringBuilder resultString = new StringBuilder();
+            Calendar olderDateUsed = (Calendar) olderDate.clone();
+            Calendar newerDateUsed = (Calendar) newerDate.clone();
+
+            do {
+                if (olderDateUsed.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+
+                        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH)-6, olderDateUsed.get(Calendar.MONTH)+1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
+
+                    i++;
+                }
+                olderDateUsed.add(Calendar.DAY_OF_MONTH, 1);
+
+            } while (newerDateUsed.after(olderDateUsed));
+            return resultString.toString();
+        }else return null;
+        }
+
 
     private LocalDate getLocalDate(Calendar calendar) {
         return LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId()).toLocalDate();
     }
 
-    public String getReportString(Calendar olderDate, Calendar newerDate, double aParameterSignificance,
-                                  double aTestParameter, double bTestSignificance, double bTestParameter, double fTestSignificance,
-                                  double confidenceIntervalSignificance) {
+    public String getReportString(Calendar olderDate, Calendar newerDate, double aParameterSignificance, double aTestParameter, double bTestSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance,String identifier) {
 
-        return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues() + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance);
+        if (linearRegression != null && multiLinearRegression == null) {
+            return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues() + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance,identifier);
+        }
+        return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues() + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance,identifier);
     }
 
 

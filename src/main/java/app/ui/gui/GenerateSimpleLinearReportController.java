@@ -5,12 +5,10 @@ import app.domain.model.Company;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
+import java.time.temporal.TemporalField;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -93,16 +91,17 @@ public class GenerateSimpleLinearReportController implements Initializable {
     @FXML
     private Label lblCurrentDay;
     @FXML
-    private TextField txfCurrentDay;
+    private DatePicker dtpCurrentDay;
     @FXML
     private Button generateReportBTN;
 
     @FXML
     void generateReportButton(ActionEvent event) {
         String resultString = "dsada";
+        Company company = App.getInstance().getCompany();
         Calendar olderDate = getDateFromString(txfOlderDate.getText());
         Calendar newerDate = getDateFromString(txfNewerDate.getText());
-        Calendar currentDate = getDateFromString(txfCurrentDay.getText());
+        Calendar currentDate = getDateFromDatePicker(dtpCurrentDay.getValue().getYear(),dtpCurrentDay.getValue().getMonthValue(),dtpCurrentDay.getValue().getDayOfMonth());
         int historicalPoints = Integer.parseInt(txfNumberOfHistoricalPoints.getText());
         double aTestParameter = Double.parseDouble(txfAParameterHypothesisTest.getText());
         double aTestSignificance = Double.parseDouble(txfAHypothesisTestSignificance.getText());
@@ -111,17 +110,34 @@ public class GenerateSimpleLinearReportController implements Initializable {
         double fTestSignificance = Double.parseDouble(txfFDecisionSignificance.getText());
         double confidenceIntervalSignificance = Double.parseDouble(txfConfidenceIntervalSignificance.getText());
         String historicalPointType = cboxHistoricalPointType.getValue();
+        String independentVariableSelected= cboxIndependentVariable.getValue();
         if (historicalPointType.equals("Days")) {
-            Company company = App.getInstance().getCompany();
+            if (independentVariableSelected.equals("Total tests Performed")) {
 
-           // System.out.println(resultString);
+                // System.out.println(resultString);
 
-          //  System.out.println("dsadaa");
-            resultString = company.generateSimpleNhsReport(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-            //  System.out.println(resultString);
+                //  System.out.println("dsadaa");
+                resultString = company.generateSimpleNhsReportTestsPerformed(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                System.out.println(resultString);
 
+            }
+            if (independentVariableSelected.equals("Mean Age of Clients")){
+                resultString=company.generateSimpleNhsReportMeanAge(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                System.out.println(resultString);
+            }
+        }
+        if (historicalPointType.equals("Weeks")){
+            if (independentVariableSelected.equals("Total tests Performed")){
+               resultString= company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                System.out.println(resultString);
+            }
+            if (independentVariableSelected.equals("Mean Age of Clients")){
+                resultString=company.generateSimpleNHSReportMeanAgeWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                System.out.println(resultString);
+            }
 
         }
+
 
     }
 
@@ -171,6 +187,12 @@ public class GenerateSimpleLinearReportController implements Initializable {
         calendar.set(Integer.parseInt(arrString[2]), Integer.parseInt(arrString[1]) - 1, Integer.parseInt(arrString[0]));
         return calendar;
     }
+    private Calendar getDateFromDatePicker(int year,int month,int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month-1, day);
+        return calendar;
+    }
+
 
 
 }

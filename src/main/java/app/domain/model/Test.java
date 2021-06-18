@@ -3,6 +3,7 @@ package app.domain.model;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -436,8 +437,21 @@ public class Test implements Serializable {
     public int calculateAge(){
         LocalDate currentDate= LocalDate.now();
         String date = this.getClient().getBirthDate();
-        String[] arrString= date.split("-");
-        LocalDate birthDate= LocalDate.of(Integer.parseInt(arrString[2]),Integer.parseInt(arrString[1]),Integer.parseInt(arrString[0]));
+        String[] arrString=null;
+        if (date.contains("-")) {
+             arrString = date.split("-");
+        }else if (date.contains("/")){
+             arrString=date.split("/");
+        }
+        Calendar calendar= Calendar.getInstance();
+        try {
+            LocalDate birthDate= LocalDate.of(Integer.parseInt(arrString[2]),Integer.parseInt(arrString[1]),Integer.parseInt(arrString[0]));
+
+        }catch (DateTimeException e){
+            System.out.println("dumb date");
+            return 30;
+        }
+       LocalDate birthDate= LocalDate.of(Integer.parseInt(arrString[2]),Integer.parseInt(arrString[1]),Integer.parseInt(arrString[0]));
         return Period.between(birthDate,currentDate).getYears();
     }
 }

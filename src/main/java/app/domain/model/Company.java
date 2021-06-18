@@ -266,16 +266,28 @@ public class Company implements Serializable {
     private void addClientToSystem(Client c) {
         App.getInstance().getCompany().getAuthFacade().addUserWithRole(c.getName(), c.getEmail(), c.getPassword(), Constants.ROLE_CLIENT);
     }
-
-    public String generateSimpleNhsReport(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance) {
+    public String generateSimpleNhsReportTestsPerformed(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance) {
         LinearRegression linearRegression = new LinearRegression(testStore.getTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
-
-        NHSReport report = new NHSReport(linearRegression, testStore.getPositiveCovidTestsPerformedOnDay(getHistoricalPointOlderDate(currentDate, historicalPoints), currentDate), testStore.getTestsPerformedPerDay(getHistoricalPointOlderDate(currentDate, historicalPoints), currentDate));
-
-        return report.getReportString(getHistoricalPointOlderDate(currentDate, historicalPoints), currentDate, aParameterSignificance, aTestParameter, bParamatereSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+        NHSReport report = new NHSReport(linearRegression, testStore.getPositiveCovidTestsPerformedOnDay(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate), testStore.getTestsPerformedPerDay(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate));
+        return report.getReportString(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate, aParameterSignificance, aTestParameter, bParamatereSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance,"days");
+    }
+    public String generateSimpleNhsReportMeanAge(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance) {
+        LinearRegression linearRegression = new LinearRegression(testStore.getMeanAgeOfTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
+        NHSReport report = new NHSReport(linearRegression, testStore.getPositiveCovidTestsPerformedOnDay(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate), testStore.getMeanAgeOfTestsPerformedPerDay(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate));
+        return report.getReportString(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate, aParameterSignificance, aTestParameter, bParamatereSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance,"days");
+    }
+    public String generateSimpleNHSReportTestsPerformedWeeks(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance){
+        LinearRegression linearRegression =new LinearRegression((testStore.getTestsPerformedPerWeek(olderRegressionIntervalDate,newerRegressionIntervalDate)),testStore.getTestsPositivePerWeek(olderRegressionIntervalDate,newerRegressionIntervalDate));
+        NHSReport report= new NHSReport(linearRegression,testStore.getTestsPositivePerWeek(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate),testStore.getTestsPerformedPerWeek(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate));
+        return report.getReportString(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate,aParameterSignificance,aTestParameter,bParamatereSignificance,bTestParameter,fTestSignificance,confidenceIntervalSignificance,"weeks");
+    }
+    public String generateSimpleNHSReportMeanAgeWeeks(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance){
+        LinearRegression linearRegression =new LinearRegression((testStore.getMeanAgePerWeek(olderRegressionIntervalDate,newerRegressionIntervalDate)),testStore.getTestsPositivePerWeek(olderRegressionIntervalDate,newerRegressionIntervalDate));
+        NHSReport report= new NHSReport(linearRegression,testStore.getTestsPositivePerWeek(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate),testStore.getMeanAgePerWeek(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate));
+        return report.getReportString(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate,aParameterSignificance,aTestParameter,bParamatereSignificance,bTestParameter,fTestSignificance,confidenceIntervalSignificance,"weeks");
     }
 
-    public Calendar getHistoricalPointOlderDate(Calendar currentDate, int historicalPointAmount) {
+    public Calendar getHistoricalPointDayOlderDate(Calendar currentDate, int historicalPointAmount) {
         int i = historicalPointAmount;
         Calendar olderDate = Calendar.getInstance();
         Calendar currentDateUsed = (Calendar) currentDate.clone();
@@ -290,6 +302,14 @@ public class Company implements Serializable {
             }
             i--;
         } while (i != 0);
+        return (Calendar) olderDate.clone();
+    }
+    public Calendar getHistoricalPointWeekOlderDate(Calendar currentDate, int historicalPointAmount) {
+        int i = historicalPointAmount;
+        Calendar olderDate = Calendar.getInstance();
+        Calendar currentDateUsed = (Calendar) currentDate.clone();
+        olderDate.set(currentDateUsed.get(Calendar.YEAR), currentDateUsed.get(Calendar.MONTH), currentDateUsed.get(Calendar.DAY_OF_MONTH));
+        olderDate.add(Calendar.WEEK_OF_YEAR,-i);
         return (Calendar) olderDate.clone();
     }
 

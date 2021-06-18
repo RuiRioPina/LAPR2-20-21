@@ -41,28 +41,28 @@ public class GenerateMultiLinearReportController implements Initializable {
     private Label lblNewerDate;
 
     @FXML
-    private Label lblBParameterForHypothesis;
+    private Label lblX1ParameterForHypothesis;
 
     @FXML
-    private TextField txfBParameterHypothesisTest;
+    private TextField txfX1ParameterHypothesisTest;
 
     @FXML
-    private Label lblAParameterForHypothesisTest;
+    private Label lblX2ParameterForHypothesisTest;
 
     @FXML
-    private TextField txfAParameterHypothesisTest;
+    private TextField txfX2ParameterHypothesisTest;
 
     @FXML
-    private Label lblBHypothesisSignificance;
+    private Label lblX1HypothesisSignificance;
 
     @FXML
-    private TextField txfBHypothesisTestSignificance;
+    private TextField txfX1HypothesisTestSignificance;
 
     @FXML
-    private Label lblAHypothesisTestSignificance;
+    private Label lblX2HypothesisTestSignificance;
 
     @FXML
-    private TextField txfAHypothesisTestSignificance;
+    private TextField txfX2HypothesisTestSignificance;
 
     @FXML
     private TextField txfConfidenceIntervalSignificance;
@@ -80,11 +80,28 @@ public class GenerateMultiLinearReportController implements Initializable {
     private ComboBox<String> cboxHistoricalPointType;
 
     @FXML
-    private Button generateReportBTN;
+    private Label lblB0ParameterForHypothesis;
 
     @FXML
-    void cBoxHistoricalPointVariable(ActionEvent event) {
+    private Label lblB0HypothesisTestSignificance;
 
+    @FXML
+    private TextField txfB0ParameterForHypothesis;
+
+    @FXML
+    private TextField txfB0HypothesisTestSignificance;
+
+    @FXML
+    private Button generateReportBTN;
+    private ChooseLinearRegressionController chooseLinearRegressionController;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        cboxHistoricalPointType.getItems().add("Days");
+        cboxHistoricalPointType.getItems().add("Weeks");
+        cboxHistoricalPointType.getSelectionModel().selectFirst();
+    }
+    public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
+        this.chooseLinearRegressionController = chooseLinearRegressionController;
     }
 
     @FXML
@@ -95,15 +112,6 @@ public class GenerateMultiLinearReportController implements Initializable {
     @FXML
     void menuExitAction(ActionEvent event) {
 
-    }
-    private ChooseLinearRegressionController chooseLinearRegressionController;
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cboxHistoricalPointType.getItems().add("Days");
-        cboxHistoricalPointType.getItems().add("Weeks");
-    }
-    public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
-        this.chooseLinearRegressionController = chooseLinearRegressionController;
     }
 
 }
