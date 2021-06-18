@@ -220,7 +220,7 @@ public class MultiLinearRegression {
     }
 
     public double regressionDegreesOfFreedom() {
-        return NUMBER_OF_VARIABLES - 1;
+        return (double)NUMBER_OF_VARIABLES - 1;
     }
 
     public double errorDegreesOfFreedom() {
@@ -258,7 +258,7 @@ public class MultiLinearRegression {
     }
 
     public double coeficientRegressionTestAuxiliaryCalculus(double significance) {
-        return getTStudentFromTable(significance) * Math.sqrt(mqe() * xMatrixInverse[xMatrixInverse.length][xMatrixInverse.length]);
+        return getTStudentFromTable(significance) * Math.sqrt(mqe() * xMatrixInverse[xMatrixInverse.length-1][xMatrixInverse.length-1]);
     }
 
     public double getTStudentFromTable(double significance) {
