@@ -93,14 +93,13 @@ public class ClinicalAnalysisLaboratory implements Serializable {
 
     @Override
     public String toString() {
-        return "ClinicalAnalysisLaboratory{" +
-                "laboratoryID='" + laboratoryID + '\'' +
-                ", name='" + name + '\'' +
-                ", adress='" + adress + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", tin=" + tin +
-                ", testTypes=" + testTypes +
-                '}';
+        return name + " - "+
+                laboratoryID + " - " +
+                adress + " - " +
+                phoneNumber + " - " +
+                tin + " - " + testTypes;
+
+
     }
 
 }
