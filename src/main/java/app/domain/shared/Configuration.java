@@ -67,8 +67,8 @@ public class Configuration {
         return props.getProperty("Automatic.Report.CurrentDate");
     }
 
-    public static String getTypeOfData() {
-        return props.getProperty("Automatic.Report.TypeOfData");
+    public static String getTypeOfDate() {
+        return props.getProperty("Automatic.Report.TypeOfDate");
     }
 
     public static String getHistoricalPoints() {

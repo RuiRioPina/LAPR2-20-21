@@ -16,7 +16,11 @@ import org.apache.commons.math3.distribution.TDistribution;
  */
 
 public class LinearRegression {
-    private final double intercept, slope;
+    private final double intercept;
+
+
+
+    private final double slope;
     private final double r2;
     private final double svar0, svar1;
     private final double n;
@@ -167,7 +171,9 @@ public class LinearRegression {
         }
         return yThroughRegressionModel;
     }
-
+    public double getR2() {
+        return r2;
+    }
     public double calculateS() {
         double total = 0;
         double[] yThroughRegressionModelMinusGivenYarray = new double[this.arrayY.length];

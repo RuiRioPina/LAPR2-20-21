@@ -276,6 +276,15 @@ public class Company implements Serializable {
         NHSReport report = new NHSReport(linearRegression, testStore.getPositiveCovidTestsPerformedOnDay(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate), testStore.getMeanAgeOfTestsPerformedPerDay(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate));
         return report.getReportString(getHistoricalPointDayOlderDate(currentDate, historicalPoints), currentDate, aParameterSignificance, aTestParameter, bParamatereSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance,"days");
     }
+
+    public String getTheBestModelSLR(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance) {
+        LinearRegression linearRegressionTestsPerformed = new LinearRegression(testStore.getTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
+        LinearRegression linearRegressionMeanAge = new LinearRegression(testStore.getMeanAgeOfTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
+        if(linearRegressionTestsPerformed.getR2()>linearRegressionMeanAge.getR2()) {
+            return "meanAge";
+        }
+        return "testsPerformed";
+    }
     public String generateSimpleNHSReportTestsPerformedWeeks(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance){
         LinearRegression linearRegression =new LinearRegression((testStore.getTestsPerformedPerWeek(olderRegressionIntervalDate,newerRegressionIntervalDate)),testStore.getTestsPositivePerWeek(olderRegressionIntervalDate,newerRegressionIntervalDate));
         NHSReport report= new NHSReport(linearRegression,testStore.getTestsPositivePerWeek(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate),testStore.getTestsPerformedPerWeek(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate));

@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -29,6 +30,13 @@ public class App  {
     private boolean doBootStrap;
 
     private App() {
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 6);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        SendReportToNHSTask sendReportTask = new SendReportToNHSTask();
+        Timer timer = new Timer();
+        timer.schedule(sendReportTask,today.getTime(), TimeUnit.MICROSECONDS.convert(1,TimeUnit.DAYS));
         Properties props = getProperties();
         
         Company cmp = null;
@@ -57,6 +65,7 @@ public class App  {
         
         this.company = cmp;
         this.authFacade = this.company.getAuthFacade();
+
     }
 
     public Company getCompany() {
