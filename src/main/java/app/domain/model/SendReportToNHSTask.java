@@ -22,11 +22,23 @@ public class SendReportToNHSTask extends TimerTask {
     @Override
     public void run() {
         Calendar currentDate = Calendar.getInstance();
-        currentDate.set(2021, 04, 31);
+        int dayCurrentDate=Integer.parseInt(Configuration.getCurrentDate()[0]);
+        int monthCurrentDate=Integer.parseInt(Configuration.getCurrentDate()[1])-1;
+        int yearCurrentDate=Integer.parseInt(Configuration.getCurrentDate()[2]);
+        int dayLowerInterval=Integer.parseInt(Configuration.getDateIntervalLower()[0]);
+        int monthLowerInterval=Integer.parseInt(Configuration.getDateIntervalLower()[1])-1;
+        int yearLowerInterval=Integer.parseInt(Configuration.getDateIntervalLower()[2]);
+        int dayUpperInterval=Integer.parseInt(Configuration.getDateIntervalUpper()[0]);
+        int monthUpperInterval=Integer.parseInt(Configuration.getDateIntervalUpper()[1])-1;
+        int yearUpperInterval=Integer.parseInt(Configuration.getDateIntervalUpper()[2]);
+        if(monthCurrentDate==-1) {
+            monthCurrentDate=0;
+        }
+        currentDate.set(yearCurrentDate, monthCurrentDate, dayCurrentDate);
         Calendar old = Calendar.getInstance();
-        old.set(2021, 04, 3);
+        old.set(yearLowerInterval, monthLowerInterval, dayLowerInterval);
         Calendar newt = Calendar.getInstance();
-        newt.set(2021, 04, 24);
+        newt.set(yearUpperInterval, monthUpperInterval, dayUpperInterval);
 
         int historicalPoints = Integer.parseInt(Configuration.getHistoricalPoints());
         double significance = Double.parseDouble(Configuration.getSignificanceValue());
@@ -45,15 +57,15 @@ public class SendReportToNHSTask extends TimerTask {
 
             if (bestModelSLR.equalsIgnoreCase("meanAge")) {
                 if (Configuration.getTypeOfDate().equalsIgnoreCase("Weeks")) {
-                    report = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, 4, newt, old, significance, 0, significance, 0, significance, significance);
+                    report = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, historicalPoints, newt, old, significance, 0, significance, 0, significance, significance);
                 } else {
-                    report = company.generateSimpleNhsReportMeanAge(currentDate, 15, newt, old, significance, 0, significance, 0, significance, significance);
+                    report = company.generateSimpleNhsReportMeanAge(currentDate, historicalPoints, newt, old, significance, 0, significance, 0, significance, significance);
                 }
             } else {
                 if (Configuration.getTypeOfDate().equalsIgnoreCase("Weeks")) {
-                    report = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, 4, newt, old, significance, 0, significance, 0, significance, significance);
+                    report = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, historicalPoints, newt, old, significance, 0, significance, 0, significance, significance);
                 } else {
-                    report = company.generateSimpleNhsReportTestsPerformed(currentDate, 15, newt, old, significance, 0, significance, 0, significance, significance);
+                    report = company.generateSimpleNhsReportTestsPerformed(currentDate, historicalPoints, newt, old, significance, 0, significance, 0, significance, significance);
                 }
             }
         }

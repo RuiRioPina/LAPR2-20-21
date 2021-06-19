@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 public class Configuration {
@@ -88,26 +90,34 @@ public class Configuration {
         return props.getProperty("Automatic.Report.SignificanceValue");
     }
 
-    public static Date  getDate() {
-        props.getProperty("Automatic.Report.SignificanceValue");
+    public static String[] getDate(String date) {
         String[] arrString = null;
-        String line = "";
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-        Date dt = new Date();
-        try {
-             dt = df.parse(props.getProperty("Automatic.Report.SignificanceValue"));
 
-        } catch (ParseException e) {
+        if (date.contains("-")) {
+            arrString = date.split("-");
+        } else if (date.contains("/")) {
+            arrString = date.split("/");
         }
-        return dt;
+
+        return arrString;
     }
-    public static Date getCurrentDate() {
-        props.getProperty("Automatic.Report.CurrentDate");
-        return getDate();
+    public static String[] getCurrentDate() {
+        String date = props.getProperty("Automatic.Report.CurrentDate");
+        return getDate(date);
     }
 
-    public static String getDateInterval() {
-        return props.getProperty("Automatic.Report.DateInterval");
+    public static String[] getDateIntervalLower() {
+        String date = props.getProperty("Automatic.Report.DateInterval");
+        String[][] days = new String[2][3];
+        String[] intervalDates = date.split(" ");
+        String[] upperInterval =getDate(intervalDates[0]);
+        return upperInterval;
+    }
+    public static String[] getDateIntervalUpper() {
+        String date = props.getProperty("Automatic.Report.DateInterval");
+        String[] intervalDates = date.split(" ");
+        String[] upperInterval =getDate(intervalDates[1]);
+        return upperInterval;
     }
 
 
