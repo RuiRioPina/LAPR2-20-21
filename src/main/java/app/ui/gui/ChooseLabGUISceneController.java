@@ -32,8 +32,12 @@ public class ChooseLabGUISceneController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		app.getCompany().setCLA(null);
 		List<ClinicalAnalysisLaboratory> labs = app.getCompany().getClinicalAnalysisLaboratoryStore().getLabs();
 		this.cbbLabs.getItems().addAll(labs);
+		if(labs.size() > 0) {
+			this.cbbLabs.setValue(labs.get(0));
+		}
 	}
 
 	@FXML

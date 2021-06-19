@@ -305,6 +305,7 @@ public class MainMenuGUISceneController implements Initializable {
 
 	@FXML
 	private void menuLoginAction(ActionEvent event) {
+		app.doLogout();
 		Stage stage1 = loadLoginUi();
 		if(stage1 == null) {
 			return;
@@ -333,6 +334,9 @@ public class MainMenuGUISceneController implements Initializable {
 				return;
 			}
 			stage2.showAndWait();
+			if(app.getCompany().getCLA() == null) {
+				return;
+			}
 			stage = loadMedLabTechUi();
 		}
 	    else if (sessao.isLoggedInWithRole(Constants.ROLE_RECEPTIONIST)){
@@ -341,6 +345,9 @@ public class MainMenuGUISceneController implements Initializable {
 			return;
 		}
 		stage3.showAndWait();
+		if(app.getCompany().getCLA() == null) {
+			return;
+		}
 		stage = loadReceptionistUi();
 	}
 		if(stage == null) {
