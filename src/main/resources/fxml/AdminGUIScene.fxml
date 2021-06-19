@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MenuAdminGUISceneController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.MenuAdminGUISceneController">
    <top>
-      <Label fx:id="lblAdmin" alignment="CENTER" prefHeight="74.0" prefWidth="161.0" text="Administrator" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-   </top>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="145.0" prefWidth="981.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSendReportToNHS" alignment="CENTER" layoutX="349.0" layoutY="204.0" mnemonicParsing="false" onAction="#btnSendReportToNhsClick" text="Send a report to the NHS" />
-            <Button layoutX="95.0" layoutY="204.0" mnemonicParsing="false" onAction="#menuSpecifyTestTypeAction" text="Specify a new Test Type" />
+            <Label fx:id="lblAdmin" alignment="CENTER" prefHeight="118.0" prefWidth="1047.0" text="Administrator" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold Italic" size="80.0" />
+               </font></Label>
          </children>
-      </AnchorPane>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="136.0" prefWidth="981.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#menuExitAction" prefHeight="66.0" prefWidth="201.0" text="Back">
+               <font>
+                  <Font name="Arial Bold Italic" size="32.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <Pane prefHeight="384.0" prefWidth="981.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="121.0" layoutY="41.0" mnemonicParsing="false" onAction="#btnPar" prefHeight="75.0" prefWidth="287.0" text="Specify new Parameter">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font></Button>
+            <Button layoutX="563.0" layoutY="169.0" mnemonicParsing="false" onAction="#btnLab" prefHeight="75.0" prefWidth="287.0" text="Register New Clinical Analysis Lab">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font></Button>
+            <Button layoutX="563.0" layoutY="41.0" mnemonicParsing="false" onAction="#btnEmployee" prefHeight="75.0" prefWidth="287.0" text="Register New Employee">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font></Button>
+            <Button layoutX="563.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnSendReportToNhsClick" prefHeight="75.0" prefWidth="287.0" text="Send NHS Report">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font></Button>
+            <Button layoutX="121.0" layoutY="169.0" mnemonicParsing="false" onAction="#btnCat" prefHeight="75.0" prefWidth="287.0" text="Specify New Parameter Category">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font></Button>
+            <Button layoutX="121.0" layoutY="296.0" mnemonicParsing="false" onAction="#menuSpecifyTestTypeAction" prefHeight="75.0" prefWidth="287.0" text="Specify New Test Type">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font></Button>
+         </children>
+      </Pane>
    </center>
 </BorderPane>

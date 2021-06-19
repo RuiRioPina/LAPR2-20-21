@@ -162,7 +162,7 @@ public class MainMenuGUISceneController implements Initializable {
 	        Stage novoAdminStage = new Stage();
 	        novoAdminStage.initModality(Modality.APPLICATION_MODAL);
 	        novoAdminStage.setTitle("Administrador");
-	        novoAdminStage.setMaximized(true);
+	        novoAdminStage.setMaximized(false);
 	        novoAdminStage.setScene(scene);
 	        novoAdminStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override

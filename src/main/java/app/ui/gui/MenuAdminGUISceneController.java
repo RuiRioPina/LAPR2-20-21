@@ -1,7 +1,7 @@
 package app.ui.gui;
 import app.controller.App;
-import app.ui.console.GenerateSampleUI;
-import app.ui.console.TestTypeUI;
+import app.domain.model.ParameterCategory;
+import app.ui.console.*;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +37,10 @@ public MenuAdminGUISceneController(){
     private Label lblAdmin;
 
     @FXML
-    private Button btnSendReportToNHS;
+    void menuExitAction(ActionEvent event) {
+        Window window = lblAdmin.getScene().getWindow();
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
 
     @FXML
     void btnSendReportToNhsClick(ActionEvent event) {
@@ -77,4 +82,40 @@ stage1.showAndWait();
 		testTypeUI.run();
 		stg.show();
 	}
+
+    @FXML
+    void btnCat(ActionEvent event) {
+        Stage stga = (Stage) lblAdmin.getScene().getWindow();
+        stga.hide();
+        ParameterCategoryUI pcUI = new ParameterCategoryUI();
+        pcUI.run();
+        stga.show();
+    }
+
+    @FXML
+    void btnPar(ActionEvent event) {
+        Stage stgb = (Stage) lblAdmin.getScene().getWindow();
+        stgb.hide();
+        ParameterUI pUI = new ParameterUI();
+        pUI.run();
+        stgb.show();
+    }
+
+    @FXML
+    void btnLab(ActionEvent event) {
+        Stage stgc = (Stage) lblAdmin.getScene().getWindow();
+        stgc.hide();
+        ClinicalAnalysisLaboratoryUI labUI = new ClinicalAnalysisLaboratoryUI();
+        labUI.run();
+        stgc.show();
+    }
+
+    @FXML
+    void btnEmployee(ActionEvent event) {
+        Stage stgd = (Stage) lblAdmin.getScene().getWindow();
+        stgd.hide();
+        RegisterEmployeeUI eUI = new RegisterEmployeeUI();
+        eUI.run();
+        stgd.show();
+    }
 }
