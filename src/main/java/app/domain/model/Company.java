@@ -5,6 +5,7 @@ import app.domain.model.matcp.LinearRegression;
 import app.domain.model.matcp.MultiLinearRegression;
 import app.domain.shared.Constants;
 import app.domain.store.*;
+import app.ui.console.utils.Utils;
 import auth.AuthFacade;
 import com.nhs.report.Report2NHS;
 import org.apache.commons.lang3.StringUtils;
@@ -177,7 +178,7 @@ public class Company implements Serializable {
             calendar.setTime(dt);
             return calendar;
         } catch (Exception ex) {
-            System.out.println(message);
+            Utils.log(message);
         }
         return null;
     }

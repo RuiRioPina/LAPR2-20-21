@@ -336,19 +336,6 @@ public class Test implements Serializable {
                     "Parameter(s) = " + parameter + '\n' +
                     "Registration Date = " + rDate;
         }
-        if (samples != null || samplesCollectionDate != null ||
-                chemicalAnalysisDate != null || diagnosisDate != null || validationDate != null) {
-            str = "TEST" + '\n' +
-                    "NHS Code = " + nhsCode + '\n' +
-                    "Internal Code = " + internalCode + '\n' +
-                    "Lab ID = " + labID + '\n' +
-                    "Client = " + client.getName() + '\n' +
-                    "Test Type = " + testType + '\n' +
-                    "Sample Collection Method = " + sampleCollectionMethod + '\n' +
-                    "Category(ies) = " + parameterCategory + '\n' +
-                    "Parameter(s) = " + parameter + '\n' +
-                    "Registration Date = " + rDate;
-        }
 
         if (registrationDate != null && samplesCollectionDate != null && chemicalAnalysisDate != null && diagnosisDate == null && validationDate == null) {
             str = "TEST" + '\n' +
