@@ -29,7 +29,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="273.0" layoutY="359.0" text="Adress">
+      <Label layoutX="262.0" layoutY="361.0" text="Address">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
