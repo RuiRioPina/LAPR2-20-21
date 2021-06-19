@@ -29,6 +29,7 @@ public class MultiLinearRegression {
     }
 
 
+
     public MultiLinearRegression(double[] arrayX1, double[] arrayX2, double[] arrayY) {
         this.arrayX1 = arrayX1;
         this.arrayX2 = arrayX2;

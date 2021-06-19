@@ -2,6 +2,7 @@ package app.ui.gui;
 
 import app.controller.App;
 import app.domain.model.Company;
+import app.domain.model.SendReportToNHSTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,19 +44,6 @@ public class GenerateMultiLinearReportController implements Initializable {
 
     @FXML
     private Label lblNewerDate;
-
-    @FXML
-    private Label lblX1ParameterForHypothesis;
-
-    @FXML
-    private TextField txfX1ParameterHypothesisTest;
-
-    @FXML
-    private Label lblX2ParameterForHypothesisTest;
-
-    @FXML
-    private TextField txfX2ParameterHypothesisTest;
-
     @FXML
     private Label lblX1HypothesisSignificance;
 
@@ -83,14 +71,10 @@ public class GenerateMultiLinearReportController implements Initializable {
     @FXML
     private ComboBox<String> cboxHistoricalPointType;
 
-    @FXML
-    private Label lblB0ParameterForHypothesis;
 
     @FXML
     private Label lblB0HypothesisTestSignificance;
 
-    @FXML
-    private TextField txfB0ParameterForHypothesis;
 
     @FXML
     private TextField txfB0HypothesisTestSignificance;
@@ -116,18 +100,21 @@ public class GenerateMultiLinearReportController implements Initializable {
         Calendar newerDate = getDateFromDatePicker(dtpNewerDate.getValue().getYear(),dtpNewerDate.getValue().getMonthValue(),dtpNewerDate.getValue().getDayOfMonth());
         Calendar currentDate = getDateFromDatePicker(dtpCurrentDate.getValue().getYear(),dtpCurrentDate.getValue().getMonthValue(),dtpCurrentDate.getValue().getDayOfMonth());
         int historicalPoints = Integer.parseInt(txfNumberOfHistoricalPoints.getText());
-        double x1TestParameter = Double.parseDouble(txfX1ParameterHypothesisTest.getText());
         double x1TestSignificance = Double.parseDouble(txfX1HypothesisTestSignificance.getText());
-        double x2TestParameter = Double.parseDouble(txfX2ParameterHypothesisTest.getText());
         double x2TestSignificance = Double.parseDouble(txfX2HypothesisTestSignificance.getText());
-        double B0TestParameter= Double.parseDouble(txfB0ParameterForHypothesis.getText());
+        double B0TestSignificance= Double.parseDouble(txfB0HypothesisTestSignificance.getText());
         double fTestSignificance = Double.parseDouble(txfFDecisionSignificance.getText());
         double confidenceIntervalSignificance = Double.parseDouble(txfConfidenceIntervalSignificance.getText());
         String historicalPointType = cboxHistoricalPointType.getValue();
         if (historicalPointType.equals("Days")){
-            resultString=company.generateMultilienearNHSReportDays(currentDate,historicalPoints,newerDate,olderDate,B0TestParameter,x1TestParameter,x2TestParameter,fTestSignificance,confidenceIntervalSignificance);
+            resultString=company.generateMultilinearNHSReportDays(currentDate,historicalPoints,newerDate,olderDate,B0TestSignificance,x1TestSignificance,x2TestSignificance,fTestSignificance,confidenceIntervalSignificance);
             System.out.println(resultString);
-
+company.sendReportToNHS(resultString);
+        }
+        if(historicalPointType.equals("Weeks")){
+resultString=company.generateMultilinearNHSReportWeeks(currentDate,historicalPoints,newerDate,olderDate,B0TestSignificance,x1TestSignificance,x2TestSignificance,fTestSignificance,confidenceIntervalSignificance);
+            System.out.println(resultString);
+            company.sendReportToNHS(resultString);
         }
     }
 

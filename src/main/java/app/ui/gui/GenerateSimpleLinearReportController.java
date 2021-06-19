@@ -117,12 +117,12 @@ public class GenerateSimpleLinearReportController implements Initializable {
                 // System.out.println(resultString);
 
                 //  System.out.println("dsadaa");
-                resultString = company.generateSimpleNhsReportTestsPerformed(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                resultString = company.generateSimpleNhsReportTestsPerformed(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, aTestParameter, bTestSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
                 System.out.println(resultString);
 
             }
             if (independentVariableSelected.equals("Mean Age of Clients")){
-                resultString=company.generateSimpleNhsReportMeanAge(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                resultString=company.generateSimpleNhsReportMeanAge(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, aTestParameter, bTestSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
                 System.out.println(resultString);
             }
         }
@@ -173,20 +173,15 @@ public class GenerateSimpleLinearReportController implements Initializable {
     }
 
     private boolean verifySignificanceNumber(String numberString) {
+        if (Double.parseDouble(numberString) > 100 || Double.parseDouble(numberString) < 0) {
+            return false;
+        }
         if (numberString.contentEquals("^[0-9]{1,2}([,.][0-9]{1,2})?$")) {
             return true;
         }
-        if (Double.parseDouble(numberString) > 100 || Double.parseDouble(numberString) < 0) {
-            return false;
-        } else return false;
+         else return false;
     }
 
-    private Calendar getDateFromString(String dateString) {
-        Calendar calendar = Calendar.getInstance();
-        String[] arrString = dateString.split("-");
-        calendar.set(Integer.parseInt(arrString[2]), Integer.parseInt(arrString[1]) - 1, Integer.parseInt(arrString[0]));
-        return calendar;
-    }
     private Calendar getDateFromDatePicker(int year,int month,int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month-1, day);
