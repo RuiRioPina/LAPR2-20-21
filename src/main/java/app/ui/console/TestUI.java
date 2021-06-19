@@ -25,9 +25,9 @@ public class TestUI implements Runnable {
         Client client = clientByTIN(lcl);
 
         String cl = "Client = " + client.getName();
-        System.out.println('\n' + cl);
+        Utils.log('\n' + cl);
 
-        System.out.println('\n' + "Lab Order Information" + '\n');
+        Utils.log('\n' + "Lab Order Information" + '\n');
 
         TestType tt = null;
         List<TestType> ltt = this.testController.getTestTypes();
@@ -80,11 +80,11 @@ public class TestUI implements Runnable {
         try {
             Calendar rDate = Calendar.getInstance();
             t = this.testController.createTest(nhsCode, testCode, client, tt, lcs, parameters, rDate);
-            System.out.println(t);
+            Utils.log(t.toString());
             Utils.confirm("Confirm this TEST? (y/n)");
             testController.saveTest(t);
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            Utils.log(ex.getMessage());
         }
 
     }
@@ -101,17 +101,17 @@ public class TestUI implements Runnable {
         String nhsCode;
         boolean val = false;
         do {
-            System.out.println("Insert test NHS code.");
+            Utils.log("Insert test NHS code.");
             nhsCode = sc.next();
 
             if (nhsCode.length() != 12 || !nhsCode.matches("^[a-zA-Z0-9]*$")) {
-                System.out.println("NHS code has 12 alphanumeric characters. Try again.");
+                Utils.log("NHS code has 12 alphanumeric characters. Try again.");
             }
 
             for (int i = 0; i < test.size(); i++) {
                 if (nhsCode.equals(test.get(i).getNhsCode())) {
                     val = true;
-                    System.out.println("NHS code is already linked to a test. Try again.");
+                    Utils.log("NHS code is already linked to a test. Try again.");
                     break;
                 } else {
                     val = false;
@@ -127,12 +127,12 @@ public class TestUI implements Runnable {
         String str;
         boolean valid = false;
         do {
-            System.out.println("Insert client's TIN.");
+            Utils.log("Insert client's TIN.");
             tin = sc.nextLong();
             str = "" + tin;
 
             if (str.length() != 10) {
-                System.out.println("TIN is a 10 digit number.");
+                Utils.log("TIN is a 10 digit number.");
             }
 
             for (int i = 0; i < lcl.size(); i++) {
@@ -141,7 +141,7 @@ public class TestUI implements Runnable {
                     valid = true;
                     break;
                 } else {
-                    System.out.println("There is no client registered with this TIN. Try again.");
+                    Utils.log("There is no client registered with this TIN. Try again.");
                     valid = false;
                 }
             }

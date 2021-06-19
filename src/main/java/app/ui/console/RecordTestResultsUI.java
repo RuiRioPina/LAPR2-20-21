@@ -27,11 +27,9 @@ public class RecordTestResultsUI implements Runnable {
         String parameterCode = "";
         Scanner sc = new Scanner(System.in);
         recordTestResultsController.initializeValidationList();
-        System.out.println();
-        System.out.println("Welcome to the Record Results of Test Page");
-        System.out.println();
+        Utils.log("\nWelcome to the Record Results of Test Page\n");
         do {
-            System.out.println("Please introduce the barcode of the Sample where the results will be recorded.(11 digits)");
+            Utils.log("Please introduce the barcode of the Sample where the results will be recorded.(11 digits)");
             barcode = sc.nextLine();
         } while (!recordTestResultsController.testExists(barcode) || recordTestResultsController.hasTestPassedSampleCollection(barcode));
 
@@ -46,13 +44,13 @@ public class RecordTestResultsUI implements Runnable {
             if ((option >= 0) && (option < parametersToShow.size())) {
                 do {
                     parameterCode = parametersToShow.get(option).getCode();
-                    System.out.println("Please insert the result for the intended parameter: (Metric Used: " +
+                    Utils.log("Please insert the result for the intended parameter: (Metric Used: " +
                             recordTestResultsController.getMetricsFor(parameterCode) + ")");
                     pass = true;
                     try {
                         result = sc.nextDouble();
                     } catch (InputMismatchException e) {
-                        System.out.println("The value of the result of the test can only have numbers. Please try again!");
+                        Utils.log("The value of the result of the test can only have numbers. Please try again!");
                         pass = false;
                         sc.nextLine();
                     }
@@ -61,9 +59,9 @@ public class RecordTestResultsUI implements Runnable {
 
                 parameterCode = parametersToShow.get(option).getCode();
                 recordTestResultsController.addTestResult(parameterCode, result, recordTestResultsController.getTestByBarcode(barcode));
-                System.out.println("Confirmation: \n");
-                System.out.printf("-Parameter Selected: %s%n", parameterCode);
-                System.out.printf("-Result introduced: %s %s%n", result, recordTestResultsController.getMetricsFor(parameterCode));
+                Utils.log("Confirmation: \n");
+                Utils.log(String.format("-Parameter Selected: %s", parameterCode));
+                Utils.log(String.format("-Result introduced: %s %s", result, recordTestResultsController.getMetricsFor(parameterCode)));
             }
 
             saveTestResult(parameterCode,barcode,option);
@@ -84,7 +82,7 @@ public class RecordTestResultsUI implements Runnable {
 
             recordTestResultsController.setChemicalAnalysis(recordTestResultsController.getTestByBarcode(barcode));
         }catch (IndexOutOfBoundsException e) {
-            System.out.println("You must insert all the results for all the parameters.");
+            Utils.log("You must insert all the results for all the parameters.");
         }
     }
 
