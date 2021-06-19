@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ClinicalAnalysisLaboratoryUI implements Runnable {
 
-    private ClinicalAnalysisLaboratoryController clinicalAnalysisLaboratoryController;
+    private final ClinicalAnalysisLaboratoryController clinicalAnalysisLaboratoryController;
 
     public ClinicalAnalysisLaboratoryUI() {
         this.clinicalAnalysisLaboratoryController = new ClinicalAnalysisLaboratoryController();
@@ -19,16 +19,16 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
 
     public void run() {
         Scanner x = new Scanner(System.in);
-        System.out.println("Beginning to register a new clinical analysis laboratory.\n");
-        System.out.println("Insert the laboratoryID.");
+        Utils.log("Beginning to register a new clinical analysis laboratory.\n");
+        Utils.log("Insert the laboratoryID.");
         String laboratoryID=x.nextLine();
-        System.out.println("Insert name.");
+        Utils.log("Insert name.");
         String name=x.nextLine();
-        System.out.println("Insert adress.");
+        Utils.log("Insert adress.");
         String adress=x.nextLine();
-        System.out.println("Insert phone number.");
+        Utils.log("Insert phone number.");
         long phoneNumber=x.nextLong();
-        System.out.println("Insert TIN number.");
+        Utils.log("Insert TIN number.");
         long tin=x.nextLong();
 
         List<String> testTypeCodes = new ArrayList<>();
@@ -51,20 +51,20 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
         try {
             cal = this.clinicalAnalysisLaboratoryController.registerClinicalAnalysisLaboratory(laboratoryID, name, adress, phoneNumber, tin, testTypeCodes);
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            Utils.log(ex.getMessage());
             return;
         }
 
-        System.out.println("Confirmation: %n");
-        System.out.printf("-LaboratoryID: %s%n", cal.getLaboratoryID());
-        System.out.printf("-Name: %s%n", cal.getName());
-        System.out.printf("-Adress: %s%n", cal.getAdress());
-        System.out.printf("-Phone number: %s%n", cal.getPhoneNumber());
-        System.out.printf("-TIN: %s%n", cal.getTin());
-        System.out.println("-Test types: ");
+        Utils.log("Confirmation: %n");
+        Utils.log(String.format("-LaboratoryID: %s", cal.getLaboratoryID()));
+        Utils.log(String.format("-Name: %s", cal.getName()));
+        Utils.log(String.format("-Adress: %s", cal.getAdress()));
+        Utils.log(String.format("-Phone number: %s", cal.getPhoneNumber()));
+        Utils.log(String.format("-TIN: %s", cal.getTin()));
+        Utils.log("-Test types: ");
 
         for(TestType tt : cal.getTestTypes()) {
-            System.out.printf("\t%s - %s - %s - %s %n", tt.getCode(),tt.getDescription(),tt.getCollectingMethod(), tt.getParameterCategories());
+            Utils.log(String.format("\t%s - %s - %s - %s", tt.getCode(),tt.getDescription(),tt.getCollectingMethod(), tt.getParameterCategories()));
         }
 
         if(!Utils.confirm("Confirm test type creation (y/n)?")){
@@ -74,7 +74,7 @@ public class ClinicalAnalysisLaboratoryUI implements Runnable {
         try {
             this.clinicalAnalysisLaboratoryController.saveClinicalAnalysisLaboratory(cal);
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            Utils.log(ex.getMessage());
         }
     }
 }
