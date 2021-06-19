@@ -17,7 +17,7 @@ import java.util.List;
 public class ImportTests{
     private final TestController importTestsController;
     private final String path;
-    private App app;
+    private final App app;
 
     public ImportTests(String path) throws IOException, InterruptedException {
         this.importTestsController = new TestController();
@@ -187,9 +187,9 @@ public class ImportTests{
             } else {
                 notImported [z] = "Test in line " + j + " wasn't imported. Invalid Client or Test data.";
                 z++;
-
             }
         }
+        leitor2.close();
         String nomeficheiro = "Not Imported Tests.txt";
         try (PrintWriter out = new PrintWriter(nomeficheiro)) {
             for (int i = 0; i < notImported.length; i++){
@@ -206,7 +206,7 @@ public class ImportTests{
         Thread.sleep(350);
         desktop.open(file);
         App.getInstance().getCompany().setTestCode(a);
-        leitor2.close();
+
     }}
 
 
