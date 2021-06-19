@@ -8,7 +8,7 @@ import app.ui.console.utils.Utils;
 
 public class ParameterCategoryUI implements Runnable {
 
-	private ParameterCategoryController parameterCategoryController;
+	private final ParameterCategoryController parameterCategoryController;
 	
 	public ParameterCategoryUI() {
 		this.parameterCategoryController = new ParameterCategoryController();
@@ -16,23 +16,23 @@ public class ParameterCategoryUI implements Runnable {
 	
 	public void run() {
 		Scanner x = new Scanner(System.in);
-		System.out.println("Beginning to register a new Parameter Category.\n");
-		System.out.println("Insert the code of the parameter category.");
+		Utils.log("Beginning to register a new Parameter Category.\n");
+		Utils.log("Insert the code of the parameter category.");
 		String code = x.nextLine();
-		System.out.println("Insert the name of the parameter category.");
+		Utils.log("Insert the name of the parameter category.");
 		String name = x.nextLine();
         
         ParameterCategory pc;
         try {
         	pc = this.parameterCategoryController.createParameterCategory(code, name);
         } catch (IllegalArgumentException ex) {
-        	System.out.println(ex.getMessage());
+        	Utils.log(ex.getMessage());
         	return;
         }
         
-        System.out.println("Confirmation: %n");
-        System.out.printf("-Code: %s%n", pc.getCode());
-        System.out.printf("-Name: %s%n", pc.getName());
+        Utils.log("Confirmation: %n");
+        Utils.log(String.format("-Code: %s", pc.getCode()));
+        Utils.log(String.format("-Name: %s", pc.getName()));
         
         if(!Utils.confirm("Confirm parameter category creation (y/n)?")){
         	return;
@@ -41,7 +41,7 @@ public class ParameterCategoryUI implements Runnable {
         try {
         	this.parameterCategoryController.saveParameterCategory();
         } catch (IllegalArgumentException ex) {
-        	System.out.println(ex.getMessage());
+        	Utils.log(ex.getMessage());
         }
 	}
 }

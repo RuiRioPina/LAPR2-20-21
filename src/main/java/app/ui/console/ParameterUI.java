@@ -36,34 +36,34 @@ public class ParameterUI implements Runnable{
         List<String> parameterCategoryCodes = new ArrayList<>();
         boolean validation = false;
 
-        System.out.println("Beginning to specify a new parameter and categorize it \n");
+        Utils.log("Beginning to specify a new parameter and categorize it \n");
 
         while (!validation) {
-            System.out.println("Insert the code of the parameter.");
+            Utils.log("Insert the code of the parameter.");
             code = sc.nextLine();
             validation = checkCodeRules(code);
             if (!validation) {
-                System.out.println("The code is invalid");
+                Utils.log("The code is invalid");
             }
         }
         validation = false;
 
         while (!validation) {
-            System.out.println("Insert the short name of the parameter.");
+            Utils.log("Insert the short name of the parameter.");
             shortname = sc.nextLine();
             validation = checkShortnameRules(shortname);
             if (!validation) {
-                System.out.println("The shortname is invalid");
+                Utils.log("The shortname is invalid");
             }
         }
         validation = false;
 
         while (!validation) {
-            System.out.println("Insert the description of the parameter.");
+            Utils.log("Insert the description of the parameter.");
             description = sc.nextLine();
             validation = checkDescriptionRules(description);
             if (!validation) {
-                System.out.println("The description is invalid");
+                Utils.log("The description is invalid");
             }
         }
         validation = false;
@@ -81,7 +81,7 @@ public class ParameterUI implements Runnable{
 
             validation = checkParameterCategoryRules(parameterCategoryCodes);
             if (!validation) {
-                System.out.println("The Parameter Category list is invalid");
+                Utils.log("The Parameter Category list is invalid");
             }
         }
 
@@ -89,15 +89,15 @@ public class ParameterUI implements Runnable{
         try {
             p = this.parameterController.createParameter(code, shortname, description, parameterCategoryCodes);
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            Utils.log(ex.getMessage());
             return;
         }
 
-        System.out.println("Confirmation: %n");
-        System.out.printf("-Code: %s %n", p.getCode());
-        System.out.printf("-Shortname: %s %n", p.getShortname());
-        System.out.printf("-Description: %s %n", p.getDescription());
-        System.out.println("-Parameter Category: ");
+        Utils.log("Confirmation: %n");
+        Utils.log(String.format("-Code: %s", p.getCode()));
+        Utils.log(String.format("-Shortname: %s", p.getShortname()));
+        Utils.log(String.format("-Description: %s", p.getDescription()));
+        Utils.log("-Parameter Category: ");
         for (ParameterCategory pc : p.getPc()) {
             System.out.printf("\t %s - %s %n", pc.getCode(), pc.getName());
         }
@@ -109,7 +109,7 @@ public class ParameterUI implements Runnable{
         try {
             this.parameterController.saveParameter(p);
         } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage());
+            Utils.log(ex.getMessage());
         }
     }
 
