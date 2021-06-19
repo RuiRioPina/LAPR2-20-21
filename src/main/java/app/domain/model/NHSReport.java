@@ -82,7 +82,7 @@ public class NHSReport {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("%nSignificance model with Anova \n" +
                     "H0: b=0  H1:b<>0 \n %15s %12s %12s %12s \n" +
-                    "Regression %8.4f %12.4f %12.4f\t%12.4f \nResidual %10.4f  %11.4f %12.4f \n Total %12.4f %12.4f", "df", "SS", "MS", "F", (double) linearRegression.getRegressionDF(), linearRegression.calculateAnovaSR(), linearRegression.calculateAnovaMSR(), linearRegression.calculateTestF(), (double) linearRegression.getResidualDF(), linearRegression.calculateAnovaSE(), linearRegression.calculateAnovaMSE(), linearRegression.calculateAnovaSE() + 1, linearRegression.calculateAnovaST());
+                    "Regression %8.4f %12.4f %12.4f\t%12.4f \nResidual %10.4f  %11.4f %12.4f \n Total %12.4f %12.4f", "df", "SS", "MS", "F", (double) linearRegression.getRegressionDF(), linearRegression.calculateAnovaSR(), linearRegression.calculateAnovaMSR(), linearRegression.calculateTestF(), (double) linearRegression.getResidualDF(), linearRegression.calculateAnovaSE(), linearRegression.calculateAnovaMSE(), (double)linearRegression.getRegressionDF()+linearRegression.getResidualDF(), linearRegression.calculateAnovaST());
         } else if (this.multiLinearRegression != null && this.linearRegression == null) {
             return String.format("%nSignificance model with Anova \n" +
                     "H0: b=0  H1:b<>0 \n %15s %12s %12s %12s \n" +
@@ -160,7 +160,7 @@ public class NHSReport {
                 do {
                     if (olderDateUsed.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
                         if (i != 1) {
-                            resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH), olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
+                            showDate(confidenceIntervalSignificance, i, resultString, olderDateUsed);
                         }
                         i++;
                     }
@@ -171,7 +171,7 @@ public class NHSReport {
                 do {
                     if (olderDateUsed.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
                         if (i != 1) {
-                            resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH), olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
+                            showDateWeeks(confidenceIntervalSignificance, i, resultString, olderDateUsed);
                         }
                         i++;
                     }
@@ -190,7 +190,7 @@ public class NHSReport {
                 do {
                     if (olderDateUsed.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
 
-                        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
+                        showDate(confidenceIntervalSignificance, i, resultString, olderDateUsed);
 
                         i++;
                     }
@@ -201,7 +201,7 @@ public class NHSReport {
                 do {
                 if (olderDateUsed.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
 
-                    resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
+                    showDateWeeks(confidenceIntervalSignificance, i, resultString, olderDateUsed);
 
                     i++;
                 }
@@ -210,6 +210,14 @@ public class NHSReport {
             }
             return resultString.toString();
         } else return null;
+    }
+
+    private void showDateWeeks(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {
+        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH)+1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
+    }
+
+    private void showDate(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {
+        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH)+1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
     }
 
 
@@ -227,15 +235,15 @@ public class NHSReport {
 
 
     public static void main(String[] args) {
-//        double[] arrX1 = {825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215};
-//        double[] arrX2 = {1000, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215};
-//        double[] arrY1 = {3.5, 1, 4, 2, 1, 3, 4.5, 1.5, 3, 5};
-        double[] arrX1 = {80, 93, 100, 82, 90, 99, 81, 96, 94, 93, 97, 95};
-        double[] arrX2 = {8, 9, 10, 12, 11, 8, 8, 10, 12, 11, 13, 11};
-        double[] arrY1 = {2256, 2340, 2426, 2293, 2330, 2368, 2250, 2409, 2364, 2379, 2440, 2364};
-        MultiLinearRegression multiLinearRegression = new MultiLinearRegression(arrX1, arrX2, arrY1);
-        LinearRegression linearRegression = new LinearRegression(arrX1, arrY1);
-        NHSReport nhsReport = new NHSReport(multiLinearRegression, arrX1,arrX2 ,arrY1);
+        double[] arrX1 = {35.3, 29.7, 30.8, 58.8, 61.4, 71.3, 74.4, 76.7, 70.7, 57.5,46.4,28.9};
+        double[] arrX2 = {825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215};
+        double[] arrY1 = {3.5, 1, 4, 2, 1, 3, 4.5, 1.5, 3, 5};
+//        double[] arrX1 = {80, 93, 100, 82, 90, 99, 81, 96, 94, 93, 97, 95};
+//        double[] arrX2 = {8, 9, 10, 12, 11, 8, 8, 10, 12, 11, 13, 11};
+//        double[] arrY1 = {2256, 2340, 2426, 2293, 2330, 2368, 2250, 2409, 2364, 2379, 2440, 2364};
+       // MultiLinearRegression multiLinearRegression = new MultiLinearRegression(arrX1, arrX2, arrY1);
+        LinearRegression linearRegression = new LinearRegression(arrX2, arrY1);
+        NHSReport nhsReport = new NHSReport(linearRegression, arrX2 ,arrY1);
         Calendar data1 = Calendar.getInstance();
         Calendar data2 = Calendar.getInstance();
         data1.set(2021, Calendar.MAY, 3);
@@ -246,7 +254,7 @@ public class NHSReport {
         System.out.println(nhsReport.Anova());
         System.out.println(nhsReport.decisionF(0.05));
         System.out.println(linePredictionValues());
-        System.out.println(nhsReport.printFinalTable(data1, data2, 0.95, "weeks"));
+        System.out.println(nhsReport.printFinalTable(data1, data2, 0.95, "days"));
 
 //       System.out.println(predictionValues("13-05-2021",13,25.2,"13.16-23.48"));
     }

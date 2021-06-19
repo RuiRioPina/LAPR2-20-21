@@ -1,14 +1,14 @@
 The regression model fitted using data from the interval 
- ^y=11,7417+ -0,3548x + 1,2233x
+ ^y=9,2184+ -0,2635x + 1,3505x
 
 Other statistics 
- R2 = 0.9841676039857138 
- R2adjusted = 0.9683352079714276 
- R = 0.9920522183764894 
+ R2 = 0.9783504321283326 
+ R2adjusted = 0.9756442361443742 
+ R = 0.9891159851748088 
  
 Hypothesis tests for regression coefficients 
 H0: b2=0.0 (b2=0.0) H1: b2<>0.0 (b2<>0.0) 
- tobs(b0)=3,6283 tobs(b1)=-2,7577 tobs(b2)=10,8933  
+ tobs(b0)=2,8523 tobs(b1)=-1,9015 tobs(b2)=13,7786  
 Decision:
 Regarding the test for the b0 parameter h0 is rejected 
 Regarding the test for the b1 parameter h0 is rejected 
@@ -17,15 +17,15 @@ Regarding the test for the b2 parameter h0 is not rejected
 Significance model with Anova 
 H0: b=0  H1:b<>0 
               df           SS           MS            F 
-Regression   2,0000      38,5794      19,2897	     62,1616 
-Residual     2,0000       0,6206       0,3103 
- Total       4,0000      39,2000Decision: f 
-0 > f0,95,(2.2)=0,0526
+Regression   2,0000    1484,9300     742,4650	    361,5224 
+Residual    16,0000      32,8595       2,0537 
+ Total      18,0000    1517,7895Decision: f 
+0 > f0,95,(2.16)=0,0515
 Reject H0 
  The regression model is significant 
 
 
 Date        Number of OBSERVED positive cases      Number of ESTIMATED positive cases                 95% intervals 
-25/4/2021                          12,00                          35,19                          35,16-35,22 
-26/4/2021                           7,00                          38,29                          38,25-38,33 
-27/4/2021                           6,00                          33,02                          32,99-33,05 
+3/5/2021                          41,00                          53,07                          53,03-53,11 
+10/5/2021                          43,00                          48,83                          48,77-48,89 
+17/5/2021                          40,00                          54,60                          54,56-54,64 
