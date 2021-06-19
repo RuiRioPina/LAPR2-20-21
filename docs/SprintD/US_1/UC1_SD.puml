@@ -1,51 +1,42 @@
 @startuml
 autonumber
-actor "Medical Lab Technician" as MEDLT
+actor "Client" as CLT
 
-participant ":GenerateSampleUI" as UI
-participant ":GenerateSampleController" as CTRL
+participant ":ViewTestsGUIScene" as UI1
+participant ":ViewTestsGUISceneController" as CTRL
+participant ":ViewTestDetailsGUIScene" as UI2
+participant ":ViewTestDetailsGUISceneController" as CTRL2
 participant ":Company" as CMP
-participant ":ClinicalAnalysisLaboratory" as LAB
 participant "ts:\nTestStore" as TS
-participant "bcc:\nBarcodeController" as BCC
-participant ":API" as API
-participant "s:\nSample" as S
+participant "t:\nTest" as T
 
-activate MEDLT
-MEDLT -> UI : register new samples
-activate UI
-UI -> CTRL : lt=getTestsWithoutSamples()
-activate CTRL
-CTRL -> CMP : ts=getTestStore()
+activate CLT
+CLT -> UI1 : view validated tests.
+activate UI1
+UI1 -> CTRL1 : loadData()
+activate CTRL1
+CTRL1 -> CMP : ts=getTestStore()
 activate CMP
-CMP -> LAB : ts=getTestStore()
-activate LAB
-deactivate LAB
 deactivate CMP
-CTRL -> TS : lt=getTestsWithoutSamples()
+CTRL1 -> TS : lt=getValidatedTestsFromClient(CLT)
 activate TS
 deactivate TS
-deactivate CTRL
-UI --> MEDLT : shows tests list and ask to select one
-deactivate UI
+deactivate CTRL1
+UI1 --> CLT : shows tests list and ask to select one
+deactivate UI1
 
-MEDLT -> UI : selects a test
-activate UI
-UI --> MEDLT : request how many samples to create
-deactivate UI
-
-MEDLT -> UI : types the number of samples to create
-activate UI
-UI -> CTRL : createSamples(testCode, numberOfSamples)
-activate CTRL
-CTRL -> TS : t=getTestByInternalCode(testCode)
-activate TS
-deactivate TS
-loop until all the samples are created
-    ref over CTRL, TS , S, BCC, API: UC5_SD_CreatingSamples.svg
-end loop
-UI --> MEDLT : informs operation success
-deactivate CTRL
-deactivate UI
-deactivate MEDLT
+CLT -> UI1 : selects a test.
+activate UI1
+UI1 -> CTRL1 : showTest(t)
+activate CTRL1
+CTRL1 -> UI2 : loadViewTestDetailUi(t)
+deactivate UI1
+deactivate UI2
+activate UI2
+UI2 -> CTRL2 : loadData()
+activate CTRL2
+deactivate CTRL2
+UI2 -> CLT : show test details.
+deactivate UI2
+deactivate CLT
 @enduml

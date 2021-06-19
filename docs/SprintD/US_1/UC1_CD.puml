@@ -4,19 +4,9 @@ skinparam classAttributeIconSize 0
 class Company
 {
   -String designation
-  +setCLA()
   +getTestStore()
-  +getNextBarcode()
 }
 
-class ClinicalAnalysisLaboratory {
-  -String name
-  -String adress
-  -long phoneNumber
-  -long tin
-  -TestStore testStore
-  +getTestStore()
-}
 
 class Test {
   -String nhsCode
@@ -28,44 +18,29 @@ class Test {
   -Date registrationDate
 }
 
-class Sample {
-  -String barcode
-  +Sample(barcode)
-}
-
 class TestStore {
-  +getTestsWithoutSamples()
-  +getTestByInternalCode(testCode)
-  +createSample(barcode)
-  +saveSample(t, s)
-  -validateSample(s)
-  -addSample(t, s)
+  +getValidatedTestsFromClient(client)
 }
 
-class BarcodeController {
-  +generateBarcode(barcode)
+class ViewTestsGUIScene {
 }
 
-class API {
-  +createUPCA(barcode)
-  +setPrefferedBarHeight(height)
-  +savePNG(bc,file)
+class ViewTestsGUISceneController {
+  -loadData()
 }
 
-class GenerateSampleUI {
+class ViewTestDetailsGUIScene {
 }
 
-class GenerateSampleController {
-  +getTestsWithoutSamples()
-  +createSamples(testCode, numberOfSamples)
+class ViewTestDetailsGUISceneController {
+  -loadData()
 }
 
-GenerateSampleUI ..> GenerateSampleController
-GenerateSampleController ..> Company
-GenerateSampleController ..> BarcodeController
-Company "1" --> "1..*" ClinicalAnalysisLaboratory : has
-ClinicalAnalysisLaboratory "1" --> "1" TestStore : has
+ViewTestsGUIScene ..> ViewTestsGUISceneController
+ViewTestsGUISceneController ..> ViewTestDetailsGUIScene
+ViewTestDetailsGUIScene ..> ViewTestDetailsGUISceneController
+ViewTestsGUISceneController ..> Company
+ViewTestDetailsGUISceneController ..> Company
+Company "1" --> "1..*" TestStore : has
 TestStore "1" --> "*" Test : conducts
-Test "1" --> "*" Sample : requires
-BarcodeController "1" --> "1" API : uses
 @enduml
