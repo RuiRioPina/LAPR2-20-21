@@ -233,30 +233,6 @@ public class NHSReport {
         return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues() + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance, identifier);
     }
 
-
-    public static void main(String[] args) {
-//        double[] arrX={35.3,29.7,30.8,58.8,61.4,71.3,74.4,76.7,70.7,57.5,46.4,28.9,28.1,39.1,46.8,48.5,59.3,70.0,70.0,74.5,72.1,58.1,44.6,33.4,28.6};
-//        double[] arrY={10.98,11.13,12.51,8.40,9.27,8.73,6.36,8.50,7.82,9.14,8.24,12.19,11.88,9.57,10.94,9.58,10.09,8.11,6.83,8.88,7.68,8.47,8.86,10.36,11.08};
-        double[] arrX1 = {80, 93, 100, 82, 90, 99, 81, 96, 94, 93, 97, 95};
-       double[] arrX = {825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215};
-        double[] arrY = {3.5, 1, 4, 2, 1, 2368, 2250, 2409, 2364, 2379, 2440, 2364};
-       // MultiLinearRegression multiLinearRegression = new MultiLinearRegression(arrX1, arrX2, arrY1);
-        LinearRegression linearRegression = new LinearRegression(arrX, arrY);
-        NHSReport nhsReport = new NHSReport(linearRegression, arrX ,arrY);
-        Calendar data1 = Calendar.getInstance();
-        Calendar data2 = Calendar.getInstance();
-        data1.set(2021, Calendar.MAY, 3);
-        data2.set(2021, Calendar.MAY, 17);
-        System.out.println(nhsReport.regressionModelLine());
-        System.out.println(nhsReport.otherStatistics());
-        System.out.println(nhsReport.hypothesisTests(0.05, 0, 0.05, 0));
-        System.out.println(nhsReport.Anova());
-        System.out.println(nhsReport.decisionF(0.05));
-        System.out.println(linePredictionValues());
-        System.out.println(nhsReport.printFinalTable(data1, data2, 0.95, "days"));
-
-//       System.out.println(predictionValues("13-05-2021",13,25.2,"13.16-23.48"));
-    }
 }
 
 

@@ -23,14 +23,14 @@ public class NHSReportTest {
         Calendar data2 = Calendar.getInstance();
         data1.set(2021, Calendar.MAY, 3);
         data2.set(2021, Calendar.MAY, 13);
-        int actual = nhsReport.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"days").trim().length();
-        int actual1 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"days").trim().length();
-        int actual2 = nhsReport.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").trim().length();
-        int actual3 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").trim().length();
-        int expected = 1764;
-        int expected1 = 1867;
-        int expected2 = 1108;
-        int expected3 = 1211;
+        int actual = nhsReport.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"days").length();
+        int actual1 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"days").length();
+        int actual2 = nhsReport.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").length();
+        int actual3 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").length();
+        int expected = 1877;
+        int expected1 = 1980;
+        int expected2 = 1111;
+        int expected3 = 1214;
 
         assertEquals(expected,actual);
         assertEquals(expected1,actual1);
