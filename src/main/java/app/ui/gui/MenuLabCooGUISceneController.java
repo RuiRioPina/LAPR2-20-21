@@ -42,11 +42,10 @@ public class MenuLabCooGUISceneController {
 
     @FXML
 
-    public void menuImportTestsAction(ActionEvent event) {
+    public void menuImportTestsAction(ActionEvent event) throws IOException, InterruptedException {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
         String path = file.getAbsolutePath();
-        System.out.println(path);
         new ImportTests(path);
         Stage stage1 = loadTestsUi();
         if(stage1 == null) {

@@ -34,34 +34,18 @@ public class UpdateClientDataController implements Initializable {
     private TextField updateThree;
 
     @FXML
-    private Label labelThree;
-
-    @FXML
-    private Label labelOne;
-
-    @FXML
     private Button btnUpdate;
 
     @FXML
     private TextField updateFour;
 
     @FXML
-    private Label labelFour;
-
-    @FXML
     private TextField updateOne;
-
-    @FXML
-    private Label labelTwo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String email = String.valueOf(app.getCurrentUserSession().getUserId());
         Client client = app.getCompany().getClientList().getClientByEmail(email);
-        labelOne.setText(client.getName());
-        labelTwo.setText(String.valueOf(client.getPhoneNumber()));
-        labelThree.setText(client.getAddress());
-        labelFour.setText(client.getSex());
         updateOne.setText(client.getName());
         updateTwo.setText(String.valueOf(client.getPhoneNumber()));
         updateThree.setText(client.getAddress());

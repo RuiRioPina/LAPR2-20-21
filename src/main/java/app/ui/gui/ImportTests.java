@@ -4,18 +4,22 @@ import app.controller.App;
 import app.controller.TestController;
 import app.domain.model.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 public class ImportTests{
     private final TestController importTestsController;
     private final String path;
     private App app;
 
-    public ImportTests(String path) {
+    public ImportTests(String path) throws IOException, InterruptedException {
         this.importTestsController = new TestController();
         this.path = path;
         this.app = App.getInstance();
@@ -24,7 +28,8 @@ public class ImportTests{
         int a = App.getInstance().getCompany().getTestCode();
         String lines;
         Scanner leitor2 = null;
-
+        String [] notImported = new String[10000];
+        int z = 0;
         try {
             leitor2 = new Scanner(arquivoCSV);
         } catch (FileNotFoundException e) {
@@ -78,7 +83,7 @@ public class ImportTests{
 
             //Client
             String ccnFormatted = String.format("%010d", Integer.parseInt(ccn));
-            Client cl = this.importTestsController.createClient(Long.parseLong(ccnFormatted), Long.parseLong(nhsNumber), bDay,
+            Client cl = this.importTestsController.client(Long.parseLong(ccnFormatted), Long.parseLong(nhsNumber), bDay,
                     Long.parseLong(tin), Long.parseLong(phoneNumber), email, name);
             cl.setAddress(address);
 
@@ -180,9 +185,26 @@ public class ImportTests{
                 a++;
                 this.app.getCompany().getImportedTests().add(t);
             } else {
-                System.out.println("Test in line " + j + " wasn't imported.");
+                notImported [z] = "Test in line " + j + " wasn't imported. Invalid Client or Test data.";
+                z++;
+
             }
         }
+        String nomeficheiro = "Not Imported Tests.txt";
+        try (PrintWriter out = new PrintWriter(nomeficheiro)) {
+            for (int i = 0; i < notImported.length; i++){
+                if (notImported [i] != null){
+                    out.println(notImported[i]);
+                    out.println();
+                }
+            }
+        } catch (IOException e) {
+            //
+        }
+        File file = new File(nomeficheiro);
+        Desktop desktop = Desktop.getDesktop();
+        Thread.sleep(350);
+        desktop.open(file);
         App.getInstance().getCompany().setTestCode(a);
         leitor2.close();
     }}
