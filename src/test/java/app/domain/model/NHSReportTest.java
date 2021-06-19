@@ -18,7 +18,7 @@ public class NHSReportTest {
         LinearRegression linearRegression = new LinearRegression(arrX2, arrY1);
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(arrX1, arrX2, arrY1);
         NHSReport nhsReport = new NHSReport(linearRegression, arrX2 ,arrY1);
-        NHSReport nhsReportMultilinear = new NHSReport(linearRegression, arrX2 ,arrY1);
+        NHSReport nhsReportMultilinear = new NHSReport(multiLinearRegression,arrX1, arrX2 ,arrY1);
         Calendar data1 = Calendar.getInstance();
         Calendar data2 = Calendar.getInstance();
         data1.set(2021, Calendar.MAY, 3);
@@ -27,10 +27,10 @@ public class NHSReportTest {
         int actual1 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"days").trim().length();
         int actual2 = nhsReport.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").trim().length();
         int actual3 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").trim().length();
-        int expected = 1765;
-        int expected1 = 1765;
-        int expected2 = 1109;
-        int expected3 = 1109;
+        int expected = 1764;
+        int expected1 = 1867;
+        int expected2 = 1108;
+        int expected3 = 1211;
 
         assertEquals(expected,actual);
         assertEquals(expected1,actual1);
