@@ -2,13 +2,13 @@ package app.ui.gui;
 
 import app.controller.App;
 import app.domain.model.Company;
+import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.time.temporal.TemporalField;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -94,10 +94,19 @@ public class GenerateSimpleLinearReportController implements Initializable {
     private DatePicker dtpCurrentDay;
     @FXML
     private Button generateReportBTN;
+    @FXML
+    private TextArea txaShowReport;
+    @FXML
+    private Label lblSendReport;
+
+    @FXML
+    private Button btnYes;
+
+
 
     @FXML
     void generateReportButton(ActionEvent event) {
-        String resultString = "dsada";
+        String resultString = "";
         Company company = App.getInstance().getCompany();
         Calendar olderDate = getDateFromDatePicker(dtpOlderDate.getValue().getYear(), dtpOlderDate.getValue().getMonthValue(),dtpOlderDate.getValue().getDayOfMonth());
         Calendar newerDate = getDateFromDatePicker(dtpNewerDate.getValue().getYear(),dtpNewerDate.getValue().getMonthValue(),dtpNewerDate.getValue().getDayOfMonth());
@@ -111,40 +120,52 @@ public class GenerateSimpleLinearReportController implements Initializable {
         double confidenceIntervalSignificance = Double.parseDouble(txfConfidenceIntervalSignificance.getText());
         String historicalPointType = cboxHistoricalPointType.getValue();
         String independentVariableSelected= cboxIndependentVariable.getValue();
-        if (historicalPointType.equals("Days")) {
-            if (independentVariableSelected.equals("Total tests Performed")) {
+        if (verifySignificanceNumber(txfAHypothesisTestSignificance.getText()) == true && verifySignificanceNumber(txfBHypothesisTestSignificance.getText()) == true && verifySignificanceNumber(txfFDecisionSignificance.getText()) == true && verifySignificanceNumber(txfConfidenceIntervalSignificance.getText() )==true) {
+            if (historicalPointType.equals("Days")) {
+                if (independentVariableSelected.equals("Total tests Performed")) {
+                    resultString = company.generateSimpleNhsReportTestsPerformed(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, aTestParameter, bTestSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                    txaShowReport.setText(resultString);
+                    setLblSendReportVisible();
+                    setBtnYesVisible();
 
-                // System.out.println(resultString);
 
-                //  System.out.println("dsadaa");
-                resultString = company.generateSimpleNhsReportTestsPerformed(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, aTestParameter, bTestSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-                System.out.println(resultString);
+
+                }
+                if (independentVariableSelected.equals("Mean Age of Clients")) {
+                    resultString = company.generateSimpleNhsReportMeanAge(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, aTestParameter, bTestSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                    txaShowReport.setText(resultString);
+                    setLblSendReportVisible();
+                    setBtnYesVisible();
+
+                }
+            }
+            if (historicalPointType.equals("Weeks")) {
+                if (independentVariableSelected.equals("Total tests Performed")) {
+                    resultString = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                    System.out.println(resultString);
+                    txaShowReport.setText(resultString);
+                    setLblSendReportVisible();
+                    setBtnYesVisible();
+
+                }
+                if (independentVariableSelected.equals("Mean Age of Clients")) {
+                    resultString = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+                    System.out.println(resultString);
+                    txaShowReport.setText(resultString);
+                    setLblSendReportVisible();
+                    setBtnYesVisible();
+
+                }
 
             }
-            if (independentVariableSelected.equals("Mean Age of Clients")){
-                resultString=company.generateSimpleNhsReportMeanAge(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, aTestParameter, bTestSignificance, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-                System.out.println(resultString);
-            }
-        }
-        if (historicalPointType.equals("Weeks")){
-            if (independentVariableSelected.equals("Total tests Performed")){
-               resultString= company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-                System.out.println(resultString);
-            }
-            if (independentVariableSelected.equals("Mean Age of Clients")){
-                resultString=company.generateSimpleNHSReportMeanAgeWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-                System.out.println(resultString);
-            }
-
-        }
-
+        }else Utils.createAlert(Alert.AlertType.ERROR,"Dados Inválidos","Os numeros de significancia não podem ser maior que um ou zero.");
 
     }
-
     @FXML
-    void menuExitAction(ActionEvent event) {
-
+    void btnYesClick(ActionEvent event) {
+App.getInstance().getCompany().sendReportToNHS(txaShowReport.getText());
     }
+
 
     @FXML
     void cBoxHistoricalPointVariable(ActionEvent event) {
@@ -166,6 +187,8 @@ public class GenerateSimpleLinearReportController implements Initializable {
         cboxHistoricalPointType.getItems().add("Weeks");
         cboxIndependentVariable.getSelectionModel().selectFirst();
         cboxHistoricalPointType.getSelectionModel().selectFirst();
+        lblSendReport.setVisible(false);
+        btnYes.setVisible(false);
     }
 
     public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
@@ -173,19 +196,29 @@ public class GenerateSimpleLinearReportController implements Initializable {
     }
 
     private boolean verifySignificanceNumber(String numberString) {
-        if (Double.parseDouble(numberString) > 100 || Double.parseDouble(numberString) < 0) {
-            return false;
+        boolean validation=false;
+        try {
+            double number = Double.parseDouble(numberString);
+            validation=true;
+        }catch (IllegalArgumentException e ){
+            validation=false;
         }
-        if (numberString.contentEquals("^[0-9]{1,2}([,.][0-9]{1,2})?$")) {
-            return true;
+        if (Double.parseDouble(numberString) > 1|| Double.parseDouble(numberString) < 0) {
+            validation=false;
         }
-         else return false;
+         return validation;
     }
 
     private Calendar getDateFromDatePicker(int year,int month,int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month-1, day);
         return calendar;
+    }
+    private void setBtnYesVisible(){
+        btnYes.setVisible(true);
+    }
+    private void setLblSendReportVisible(){
+        lblSendReport.setVisible(true);
     }
 
 

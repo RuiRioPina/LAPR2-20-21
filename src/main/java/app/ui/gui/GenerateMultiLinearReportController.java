@@ -3,6 +3,7 @@ package app.ui.gui;
 import app.controller.App;
 import app.domain.model.Company;
 import app.domain.model.SendReportToNHSTask;
+import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,7 +81,16 @@ public class GenerateMultiLinearReportController implements Initializable {
     private TextField txfB0HypothesisTestSignificance;
 
     @FXML
-    private Button generateReportBTN;
+    private Button generateReportBTN1;
+
+    @FXML
+    private TextArea txaShowReportM;
+
+    @FXML
+    private Button btnYesM;
+
+    @FXML
+    private Label lblSendReportM;
     private ChooseLinearRegressionController chooseLinearRegressionController;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,7 +104,7 @@ public class GenerateMultiLinearReportController implements Initializable {
 
     @FXML
     void generateReportButton(ActionEvent event) {
-        String resultString = "dsada";
+        String resultString = "";
         Company company = App.getInstance().getCompany();
         Calendar olderDate = getDateFromDatePicker(dtpOlderDate.getValue().getYear(), dtpOlderDate.getValue().getMonthValue(),dtpOlderDate.getValue().getDayOfMonth());
         Calendar newerDate = getDateFromDatePicker(dtpNewerDate.getValue().getYear(),dtpNewerDate.getValue().getMonthValue(),dtpNewerDate.getValue().getDayOfMonth());
@@ -106,26 +116,52 @@ public class GenerateMultiLinearReportController implements Initializable {
         double fTestSignificance = Double.parseDouble(txfFDecisionSignificance.getText());
         double confidenceIntervalSignificance = Double.parseDouble(txfConfidenceIntervalSignificance.getText());
         String historicalPointType = cboxHistoricalPointType.getValue();
-        if (historicalPointType.equals("Days")){
-            resultString=company.generateMultilinearNHSReportDays(currentDate,historicalPoints,newerDate,olderDate,B0TestSignificance,x1TestSignificance,x2TestSignificance,fTestSignificance,confidenceIntervalSignificance);
-            System.out.println(resultString);
-company.sendReportToNHS(resultString);
+        if (verifySignificanceNumber(txfX1HypothesisTestSignificance.getText())==true&&verifySignificanceNumber(txfX2HypothesisTestSignificance.getText())==true&& verifySignificanceNumber(txfB0HypothesisTestSignificance.getText())==true&&verifySignificanceNumber(txfFDecisionSignificance.getText())==true&&verifySignificanceNumber(txfConfidenceIntervalSignificance.getText())==true) {
+            if (historicalPointType.equals("Days")) {
+                resultString = company.generateMultilinearNHSReportDays(currentDate, historicalPoints, newerDate, olderDate, B0TestSignificance, x1TestSignificance, x2TestSignificance, fTestSignificance, confidenceIntervalSignificance);
+                txaShowReportM.setText(resultString);
+                setLblSendReportMVisible();
+                setBtnYesMVisible();
+            }
+            if (historicalPointType.equals("Weeks")) {
+                resultString = company.generateMultilinearNHSReportWeeks(currentDate, historicalPoints, newerDate, olderDate, B0TestSignificance, x1TestSignificance, x2TestSignificance, fTestSignificance, confidenceIntervalSignificance);
+                txaShowReportM.setText(resultString);
+                setLblSendReportMVisible();
+                setBtnYesMVisible();
+            }
         }
-        if(historicalPointType.equals("Weeks")){
-resultString=company.generateMultilinearNHSReportWeeks(currentDate,historicalPoints,newerDate,olderDate,B0TestSignificance,x1TestSignificance,x2TestSignificance,fTestSignificance,confidenceIntervalSignificance);
-            System.out.println(resultString);
-            company.sendReportToNHS(resultString);
-        }
+        else Utils.createAlert(Alert.AlertType.ERROR,"Dados Inválidos","Os numeros de significancia não podem ser maior que um ou zero.");
     }
 
+
     @FXML
-    void menuExitAction(ActionEvent event) {
+    void btnYesClick(ActionEvent event) {
+        App.getInstance().getCompany().sendReportToNHS(txaShowReportM.getText());
 
     }
     private Calendar getDateFromDatePicker(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month-1, day);
         return calendar;
+    }
+    private void setBtnYesMVisible(){
+        btnYesM.setVisible(true);
+    }
+    private void setLblSendReportMVisible(){
+        lblSendReportM.setVisible(true);
+    }
+    private boolean verifySignificanceNumber(String numberString) {
+        boolean validation=false;
+        try {
+            double number = Double.parseDouble(numberString);
+            validation=true;
+        }catch (IllegalArgumentException e ){
+            validation=false;
+        }
+        if (Double.parseDouble(numberString) > 1|| Double.parseDouble(numberString) < 0) {
+            validation=false;
+        }
+        return validation;
     }
 
 }

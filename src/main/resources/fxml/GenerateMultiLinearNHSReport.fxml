@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -74,21 +76,31 @@
                </content>
             </TitledPane>
             <ButtonBar prefHeight="40.0" prefWidth="200.0" />
-            <GridPane prefHeight="210.0" prefWidth="782.0">
+            <GridPane prefHeight="224.0" prefWidth="782.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                  <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="165.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="generateReportBTN" contentDisplay="CENTER" layoutX="45.0" layoutY="-2.0" mnemonicParsing="false" onAction="#generateReportButton" prefHeight="74.0" prefWidth="176.0" text="Generate the report" />
+                        <Button fx:id="generateReportBTN1" contentDisplay="CENTER" layoutX="297.0" layoutY="11.0" mnemonicParsing="false" onAction="#generateReportButton" prefHeight="23.0" prefWidth="176.0" text="Generate the report">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <TextArea fx:id="txaShowReportM" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="btnYesM" layoutX="91.0" layoutY="-1.0" mnemonicParsing="false" onAction="#btnYesClick" text="Yes" />
+                        <Label fx:id="lblSendReportM" layoutX="369.0" layoutY="4.0" text="Send Report ? " />
                      </children>
                   </AnchorPane>
                </children>
@@ -96,11 +108,4 @@
          </children>
       </VBox>
    </center>
-   <bottom>
-      <Button mnemonicParsing="false" onAction="#menuExitAction" prefHeight="26.0" prefWidth="71.0" text="Exit" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="20.0" top="10.0" />
-         </BorderPane.margin>
-      </Button>
-   </bottom>
 </BorderPane>
