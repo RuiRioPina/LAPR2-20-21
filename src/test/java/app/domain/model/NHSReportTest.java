@@ -29,7 +29,7 @@ public class NHSReportTest {
         int actual3 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").length();
         int expected = 1739;
         int expected1 = 1841;
-        int expected2 = 1111;
+        int expected2 = 1089;
         int expected3 = 1214;
 
         assertEquals(expected,actual);
