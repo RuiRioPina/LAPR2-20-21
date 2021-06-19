@@ -2,6 +2,10 @@ package app.domain.shared;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public class Configuration {
@@ -63,10 +67,6 @@ public class Configuration {
         return props.getProperty("Algorithm.Sort");
     }
 
-    public static String getCurrentDate() {
-        return props.getProperty("Automatic.Report.CurrentDate");
-    }
-
     public static String getTypeOfDate() {
         return props.getProperty("Automatic.Report.TypeOfDate");
     }
@@ -75,9 +75,6 @@ public class Configuration {
         return props.getProperty("Automatic.Report.HistoricalPoints");
     }
 
-    public static String getDateInterval() {
-        return props.getProperty("Automatic.Report.DateInterval");
-    }
 
     public static String getTypeOfLinearRegression() {
         return props.getProperty("Automatic.Report.TypeOfLinearRegression");
@@ -90,4 +87,28 @@ public class Configuration {
     public static String getSignificanceValue() {
         return props.getProperty("Automatic.Report.SignificanceValue");
     }
+
+    public static Date  getDate() {
+        props.getProperty("Automatic.Report.SignificanceValue");
+        String[] arrString = null;
+        String line = "";
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+        Date dt = new Date();
+        try {
+             dt = df.parse(props.getProperty("Automatic.Report.SignificanceValue"));
+
+        } catch (ParseException e) {
+        }
+        return dt;
+    }
+    public static Date getCurrentDate() {
+        props.getProperty("Automatic.Report.CurrentDate");
+        return getDate();
+    }
+
+    public static String getDateInterval() {
+        return props.getProperty("Automatic.Report.DateInterval");
+    }
+
+
 }

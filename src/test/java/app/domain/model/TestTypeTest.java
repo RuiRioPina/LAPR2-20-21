@@ -62,4 +62,26 @@ public class TestTypeTest {
         String tts ="54321 - uma descri��o - colheita - 54321 | HEMOGRAM";
         assertEquals(tt.toString(),tts);
     }
+
+    @Test
+    public void getMetricsBasedOnTestTypeCovid() {
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        TestType tt = new TestType("54321","uma descri��o", "colheita", parameterCategories);
+        String tts ="54321 - uma descri��o - colheita - 54321 | HEMOGRAM";
+        assertEquals(tt.getMetricsBasedOnTestType("IgGAN"),"Index (S/C) Value");
+    }
+
+    @Test
+    public void getMetricsBasedOnTestTypeNonCovid() {
+        List<ParameterCategory> parameterCategories = new ArrayList<>();
+        ParameterCategory pc = new ParameterCategory("54321","HEMOGRAM");
+        parameterCategories.add(pc);
+
+        TestType tt = new TestType("54321","uma descri��o", "colheita", parameterCategories);
+        String tts ="54321 - uma descri��o - colheita - 54321 | HEMOGRAM";
+        assertEquals(tt.getMetricsBasedOnTestType("WBC00"),"10e9L");
+    }
 }

@@ -305,9 +305,6 @@ public class MultiLinearRegression {
         double resultOfMatrixMultiplication = multiplyMatrices(multiplyMatrices(auxiliaryLine, xMatrixInverse), auxiliaryLineTransposed)[0][0];
         return t * Math.sqrt(mqe() * resultOfMatrixMultiplication);
     }
-    double hypothesisTest(double parameter){
-        return parameter/Math.sqrt(this.mqe()*xMatrixInverse[2][2]);
-    }
 
     public double hypothesisB0() {
         return b0 / Math.sqrt(mqe() * xMatrixTimesXMatrixTransposedInverse[0][0]);
@@ -326,17 +323,11 @@ public class MultiLinearRegression {
         return Math.sqrt(this.rSquared());
     }
 
-    public double testCalculationforAparameter(double significance) {
-        return getTStudentFromTable(significance);
-    }
 
     public double predict(double x) {
         return b0 + b1 * x + b2 * x;
     }
 
-    public double testCalculationforBparameter(double testParameter) {
-        return getTStudentFromTable(testParameter);
-    }
 }
 
 

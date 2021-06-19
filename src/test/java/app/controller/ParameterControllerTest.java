@@ -55,6 +55,6 @@ public class ParameterControllerTest {
 
         List<ParameterCategory> pcList = parameterController.getParameterCategories();
 
-      //  assertArrayEquals(pc.toArray(), pcList.toArray());
+        assertArrayEquals(pc.toArray(), pcList.toArray());
     }
 }
