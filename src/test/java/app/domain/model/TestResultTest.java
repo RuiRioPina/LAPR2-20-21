@@ -73,7 +73,7 @@ public class TestResultTest {
         ReferenceValue referenceValue = new ReferenceValue("10e9L", 450, 150);
         TestResult testResult = new TestResult(parameter, result, referenceValue);
         String actual = testResult.toString();
-        String expected = "ResultOfTest{" + "result=" + result + ", refValue=" + referenceValue + '}';
+        String expected = "Result = 170.0 - Metric = 10e9L - MaxValue = 450.0 - MinValue = 150.0";
         assertEquals(expected,actual);
     }
 }

@@ -93,19 +93,10 @@ public class Parameter implements Serializable {
     @Override
     public String toString() {
         if(testResult!=null) {
-            return "Parameter{" +
-                    "code='" + code + '\'' +
-                    ", shortname='" + shortname + '\'' +
-                    ", description='" + description + '\'' +
-                    ", Parameter Category=" + pc +
-                    '}' + "Test Result =" + testResult;
+            return   code + " - " + description + " - " + pc + " - " + shortname + " - " + testResult;
+
         }else {
-            return "Parameter{" +
-                    "code='" + code + '\'' +
-                    ", shortname='" + shortname + '\'' +
-                    ", description='" + description + '\'' +
-                    ", Parameter Category=" + pc +
-                    '}';
+            return code + " - " + description + " - " + pc + " - " + shortname;
         }
     }
 }

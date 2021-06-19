@@ -123,7 +123,7 @@ public class ParameterTest {
         List<ParameterCategory> pcl = new ArrayList<>();
         pcl.add(parameterCategory);
         Parameter parameter = new Parameter("PLT00", "plalets", "Plalets", pcl);
-        assertEquals("Parameter{code='PLT00', shortname='plalets', description='Plalets', Parameter Category=[PLT00 | plalets]}",parameter.toString());
+        assertEquals("PLT00 - Plalets - [PLT00 | plalets] - plalets",parameter.toString());
     }
 
     @Test
@@ -135,6 +135,6 @@ public class ParameterTest {
         ReferenceValue referenceValue = new ReferenceValue("PLT00",450,150);
         TestResult testResult = new TestResult(parameter,13,referenceValue);
         parameter.setTestResult(testResult);
-        assertEquals("Parameter{code='PLT00', shortname='plalets', description='Plalets', Parameter Category=[PLT00 | plalets]}Test Result =ResultOfTest{result=13.0, refValue=ReferenceValue{metric='PLT00', maxValue=450.0, minValue=150.0}}",parameter.toString());
+        assertEquals("PLT00 - Plalets - [PLT00 | plalets] - plalets - Result = 13.0 - Metric = PLT00 - MaxValue = 450.0 - MinValue = 150.0",parameter.toString());
     }
 }

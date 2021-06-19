@@ -53,10 +53,8 @@ public class TestResult implements Serializable {
 
     @Override
     public String toString() {
-        return "ResultOfTest{" +
-                "result=" + result +
-                ", refValue=" + referenceValue +
-                '}';
+        return  "Result = " + result + " - " + referenceValue;
+
     }
 
 
