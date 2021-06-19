@@ -12,8 +12,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class NHSReport {
-    private static String lineEquation;
-    private static String confidencenceLevel = "95";
     private LinearRegression linearRegression = null;
     private MultiLinearRegression multiLinearRegression = null;
     private double[] receivedYData;
@@ -49,7 +47,7 @@ public class NHSReport {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.linearRegression.R2(), this.linearRegression.R2Adjusted(), this.linearRegression.R());
         } else if (this.multiLinearRegression != null && this.linearRegression == null) {
-            return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.multiLinearRegression.rSquared(), this.multiLinearRegression.rSquaredAdjusted(), this.multiLinearRegression.r());
+            return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.multiLinearRegression.r2(), this.multiLinearRegression.r2Adjusted(), this.multiLinearRegression.r());
         }
         return "123123123";
     }
@@ -108,9 +106,9 @@ public class NHSReport {
         return String.format("%n%4s %15d  %43.4f %45s %n", date, positiveCases, estimatedCases, intervals);
     }
 
-    private static String linePredictionValues() {
+    private static String linePredictionValues(double confidenceIntervalSignificance) {
         //confidencenceLevel = getConfidenceLevel();
-        return String.format("%n%n%s %40s %40s %30s", "Date", "Number of OBSERVED positive cases", "Number of ESTIMATED positive cases ", confidencenceLevel + "% intervals \n");
+        return String.format("%n%n%s %40s %40s %30s", "Date", "Number of OBSERVED positive cases", "Number of ESTIMATED positive cases ", confidenceIntervalSignificance*100 + "% intervals \n");
     }
 
     private String isARejectedOrNot(double TestParameter, double TestSignificance) {
@@ -213,11 +211,15 @@ public class NHSReport {
     }
 
     private void showDateWeeks(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {
-        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH)+1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
+        if (this.linearRegression==null&& this.multiLinearRegression!=null) {
+            resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]), multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
+        }else  resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance,linearRegression.predict(receivedX1Data[i-1]))+linearRegression.delta(confidenceIntervalSignificance,linearRegression.predict(receivedX1Data[i-1]))));
     }
 
     private void showDate(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {
-        resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH)+1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) + linearRegression.delta(confidenceIntervalSignificance, receivedX1Data[i - 1])));
+        if (this.linearRegression==null&&this.multiLinearRegression!=null) {
+            resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1],multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]), multiLinearRegression.predict(receivedX1Data[i-1],receivedX2Data[i-1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance,receivedX1Data[i-1],receivedX2Data[i-1]), multiLinearRegression.predict(receivedX1Data[i-1],receivedX2Data[i-1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1],receivedX2Data[i-1])));
+        }else resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1],linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i-1]) - linearRegression.delta(confidenceIntervalSignificance,receivedX1Data[i-1]),linearRegression.predict(receivedX1Data[i-1])+linearRegression.delta(confidenceIntervalSignificance,receivedX1Data[i-1])));
     }
 
 
@@ -228,11 +230,36 @@ public class NHSReport {
     public String getReportString(Calendar olderDate, Calendar newerDate, double aParameterSignificance, double aTestParameter, double bTestSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance, String identifier) {
 
         if (linearRegression != null && multiLinearRegression == null) {
-            return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues() + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance, identifier);
+            return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues(confidenceIntervalSignificance) + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance, identifier);
         }
-        return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues() + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance, identifier);
+        return regressionModelLine() + otherStatistics() + hypothesisTests(aParameterSignificance, aTestParameter, bTestSignificance, bTestParameter) + Anova() + decisionF(fTestSignificance) + linePredictionValues(confidenceIntervalSignificance) + printFinalTable(olderDate, newerDate, confidenceIntervalSignificance, identifier);
     }
 
-}
+
+//    public static void main(String[] args) {
+//        double[] arrX1 = {35.3, 29.7, 30.8, 58.8, 61.4, 71.3, 74.4, 76.7, 70.7, 57.5,46.4,28.9};
+//        double[] arrX2 = {825, 215, 1070, 550, 480, 920, 1350, 325, 670, 1215};
+//        double[] arrY1 = {3.5, 1, 4, 2, 1, 3, 4.5, 1.5, 3, 5};
+////        double[] arrX1 = {80, 93, 100, 82, 90, 99, 81, 96, 94, 93, 97, 95};
+////        double[] arrX2 = {8, 9, 10, 12, 11, 8, 8, 10, 12, 11, 13, 11};
+////        double[] arrY1 = {2256, 2340, 2426, 2293, 2330, 2368, 2250, 2409, 2364, 2379, 2440, 2364};
+//       // MultiLinearRegression multiLinearRegression = new MultiLinearRegression(arrX1, arrX2, arrY1);
+//        LinearRegression linearRegression = new LinearRegression(arrX2, arrY1);
+//        NHSReport nhsReport = new NHSReport(linearRegression, arrX2 ,arrY1);
+//        Calendar data1 = Calendar.getInstance();
+//        Calendar data2 = Calendar.getInstance();
+//        data1.set(2021, Calendar.MAY, 3);
+//        data2.set(2021, Calendar.MAY, 17);
+//        System.out.println(nhsReport.regressionModelLine());
+//        System.out.println(nhsReport.otherStatistics());
+//        System.out.println(nhsReport.hypothesisTests(0.05, 0, 0.05, 0));
+//        System.out.println(nhsReport.Anova());
+//        System.out.println(nhsReport.decisionF(0.05));
+//        System.out.println(linePredictionValues(0.95));
+//        System.out.println(nhsReport.printFinalTable(data1, data2, 0.95, "days"));
+//
+////       System.out.println(predictionValues("13-05-2021",13,25.2,"13.16-23.48"));
+    }
+
 
 

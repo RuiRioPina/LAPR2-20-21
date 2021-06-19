@@ -285,7 +285,7 @@ public class Company implements Serializable {
     public String getTheBestModelSLR(Calendar currentDate, int historicalPoints, Calendar newerRegressionIntervalDate, Calendar olderRegressionIntervalDate, double aParameterSignificance, double aTestParameter, double bParamatereSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance) {
         LinearRegression linearRegressionTestsPerformed = new LinearRegression(testStore.getTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
         LinearRegression linearRegressionMeanAge = new LinearRegression(testStore.getMeanAgeOfTestsPerformedPerDay(olderRegressionIntervalDate, newerRegressionIntervalDate), testStore.getPositiveCovidTestsPerformedOnDay(olderRegressionIntervalDate, newerRegressionIntervalDate));
-        if (linearRegressionTestsPerformed.getR2() > linearRegressionMeanAge.getR2()) {
+        if (linearRegressionTestsPerformed.R2() > linearRegressionMeanAge.R2()) {
             return "meanAge";
         }
         return "testsPerformed";
@@ -315,7 +315,7 @@ public String generateMultilinearNHSReportWeeks(Calendar currentDate, int histor
         return report.getReportString(getHistoricalPointWeekOlderDate(currentDate,historicalPoints),currentDate,b0ParameterSignificance,b1ParamaterSignificance,b2ParameterSignificance,0,fTestSignificance,confidenceIntervalSignificance,"weeks");
 
 }
-    public Calendar getHistoricalPointDayOlderDate(Calendar currentDate, int historicalPointAmount) {
+    private Calendar getHistoricalPointDayOlderDate(Calendar currentDate, int historicalPointAmount) {
         int i = historicalPointAmount;
         Calendar olderDate = Calendar.getInstance();
         Calendar currentDateUsed = (Calendar) currentDate.clone();
@@ -336,7 +336,7 @@ public String generateMultilinearNHSReportWeeks(Calendar currentDate, int histor
         Report2NHS.writeUsingFileWriter(report);
     }
 
-    public Calendar getHistoricalPointWeekOlderDate(Calendar currentDate, int historicalPointAmount) {
+    private Calendar getHistoricalPointWeekOlderDate(Calendar currentDate, int historicalPointAmount) {
         int i = historicalPointAmount;
         Calendar olderDate = Calendar.getInstance();
         Calendar currentDateUsed = (Calendar) currentDate.clone();

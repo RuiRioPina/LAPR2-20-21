@@ -16,7 +16,7 @@ public class GenerateSimpleLinearReportController implements Initializable {
     public GenerateSimpleLinearReportController() {
 
     }
-
+private Company company;
     @FXML
     private Label lblTestView;
 

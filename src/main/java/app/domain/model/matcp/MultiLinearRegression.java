@@ -264,12 +264,12 @@ public class MultiLinearRegression {
 
     }
 
-    public double rSquared() {
+    public double r2() {
         return sqr() / sqt();
     }
 
-    public double rSquaredAdjusted() {
-        return 1 - ((double) (arrayY.length - 1) / errorDegreesOfFreedom()) * (1 - rSquared());
+    public double r2Adjusted() {
+        return 1 - ((double) (arrayY.length - 1) / errorDegreesOfFreedom()) * (1 - r2());
     }
 
     public double coeficientRegressionTestAuxiliaryCalculus(double significance) {
@@ -321,13 +321,11 @@ public class MultiLinearRegression {
 
 
     public double r() {
-        return Math.sqrt(this.rSquared());
+        return Math.sqrt(this.r2());
     }
 
 
-    public double predict(double x) {
-        return b0 + b1 * x + b2 * x;
-    }
+
 
 }
 

@@ -112,7 +112,7 @@ public class MultiLinearRegressionTest {
     @Test
     public void testRSquared() {
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(x, x1, y);
-        double actual = multiLinearRegression.rSquared();
+        double actual = multiLinearRegression.r2();
         double expected = 0.9217400314638569;
         assertEquals(expected, actual, 0.001);
     }
@@ -120,7 +120,7 @@ public class MultiLinearRegressionTest {
     @Test
     public void testRSquaredAdjusted() {
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(x, x1, y);
-        double actual = multiLinearRegression.rSquaredAdjusted();
+        double actual = multiLinearRegression.r2Adjusted();
         double expected = 0.904348927344714;
         assertEquals(expected, actual, 0.001);
     }
@@ -202,10 +202,10 @@ public class MultiLinearRegressionTest {
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(x, x1, y);
         double expected = 1597.3731541140326;
         double expected1 = 1625.0209611450946;
-        double actual = multiLinearRegression.predict(2);
+
         double actual1 = multiLinearRegression.predict(1.5,5.2);
 
-        assertEquals(expected, actual, 0.001);
+
         assertEquals(expected1, actual1, 0.001);
     }
 }
