@@ -1,31 +1,42 @@
 The regression model fitted using data from the interval 
- ^y=-0,7816x+200,7070
+ ^y=NaNx+NaN
 
 Other statistics 
- R2 = 0.967398132901198 
- R2adjusted = 0.934796265802396 
- R = 0.9835639953257734 
+ R2 = NaN 
+ R2adjusted = NaN 
+ R = NaN 
  
 Hypothesis tests for regression coefficients 
 H0: a=0.0 (b=0.0) H1: a<>0.0 (b<>0.0) 
- tobs(a)=12,7204 tobs(b)=5,4473 
+ tobs(a)=NaN tobs(b)=NaN 
 Decision:
-Regarding the test for the a parameter h0 is rejected 
-Regarding the test for the b parameter h0 is rejected 
+Regarding the test for the a parameter h0 is not rejected 
+Regarding the test for the b parameter h0 is not rejected 
 
 Significance model with Anova 
 H0: b=0  H1:b<>0 
               df           SS           MS            F 
-Regression   1,0000    4510,0101    4510,0101	     29,6731 
-Residual     1,0000     151,9899     151,9899 
- Total       2,0000    4662,0000Decision: f 
-0 > f0,95,(1.1)=0,0062
-Reject H0 
- The regression model is significant 
-
+Regression   1,0000          NaN          NaN	         NaN 
+Residual    17,0000          NaN          NaN 
+ Total          NaN          NaNDecision: f 
+0 > f0,95,(1.17)=0,0040
+Not Reject H0 
+ The regression model is not significant 
+"
 
 Date        Number of OBSERVED positive cases      Number of ESTIMATED positive cases                 95% intervals 
-3/5/2021                         175,00                         169,34                         168,48-170,20 
-10/5/2021                         118,00                         128,04                         127,48-128,60 
-17/5/2021                          79,00                          74,62                          73,72-75,53 
-24/5/2021                          27,00                        -113,18                        -116,65--109,71 
+13/4/2021                           0,00                            NaN                            NaN-NaN 
+14/4/2021                           0,00                            NaN                            NaN-NaN 
+15/4/2021                           0,00                            NaN                            NaN-NaN 
+17/4/2021                           0,00                            NaN                            NaN-NaN 
+18/4/2021                           0,00                            NaN                            NaN-NaN 
+19/4/2021                           0,00                            NaN                            NaN-NaN 
+20/4/2021                           0,00                            NaN                            NaN-NaN 
+21/4/2021                           0,00                            NaN                            NaN-NaN 
+22/4/2021                           0,00                            NaN                            NaN-NaN 
+24/4/2021                           0,00                            NaN                            NaN-NaN 
+25/4/2021                           0,00                            NaN                            NaN-NaN 
+26/4/2021                           0,00                            NaN                            NaN-NaN 
+27/4/2021                           0,00                            NaN                            NaN-NaN 
+28/4/2021                           0,00                            NaN                            NaN-NaN 
+29/4/2021                           0,00                            NaN                            NaN-NaN 

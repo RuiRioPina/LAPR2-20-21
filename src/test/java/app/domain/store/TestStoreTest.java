@@ -856,10 +856,10 @@ t2.getParameter().get(0).setTestResult(new TestResult(t2.getParameter().get(0),1
         ts.saveTest(t5);
         testList1.add(t4);
         testList1.add(t5);
-        double[] expected={19};
+        double expected=19;
         double[] notExpected={2};
         double[] tl=ts.getMeanAgePerWeek(data2,data7);
-        assertArrayEquals(expected,tl,1);
+        assertEquals(expected,tl[0],0.001);
         assertNotEquals(notExpected,tl);
     }
 

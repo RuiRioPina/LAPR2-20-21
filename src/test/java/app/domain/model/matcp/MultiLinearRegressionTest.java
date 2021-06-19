@@ -161,7 +161,7 @@ public class MultiLinearRegressionTest {
     public void testToString() {
         MultiLinearRegression multiLinearRegression = new MultiLinearRegression(x, x1, y);
         String expected = "^y=1562,7301+ 7,5084x + 9,8131x";
-        String actual = multiLinearRegression.toString();
+        String actual = multiLinearRegression.toString().replace(".",",");
         assertEquals(expected, actual);
     }
 

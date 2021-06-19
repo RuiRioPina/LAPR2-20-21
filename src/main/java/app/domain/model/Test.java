@@ -38,7 +38,8 @@ public class Test implements Serializable {
 
     /**
      * Constructor for the test.
-     *  @param nhsCode           - NHS code of the test.
+     *
+     * @param nhsCode           - NHS code of the test.
      * @param internalCode      - Internal code of the test.
      * @param client            - Client that performs the test.
      * @param testType          - Test Type of the test.
@@ -56,9 +57,9 @@ public class Test implements Serializable {
         this.parameterCategory = Collections.unmodifiableList(parameterCategory);
         this.parameter = Collections.unmodifiableList(parameter);
         this.registrationDate = registrationDate;
-        if(getTestResult()==null) {
+        if (getTestResult() == null) {
             this.chemicalAnalysisDate = null;
-        }else {
+        } else {
             this.chemicalAnalysisDate = null;
         }
         this.diagnosisDate = null;
@@ -155,20 +156,19 @@ public class Test implements Serializable {
      * @return registration date of the test.
      */
     public String getRegistrationDateStr() {
-    	SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
         return format.format(this.registrationDate.getTime());
     }
-    
+
     /**
      * Returns the test sample collection date.
      *
      * @return sample collection date of the test.
      */
     public Calendar getSamplesCollectionDate() {
-        if (samplesCollectionDate == null){
+        if (samplesCollectionDate == null) {
             return null;
-        }
-        else return samplesCollectionDate;
+        } else return samplesCollectionDate;
     }
 
     /**
@@ -177,18 +177,19 @@ public class Test implements Serializable {
      * @return chemical analysis date of the test.
      */
     public Calendar getChemicalAnalysisDate() {
-        if (chemicalAnalysisDate == null){
+        if (chemicalAnalysisDate == null) {
             return null;
-        }
-        else return chemicalAnalysisDate;
+        } else return chemicalAnalysisDate;
     }
 
     /**
-     *  Returns the test report
+     * Returns the test report
+     *
      * @return report of the test
      */
-    public Report getReport(){return report;}
-
+    public Report getReport() {
+        return report;
+    }
 
 
     /**
@@ -197,10 +198,9 @@ public class Test implements Serializable {
      * @return diagnosis date of the test.
      */
     public Calendar getDiagnosisDate() {
-        if (diagnosisDate == null){
+        if (diagnosisDate == null) {
             return null;
-        }
-        else return diagnosisDate;
+        } else return diagnosisDate;
     }
 
     /**
@@ -209,14 +209,14 @@ public class Test implements Serializable {
      * @return validation date of the test.
      */
     public Calendar getValidationDate() {
-        if (validationDate == null){
+        if (validationDate == null) {
             return null;
-        }
-        else return validationDate;
+        } else return validationDate;
     }
 
     /**
      * Get a copy of the parameters for a test
+     *
      * @return a list containing a copy of parameters of a test
      */
 
@@ -229,6 +229,7 @@ public class Test implements Serializable {
 
     /**
      * Getter of test results
+     *
      * @return the test results of the test
      */
 
@@ -238,6 +239,7 @@ public class Test implements Serializable {
 
     /**
      * Setter for samples of a test
+     *
      * @param samples a list sample associated to the test
      */
 
@@ -246,12 +248,13 @@ public class Test implements Serializable {
         this.samples = samples;
     }
 
-    public void setReport(Report report){
-        this.report=report;
+    public void setReport(Report report) {
+        this.report = report;
     }
 
     /**
      * Setter for the sample collection date
+     *
      * @param date date to be changed to.
      */
 
@@ -259,33 +262,36 @@ public class Test implements Serializable {
         this.samplesCollectionDate = date;
     }
 
-    public void setLabID(String labID){
+    public void setLabID(String labID) {
         this.labID = labID;
     }
 
 
     /**
      * Setter for the ChemicalAnalysisDate.
+     *
      * @param newDate - new Date object to replace the old value.
      */
-    public void setChemicalAnalysisDate(Calendar newDate){
-        this.chemicalAnalysisDate=newDate;
+    public void setChemicalAnalysisDate(Calendar newDate) {
+        this.chemicalAnalysisDate = newDate;
     }
 
     /**
      * Setter for the diagnosisDate.
+     *
      * @param newDate - new Date object to replace the old value.
      */
-    public void setDiagnosisDate(Calendar newDate){
-        this.diagnosisDate=newDate;
+    public void setDiagnosisDate(Calendar newDate) {
+        this.diagnosisDate = newDate;
     }
 
     /**
      * Setter for the validationDate.
+     *
      * @param newDate - new Date object to replace the old value.
      */
-    public void setValidationDate(Calendar newDate){
-        this.validationDate=newDate;
+    public void setValidationDate(Calendar newDate) {
+        this.validationDate = newDate;
     }
 
     public String getLabID() {
@@ -305,16 +311,16 @@ public class Test implements Serializable {
         Date vDate = null;
         Date sDate = null;
         Date rDate = registrationDate.getTime();
-        if (samplesCollectionDate != null){
+        if (samplesCollectionDate != null) {
             sDate = samplesCollectionDate.getTime();
         }
-        if (chemicalAnalysisDate != null){
-                cDate = chemicalAnalysisDate.getTime();
+        if (chemicalAnalysisDate != null) {
+            cDate = chemicalAnalysisDate.getTime();
         }
-        if (diagnosisDate != null){
+        if (diagnosisDate != null) {
             dDate = diagnosisDate.getTime();
         }
-        if (validationDate != null){
+        if (validationDate != null) {
             vDate = validationDate.getTime();
         }
         if (samples != null || samplesCollectionDate != null ||
@@ -344,7 +350,7 @@ public class Test implements Serializable {
                     "Registration Date = " + rDate;
         }
 
-        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate== null && validationDate==null){
+        if (registrationDate != null && samplesCollectionDate != null && chemicalAnalysisDate != null && diagnosisDate == null && validationDate == null) {
             str = "TEST" + '\n' +
                     "NHS Code = " + nhsCode + '\n' +
                     "Internal Code = " + internalCode + '\n' +
@@ -357,11 +363,11 @@ public class Test implements Serializable {
                     "Registration Date = " + rDate;
         }
 
-        if (registrationDate!=null && samplesCollectionDate!=null && chemicalAnalysisDate!=null && diagnosisDate!= null && validationDate==null){
-            str= "Internal code: "+ internalCode +" Registration Date:"+rDate+" Chemical Analysis Date:"+cDate + " Diagnosis Date:"+dDate;
+        if (registrationDate != null && samplesCollectionDate != null && chemicalAnalysisDate != null && diagnosisDate != null && validationDate == null) {
+            str = "Internal code: " + internalCode + " Registration Date:" + rDate + " Chemical Analysis Date:" + cDate + " Diagnosis Date:" + dDate;
         }
 
-        if ( validationDate != null){
+        if (validationDate != null) {
 
             str = "TEST" + '\n' +
                     "NHS Code = " + nhsCode + '\n' +
@@ -386,6 +392,7 @@ public class Test implements Serializable {
 
     /**
      * The method equals overwritten to check if a test is equal to another one
+     *
      * @param o the object being compared
      * @return boolean containing the result of the comparison
      */
@@ -408,8 +415,9 @@ public class Test implements Serializable {
 
     /**
      * Add the test result for the test being handled
+     *
      * @param parameter parameter of where the result will be recorded
-     * @param result result of the test. Introduced by the user
+     * @param result    result of the test. Introduced by the user
      * @return allocate this task to the resultOfTestStore assigned to do this task. (High Cohesion Pattern)
      */
     public TestResult addTestResult(Parameter parameter, double result) {
@@ -421,35 +429,40 @@ public class Test implements Serializable {
 
     /**
      * Method used to simulate the sending of an email to the client.
+     *
      * @throws IOException          if the file to be written to doesn't exist.
      * @throws InterruptedException if the thread that is sleeping is interrupted.
      */
-    public void sendTestCompletedNotification()throws InterruptedException, IOException {
-        EmailNotificationSender ens= new EmailNotificationSender(this.client);
+    public void sendTestCompletedNotification() throws InterruptedException, IOException {
+        EmailNotificationSender ens = new EmailNotificationSender(this.client);
         ens.sendTestCompletedNotification();
     }
 
 
     public String getDate() {
-        return String.format("%s",this.chemicalAnalysisDate);
+        return String.format("%s", this.chemicalAnalysisDate);
     }
 
-    public int calculateAge(){
-        LocalDate currentDate= LocalDate.now();
+    public int calculateAge() {
+        LocalDate currentDate = LocalDate.now();
         String date = this.getClient().getBirthDate();
-        String[] arrString=null;
+        String[] arrString = new String[3];
 
-             arrString = date.split("-");
+        if (date.contains("-")) {
+            arrString = date.split("-");
+        } else if (date.contains("/")) {
+            arrString = date.split("/");
+        }
 
 
-        Calendar calendar= Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         try {
-            LocalDate birthDate= LocalDate.of(Integer.parseInt(arrString[2]),Integer.parseInt(arrString[1]),Integer.parseInt(arrString[0]));
+            LocalDate.of(Integer.parseInt(arrString[2]), Integer.parseInt(arrString[1]), Integer.parseInt(arrString[0]));
 
-        }catch (DateTimeException e){
+        } catch (DateTimeException e) {
             return 30;
         }
-       LocalDate birthDate= LocalDate.of(Integer.parseInt(arrString[2]),Integer.parseInt(arrString[1]),Integer.parseInt(arrString[0]));
-        return Period.between(birthDate,currentDate).getYears();
+        LocalDate birthDate = LocalDate.of(Integer.parseInt(arrString[2]), Integer.parseInt(arrString[1]), Integer.parseInt(arrString[0]));
+        return Period.between(birthDate, currentDate).getYears();
     }
 }
