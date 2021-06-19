@@ -3,6 +3,7 @@ package app.ui.console;
 
 import app.controller.RegisterClientController;
 import app.domain.model.Client;
+import app.ui.console.utils.Utils;
 import auth.AuthFacade;
 
 import java.io.IOException;
@@ -37,10 +38,7 @@ public class RegisterClientUI implements Runnable {
         String email;
         String name;
 
-        System.out.println();
-        System.out.println("Welcome to the Client Registration Page!");
-        System.out.println();
-
+        Utils.log("\nWelcome to the Client Registration Page!\n");
 
         ccn = inputCcn();
 
@@ -80,16 +78,16 @@ public class RegisterClientUI implements Runnable {
         do {
             try {
                 passedValidation = true;
-                System.out.println("Enter the Client's Citizen's card number (16 digits):");
+                Utils.log("Enter the Client's Citizen's card number (16 digits):");
                 ccn = sc.nextLong();
                 registerClientController.validateCcn(ccn);
 
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
                 sc.nextLine();
                 passedValidation = false;
             } catch (InputMismatchException e) {
-                System.out.println("The ccn can only have numbers. Please try again.");
+                Utils.log("The ccn can only have numbers. Please try again.");
                 sc.nextLine();
                 passedValidation = false;
             }
@@ -103,16 +101,16 @@ public class RegisterClientUI implements Runnable {
         do {
             try {
                 passedValidation = true;
-                System.out.println("Enter the Client's NHS Number(10 digits): ");
+                Utils.log("Enter the Client's NHS Number(10 digits): ");
                 nhsNumber = sc.nextLong();
 
                 registerClientController.validateNhsNumber(nhsNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
                 sc.nextLine();
                 passedValidation = false;
             } catch (InputMismatchException e) {
-                System.out.println("The ccn can only have numbers. Please try again.");
+                Utils.log("The ccn can only have numbers. Please try again.");
                 sc.nextLine();
                 passedValidation = false;
             }
@@ -125,15 +123,15 @@ public class RegisterClientUI implements Runnable {
         do {
             try {
                 passedValidation = true;
-                System.out.println("Enter the Client's birth date(DD-MM-YYYY): ");
+                Utils.log("Enter the Client's birth date(DD-MM-YYYY): ");
                 birthDate = sc.nextLine();
                 registerClientController.validateBirthDate(birthDate);
 
             } catch (IllegalArgumentException e) {
                 passedValidation = false;
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("There was an error! Please try again with other values");
+                Utils.log("There was an error! Please try again with other values");
             }
         } while (!passedValidation);
         return birthDate;
@@ -144,12 +142,12 @@ public class RegisterClientUI implements Runnable {
         do {
             try {
                 passedValidation = true;
-                System.out.println("Enter the Client's sex (optional: press enter): ");
+                Utils.log("Enter the Client's sex (optional: press enter): ");
                 sex = sc.nextLine();
                 registerClientController.validateSex(sex);
             } catch (IllegalArgumentException e) {
                 passedValidation = false;
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
             }
         } while (!passedValidation);
         return sex;
@@ -160,16 +158,16 @@ public class RegisterClientUI implements Runnable {
         do {
             try {
                 passedValidation = true;
-                System.out.println("Enter the Client's Tax Identification Number (10 digits): ");
+                Utils.log("Enter the Client's Tax Identification Number (10 digits): ");
                 tin = sc.nextLong();
                 registerClientController.validateTin(tin);
             } catch (IllegalArgumentException e) {
                 passedValidation = false;
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
                 sc.nextLine();
             } catch (InputMismatchException e) {
                 passedValidation = false;
-                System.out.println("You have introduce letters. Please try again with only numbers.");
+                Utils.log("You have introduce letters. Please try again with only numbers.");
                 sc.nextLine();
             }
         } while (!passedValidation);
@@ -181,18 +179,18 @@ public class RegisterClientUI implements Runnable {
         do {
             try {
                 passedValidation = true;
-                System.out.println("Enter the Client's phone number (11 digits): ");
+                Utils.log("Enter the Client's phone number (11 digits): ");
                 phoneNumber = sc.nextLong();
 
                 registerClientController.validatePhoneNumber(phoneNumber);
 
             } catch (IllegalArgumentException e) {
                 passedValidation = false;
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
                 sc.nextLine();
             } catch (InputMismatchException e) {
                 passedValidation = false;
-                System.out.println("You have introduce letters. Please try again with only numbers.");
+                Utils.log("You have introduce letters. Please try again with only numbers.");
                 sc.nextLine();
             }
 
@@ -204,13 +202,13 @@ public class RegisterClientUI implements Runnable {
         String email = "";
         do {
             try {
-                System.out.println("Enter the Client's email: ");
+                Utils.log("Enter the Client's email: ");
                 email = sc.nextLine();
                 registerClientController.validateEmail(email);
                 passedValidation = true;
             } catch (IllegalArgumentException e) {
                 passedValidation = false;
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
             } catch (InputMismatchException e) {
                 passedValidation = false;
             }
@@ -222,13 +220,13 @@ public class RegisterClientUI implements Runnable {
         String name = "";
         do {
             try {
-                System.out.println("Enter the Client's name: ");
+                Utils.log("Enter the Client's name: ");
                 name = sc.nextLine();
                 registerClientController.validateName(name);
                 passedValidation = true;
             } catch (IllegalArgumentException e) {
                 passedValidation = false;
-                System.out.println(e.getMessage());
+                Utils.log(e.getMessage());
             }
         } while (!passedValidation);
         return name;
@@ -238,19 +236,19 @@ public class RegisterClientUI implements Runnable {
 
         do {
             passedValidation = true;
-            System.out.println("Do you confirm this data? (y/n)");
+            Utils.log("Do you confirm this data? (y/n)");
             String response = sc.nextLine();
             if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
                 try {
                     if (registerClientController.saveClient(clt) && clt != null) {
-                        System.out.println("The Client was sucessfully added!");
+                        Utils.log("The Client was sucessfully added!");
                         registerClientController.sendEmailToClient(clt);
                     }
                 } catch (IOException | InterruptedException e) {
-                    System.out.println(e.getMessage());
+                    Utils.log(e.getMessage());
                 }
             } else {
-                System.out.println("Please insert a valid option (Y/N)");
+                Utils.log("Please insert a valid option (Y/N)");
                 passedValidation = false;
             }
         } while (!passedValidation);

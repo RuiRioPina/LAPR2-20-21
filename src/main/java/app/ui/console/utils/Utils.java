@@ -129,4 +129,7 @@ public class Utils {
         return value - 1;
     }
 
+    static public void log(String s) {
+    	System.out.println(s);
+    }
 }
