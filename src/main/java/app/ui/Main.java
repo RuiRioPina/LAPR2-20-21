@@ -1,8 +1,6 @@
 package app.ui;
 
 import app.controller.App;
-import app.ui.console.MainMenuUI;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -53,13 +51,4 @@ public class Main extends Application{
 			event.consume();
 		}
 	}
-//    public static void main(String[] args) {
-//        try {
-//            MainMenuUI menu = new MainMenuUI();
-//
-//            menu.run();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
