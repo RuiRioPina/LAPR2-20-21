@@ -11,7 +11,7 @@ import app.ui.console.utils.Utils;
 
 public class TestTypeUI implements Runnable {
 
-	private TestTypeController testTypeController;
+	private final TestTypeController testTypeController;
 	
 	public TestTypeUI() {
 		this.testTypeController = new TestTypeController();
@@ -25,34 +25,34 @@ public class TestTypeUI implements Runnable {
 		List<String> parameterCategoryCodes = new ArrayList<>();
 		boolean validation = false;
 		
-		System.out.println("Beginning to register a new type of Test.\n");
+		Utils.log("Beginning to register a new type of Test.\n");
 		
 		while(!validation) {
-			System.out.println("Insert the code of the test type.");
+			Utils.log("Insert the code of the test type.");
 			code = x.nextLine();
 			validation = checkCodeRules(code);
 			if(!validation) {
-				System.out.println("The code is invalid");
+				Utils.log("The code is invalid");
 			}
 		}
 		validation = false;
 		
 		while(!validation) {
-			System.out.println("Insert the description of the test type.");
+			Utils.log("Insert the description of the test type.");
 			description = x.nextLine();
 			validation = checkDescriptionRules(description);
 			if(!validation) {
-				System.out.println("The description is invalid");
+				Utils.log("The description is invalid");
 			}
 		}
 		validation = false;
 		
 		while(!validation) {
-			System.out.println("Insert the collecting method of the test type.");
+			Utils.log("Insert the collecting method of the test type.");
 			collectingMethod = x.nextLine();
 			validation = checkCollectingMethodRules(collectingMethod);
 			if(!validation) {
-				System.out.println("The collecting method is invalid");
+				Utils.log("The collecting method is invalid");
 			}
 		}
 		validation = false;
@@ -73,7 +73,7 @@ public class TestTypeUI implements Runnable {
 	        while (option != -1 && !list.isEmpty());
 	        validation = checkParameterCategoryRules(parameterCategoryCodes);
 	        if(!validation) {
-				System.out.println("The Parameter Category list is invalid");
+				Utils.log("The Parameter Category list is invalid");
 			}
 		}
 
@@ -81,17 +81,17 @@ public class TestTypeUI implements Runnable {
         try {
         	tt = this.testTypeController.createTestType(code, description, collectingMethod, parameterCategoryCodes);
         } catch (IllegalArgumentException ex) {
-        	System.out.println(ex.getMessage());
+        	Utils.log(ex.getMessage());
         	return;
         }
         
-        System.out.println("Confirmation: %n");
-        System.out.printf("-Code: %s %n", tt.getCode());
-        System.out.printf("-Description: %s %n", tt.getDescription());
-        System.out.printf("-Collecting Method: %s %n", tt.getCollectingMethod());
-        System.out.println("-Parameter Categories: ");
+        Utils.log("Confirmation: %n");
+        Utils.log(String.format("-Code: %s", tt.getCode()));
+        Utils.log(String.format("-Description: %s", tt.getDescription()));
+        Utils.log(String.format("-Collecting Method: %s", tt.getCollectingMethod()));
+        Utils.log("-Parameter Categories: ");
         for(ParameterCategory pc : tt.getParameterCategories()) {
-        	System.out.printf("\t%s - %s %n", pc.getCode(), pc.getName());
+        	Utils.log(String.format("\t%s - %s", pc.getCode(), pc.getName()));
         }
         
         if(!Utils.confirm("Confirm test type creation (y/n)?")){
@@ -101,7 +101,7 @@ public class TestTypeUI implements Runnable {
         try {
         	this.testTypeController.saveTestType();
         } catch (IllegalArgumentException ex) {
-        	System.out.println(ex.getMessage());
+        	Utils.log(ex.getMessage());
         }
 	}
 	

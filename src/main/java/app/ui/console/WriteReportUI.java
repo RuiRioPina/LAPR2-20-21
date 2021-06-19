@@ -6,13 +6,12 @@ import app.domain.model.Test;
 import app.domain.model.TestResult;
 import app.ui.console.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class WriteReportUI implements Runnable {
 
-    private WriteReportController writeReportController;
+    private final WriteReportController writeReportController;
 
     public WriteReportUI(){
         this.writeReportController=new WriteReportController();
@@ -30,7 +29,7 @@ public class WriteReportUI implements Runnable {
             List<Test> lt = this.writeReportController.getTestsWithoutDiagnosis();
             String report="";
             String testCode;
-            System.out.println("Beginning to write a report.\n");
+            Utils.log("Beginning to write a report.\n");
 
             option = Utils.showAndSelectIndex(lt, "Select test.");
 
@@ -41,12 +40,11 @@ public class WriteReportUI implements Runnable {
                 boolean validation = false;
                 System.out.println(testResults);
                 while(!validation) {
-                    System.out.println();
-                    System.out.println("Write Report:");
+                    Utils.log("\nWrite Report:");
                     report = x.nextLine();
                     validation = checkReportRules(report);
                     if(!validation) {
-                        System.out.println("The report should have between 1 and 400 words.");
+                        Utils.log("The report should have between 1 and 400 words.");
                     }
                 }
                 validation=false;
@@ -54,11 +52,11 @@ public class WriteReportUI implements Runnable {
                 try {
                     rep=this.writeReportController.writeReport(testCode,report);
                 } catch (IllegalArgumentException ex) {
-                    System.out.println(ex.getMessage());
+                    Utils.log(ex.getMessage());
                 }
 
-                System.out.println("Confirmation: ");
-                System.out.printf("-Report: %s%n", report);
+                Utils.log("Confirmation: ");
+                Utils.log(String.format("-Report: %s", report));
 
                 if(!Utils.confirm("Confirm test report creation (y/n)?")){
                     return;
@@ -69,7 +67,7 @@ public class WriteReportUI implements Runnable {
                 try {
                     this.writeReportController.saveReport(test,rep);
                 } catch (IllegalArgumentException ex) {
-                    System.out.println(ex.getMessage());
+                    Utils.log(ex.getMessage());
                 }
             }
             if (option == -1) {
