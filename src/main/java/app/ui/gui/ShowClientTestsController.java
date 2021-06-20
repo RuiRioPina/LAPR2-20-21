@@ -22,35 +22,72 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class controls the UI that shows all the tests from a selected client.It implements the Initializable class so that it is initializes the overridden method whenever it this class is instantiated.
+ */
 public class ShowClientTestsController implements Initializable {
-
+    /**
+     * Its parent controller
+     */
     private ShowListOfClientsController menuCctUI;
+    /**
+     * Declaration of the App class
+     */
     private App app;
+    /**
+     * Declaration of a list of tests from the client selected in its parent ui
+     */
     private List<Test> listOfTestsFromClient;
+    /**
+     * The test Selected
+     */
     private Test testSelected;
+    /**
+     * The client Selected
+     */
     private Client client;
 
+    /**
+     * Getter for the test selected
+     * @return Test
+     */
     public Test getTestSelected() {
         return testSelected;
     }
 
+    /**
+     * A label that says tests
+     */
     @FXML
     private Label lblTest;
-
+    /**
+     * The table where the tests are shown
+     */
     @FXML
     private TableView<Test> tableView;
-
+    /**
+     * The column containing the NhsCode of a test
+     */
     @FXML
     private TableColumn<Test, String> columnnNhsCode;
-
+    /**
+     * The column containing the Internal Code of a test
+     */
     @FXML
     private TableColumn<Test, Long> columnInternalNumber;
 
-
+    /**
+     * Default constructor which instanciates app
+     */
     public ShowClientTestsController() {
         this.app = App.getInstance();
     }
 
+    /**
+     * Whenever this is instanciates it
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //
@@ -68,17 +105,11 @@ public class ShowClientTestsController implements Initializable {
         return testsFromClient;
     }
 
-
-    @FXML
-    private void clickTestDetails(ActionEvent event) throws IOException {
-    	Test test = tableView.getSelectionModel().getSelectedItem();
-        Stage stage1 = loadViewTestsUi(test);
-        if (stage1 == null) {
-            return;
-        }
-        stage1.showAndWait();
-    }
-
+    /**
+     * This is used to associate the parent ui to this controller
+     * @param menuCctGUISceneController the parentUI
+     * @param client the client selected before
+     */
 
     public void associarParentUI(ShowListOfClientsController menuCctGUISceneController, Client client) {
         this.menuCctUI = menuCctGUISceneController;
@@ -112,6 +143,11 @@ public class ShowClientTestsController implements Initializable {
 		stage.showAndWait();
 	}
 
+    /**
+     * Loads the next Ui to be shown
+     * @param test the test selected
+     * @return stage containing the next view to be shown
+     */
 	private Stage loadViewTestsUi(Test test) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsDetailsFromSelectedTest.fxml"));

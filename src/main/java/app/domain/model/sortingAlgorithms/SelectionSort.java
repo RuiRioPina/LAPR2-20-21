@@ -64,12 +64,27 @@ public class SelectionSort implements SortingAlgorithms {
         return sorted;
     }
 
+    /**
+     * Swap the clients
+     * @param clients the clients
+     * @param indexA the first client
+     * @param indexB the second client
+     * @return list with the clients swapped
+     */
+
     public static List<Client> swap(List<Client> clients, int indexA, int indexB) {
         Client tmp = clients.get(indexA);
         clients.set(indexA, clients.get(indexB));
         clients.set(indexB, tmp);
         return clients;
     }
+    /**
+     * Overridden method which sorts the clients
+     * @param arrayNames names of the clients
+     * @param arrayTins tins of the clients
+     * @param clients clients in the company
+     * @param dummy just to differentiate from string to tin
+     */
 
     @Override
     public void sortMethod(List<String> arrayNames,List<Long> arrayTins, List<Client> clients,int dummy) {

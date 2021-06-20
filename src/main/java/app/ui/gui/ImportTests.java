@@ -15,12 +15,20 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
+/**
+ * Class to Import Tests.
+ */
 public class ImportTests {
     private final TestController importTestsController;
     private final String path;
     private final App app;
 
-    public ImportTests(String path) throws IOException, InterruptedException {
+    /**
+     * Method to read a csv File and Import Tests.
+     * @param path - path of the file;
+     */
+
+    public ImportTests(String path) {
         this.importTestsController = new TestController();
         this.path = path;
         this.app = App.getInstance();
