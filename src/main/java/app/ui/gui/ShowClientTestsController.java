@@ -71,7 +71,8 @@ public class ShowClientTestsController implements Initializable {
 
     @FXML
     private void clickTestDetails(ActionEvent event) throws IOException {
-        Stage stage1 = loadViewTestsUi();
+    	Test test = tableView.getSelectionModel().getSelectedItem();
+        Stage stage1 = loadViewTestsUi(test);
         if (stage1 == null) {
             return;
         }
@@ -89,10 +90,29 @@ public class ShowClientTestsController implements Initializable {
         columnInternalNumber.setCellValueFactory(new PropertyValueFactory<>("internalCode"));
         //load data
         tableView.setItems(getClientsTests());
+        tableView.setRowFactory( tv -> {
+		    TableRow<Test> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		            Test rowData = row.getItem();
+		            showTest(rowData);
+		        }
+		    });
+		    return row ;
+		});
 
     }
 
-    private Stage loadViewTestsUi() {
+    private void showTest(Test test) {
+    	Stage stage = loadViewTestsUi(test);
+		if(stage == null) {
+			return;
+		}
+		
+		stage.showAndWait();
+	}
+
+	private Stage loadViewTestsUi(Test test) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsDetailsFromSelectedTest.fxml"));
             Parent root = loader.load();
@@ -104,20 +124,16 @@ public class ShowClientTestsController implements Initializable {
             novoViewTestsStage.setTitle("Tests");
             novoViewTestsStage.setResizable(false);
             novoViewTestsStage.setScene(scene);
-            Test test = tableView.getSelectionModel().getSelectedItem();
-            if(test != null) {
-
-                ShowTestDetailsFromTestSelectedController novoViewTestsUI = loader.getController();
-                novoViewTestsUI.associarParentUI(this, test);
-                return novoViewTestsStage;
-            }
-
+            
+            ShowTestDetailsFromTestSelectedController novoViewTestsUI = loader.getController();
+            novoViewTestsUI.associarParentUI(this, test);
+                
+            return novoViewTestsStage;
         } catch (IOException ex) {
             Utils.createAlert(Alert.AlertType.ERROR, "Error", ex.getMessage());
             System.out.println(ex.getMessage());
             return null;
         }
-        return null;
     }
 
 }

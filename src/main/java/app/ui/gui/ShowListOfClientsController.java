@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import app.controller.App;
 import app.domain.model.Client;
+import app.domain.model.Test;
 import app.domain.model.sortingAlgorithms.SortingAlgorithms;
 import app.domain.shared.Configuration;
 import app.ui.gui.utils.Utils;
@@ -87,10 +88,29 @@ public class ShowListOfClientsController implements Initializable {
         //load data
         tableView.setItems(getClient());
         tableView.sort();
+        tableView.setRowFactory( tv -> {
+		    TableRow<Client> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		            Client rowData = row.getItem();
+		            showClient(rowData);
+		        }
+		    });
+		    return row ;
+		});
 
     }
 
-    /**
+    private void showClient(Client client) {
+		Stage stage = loadViewTestsUi(client);
+		if(stage == null) {
+			return;
+		}
+		
+		stage.showAndWait();
+	}
+
+	/**
      * This method will return an ObservableList of Client objects
      *
      * @return observable list containg client objects
