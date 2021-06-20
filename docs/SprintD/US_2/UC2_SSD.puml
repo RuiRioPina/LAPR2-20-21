@@ -1,21 +1,16 @@
 @startuml
 autonumber
-actor "Medical Lab Technician" as MEDLT
+actor "Client" as CLT
 
-activate MEDLT
-MEDLT-> ":System" : registing new samples. 
+activate CLT
+CLT> ":System" : updating personal data. 
 activate ":System"
-":System" --> MEDLT : shows list of tests for which there are no samples collected.
+":System" --> CLT: shows the clients data and let the client change it.
 deactivate ":System"
 
-MEDLT -> ":System" : selects test.
+CLT-> ":System" : write the new data.
 activate ":System"
-":System" --> MEDLT : ask for the number of samples to collect.
-deactivate ":System"
-
-MEDLT -> ":System" : selects the number of samples to collect.
-activate ":System"
-":System" --> MEDLT : generates the barcodes and informs of the operation success.
+":System" --> CLT: changes the data and informs of the operation success.
 deactivate ":System"
 
 deactivate MEDLT

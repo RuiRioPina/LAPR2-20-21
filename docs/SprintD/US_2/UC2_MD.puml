@@ -3,51 +3,21 @@ skinparam classAttributeIconSize 0
 hide methods
 left to right direction
 
-class Sample {
-  -barcodeNumber
-}
-
 class Company {
   -designation
 }
 
-class ClinicalAnalysisLaboratory {
-  -String name
-  -String adress
-  -long phoneNumber
-  -long tin
-  -TestStore testStore
-  +getTestStore()
-}
-class Test {
-  -nhsCode;
-  -internalCode;
-  -client;
-  -testType;
-  -sampleCollectionMethod;
-  -parameterCategory;
-  -parameter;
-  -samples
-  -registrationDate;
-  -samplesCollectionDate;
-  -chemicalAnalysisDate;
-  -diagnosisDate;
-  -validationDate;
-}
-
-class MedicalLabTechnician {
-  -employeeID
-  -organizationRole
+class Client {  
   -name
   -address
   -phoneNumber
   -eMail
-  -standardOcupationalClassificationCode
+  -sex
+  -cnn
+  -nhsNumber
+  -birthDate
+  -tin
 }
 
-Company "1" -- "1..*" ClinicalAnalysisLaboratory : has >
-ClinicalAnalysisLaboratory "1" -- "*" Test : has >
-MedicalLabTechnician "1..*" -- "1..*" ClinicalAnalysisLaboratory : works for >
-Test "1" -- "*" Sample : has >
-Sample "1" -- "1" MedicalLabTechnician : created by >
+Company "1" -- "1..*" Client : has >
 @enduml
