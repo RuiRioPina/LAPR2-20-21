@@ -3,6 +3,8 @@ package app.ui.gui;
 import app.controller.App;
 import app.controller.IntervalController;
 import app.domain.model.Test;
+import app.ui.console.GenerateSampleUI;
+import app.ui.console.ValidateWorkUI;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -118,4 +120,11 @@ public class MenuLabCooGUISceneController {
         }
     }
 
+    public void menuValidateWork(ActionEvent actionEvent) {
+        Stage stg = (Stage) lblNameClient.getScene().getWindow();
+        stg.hide();
+        ValidateWorkUI validateWorkUI = new ValidateWorkUI();
+        validateWorkUI.run();
+        stg.show();
+    }
 }
