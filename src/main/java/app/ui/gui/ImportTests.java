@@ -3,6 +3,7 @@ package app.ui.gui;
 import app.controller.App;
 import app.controller.TestController;
 import app.domain.model.*;
+import app.ui.console.utils.Utils;
 
 import java.awt.*;
 import java.io.File;
@@ -14,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-public class ImportTests{
+public class ImportTests {
     private final TestController importTestsController;
     private final String path;
     private final App app;
@@ -28,7 +29,7 @@ public class ImportTests{
         int a = App.getInstance().getCompany().getTestCode();
         String lines;
         Scanner leitor2 = null;
-        String [] notImported = new String[10000];
+        String[] notImported = new String[10000];
         int z = 0;
         try {
             leitor2 = new Scanner(arquivoCSV);
@@ -40,13 +41,10 @@ public class ImportTests{
         String l = leitor2.nextLine();
         String[] header = l.split(";");
         int posTt = 0;
-        int posRegDate = 0;
+        int posRegDate = posRegDate(header);
         for (int i = 0; i < header.length; i++) {
             if (header[i].equals("TestType")) {
                 posTt = i;
-            }
-            if (header[i].equals("Test_Reg_DateHour")) {
-                posRegDate = i;
             }
         }
 
@@ -74,7 +72,7 @@ public class ImportTests{
             String phoneNumber = text[7];
             String name = text[8];
             String email = text[9];
-            String address = text [10];
+            String address = text[10];
             String testType = text[11];
             String rDateHour = text[posRegDate];
             String tChemicalDateHour = text[posRegDate + 1];
@@ -185,31 +183,26 @@ public class ImportTests{
                 a++;
                 this.app.getCompany().getImportedTests().add(t);
             } else {
-                notImported [z] = "Test in line " + j + " wasn't imported. Invalid Client or Test data.";
-                z++;
+                Utils.log("Test in line " + j + " wasn't imported. Invalid Client or Test data.");
             }
         }
         leitor2.close();
-        String nomeficheiro = "Not Imported Tests.txt";
-        try (PrintWriter out = new PrintWriter(nomeficheiro)) {
-            for (int i = 0; i < notImported.length; i++){
-                if (notImported [i] != null){
-                    out.println(notImported[i]);
-                    out.println();
-                }
-            }
-        } catch (IOException e) {
-            //
-        }
-        File file = new File(nomeficheiro);
-        Desktop desktop = Desktop.getDesktop();
-        Thread.sleep(350);
-        desktop.open(file);
         App.getInstance().getCompany().setTestCode(a);
 
-    }}
+    }
 
+    private int posRegDate(String[] header) {
+        int posRegDate = 0;
+        for (int i = 0; i < header.length; i++) {
+            if (header[i].equals("Test_Reg_DateHour")) {
+                posRegDate = i;
+            }
+        }
+        return posRegDate;
 
+    }
+
+}
 
 
 

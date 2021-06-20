@@ -2,6 +2,7 @@ package app.ui.gui;
 
 import app.controller.App;
 import app.controller.IntervalController;
+import app.domain.model.Test;
 import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +17,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MenuLabCooGUISceneController {
@@ -47,13 +51,18 @@ public class MenuLabCooGUISceneController {
         File file = fileChooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
         String path = file.getAbsolutePath();
         new ImportTests(path);
-        Stage stage1 = loadTestsUi();
-        if(stage1 == null) {
-            return;
+        if (!App.getInstance().getCompany().getImportedTests().isEmpty()) {
+            Stage stage1 = loadTestsUi();
+            if (stage1 == null) {
+                return;
+            }
+            stage1.showAndWait();
+        } else {
+            JOptionPane.showMessageDialog(null,"No Tests were imported.");
+            List<Test> newImpTests = new ArrayList<>();
+            App.getInstance().getCompany().setImportedTests(newImpTests);
         }
-        stage1.showAndWait();
     }
-
     private Stage loadTestsUi() {
         try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowImpTestsScene.fxml"));
