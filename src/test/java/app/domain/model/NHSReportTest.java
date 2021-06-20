@@ -30,7 +30,7 @@ public class NHSReportTest {
         int expected = 1739;
         int expected1 = 1848;
         int expected2 = 1089;
-        int expected3 = 1191;
+        int expected3 = 1198;
 
         assertEquals(expected,actual);
         assertEquals(expected1,actual1);
