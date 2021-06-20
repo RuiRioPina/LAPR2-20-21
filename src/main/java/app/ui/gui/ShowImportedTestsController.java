@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Scene controller to show Imported Tests.
+ */
 public class ShowImportedTestsController  implements Initializable {
     private MenuLabCooGUISceneController menu;
     private App app;
@@ -22,12 +25,21 @@ public class ShowImportedTestsController  implements Initializable {
         this.app = App.getInstance();
     }
 
+    /**
+     * Method of association.
+     * @param menuLabCooGUISceneController - menu Lab Coordinator.
+     */
     public void associarParentUI(MenuLabCooGUISceneController menuLabCooGUISceneController) {
     this.menu = menuLabCooGUISceneController;
     }
     @FXML
     private ListView<Test> listView;
 
+    /**
+     * Method to set java fx elements.
+     * @param url - The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle - The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         importedTests = App.getInstance().getCompany().getImportedTests();
