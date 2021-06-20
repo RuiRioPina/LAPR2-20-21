@@ -5,9 +5,11 @@ import app.domain.store.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * Controller class to register and import Tests.
+ */
 public class TestController {
     private Company company;
     private Test test;

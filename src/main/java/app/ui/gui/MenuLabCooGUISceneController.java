@@ -46,9 +46,12 @@ public class MenuLabCooGUISceneController {
         return this.controller;
     }
 
+    /**
+     * Menu Import Tests.
+     * @param event - event.
+     */
     @FXML
-
-    public void menuImportTestsAction(ActionEvent event) throws IOException, InterruptedException {
+    public void menuImportTestsAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(((Node) event.getTarget()).getScene().getWindow());
         String path = file.getAbsolutePath();
