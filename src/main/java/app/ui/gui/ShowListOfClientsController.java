@@ -122,20 +122,6 @@ public class ShowListOfClientsController implements Initializable {
     }
 
 
-    @FXML
-    private void clickShowTests(ActionEvent event) {
-        Client client = tableView.getSelectionModel().getSelectedItem();
-        if (client == null) {
-            Utils.createAlert(Alert.AlertType.ERROR, "Error", "You must select a client");
-        } else {
-            Stage stage1 = loadViewTestsUi(client);
-            if (stage1 == null) {
-                return;
-            }
-            stage1.showAndWait();
-        }
-    }
-
     private Stage loadViewTestsUi(Client client) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowTestsFromSelectedClientsScene.fxml"));

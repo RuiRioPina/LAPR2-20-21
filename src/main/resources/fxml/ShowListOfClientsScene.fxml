@@ -17,14 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.gui.ShowListOfClientsController">
     <bottom>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="btnShowTests" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickShowTests" text="Show Tests" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Italic" size="18.0" />
-                    </font></Button>
-            </children>
-        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
     </bottom>
     <center>
         <VBox fx:id="vBox" alignment="CENTER" prefHeight="356.0" prefWidth="680.0" BorderPane.alignment="CENTER">
