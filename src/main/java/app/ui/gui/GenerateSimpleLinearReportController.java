@@ -6,7 +6,12 @@ import app.ui.gui.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -103,8 +108,12 @@ private Company company;
     private Button btnYes;
 
 
-
+    /**
+     * Method for clicking the generateReportButton , it takes all the data and creates a String and then shows it in a text area
+     * @param event- clicking the button
+     */
     @FXML
+
     void generateReportButton(ActionEvent event) {
         String resultString = "";
         Company company = App.getInstance().getCompany();
@@ -172,6 +181,11 @@ private Company company;
         }else Utils.createAlert(Alert.AlertType.ERROR,"Invalid data","The significance numbers cant be bigger than 1 or smaller than 0");
 
     }
+
+    /**
+     * Sends the text in the text area to the NHS.
+     * @param event-clicking the button
+     */
     @FXML
     void btnYesClick(ActionEvent event) {
 App.getInstance().getCompany().sendReportToNHS(txaShowReport.getText());
@@ -190,6 +204,11 @@ App.getInstance().getCompany().sendReportToNHS(txaShowReport.getText());
 
     private ChooseLinearRegressionController chooseLinearRegressionController;
 
+    /**
+     * Initialization for the controller
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cboxIndependentVariable.getItems().add("Total tests Performed");
@@ -202,10 +221,19 @@ App.getInstance().getCompany().sendReportToNHS(txaShowReport.getText());
         btnYes.setVisible(false);
     }
 
+    /**
+     * Associates the parent UI, in this case the chooseLinearRegressionController
+     * @param chooseLinearRegressionController- the controller of the parentUI.
+     */
     public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
         this.chooseLinearRegressionController = chooseLinearRegressionController;
     }
 
+    /**
+     * checks if a string is a number and then checks if that number is bigger than 0 and smaller than 1
+     * @param numberString- string with the number
+     * @return
+     */
     private boolean verifySignificanceNumber(String numberString) {
         boolean validation=false;
         try {
@@ -220,17 +248,33 @@ App.getInstance().getCompany().sendReportToNHS(txaShowReport.getText());
          return validation;
     }
 
+    /**
+     * Creates a calendar object using a date String
+     * @param year-year
+     * @param month-month
+     * @param day-day
+     * @return
+     */
     private Calendar getDateFromDatePicker(int year,int month,int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month-1, day);
         return calendar;
     }
+
+    /**
+     * Sets the yes button visible
+     */
     private void setBtnYesVisible(){
         btnYes.setVisible(true);
     }
+
+    /**
+     * Sets the send report label visible
+     */
     private void setLblSendReportVisible(){
         lblSendReport.setVisible(true);
     }
+
 
 
 

@@ -430,6 +430,10 @@ public class Test implements Serializable {
         return String.format("%s", this.chemicalAnalysisDate);
     }
 
+    /**
+     * Calculates the age of the client that performed the test
+     * @return the age of the client
+     */
     public int calculateAge() {
         LocalDate currentDate = LocalDate.now();
         String date = this.getClient().getBirthDate();
@@ -447,7 +451,7 @@ public class Test implements Serializable {
             LocalDate.of(Integer.parseInt(arrString[2]), Integer.parseInt(arrString[1]), Integer.parseInt(arrString[0]));
 
         } catch (DateTimeException e) {
-            return 30;
+            return 39;
         }
         LocalDate birthDate = LocalDate.of(Integer.parseInt(arrString[2]), Integer.parseInt(arrString[1]), Integer.parseInt(arrString[0]));
         return Period.between(birthDate, currentDate).getYears();

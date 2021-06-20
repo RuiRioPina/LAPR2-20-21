@@ -28,7 +28,7 @@ public class LinearRegression {
     private final double[] arrayY;
     private final static double k = 1;
     private final static double SR_DEGREES_OF_FREEDOM=1;
-    private final double SEDegreesOfFreedom;
+    private final double sEDegreesOfFreedom;
 
     /**
      * Performs a linear regression on the data points (y[i], x[i]).
@@ -81,7 +81,7 @@ public class LinearRegression {
         double svar = rss / degreesOfFreedom;
         svar1 = svar / xxbar;
         svar0 = svar / n + xbar * xbar * svar1;
-        this.SEDegreesOfFreedom=arrayX.length-2;
+        this.sEDegreesOfFreedom =arrayX.length-2;
     }
 
     /**
@@ -155,26 +155,41 @@ public class LinearRegression {
         return s.toString();
     }
 
+    /**
+     * Returns the r2 adjusted value of the linear regression model.
+     * @return r2 adjusted value
+     */
     public double R2Adjusted() {
         double topRow = (1 - this.R2()) * (this.n - 1);
         double bottomRow = this.n - k - 1;
         return 1 - (topRow / bottomRow);
     }
+
+    /**
+     * Returns the r value of the linear regression model.
+     * @return r value
+     */
     public double R(){
         return Math.sqrt(this.R2());
     }
 
-    public double[] arrayYthroughRegressionModel() {
+    /**
+     * Gives a double array with the y values recalculated through the linear regression model.
+     * @return double with the y values recalculated.
+     */
+    private double[] arrayYthroughRegressionModel() {
         double[] yThroughRegressionModel = new double[this.arrayY.length];
         for (int i = 0; i < yThroughRegressionModel.length; i++) {
             yThroughRegressionModel[i] = this.slope * this.arrayX[i] + this.intercept;
         }
         return yThroughRegressionModel;
     }
-    public double getR2() {
-        return r2;
-    }
-    public double calculateS() {
+
+    /**
+     * Calculates the S value of the linear regression model.
+     * @return the s value.
+     */
+    private double calculateS() {
         double total = 0;
         double[] yThroughRegressionModelMinusGivenYarray = new double[this.arrayY.length];
         for (int i = 0; i < yThroughRegressionModelMinusGivenYarray.length; i++) {
@@ -187,11 +202,20 @@ public class LinearRegression {
         return Math.sqrt((double) 1 / (this.arrayX.length - 2) * (total));
     }
 
+    /**
+     * Calculates a hypothesis test for a certain A parameter .
+     * @param aParameter - a Parametr to be used.
+     * @return the result of the t observated for that parameter
+     */
     public double testCalculationforAparameter(double aParameter) {
         double xxbar = xxBar();
         return Math.abs((this.intercept - aParameter) / (this.calculateS() * (Math.sqrt((double) 1 / this.arrayX.length + (Math.pow(arrayAverage(arrayX), 2) / xxbar)))));
     }
 
+    /**
+     * Calculates the xxBar  of the linear regression model.
+     * @return xxBar value
+     */
     public double xxBar() {
         double xTotal = 0;
         double xSquaredTotal = 0;
@@ -208,13 +232,22 @@ public class LinearRegression {
         return xxbar;
     }
 
+    /**
+     * Calculates a hypothesis test for a certain b parameter .
+     * @param bParameter - a Parametr to be used.
+     * @return the result of the t observated for that parameter
+     */
     public double testCalculationforBparameter(double bParameter) {
         double xxbar = xxBar();
         return Math.abs((this.slope - bParameter) / this.calculateS() * (Math.sqrt(xxbar)));
     }
-/*
-significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
- */
+
+
+    /**
+     * Gets a t student value from the table using a significance.
+     * @param significance desired significance
+     * @return the t student value using that significance and the values of the degrees of freedom.
+     */
     public double getTStudentFromTable(double significance) {
         TDistribution td = new TDistribution(arrayX.length - 2);
         double alphaTD = significance / 2;
@@ -228,7 +261,11 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         return critTD;
     }
 
-
+    /**
+     * Calculates the average for an array of doubles
+     * @param arr- array to be used.
+     * @return average of an array.
+     */
     private double arrayAverage(double[] arr) {
         double total = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -237,6 +274,10 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         return total / arr.length;
     }
 
+    /**
+     * Calculates the Anova SR Value of the linear regression model.
+     * @return Anova SR Value.
+     */
     public double calculateAnovaSR() {
         double SRValue = 0;
         double[] yThroughRegressionModel = this.arrayYthroughRegressionModel();
@@ -246,6 +287,10 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         return SRValue;
     }
 
+    /**
+     * Calculates the Anova SE Value of the linear regression model.
+     * @return Anova SE Value.
+     */
     public double calculateAnovaSE() {
         double SEValue = 0;
         double[] yThroughRegressionModel = this.arrayYthroughRegressionModel();
@@ -254,32 +299,76 @@ significance vem em decimal(ie:intervalo de confiança 95%=significance=0.05
         }
         return SEValue;
     }
+
+    /**
+     * Calculates the Anova ST Value of the linear regression model.
+     * @return Anova ST Value.
+     */
     public double calculateAnovaST(){
         return  calculateAnovaSR()+calculateAnovaSE();
     }
+
+    /**
+     * Calculates the Anova MSR Value of the linear regression model.
+     * @return Anova MSR Value.
+     */
     public double calculateAnovaMSR(){
         return  calculateAnovaSR()/1;
     }
+
+    /**
+     * Calculates the Anova MSE Value of the linear regression model.
+     * @return Anova MSE Value.
+     */
     public double calculateAnovaMSE(){
         return calculateAnovaSE()/(arrayX.length-2);
     }
+
+    /**
+     * Calculates the Anova F Value of the linear regression model.
+     * @return Anova F Value.
+     */
     public double calculateTestF(){
         return calculateAnovaMSR()/calculateAnovaMSE();
     }
+
+    /**
+     * Gives the FSnedcor from the table using the SR degrees of freedom and the SE degrees of freedom and significance.
+     * @param significance the desired significance.
+     * @return the FSnedcor from the table.
+     */
     public double getFSnedcorFromTable(double significance){
-        FDistribution fd= new FDistribution(SR_DEGREES_OF_FREEDOM,SEDegreesOfFreedom);
+        FDistribution fd= new FDistribution(SR_DEGREES_OF_FREEDOM, sEDegreesOfFreedom);
         double alphaFD= significance;
         double critFD= fd.inverseCumulativeProbability(1- alphaFD);
         return critFD;
 
     }
+
+    /**
+     * Calculates the Anova residual DF Value of the linear regression model.
+     * @return residual DFValue.
+     */
     public int getResidualDF(){
         return arrayX.length-2;
     }
+
+    /**
+     * Calculates a delta value for a certain X value with a significance value
+     * @param significance the desired significance
+     * @param x the x value to be predicted.
+     * @return
+     */
     public double delta(double significance,double x){
         return getTStudentFromTable(significance)*calculateS()*Math.sqrt(((double) 1/arrayX.length)+(Math.pow(x-arrayAverage(arrayX),2)/xxBar()));
     }
+
+    /**
+     * Calculates the Regression DF Value of the linear regression model.
+     * @return Regression DF Value.
+     */
     public int getRegressionDF(){
         return  1;
     }
+
 }

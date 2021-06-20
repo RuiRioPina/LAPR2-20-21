@@ -92,6 +92,12 @@ public class GenerateMultiLinearReportController implements Initializable {
     @FXML
     private Label lblSendReportM;
     private ChooseLinearRegressionController chooseLinearRegressionController;
+
+    /**
+     * Initialization for the controller.
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cboxHistoricalPointType.getItems().add("Days");
@@ -100,10 +106,19 @@ public class GenerateMultiLinearReportController implements Initializable {
         lblSendReportM.setVisible(false);
         btnYesM.setVisible(false);
     }
+
+    /**
+     * Associates the Parent UI, in this case , the chooseLinearRegressionController
+     * @param chooseLinearRegressionController
+     */
     public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
         this.chooseLinearRegressionController = chooseLinearRegressionController;
     }
 
+    /**
+     * Method for clicking the generateReportButton , it takes all the data and creates a String and then shows it in a text area
+     * @param event- clicking the button
+     */
     @FXML
     void generateReportButton(ActionEvent event) {
         String resultString = "";
@@ -141,23 +156,46 @@ public class GenerateMultiLinearReportController implements Initializable {
         else Utils.createAlert(Alert.AlertType.ERROR,"Invalid data","The significance numbers cant be bigger than 1 or smaller than 0");
     }
 
-
+    /**
+     * Method for clicking the yes button, sends the text in the text area to the nhs
+     * @param event- clicking the yes button
+     */
     @FXML
     void btnYesClick(ActionEvent event) {
         App.getInstance().getCompany().sendReportToNHS(txaShowReportM.getText());
 
     }
+    /**
+     * Creates a calendar object using a date String
+     * @param year-year
+     * @param month-month
+     * @param day-day
+     * @return
+     */
     private Calendar getDateFromDatePicker(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month-1, day);
         return calendar;
     }
+
+    /**
+     * Sets the yes button visible
+     */
     private void setBtnYesMVisible(){
         btnYesM.setVisible(true);
     }
+
+    /**
+     * Sets the send report Label Visible
+     */
     private void setLblSendReportMVisible(){
         lblSendReportM.setVisible(true);
     }
+    /**
+     * checks if a string is a number and then checks if that number is bigger than 0 and smaller than 1
+     * @param numberString- string with the number
+     * @return
+     */
     private boolean verifySignificanceNumber(String numberString) {
         boolean validation=false;
         try {

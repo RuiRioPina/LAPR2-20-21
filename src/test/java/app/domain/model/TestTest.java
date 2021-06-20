@@ -864,6 +864,6 @@ public class TestTest {
         app.domain.model.Test t = ts.createTest("abcdefghijkl", "900000000000", c, tt1, pc, par, data);
         assertEquals(19,t.calculateAge());
         app.domain.model.Test t2 = ts.createTest("abcdefghijks", "900000000001", c2, tt1, pc, par, data);
-        assertEquals(30,t2.calculateAge());
+        assertEquals(39,t2.calculateAge());
     }
 }
