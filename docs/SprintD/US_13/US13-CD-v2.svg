@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1887px" preserveAspectRatio="none" style="width:561px;height:1887px;background:#FFFFFF;" version="1.1" viewBox="0 0 561 1887" width="561px" zoomAndPan="magnify"><defs><filter height="300%" id="f5fqxdddebaff" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[ed6624c6556d5e7b1bd23032162d20b7]
+class Client--><rect codeLine="3" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="176.0469" id="Client" style="stroke:#A80036;stroke-width:1.5;" width="127" x="39" y="1268"/><ellipse cx="81.9" cy="1284" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M84.2438,1279.6719 C83.3063,1279.2344 82.7125,1279.0938 81.8375,1279.0938 C79.2125,1279.0938 77.2125,1281.1719 77.2125,1283.8906 L77.2125,1285.0156 C77.2125,1287.5938 79.3219,1289.4844 82.2125,1289.4844 C83.4313,1289.4844 84.5875,1289.1875 85.3375,1288.6406 C85.9156,1288.2344 86.2438,1287.7813 86.2438,1287.3906 C86.2438,1286.9375 85.8531,1286.5469 85.3844,1286.5469 C85.1656,1286.5469 84.9625,1286.625 84.775,1286.8125 C84.3219,1287.2969 84.3219,1287.2969 84.1344,1287.3906 C83.7125,1287.6563 83.025,1287.7813 82.2594,1287.7813 C80.2125,1287.7813 78.9156,1286.6875 78.9156,1284.9844 L78.9156,1283.8906 C78.9156,1282.1094 80.1656,1280.7969 81.9,1280.7969 C82.4781,1280.7969 83.0875,1280.9531 83.5563,1281.2031 C84.0406,1281.4844 84.2125,1281.7031 84.3063,1282.1094 C84.3688,1282.5156 84.4,1282.6406 84.5406,1282.7656 C84.6813,1282.9063 84.9156,1283.0156 85.1344,1283.0156 C85.4,1283.0156 85.6656,1282.875 85.8375,1282.6563 C85.9469,1282.5 85.9781,1282.3125 85.9781,1281.8906 L85.9781,1280.4688 C85.9781,1280.0313 85.9625,1279.9063 85.8688,1279.75 C85.7125,1279.4844 85.4313,1279.3438 85.1344,1279.3438 C84.8375,1279.3438 84.6344,1279.4375 84.4156,1279.75 L84.2438,1279.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="33" x="102.1" y="1288.1543">Client</text><line style="stroke:#A80036;stroke-width:1.5;" x1="40" x2="165" y1="1300" y2="1300"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="53" x="45" y="1314.2104">-ccn:long;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="45" y="1327.0151">-nhsNumber:long;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="96" x="45" y="1339.8198">-birthDate:String;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="45" y="1352.6245">-tin:long;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="45" y="1365.4292">-phoneNumber:long;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="64" x="45" y="1378.2339">-sex:String;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="45" y="1391.0386">-email:String;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="45" y="1403.8433">-name:String;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="96" x="45" y="1416.6479">-password:String;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="40" x2="165" y1="1423.2422" y2="1423.2422"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="45" y="1437.4526">+toString()</text><!--MD5=[594612147f950995a18c1e6474349bc0]
+class ClientList--><rect codeLine="18" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="73.6094" id="ClientList" style="stroke:#A80036;stroke-width:1.5;" width="191" x="7" y="1059.5"/><ellipse cx="71.75" cy="1075.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M74.0938,1071.1719 C73.1563,1070.7344 72.5625,1070.5938 71.6875,1070.5938 C69.0625,1070.5938 67.0625,1072.6719 67.0625,1075.3906 L67.0625,1076.5156 C67.0625,1079.0938 69.1719,1080.9844 72.0625,1080.9844 C73.2813,1080.9844 74.4375,1080.6875 75.1875,1080.1406 C75.7656,1079.7344 76.0938,1079.2813 76.0938,1078.8906 C76.0938,1078.4375 75.7031,1078.0469 75.2344,1078.0469 C75.0156,1078.0469 74.8125,1078.125 74.625,1078.3125 C74.1719,1078.7969 74.1719,1078.7969 73.9844,1078.8906 C73.5625,1079.1563 72.875,1079.2813 72.1094,1079.2813 C70.0625,1079.2813 68.7656,1078.1875 68.7656,1076.4844 L68.7656,1075.3906 C68.7656,1073.6094 70.0156,1072.2969 71.75,1072.2969 C72.3281,1072.2969 72.9375,1072.4531 73.4063,1072.7031 C73.8906,1072.9844 74.0625,1073.2031 74.1563,1073.6094 C74.2188,1074.0156 74.25,1074.1406 74.3906,1074.2656 C74.5313,1074.4063 74.7656,1074.5156 74.9844,1074.5156 C75.25,1074.5156 75.5156,1074.375 75.6875,1074.1563 C75.7969,1074 75.8281,1073.8125 75.8281,1073.3906 L75.8281,1071.9688 C75.8281,1071.5313 75.8125,1071.4063 75.7188,1071.25 C75.5625,1070.9844 75.2813,1070.8438 74.9844,1070.8438 C74.6875,1070.8438 74.4844,1070.9375 74.2656,1071.25 L74.0938,1071.1719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="92.25" y="1079.6543">ClientList</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="197" y1="1091.5" y2="1091.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="197" y1="1099.5" y2="1099.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="13" y="1113.7104">+getClients()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="179" x="13" y="1126.5151">+showListOfClientsRegistered()</text><!--MD5=[02e4b9b7573f1156f41e60aa5b4e25a4]
+class Company--><rect codeLine="23" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="60.8047" id="Company" style="stroke:#A80036;stroke-width:1.5;" width="100" x="68.5" y="819.5"/><ellipse cx="88.9" cy="835.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M91.2438,831.1719 C90.3063,830.7344 89.7125,830.5938 88.8375,830.5938 C86.2125,830.5938 84.2125,832.6719 84.2125,835.3906 L84.2125,836.5156 C84.2125,839.0938 86.3219,840.9844 89.2125,840.9844 C90.4313,840.9844 91.5875,840.6875 92.3375,840.1406 C92.9156,839.7344 93.2438,839.2813 93.2438,838.8906 C93.2438,838.4375 92.8531,838.0469 92.3844,838.0469 C92.1656,838.0469 91.9625,838.125 91.775,838.3125 C91.3219,838.7969 91.3219,838.7969 91.1344,838.8906 C90.7125,839.1563 90.025,839.2813 89.2594,839.2813 C87.2125,839.2813 85.9156,838.1875 85.9156,836.4844 L85.9156,835.3906 C85.9156,833.6094 87.1656,832.2969 88.9,832.2969 C89.4781,832.2969 90.0875,832.4531 90.5563,832.7031 C91.0406,832.9844 91.2125,833.2031 91.3063,833.6094 C91.3688,834.0156 91.4,834.1406 91.5406,834.2656 C91.6813,834.4063 91.9156,834.5156 92.1344,834.5156 C92.4,834.5156 92.6656,834.375 92.8375,834.1563 C92.9469,834 92.9781,833.8125 92.9781,833.3906 L92.9781,831.9688 C92.9781,831.5313 92.9625,831.4063 92.8688,831.25 C92.7125,830.9844 92.4313,830.8438 92.1344,830.8438 C91.8375,830.8438 91.6344,830.9375 91.4156,831.25 L91.2438,831.1719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="56" x="104.1" y="839.6543">Company</text><line style="stroke:#A80036;stroke-width:1.5;" x1="69.5" x2="167.5" y1="851.5" y2="851.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="69.5" x2="167.5" y1="859.5" y2="859.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="74.5" y="873.7104">+getClientList()</text><!--MD5=[df38be88ccee13e832d6fafd6288a4ca]
+class Test--><rect codeLine="28" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="48" id="Test" style="stroke:#A80036;stroke-width:1.5;" width="58" x="73.5" y="1566"/><ellipse cx="88.5" cy="1582" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M90.8438,1577.6719 C89.9063,1577.2344 89.3125,1577.0938 88.4375,1577.0938 C85.8125,1577.0938 83.8125,1579.1719 83.8125,1581.8906 L83.8125,1583.0156 C83.8125,1585.5938 85.9219,1587.4844 88.8125,1587.4844 C90.0313,1587.4844 91.1875,1587.1875 91.9375,1586.6406 C92.5156,1586.2344 92.8438,1585.7813 92.8438,1585.3906 C92.8438,1584.9375 92.4531,1584.5469 91.9844,1584.5469 C91.7656,1584.5469 91.5625,1584.625 91.375,1584.8125 C90.9219,1585.2969 90.9219,1585.2969 90.7344,1585.3906 C90.3125,1585.6563 89.625,1585.7813 88.8594,1585.7813 C86.8125,1585.7813 85.5156,1584.6875 85.5156,1582.9844 L85.5156,1581.8906 C85.5156,1580.1094 86.7656,1578.7969 88.5,1578.7969 C89.0781,1578.7969 89.6875,1578.9531 90.1563,1579.2031 C90.6406,1579.4844 90.8125,1579.7031 90.9063,1580.1094 C90.9688,1580.5156 91,1580.6406 91.1406,1580.7656 C91.2813,1580.9063 91.5156,1581.0156 91.7344,1581.0156 C92,1581.0156 92.2656,1580.875 92.4375,1580.6563 C92.5469,1580.5 92.5781,1580.3125 92.5781,1579.8906 L92.5781,1578.4688 C92.5781,1578.0313 92.5625,1577.9063 92.4688,1577.75 C92.3125,1577.4844 92.0313,1577.3438 91.7344,1577.3438 C91.4375,1577.3438 91.2344,1577.4375 91.0156,1577.75 L90.8438,1577.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="26" x="102.5" y="1586.1543">Test</text><line style="stroke:#A80036;stroke-width:1.5;" x1="74.5" x2="130.5" y1="1598" y2="1598"/><line style="stroke:#A80036;stroke-width:1.5;" x1="74.5" x2="130.5" y1="1606" y2="1606"/><!--MD5=[e27cb01a39563223b22d42504ec96d07]
+class TestResult--><rect codeLine="32" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="137.6328" id="TestResult" style="stroke:#A80036;stroke-width:1.5;" width="285" x="191" y="1736"/><ellipse cx="298.25" cy="1752" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M300.5938,1747.6719 C299.6563,1747.2344 299.0625,1747.0938 298.1875,1747.0938 C295.5625,1747.0938 293.5625,1749.1719 293.5625,1751.8906 L293.5625,1753.0156 C293.5625,1755.5938 295.6719,1757.4844 298.5625,1757.4844 C299.7813,1757.4844 300.9375,1757.1875 301.6875,1756.6406 C302.2656,1756.2344 302.5938,1755.7813 302.5938,1755.3906 C302.5938,1754.9375 302.2031,1754.5469 301.7344,1754.5469 C301.5156,1754.5469 301.3125,1754.625 301.125,1754.8125 C300.6719,1755.2969 300.6719,1755.2969 300.4844,1755.3906 C300.0625,1755.6563 299.375,1755.7813 298.6094,1755.7813 C296.5625,1755.7813 295.2656,1754.6875 295.2656,1752.9844 L295.2656,1751.8906 C295.2656,1750.1094 296.5156,1748.7969 298.25,1748.7969 C298.8281,1748.7969 299.4375,1748.9531 299.9063,1749.2031 C300.3906,1749.4844 300.5625,1749.7031 300.6563,1750.1094 C300.7188,1750.5156 300.75,1750.6406 300.8906,1750.7656 C301.0313,1750.9063 301.2656,1751.0156 301.4844,1751.0156 C301.75,1751.0156 302.0156,1750.875 302.1875,1750.6563 C302.2969,1750.5 302.3281,1750.3125 302.3281,1749.8906 L302.3281,1748.4688 C302.3281,1748.0313 302.3125,1747.9063 302.2188,1747.75 C302.0625,1747.4844 301.7813,1747.3438 301.4844,1747.3438 C301.1875,1747.3438 300.9844,1747.4375 300.7656,1747.75 L300.5938,1747.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="62" x="318.75" y="1756.1543">TestResult</text><line style="stroke:#A80036;stroke-width:1.5;" x1="192" x2="475" y1="1768" y2="1768"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="193" x="197" y="1782.2104">-referenceValue:ReferenceValue;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="81" x="197" y="1795.0151">-result:double;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="129" x="197" y="1807.8198">-parameter:Parameter;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="192" x2="475" y1="1814.4141" y2="1814.4141"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="273" x="197" y="1828.6245">+TestResult(parameter, result, referenceValue)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="71" x="197" y="1841.4292">+getResult()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="129" x="197" y="1854.2339">+getReferenceValue()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="197" y="1867.0386">+toString()</text><!--MD5=[0f6f7964b844a64b0496af0dda7914bd]
+class TestStore--><rect codeLine="42" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="60.8047" id="TestStore" style="stroke:#A80036;stroke-width:1.5;" width="121" x="35" y="1774.5"/><ellipse cx="63.5" cy="1790.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M65.8438,1786.1719 C64.9063,1785.7344 64.3125,1785.5938 63.4375,1785.5938 C60.8125,1785.5938 58.8125,1787.6719 58.8125,1790.3906 L58.8125,1791.5156 C58.8125,1794.0938 60.9219,1795.9844 63.8125,1795.9844 C65.0313,1795.9844 66.1875,1795.6875 66.9375,1795.1406 C67.5156,1794.7344 67.8438,1794.2813 67.8438,1793.8906 C67.8438,1793.4375 67.4531,1793.0469 66.9844,1793.0469 C66.7656,1793.0469 66.5625,1793.125 66.375,1793.3125 C65.9219,1793.7969 65.9219,1793.7969 65.7344,1793.8906 C65.3125,1794.1563 64.625,1794.2813 63.8594,1794.2813 C61.8125,1794.2813 60.5156,1793.1875 60.5156,1791.4844 L60.5156,1790.3906 C60.5156,1788.6094 61.7656,1787.2969 63.5,1787.2969 C64.0781,1787.2969 64.6875,1787.4531 65.1563,1787.7031 C65.6406,1787.9844 65.8125,1788.2031 65.9063,1788.6094 C65.9688,1789.0156 66,1789.1406 66.1406,1789.2656 C66.2813,1789.4063 66.5156,1789.5156 66.7344,1789.5156 C67,1789.5156 67.2656,1789.375 67.4375,1789.1563 C67.5469,1789 67.5781,1788.8125 67.5781,1788.3906 L67.5781,1786.9688 C67.5781,1786.5313 67.5625,1786.4063 67.4688,1786.25 C67.3125,1785.9844 67.0313,1785.8438 66.7344,1785.8438 C66.4375,1785.8438 66.2344,1785.9375 66.0156,1786.25 L65.8438,1786.1719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="59" x="80.5" y="1794.6543">TestStore</text><line style="stroke:#A80036;stroke-width:1.5;" x1="36" x2="155" y1="1806.5" y2="1806.5"/><line style="stroke:#A80036;stroke-width:1.5;" x1="36" x2="155" y1="1814.5" y2="1814.5"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="109" x="41" y="1828.7104">+getTestByClient()</text><!--MD5=[1f6362a5c8f21d8d6a0fce68f3a92a4e]
+class Parameter--><rect codeLine="46" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="137.6328" id="Parameter" style="stroke:#A80036;stroke-width:1.5;" width="183" x="235" y="1521"/><ellipse cx="291.75" cy="1537" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M294.0938,1532.6719 C293.1563,1532.2344 292.5625,1532.0938 291.6875,1532.0938 C289.0625,1532.0938 287.0625,1534.1719 287.0625,1536.8906 L287.0625,1538.0156 C287.0625,1540.5938 289.1719,1542.4844 292.0625,1542.4844 C293.2813,1542.4844 294.4375,1542.1875 295.1875,1541.6406 C295.7656,1541.2344 296.0938,1540.7813 296.0938,1540.3906 C296.0938,1539.9375 295.7031,1539.5469 295.2344,1539.5469 C295.0156,1539.5469 294.8125,1539.625 294.625,1539.8125 C294.1719,1540.2969 294.1719,1540.2969 293.9844,1540.3906 C293.5625,1540.6563 292.875,1540.7813 292.1094,1540.7813 C290.0625,1540.7813 288.7656,1539.6875 288.7656,1537.9844 L288.7656,1536.8906 C288.7656,1535.1094 290.0156,1533.7969 291.75,1533.7969 C292.3281,1533.7969 292.9375,1533.9531 293.4063,1534.2031 C293.8906,1534.4844 294.0625,1534.7031 294.1563,1535.1094 C294.2188,1535.5156 294.25,1535.6406 294.3906,1535.7656 C294.5313,1535.9063 294.7656,1536.0156 294.9844,1536.0156 C295.25,1536.0156 295.5156,1535.875 295.6875,1535.6563 C295.7969,1535.5 295.8281,1535.3125 295.8281,1534.8906 L295.8281,1533.4688 C295.8281,1533.0313 295.8125,1532.9063 295.7188,1532.75 C295.5625,1532.4844 295.2813,1532.3438 294.9844,1532.3438 C294.6875,1532.3438 294.4844,1532.4375 294.2656,1532.75 L294.0938,1532.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="61" x="312.25" y="1541.1543">Parameter</text><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="417" y1="1553" y2="1553"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="71" x="241" y="1567.2104">-code:String;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="241" y="1580.0151">-shortname:String;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="109" x="241" y="1592.8198">-description:String ;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="131" x="241" y="1605.6245">-testResult:TestResult ;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="171" x="241" y="1618.4292">-pc:List&lt;ParameterCategory&gt;;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="236" x2="417" y1="1625.0234" y2="1625.0234"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="96" x="241" y="1639.2339">+getTestResult()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="241" y="1652.0386">+toString()</text><!--MD5=[6c797f73c826faa9fed657cc1c5253c2]
+class AuthGUISceneController--><rect codeLine="56" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="124.8281" id="AuthGUISceneController" style="stroke:#A80036;stroke-width:1.5;" width="293" x="124" y="218"/><ellipse cx="194.25" cy="234" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M196.5938,229.6719 C195.6563,229.2344 195.0625,229.0938 194.1875,229.0938 C191.5625,229.0938 189.5625,231.1719 189.5625,233.8906 L189.5625,235.0156 C189.5625,237.5938 191.6719,239.4844 194.5625,239.4844 C195.7813,239.4844 196.9375,239.1875 197.6875,238.6406 C198.2656,238.2344 198.5938,237.7813 198.5938,237.3906 C198.5938,236.9375 198.2031,236.5469 197.7344,236.5469 C197.5156,236.5469 197.3125,236.625 197.125,236.8125 C196.6719,237.2969 196.6719,237.2969 196.4844,237.3906 C196.0625,237.6563 195.375,237.7813 194.6094,237.7813 C192.5625,237.7813 191.2656,236.6875 191.2656,234.9844 L191.2656,233.8906 C191.2656,232.1094 192.5156,230.7969 194.25,230.7969 C194.8281,230.7969 195.4375,230.9531 195.9063,231.2031 C196.3906,231.4844 196.5625,231.7031 196.6563,232.1094 C196.7188,232.5156 196.75,232.6406 196.8906,232.7656 C197.0313,232.9063 197.2656,233.0156 197.4844,233.0156 C197.75,233.0156 198.0156,232.875 198.1875,232.6563 C198.2969,232.5 198.3281,232.3125 198.3281,231.8906 L198.3281,230.4688 C198.3281,230.0313 198.3125,229.9063 198.2188,229.75 C198.0625,229.4844 197.7813,229.3438 197.4844,229.3438 C197.1875,229.3438 196.9844,229.4375 196.7656,229.75 L196.5938,229.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="144" x="214.75" y="238.1543">AuthGUISceneController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="125" x2="416" y1="250" y2="250"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="81" x="130" y="264.2104">-lblInitial:Label</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="105" x="130" y="277.0151">-txtLogin:TextField</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="127" x="130" y="289.8198">-txtPassword:TextField</text><line style="stroke:#A80036;stroke-width:1.5;" x1="125" x2="416" y1="296.4141" y2="296.4141"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="166" x="130" y="310.6245">-menuLoginSairAction(event)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="281" x="130" y="323.4292">+associarParentUI(mainMenuGUISceneController)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="204" x="130" y="336.2339">+menuLoginConfirmarAction(event)</text><!--MD5=[7781b1364a08f951cf04d8f303c03619]
+class MenuCctGUISceneController--><rect codeLine="65" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="86.4141" id="MenuCctGUISceneController" style="stroke:#A80036;stroke-width:1.5;" width="293" x="124" y="404"/><ellipse cx="181.75" cy="420" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M184.0938,415.6719 C183.1563,415.2344 182.5625,415.0938 181.6875,415.0938 C179.0625,415.0938 177.0625,417.1719 177.0625,419.8906 L177.0625,421.0156 C177.0625,423.5938 179.1719,425.4844 182.0625,425.4844 C183.2813,425.4844 184.4375,425.1875 185.1875,424.6406 C185.7656,424.2344 186.0938,423.7813 186.0938,423.3906 C186.0938,422.9375 185.7031,422.5469 185.2344,422.5469 C185.0156,422.5469 184.8125,422.625 184.625,422.8125 C184.1719,423.2969 184.1719,423.2969 183.9844,423.3906 C183.5625,423.6563 182.875,423.7813 182.1094,423.7813 C180.0625,423.7813 178.7656,422.6875 178.7656,420.9844 L178.7656,419.8906 C178.7656,418.1094 180.0156,416.7969 181.75,416.7969 C182.3281,416.7969 182.9375,416.9531 183.4063,417.2031 C183.8906,417.4844 184.0625,417.7031 184.1563,418.1094 C184.2188,418.5156 184.25,418.6406 184.3906,418.7656 C184.5313,418.9063 184.7656,419.0156 184.9844,419.0156 C185.25,419.0156 185.5156,418.875 185.6875,418.6563 C185.7969,418.5 185.8281,418.3125 185.8281,417.8906 L185.8281,416.4688 C185.8281,416.0313 185.8125,415.9063 185.7188,415.75 C185.5625,415.4844 185.2813,415.3438 184.9844,415.3438 C184.6875,415.3438 184.4844,415.4375 184.2656,415.75 L184.0938,415.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="169" x="202.25" y="424.1543">MenuCctGUISceneController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="125" x2="416" y1="436" y2="436"/><line style="stroke:#A80036;stroke-width:1.5;" x1="125" x2="416" y1="444" y2="444"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="281" x="130" y="458.2104">+associarParentUI(mainMenuGUISceneController)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="106" x="130" y="471.0151">-loadViewTestsUi()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="173" x="130" y="483.8198">-menuViewTestsAction(event)</text><!--MD5=[4ce6778f22c151d71cb28d9caa07e77e]
+class ShowListOfClientsController--><rect codeLine="71" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="163.2422" id="ShowListOfClientsController" style="stroke:#A80036;stroke-width:1.5;" width="289" x="126" y="551"/><ellipse cx="183.25" cy="567" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M185.5938,562.6719 C184.6563,562.2344 184.0625,562.0938 183.1875,562.0938 C180.5625,562.0938 178.5625,564.1719 178.5625,566.8906 L178.5625,568.0156 C178.5625,570.5938 180.6719,572.4844 183.5625,572.4844 C184.7813,572.4844 185.9375,572.1875 186.6875,571.6406 C187.2656,571.2344 187.5938,570.7813 187.5938,570.3906 C187.5938,569.9375 187.2031,569.5469 186.7344,569.5469 C186.5156,569.5469 186.3125,569.625 186.125,569.8125 C185.6719,570.2969 185.6719,570.2969 185.4844,570.3906 C185.0625,570.6563 184.375,570.7813 183.6094,570.7813 C181.5625,570.7813 180.2656,569.6875 180.2656,567.9844 L180.2656,566.8906 C180.2656,565.1094 181.5156,563.7969 183.25,563.7969 C183.8281,563.7969 184.4375,563.9531 184.9063,564.2031 C185.3906,564.4844 185.5625,564.7031 185.6563,565.1094 C185.7188,565.5156 185.75,565.6406 185.8906,565.7656 C186.0313,565.9063 186.2656,566.0156 186.4844,566.0156 C186.75,566.0156 187.0156,565.875 187.1875,565.6563 C187.2969,565.5 187.3281,565.3125 187.3281,564.8906 L187.3281,563.4688 C187.3281,563.0313 187.3125,562.9063 187.2188,562.75 C187.0625,562.4844 186.7813,562.3438 186.4844,562.3438 C186.1875,562.3438 185.9844,562.4375 185.7656,562.75 L185.5938,562.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="166" x="203.75" y="571.1543">ShowListOfClientsController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="127" x2="414" y1="583" y2="583"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="132" y="597.2104">-lblTest:Label</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="175" x="132" y="610.0151">-tableView:TableView&lt;Client&gt;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="277" x="132" y="622.8198">-collumNameClient:TableColumn&lt;Client, String&gt;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="266" x="132" y="635.6245">-collumTinNumber:TableColumn&lt;Client, Long&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="127" x2="414" y1="642.2188" y2="642.2188"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="93" x="132" y="656.4292">+initialize(url,rb)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="69" x="132" y="669.2339">+getClient()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="92" x="132" y="682.0386">-clickShowTest()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="137" x="132" y="694.8433">-loadViewTestsUi(client)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="273" x="132" y="707.6479">+associarParentUI(menuCctGUISceneController)</text><!--MD5=[e797d4df52196f0f59cb9e0aa9e64daf]
+class ShowClientTestsController--><rect codeLine="83" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="150.4375" id="ShowClientTestsController" style="stroke:#A80036;stroke-width:1.5;" width="323" x="209" y="775"/><ellipse cx="287.25" cy="791" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M289.5938,786.6719 C288.6563,786.2344 288.0625,786.0938 287.1875,786.0938 C284.5625,786.0938 282.5625,788.1719 282.5625,790.8906 L282.5625,792.0156 C282.5625,794.5938 284.6719,796.4844 287.5625,796.4844 C288.7813,796.4844 289.9375,796.1875 290.6875,795.6406 C291.2656,795.2344 291.5938,794.7813 291.5938,794.3906 C291.5938,793.9375 291.2031,793.5469 290.7344,793.5469 C290.5156,793.5469 290.3125,793.625 290.125,793.8125 C289.6719,794.2969 289.6719,794.2969 289.4844,794.3906 C289.0625,794.6563 288.375,794.7813 287.6094,794.7813 C285.5625,794.7813 284.2656,793.6875 284.2656,791.9844 L284.2656,790.8906 C284.2656,789.1094 285.5156,787.7969 287.25,787.7969 C287.8281,787.7969 288.4375,787.9531 288.9063,788.2031 C289.3906,788.4844 289.5625,788.7031 289.6563,789.1094 C289.7188,789.5156 289.75,789.6406 289.8906,789.7656 C290.0313,789.9063 290.2656,790.0156 290.4844,790.0156 C290.75,790.0156 291.0156,789.875 291.1875,789.6563 C291.2969,789.5 291.3281,789.3125 291.3281,788.8906 L291.3281,787.4688 C291.3281,787.0313 291.3125,786.9063 291.2188,786.75 C291.0625,786.4844 290.7813,786.3438 290.4844,786.3438 C290.1875,786.3438 289.9844,786.4375 289.7656,786.75 L289.5938,786.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="158" x="307.75" y="795.1543">ShowClientTestsController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="210" x2="531" y1="807" y2="807"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="215" y="821.2104">-lblTest:Label</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="167" x="215" y="834.0151">-tableView:TableView&lt;Test&gt;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="264" x="215" y="846.8198">-columnnNhsCode:TableColumn&lt;Test, String&gt;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="288" x="215" y="859.6245">-columnInternalNumber:TableColumn&lt;Test, Long&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="210" x2="531" y1="866.2188" y2="866.2188"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="106" x="215" y="880.4292">+getClientsTests()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="135" x="215" y="893.2339">-clickTestDetails(event)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="311" x="215" y="906.0386">+associarParentUI(menuCctGUISceneController, client)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="106" x="215" y="918.8433">-loadViewTestsUi()</text><!--MD5=[997f4a8171533702c2dc1e3aac72aa5f]
+class ShowTestDetailsFromTestSelectedController--><rect codeLine="94" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="188.8516" id="ShowTestDetailsFromTestSelectedController" style="stroke:#A80036;stroke-width:1.5;" width="314" x="233.5" y="1002"/><ellipse cx="253.9" cy="1018" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M256.2438,1013.6719 C255.3063,1013.2344 254.7125,1013.0938 253.8375,1013.0938 C251.2125,1013.0938 249.2125,1015.1719 249.2125,1017.8906 L249.2125,1019.0156 C249.2125,1021.5938 251.3219,1023.4844 254.2125,1023.4844 C255.4313,1023.4844 256.5875,1023.1875 257.3375,1022.6406 C257.9156,1022.2344 258.2438,1021.7813 258.2438,1021.3906 C258.2438,1020.9375 257.8531,1020.5469 257.3844,1020.5469 C257.1656,1020.5469 256.9625,1020.625 256.775,1020.8125 C256.3219,1021.2969 256.3219,1021.2969 256.1344,1021.3906 C255.7125,1021.6563 255.025,1021.7813 254.2594,1021.7813 C252.2125,1021.7813 250.9156,1020.6875 250.9156,1018.9844 L250.9156,1017.8906 C250.9156,1016.1094 252.1656,1014.7969 253.9,1014.7969 C254.4781,1014.7969 255.0875,1014.9531 255.5563,1015.2031 C256.0406,1015.4844 256.2125,1015.7031 256.3063,1016.1094 C256.3688,1016.5156 256.4,1016.6406 256.5406,1016.7656 C256.6813,1016.9063 256.9156,1017.0156 257.1344,1017.0156 C257.4,1017.0156 257.6656,1016.875 257.8375,1016.6563 C257.9469,1016.5 257.9781,1016.3125 257.9781,1015.8906 L257.9781,1014.4688 C257.9781,1014.0313 257.9625,1013.9063 257.8688,1013.75 C257.7125,1013.4844 257.4313,1013.3438 257.1344,1013.3438 C256.8375,1013.3438 256.6344,1013.4375 256.4156,1013.75 L256.2438,1013.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="270" x="269.1" y="1022.1543">ShowTestDetailsFromTestSelectedController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="234.5" x2="546.5" y1="1034" y2="1034"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="253" x="239.5" y="1048.2104">-listOfParametersFromTest:List&lt;Parameter&gt;;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="260" x="239.5" y="1061.0151">-cmbBoxParameters:ComboBox&lt;Parameter&gt;;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="239.5" y="1073.8198">-lblResult:Label;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="239.5" y="1086.6245">-lblParameter:Label;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="106" x="239.5" y="1099.4292">-lblMinValue:Label;</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="110" x="239.5" y="1112.2339">-lblMaxValue:Label;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="234.5" x2="546.5" y1="1118.8281" y2="1118.8281"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="239.5" y="1133.0386">+initialize(url, rb)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="176" x="239.5" y="1145.8433">+getParametersFromTest(test)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="302" x="239.5" y="1158.6479">+associarParentUI(menuCctGUISceneController, test)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="171" x="239.5" y="1171.4526">-selectFromComboBox(event)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="148" x="239.5" y="1184.2573">-getMetricsFor(parameter)</text><!--MD5=[3079ebb94da0c9e0755e37f2d3c5d0e2]
+class MainMenuGUISceneController--><rect codeLine="111" fill="#FEFECE" filter="url(#f5fqxdddebaff)" height="150.4375" id="MainMenuGUISceneController" style="stroke:#A80036;stroke-width:1.5;" width="219" x="161" y="7"/><ellipse cx="180.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M182.8438,18.6719 C181.9063,18.2344 181.3125,18.0938 180.4375,18.0938 C177.8125,18.0938 175.8125,20.1719 175.8125,22.8906 L175.8125,24.0156 C175.8125,26.5938 177.9219,28.4844 180.8125,28.4844 C182.0313,28.4844 183.1875,28.1875 183.9375,27.6406 C184.5156,27.2344 184.8438,26.7813 184.8438,26.3906 C184.8438,25.9375 184.4531,25.5469 183.9844,25.5469 C183.7656,25.5469 183.5625,25.625 183.375,25.8125 C182.9219,26.2969 182.9219,26.2969 182.7344,26.3906 C182.3125,26.6563 181.625,26.7813 180.8594,26.7813 C178.8125,26.7813 177.5156,25.6875 177.5156,23.9844 L177.5156,22.8906 C177.5156,21.1094 178.7656,19.7969 180.5,19.7969 C181.0781,19.7969 181.6875,19.9531 182.1563,20.2031 C182.6406,20.4844 182.8125,20.7031 182.9063,21.1094 C182.9688,21.5156 183,21.6406 183.1406,21.7656 C183.2813,21.9063 183.5156,22.0156 183.7344,22.0156 C184,22.0156 184.2656,21.875 184.4375,21.6563 C184.5469,21.5 184.5781,21.3125 184.5781,20.8906 L184.5781,19.4688 C184.5781,19.0313 184.5625,18.9063 184.4688,18.75 C184.3125,18.4844 184.0313,18.3438 183.7344,18.3438 C183.4375,18.3438 183.2344,18.4375 183.0156,18.75 L182.8438,18.6719 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="177" x="195.5" y="27.1543">MainMenuGUISceneController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="162" x2="379" y1="39" y2="39"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="81" x="167" y="53.2104">-lblInitial:Label</text><line style="stroke:#A80036;stroke-width:1.5;" x1="162" x2="379" y1="59.8047" y2="59.8047"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="77" x="167" y="74.0151">-loadLoginUi()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="167" y="86.8198">-loadLabCooUi()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="167" y="99.6245">-loadClientUi()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="65" x="167" y="112.4292">-loadCctUi()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="167" y="125.2339">-loadAdminUi()</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="207" x="167" y="138.0386">-menuExitAction(ActionEvent event)</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="144" x="167" y="150.8433">-menuLoginAction(event)</text><!--MD5=[ab179af0153bf609fe4891204b6ca111]
+link ClientList to Client--><path codeLine="122" d="M102.5,1133.575 C102.5,1166.961 102.5,1218.033 102.5,1262.718 " fill="none" id="ClientList-to-Client" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="102.5,1267.854,106.5,1258.854,102.5,1262.854,98.5,1258.854,102.5,1267.854" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="103.5" y="1234.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="93.8375" y="1153.068">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="95.2102" y="1257.0038">*</text><!--MD5=[9dec42a3b1fb794d839b2c916f9b8879]
+link Company to ClientList--><path codeLine="123" d="M116.538,880.98 C113.696,924.411 108.423,1004.988 105.2111,1054.071 " fill="none" id="Company-to-ClientList" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="104.8684,1059.308,109.4487,1050.589,105.1955,1054.3187,101.4658,1050.0656,104.8684,1059.308" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="30" x="112.5" y="968.0669">uses</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="107.4015" y="900.4134">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="96.5778" y="1048.4608">1</text><!--MD5=[15cdf5e6f24770a0e9a142635295c677]
+link MainMenuGUISceneController to AuthGUISceneController--><path codeLine="127" d="M270.5,157.01 C270.5,175.31 270.5,194.8 270.5,212.73 " fill="none" id="MainMenuGUISceneController-to-AuthGUISceneController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="270.5,217.74,274.5,208.74,270.5,212.74,266.5,208.74,270.5,217.74" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[fd230a49f635abe2d424f60f043f6e30]
+link AuthGUISceneController to MenuCctGUISceneController--><path codeLine="128" d="M270.5,343.22 C270.5,361.56 270.5,381.36 270.5,398.64 " fill="none" id="AuthGUISceneController-to-MenuCctGUISceneController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="270.5,403.91,274.5,394.91,270.5,398.91,266.5,394.91,270.5,403.91" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[fb4960693bb93e05e6fed1d43901f9dc]
+link MenuCctGUISceneController to ShowListOfClientsController--><path codeLine="129" d="M270.5,490.1 C270.5,506.64 270.5,526.26 270.5,545.53 " fill="none" id="MenuCctGUISceneController-to-ShowListOfClientsController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="270.5,550.96,274.5,541.96,270.5,545.96,266.5,541.96,270.5,550.96" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[cfef71a7ba83f52356f7f835f9208ae7]
+link ShowListOfClientsController to Company--><path codeLine="130" d="M213.685,714.05 C189.032,749 161.498,788.04 142.411,815.1 " fill="none" id="ShowListOfClientsController-to-Company" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="139.422,819.34,147.8814,814.2963,142.3065,815.256,141.3469,809.6811,139.422,819.34" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c861cc9ccaab63975b0e499a32e668da]
+link ShowListOfClientsController to ShowClientTestsController--><path codeLine="131" d="M307.879,714.05 C316.419,732.46 325.486,751.99 333.989,770.32 " fill="none" id="ShowListOfClientsController-to-ShowClientTestsController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="336.138,774.95,335.9865,765.1023,334.0373,770.4127,328.7269,768.4635,336.138,774.95" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[3fdf59ec2b990889f7e4ad98f2402931]
+link ShowClientTestsController to ShowTestDetailsFromTestSelectedController--><path codeLine="132" d="M376.555,925.022 C378.401,947.591 380.461,972.773 382.419,996.708 " fill="none" id="ShowClientTestsController-to-ShowTestDetailsFromTestSelectedController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="382.835,1001.795,386.0888,992.4991,382.4278,996.8116,378.1154,993.1506,382.835,1001.795" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[502b51bc079239060389dab43b7d3470]
+link Client to Test--><path codeLine="134" d="M102.5,1444.048 C102.5,1485.203 102.5,1531.551 102.5,1560.515 " fill="none" id="Client-to-Test" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="102.5,1565.716,106.5,1556.716,102.5,1560.716,98.5,1556.716,102.5,1565.716" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="103.5" y="1487.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="94.1688" y="1464.031">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="76.6969" y="1555.0517">1..*</text><!--MD5=[c23963f6e403fc3ebec8dae22c30ade6]
+link Test to Parameter--><path codeLine="135" d="M131.784,1590 C156.764,1590 194.147,1590 229.499,1590 " fill="none" id="Test-to-Parameter" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="234.699,1590,225.699,1586,229.699,1590,225.699,1594,234.699,1590" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="156.25" y="1583.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="139.4809" y="1585.3479">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="204.1128" y="1586.5345">1..*</text><!--MD5=[a70ea501a779cc410cf3bc39a4398e2e]
+link Parameter to TestResult--><path codeLine="136" d="M328.744,1659.273 C329.491,1682.012 330.326,1707.431 331.086,1730.545 " fill="none" id="Parameter-to-TestResult" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="331.257,1735.748,334.9591,1726.6214,331.0927,1730.7507,326.9634,1726.8843,331.257,1735.748" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="331.5" y="1702.0669">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="320.5766" y="1678.6811">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="322.6132" y="1724.9256">1</text><!--MD5=[2e66328b6bcb78d8eb1aae5c93a545fa]
+link Test to TestStore--><path codeLine="137" d="M101.7376,1614.2 C100.5083,1651.604 98.0814,1725.451 96.644,1769.188 " fill="none" id="Test-to-TestStore" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="96.4738,1774.3684,100.7674,1765.5047,96.6381,1769.3711,92.7717,1765.2418,96.4738,1774.3684" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="92" x="100.5" y="1702.0669">is contained in</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="75.7486" y="1634.01">1..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="87.8496" y="1763.604">1</text><!--MD5=[e51c7f213c4be05659d5beecbe44bbd5]
+@startuml
+skinparam classAttributeIconSize 0
+
+Class "Client"{
+- ccn:long;
+- nhsNumber:long;
+- birthDate:String;
+- tin:long;
+- phoneNumber:long;
+- sex:String;
+- email:String;
+- name:String;
+- password:String;
+
++toString()
+
+}
+
+Class "ClientList"{
++getClients()
++showListOfClientsRegistered()
+}
+
+Class "Company"{
++getClientList()
+}
+
+
+Class "Test"{
+
+}
+
+Class "TestResult"{
+-referenceValue:ReferenceValue;
+-result:double;
+-parameter:Parameter;
++TestResult(parameter, result, referenceValue)
++getResult()
++getReferenceValue()
++toString()
+}
+
+Class "TestStore"{
++getTestByClient()
+}
+
+Class "Parameter"{
+-code:String;
+-shortname:String;
+-description:String ;
+-testResult:TestResult ;
+-pc:List<ParameterCategory>;
++getTestResult()
++toString()
+}
+
+Class "AuthGUISceneController"{
+-lblInitial:Label
+-txtLogin:TextField
+-txtPassword:TextField
+-menuLoginSairAction(event)
++associarParentUI(mainMenuGUISceneController)
++menuLoginConfirmarAction(event)
+}
+
+Class "MenuCctGUISceneController"{
++associarParentUI(mainMenuGUISceneController)
+-loadViewTestsUi()
+-menuViewTestsAction(event)
+}
+
+Class "ShowListOfClientsController"{
+-lblTest:Label
+-tableView:TableView<Client>
+-collumNameClient:TableColumn<Client, String>
+-collumTinNumber:TableColumn<Client, Long>
++initialize(url,rb)
++getClient()
+-clickShowTest()
+-loadViewTestsUi(client)
++associarParentUI(menuCctGUISceneController)
+}
+
+Class "ShowClientTestsController"{
+-lblTest:Label
+-tableView:TableView<Test>
+-columnnNhsCode:TableColumn<Test, String>
+-columnInternalNumber:TableColumn<Test, Long>
++getClientsTests()
+-clickTestDetails(event)
++associarParentUI(menuCctGUISceneController, client)
+-loadViewTestsUi()
+}
+
+Class "ShowTestDetailsFromTestSelectedController"{
+-listOfParametersFromTest:List<Parameter>;
+-cmbBoxParameters:ComboBox<Parameter>;
+-lblResult:Label;
+-lblParameter:Label;
+-lblMinValue:Label;
+-lblMaxValue:Label;
++initialize(url, rb)
++getParametersFromTest(test)
++associarParentUI(menuCctGUISceneController, test)
+-selectFromComboBox(event)
+-getMetricsFor(parameter)
+}
+
+
+
+
+Class "MainMenuGUISceneController" {
+-lblInitial:Label
+-loadLoginUi()
+-loadLabCooUi()
+-loadClientUi()
+-loadCctUi()
+-loadAdminUi()
+-menuExitAction(ActionEvent event)
+-menuLoginAction(event)
+}
+
+ClientList"1"  - -> "*" Client : contains
+Company "1" - -> "1" ClientList : uses
+
+'MainMenuGUISceneController..> SeeTestResultOfSelectedClientController
+
+MainMenuGUISceneController..>AuthGUISceneController
+AuthGUISceneController..>MenuCctGUISceneController
+MenuCctGUISceneController..>ShowListOfClientsController
+ShowListOfClientsController..>Company
+ShowListOfClientsController..>ShowClientTestsController
+ShowClientTestsController..>ShowTestDetailsFromTestSelectedController
+
+Client "1"  - -> "1..*" Test : contains
+Test"1"  -r-> "1..*" Parameter: contains
+Parameter"1"  - -> "1" TestResult : contains
+Test"1..*"  - -> "1" TestStore : is contained in
+@enduml
+
+@startuml
+skinparam classAttributeIconSize 0
+
+Class "Client"{
+- ccn:long;
+- nhsNumber:long;
+- birthDate:String;
+- tin:long;
+- phoneNumber:long;
+- sex:String;
+- email:String;
+- name:String;
+- password:String;
+
++toString()
+
+}
+
+Class "ClientList"{
++getClients()
++showListOfClientsRegistered()
+}
+
+Class "Company"{
++getClientList()
+}
+
+
+Class "Test"{
+
+}
+
+Class "TestResult"{
+-referenceValue:ReferenceValue;
+-result:double;
+-parameter:Parameter;
++TestResult(parameter, result, referenceValue)
++getResult()
++getReferenceValue()
++toString()
+}
+
+Class "TestStore"{
++getTestByClient()
+}
+
+Class "Parameter"{
+-code:String;
+-shortname:String;
+-description:String ;
+-testResult:TestResult ;
+-pc:List<ParameterCategory>;
++getTestResult()
++toString()
+}
+
+Class "AuthGUISceneController"{
+-lblInitial:Label
+-txtLogin:TextField
+-txtPassword:TextField
+-menuLoginSairAction(event)
++associarParentUI(mainMenuGUISceneController)
++menuLoginConfirmarAction(event)
+}
+
+Class "MenuCctGUISceneController"{
++associarParentUI(mainMenuGUISceneController)
+-loadViewTestsUi()
+-menuViewTestsAction(event)
+}
+
+Class "ShowListOfClientsController"{
+-lblTest:Label
+-tableView:TableView<Client>
+-collumNameClient:TableColumn<Client, String>
+-collumTinNumber:TableColumn<Client, Long>
++initialize(url,rb)
++getClient()
+-clickShowTest()
+-loadViewTestsUi(client)
++associarParentUI(menuCctGUISceneController)
+}
+
+Class "ShowClientTestsController"{
+-lblTest:Label
+-tableView:TableView<Test>
+-columnnNhsCode:TableColumn<Test, String>
+-columnInternalNumber:TableColumn<Test, Long>
++getClientsTests()
+-clickTestDetails(event)
++associarParentUI(menuCctGUISceneController, client)
+-loadViewTestsUi()
+}
+
+Class "ShowTestDetailsFromTestSelectedController"{
+-listOfParametersFromTest:List<Parameter>;
+-cmbBoxParameters:ComboBox<Parameter>;
+-lblResult:Label;
+-lblParameter:Label;
+-lblMinValue:Label;
+-lblMaxValue:Label;
++initialize(url, rb)
++getParametersFromTest(test)
++associarParentUI(menuCctGUISceneController, test)
+-selectFromComboBox(event)
+-getMetricsFor(parameter)
+}
+
+
+
+
+Class "MainMenuGUISceneController" {
+-lblInitial:Label
+-loadLoginUi()
+-loadLabCooUi()
+-loadClientUi()
+-loadCctUi()
+-loadAdminUi()
+-menuExitAction(ActionEvent event)
+-menuLoginAction(event)
+}
+
+ClientList"1"  - -> "*" Client : contains
+Company "1" - -> "1" ClientList : uses
+
+
+MainMenuGUISceneController..>AuthGUISceneController
+AuthGUISceneController..>MenuCctGUISceneController
+MenuCctGUISceneController..>ShowListOfClientsController
+ShowListOfClientsController..>Company
+ShowListOfClientsController..>ShowClientTestsController
+ShowClientTestsController..>ShowTestDetailsFromTestSelectedController
+
+Client "1"  - -> "1..*" Test : contains
+Test"1"  -r-> "1..*" Parameter: contains
+Parameter"1"  - -> "1" TestResult : contains
+Test"1..*"  - -> "1" TestStore : is contained in
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 12:40:07 UTC 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

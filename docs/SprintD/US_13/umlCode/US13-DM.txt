@@ -1,0 +1,61 @@
+@startuml
+hide methods
+skinparam classAttributeIconSize 0
+
+
+class TestParameterResult {
+  -createdAt
+  -value
+  -metric 
+}
+
+
+class Parameter {
+  -code
+  -shortName
+  -description
+}
+
+
+class Test {
+  -code
+  -NHScode
+  -createdAt
+}
+
+class ClinicalChemistryTechnologist {
+  
+}
+
+class Employee {
+-userName
+-password
+-email
+-name
+-id
+-address
+-standardOcupationClassificationCode
+-phoneNumber
+-role
+}
+
+class TestType {
+  -code
+  -description
+  -collectionMethod
+
+}
+
+class Sample {
+-barcode
+-date
+}
+
+Test "1" -r- "1" TestType :> contains
+Test "1" -d- "1..*" Parameter :> contains
+Sample "*" -- "1..*" Test: is associated to >
+Parameter "1" -- "1" TestParameterResult: contains >
+Test "1..*" -- "1" Client : is associated with >
+ClinicalChemistryTechnologist "1..*" -- "1" Test : sees details of >
+ClinicalChemistryTechnologist "1..*" -- "1" Employee : plays as >
+@enduml

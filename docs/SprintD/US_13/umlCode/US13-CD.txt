@@ -1,0 +1,139 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+Class "Client"{
+- ccn:long;
+- nhsNumber:long;
+- birthDate:String;
+- tin:long;
+- phoneNumber:long;
+- sex:String;
+- email:String;
+- name:String;
+- password:String;
+
++toString()
+
+}
+
+Class "ClientList"{
++getClients()
++showListOfClientsRegistered()
+}
+
+Class "Company"{
++getClientList()
+}
+
+
+Class "Test"{
+
+}
+
+Class "TestResult"{
+-referenceValue:ReferenceValue;
+-result:double;
+-parameter:Parameter;
++TestResult(parameter, result, referenceValue)
++getResult()
++getReferenceValue()
++toString()
+}
+
+Class "TestStore"{
++getTestByClient()
+}
+
+Class "Parameter"{
+-code:String;
+-shortname:String;
+-description:String ;
+-testResult:TestResult ;
+-pc:List<ParameterCategory>;
++getTestResult()
++toString()
+}
+
+Class "AuthGUISceneController"{
+-lblInitial:Label
+-txtLogin:TextField
+-txtPassword:TextField
+-menuLoginSairAction(event)
++associarParentUI(mainMenuGUISceneController)
++menuLoginConfirmarAction(event)
+}
+
+Class "MenuCctGUISceneController"{
++associarParentUI(mainMenuGUISceneController)
+-loadViewTestsUi()
+-menuViewTestsAction(event)
+}
+
+Class "ShowListOfClientsController"{
+-lblTest:Label
+-tableView:TableView<Client>
+-collumNameClient:TableColumn<Client, String>
+-collumTinNumber:TableColumn<Client, Long>
++initialize(url,rb)
++getClient()
+-clickShowTest()
+-loadViewTestsUi(client)
++associarParentUI(menuCctGUISceneController)
+}
+
+Class "ShowClientTestsController"{
+-lblTest:Label
+-tableView:TableView<Test>
+-columnnNhsCode:TableColumn<Test, String>
+-columnInternalNumber:TableColumn<Test, Long>
++getClientsTests()
+-clickTestDetails(event)
++associarParentUI(menuCctGUISceneController, client)
+-loadViewTestsUi()
+}
+
+Class "ShowTestDetailsFromTestSelectedController"{
+-listOfParametersFromTest:List<Parameter>;
+-cmbBoxParameters:ComboBox<Parameter>;
+-lblResult:Label;
+-lblParameter:Label;
+-lblMinValue:Label;
+-lblMaxValue:Label;
++initialize(url, rb)
++getParametersFromTest(test)
++associarParentUI(menuCctGUISceneController, test)
+-selectFromComboBox(event)
+-getMetricsFor(parameter)
+}
+
+
+
+
+Class "MainMenuGUISceneController" {
+-lblInitial:Label
+-loadLoginUi()
+-loadLabCooUi()
+-loadClientUi()
+-loadCctUi()
+-loadAdminUi()
+-menuExitAction(ActionEvent event)
+-menuLoginAction(event)
+}
+
+ClientList"1"  --> "*" Client : contains
+Company "1" --> "1" ClientList : uses
+
+'MainMenuGUISceneController..> SeeTestResultOfSelectedClientController
+
+MainMenuGUISceneController..>AuthGUISceneController
+AuthGUISceneController..>MenuCctGUISceneController
+MenuCctGUISceneController..>ShowListOfClientsController
+ShowListOfClientsController..>Company
+ShowListOfClientsController..>ShowClientTestsController
+ShowClientTestsController..>ShowTestDetailsFromTestSelectedController
+
+Client "1"  --> "1..*" Test : contains
+Test"1"  -r-> "1..*" Parameter: contains
+Parameter"1"  --> "1" TestResult : contains
+Test"1..*"  --> "1" TestStore : is contained in
+@enduml

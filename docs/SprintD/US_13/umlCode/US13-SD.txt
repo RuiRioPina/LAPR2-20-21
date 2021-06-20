@@ -1,0 +1,90 @@
+s@startuml
+autonumber
+actor "Clinical Chemistry Technologist" as TECH
+
+participant ":SeeTestResultOfSelectedClientUI" as UI
+participant ":SeeTestResultOfSelectedClientController" as CTRL
+participant ":Company" as CMP
+participant ":ClientList" as CLTLIST
+participant ":Test" as TST
+participant ":TestStore" as TSTSTR
+participant "testResult:TestParameterResult" as TSTPARAMRES
+participant "param:Parameter" as TSTPARAM
+
+
+
+
+
+
+
+activate TECH
+TECH-> UI : selects to see tests details of a Client
+activate UI
+UI-> CTRL : getClients()
+activate CTRL
+
+ref over CTRL, CMP
+
+SD_GET_CLIENTS_FROM_REGISTERED
+
+end ref
+
+
+
+UI --> TECH: shows the List of Clients registered in the application and asks to select the target client
+deactivate CTRL
+deactivate UI
+
+TECH-> UI : selects one Client from the list provided
+activate UI
+
+UI -> CTRL : getClient(optionSelected)
+activate CTRL
+
+CTRL -> CLTLIST: clt = getClientSelected(optionSelected)
+activate CLTLIST
+deactivate CLTLIST
+CTRL -> CLTLIST: testsToShow = getTestsByClient(clt)
+activate CLTLIST
+deactivate CLTLIST
+
+
+
+
+
+
+deactivate CTRL
+
+' loop for each test parameter being analysed
+
+UI --> TECH : shows all tests associated to that Client
+deactivate UI
+TECH -> UI : selects one Test from the list provided
+
+activate UI
+UI -> CTRL : getTest(optionSelected)
+activate CTRL
+
+
+
+CTRL -> TSTSTR : getTest(optionSelected)
+activate TSTSTR 
+
+deactivate TSTSTR
+deactivate CTRL
+UI --> TECH : shows all Test Results details (result, metric, maxValue, minValue)
+deactivate UI
+
+
+
+'end
+
+
+
+
+
+deactivate CLTLIST
+
+deactivate UI
+deactivate TECH
+@enduml

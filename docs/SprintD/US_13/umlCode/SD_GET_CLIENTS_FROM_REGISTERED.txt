@@ -1,0 +1,32 @@
+@startuml
+autonumber
+title
+__**SD_GET_CLIENTS_FROM_REGISTERED**__
+end title
+
+participant ": SeeTestResultOfSelectedClientController" as CTRL
+participant "APP" as APP
+participant "AppInstance" as APP_I
+participant "comp: Company" as COMP
+participant "clientList: ClientList" as STORE
+participant "clt: Client" as CLT
+
+[o-> CTRL : getClientList()
+activate CTRL
+CTRL -> APP: app = app.getInstance()
+activate APP
+deactivate APP
+
+CTRL -> APP_I: comp = getCompany()
+activate APP_I
+deactivate APP_I
+
+CTRL -> COMP: clientList = comp.getClientList()
+activate COMP
+deactivate COMP
+
+CTRL -> STORE: clt = clientList.getClients()
+activate STORE
+deactivate STORE
+deactivate CTRL
+@enduml

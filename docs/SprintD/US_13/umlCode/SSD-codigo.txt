@@ -1,0 +1,21 @@
+@startuml
+autonumber
+actor "CLINICAL CHEMISTRY TECHNOLOGIST" as CCT
+
+activate CCT
+CCT-> ":System" : selects to see tests details of a Client
+activate ":System"
+":System" --> CCT: shows the List of Clients registered in the application and asks to select the target client
+deactivate ":System"
+
+CCT-> ":System" : selects one Client from the list provided
+activate ":System"
+":System" --> CCT: shows all tests associated to that Client
+deactivate ":System"
+CCT-> ":System" : selects one Test from the list provided
+activate ":System"
+":System" --> CCT: shows all Test Results details (result, metric, maxValue, minValue)
+deactivate ":System"
+
+deactivate CCT
+@enduml
