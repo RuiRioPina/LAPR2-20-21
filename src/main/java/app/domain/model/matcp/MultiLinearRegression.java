@@ -22,6 +22,10 @@ public class MultiLinearRegression {
     double[][] xMatrixTimesXMatrixTransposed;
     double[][] xMatrixTimesXMatrixTransposedInverse;
 
+    /**
+     *  toString method of the MultiLinear Regresion
+     * @return A string of the regression model.
+     */
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(String.format("^y=%.4f+ %.4fx + %.4fx", b0, b1, b2));
@@ -29,7 +33,12 @@ public class MultiLinearRegression {
     }
 
 
-
+    /**
+     * Constructor of the MultiLinearRegression
+     * @param arrayX1 array with the first x variable values
+     * @param arrayX2 array with the second x variable values
+     * @param arrayY array with the y variable values
+     */
     public MultiLinearRegression(double[] arrayX1, double[] arrayX2, double[] arrayY) {
         this.arrayX1 = arrayX1;
         this.arrayX2 = arrayX2;
@@ -64,22 +73,13 @@ public class MultiLinearRegression {
     }
 
 
-    /**
-     * from https://www.programiz.com/java-programming/examples/multiply-matrix-function
-     * @param firstMatrix
-     * @param secondMatrix
-     * @param r1
-     * @param c1
-     * @param c2
-     * @return
-     */
 
 
     /**
      * taken from https://stackoverflow.com/questions/15449711/transpose-double-matrix-with-a-java-function/15497288
-     *
-     * @param m
-     * @return
+     * Gives the transposed version of a matrix
+     * @param m matrix to be transposed
+     * @return the original matrix but transposed
      */
     private double[][] transposeMatrix(double[][] m) {
         double[][] temp = new double[m[0].length][m.length];
@@ -91,9 +91,9 @@ public class MultiLinearRegression {
 
     /**
      * from https://www.sanfoundry.com/java-program-find-inverse-matrix/
-     *
-     * @param a
-     * @return
+     * returns the inverse matrix of a matrix
+     * @param a the matrix that will be inverted
+     * @return the inverted matrix
      */
     private double[][] invert(double[][] a) {
         int n = a.length;
@@ -128,6 +128,7 @@ public class MultiLinearRegression {
         }
         return x;
     }
+
 
     private void gaussian(double[][] a, int[] index) {
         int n = index.length;
@@ -187,10 +188,10 @@ public class MultiLinearRegression {
 
     /**
      * from https://www.baeldung.com/java-matrix-multiplication
-     *
-     * @param firstMatrix
-     * @param secondMatrix
-     * @return
+     * Gives the matrix result of a matrix multiplication
+     * @param firstMatrix the first matrix on the multiplication
+     * @param secondMatrix the second matrix on the multiplication
+     * @return the result of the matrix multiplication
      */
     private double[][] multiplyMatrices(double[][] firstMatrix, double[][] secondMatrix) {
         double[][] result = new double[firstMatrix.length][secondMatrix[0].length];
@@ -204,6 +205,11 @@ public class MultiLinearRegression {
         return result;
     }
 
+    /**
+     * Calculates the average for an array of doubles
+     * @param arr- array to be used.
+     * @return average of an array.
+     */
     private double arrayAverage(double[] arr) {
         double total = 0;
         for (double v : arr) {
@@ -211,7 +217,10 @@ public class MultiLinearRegression {
         }
         return total / arr.length;
     }
-
+    /**
+     * Calculates the Anova SQR Value of the linear regression model.
+     * @return Anova SQR Value.
+     */
     public double sqr() {
         double[][] bTransposed = transposeMatrix(bColumn);
         double[][] xMatrixTransposed = transposeMatrix(xMatrix);
@@ -220,7 +229,10 @@ public class MultiLinearRegression {
         return number - (arrayX1.length * Math.pow(arrayAverage(arrayY), 2));
 
     }
-
+    /**
+     * Calculates the Anova SQE Value of the linear regression model.
+     * @return Anova SQE Value.
+     */
     public double sqe() {
         double[][] yVectorTransposed = transposeMatrix(yVector);
         double[][] bTransposed = transposeMatrix(bColumn);
@@ -229,53 +241,98 @@ public class MultiLinearRegression {
         double secondNumber = multiplyMatrices(multiplyMatrices(bTransposed, xMatrixTransposed), yVector)[0][0];
         return firstNumber - secondNumber;
     }
-
+    /**
+     * Calculates the Anova SQT Value of the linear regression model.
+     * @return Anova SQT Value.
+     */
     public double sqt() {
         return sqe() + sqr();
     }
-
+    /**
+     * Calculates the Anova regression degrees of freedom Value of the linear regression model.
+     * @return regression degrees of freedom Value.
+     */
     public double regressionDegreesOfFreedom() {
         return (double) NUMBER_OF_VARIABLES - 1;
     }
 
+    /**
+     * Calculates the Anova error degrees of freedom Value of the linear regression model.
+     * @return error degrees of freedom Value.
+     */
     public double errorDegreesOfFreedom() {
         return arrayY.length - regressionDegreesOfFreedom() - 1;
     }
-
+    /**
+     * Calculates the Anova total degrees of freedom Value of the linear regression model.
+     * @return total degrees of freedom Value.
+     */
     public double totalDegreesOfFreedom() {
         return regressionDegreesOfFreedom() + errorDegreesOfFreedom();
     }
-
+    /**
+     * Calculates the Anova MQR Value of the linear regression model.
+     * @return Anova MQR Value.
+     */
     public double mqr() {
         return sqr() / regressionDegreesOfFreedom();
     }
-
+    /**
+     * Calculates the Anova MQE Value of the linear regression model.
+     * @return Anova MQE Value.
+     */
     public double mqe() {
         return sqe() / errorDegreesOfFreedom();
     }
-
+    /**
+     * Calculates the Anova F test Value of the linear regression model.
+     * @return Anova F test Value.
+     */
     public double testStatisticF() {
         return mqr() / mqe();
     }
 
+    /**
+     * Gives the FSnedcor from the table using the SR degrees of freedom and the SE degrees of freedom and significance.
+     * @param significance the desired significance.
+     * @return the FSnedcor from the table.
+     */
     public double getFSnedcorFromTable(double significance) {
         FDistribution fd = new FDistribution(regressionDegreesOfFreedom(), errorDegreesOfFreedom());
         return fd.inverseCumulativeProbability(1 - significance);
 
     }
 
+    /**
+     *  gets the r2 value of the linear regression model.
+     * @return r2 value.
+     */
     public double r2() {
         return sqr() / sqt();
     }
 
+    /**
+     * Calculates the r2 adjusted of the linear regression model.
+     * @return r2adjusted value
+     */
     public double r2Adjusted() {
         return 1 - ((double) (arrayY.length - 1) / errorDegreesOfFreedom()) * (1 - r2());
     }
 
+    /**
+     * Calculates for the coefficient Regression Auxiliary equation using a significance
+     * @param significance significance to be used
+     * @return coefficient Regression Auxiliary value.
+     */
     public double coeficientRegressionTestAuxiliaryCalculus(double significance) {
         return getTStudentFromTable(significance) * Math.sqrt(mqe() * xMatrixInverse[xMatrixInverse.length - 1][xMatrixInverse.length - 1]);
     }
 
+    /**
+     * Gets a t student value from the table using a significance.
+     * @param significance desired significance
+     * @return the t student value using that significance and the values of the degrees of freedom.
+     */
     public double getTStudentFromTable(double significance) {
         TDistribution td = new TDistribution(errorDegreesOfFreedom());
         double alphaTD = significance / 2;
@@ -288,6 +345,12 @@ public class MultiLinearRegression {
         return critTD;
     }
 
+    /**
+     * Calculates a delta value for  certain X1 and X2 value with a significance value
+     * @param x1 the x1 value to be predicted.
+     * @param x2 the x2 value to be predicted.
+     * @return the predicted value.
+     */
     public double predict(double x1, double x2) {
         double[][] auxiliaryLine = new double[1][NUMBER_OF_VARIABLES];
         auxiliaryLine[0][0] = 1;
@@ -296,6 +359,13 @@ public class MultiLinearRegression {
         return multiplyMatrices(auxiliaryLine, bColumn)[0][0];
     }
 
+    /**
+     * Calculates the confidence interval value using a predicted value and a significance
+     * @param significance desired significance
+     * @param x1 the x1 value used to make the prediction
+     * @param x2 the x2 value used to make the prediction
+     * @return the  confidence interval value for a predicted value
+     */
     public double expectedValueTestConfidenceIntervalAuxiliaryCalculus(double significance, double x1, double x2) {
         double[][] auxiliaryLine = new double[1][NUMBER_OF_VARIABLES];
         auxiliaryLine[0][0] = 1;
@@ -307,18 +377,32 @@ public class MultiLinearRegression {
         return t * Math.sqrt(mqe() * resultOfMatrixMultiplication);
     }
 
+    /**
+     * Calculates the hypothesis test for the B0 coeffiecient parameter
+     * @return test for the B0 coefficient parameter
+     */
     public double hypothesisB0() {
         return b0 / Math.sqrt(mqe() * xMatrixTimesXMatrixTransposedInverse[0][0]);
     }
-
+    /**
+     * Calculates the hypothesis test for the B1 coeffiecient parameter
+     * @return test for the B1 coefficient parameter
+     */
     public double hypothesisB1() {
         return b1 / Math.sqrt(mqe() * xMatrixTimesXMatrixTransposedInverse[1][1]);
     }
-
+    /**
+     * Calculates the hypothesis test for the B2 coeffiecient parameter
+     * @return test for the B2 coefficient parameter
+     */
     public double hypothesisB2() {
         return b2 / Math.sqrt(mqe() * xMatrixTimesXMatrixTransposedInverse[2][2]);
     }
 
+    /**
+     * Calculates the r value of the linear regression model
+     * @return the r value of the linear regression model.
+     */
 
     public double r() {
         return Math.sqrt(this.r2());

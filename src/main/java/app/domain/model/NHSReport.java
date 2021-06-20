@@ -18,12 +18,24 @@ public class NHSReport {
     private double[] receivedX1Data;
     private double[] receivedX2Data;
 
+    /**
+     * Constructor for the NHS Report.
+     * @param linearRegression simple linear Regression to be used for the report.
+     * @param receivedYData received y data for the predictions
+     * @param receivedXData received x data for the predictions
+     */
     public NHSReport(LinearRegression linearRegression, double[] receivedYData, double[] receivedXData) {
         this.receivedYData = receivedYData;
         this.linearRegression = linearRegression;
         this.receivedX1Data = receivedXData;
     }
-
+    /**
+     * Constructor for the NHS Report.
+     * @param multiLinearRegression multi linear Regression to be used for the report.
+     * @param receivedYData received y data for the predictions
+     * @param receivedX1Data received x1 data for the predictions
+     * @param receivedX2Data received x2 data for the predictions
+     */
     public NHSReport(MultiLinearRegression multiLinearRegression, double[] receivedX1Data, double[] receivedX2Data, double[] receivedYData) {
         this.multiLinearRegression = multiLinearRegression;
         this.receivedYData = receivedYData;
@@ -32,7 +44,10 @@ public class NHSReport {
 
     }
 
-
+    /**
+     * Creates a string for the first lines in the final String
+     * @return String for the first line
+     */
     private String regressionModelLine() {
         //lineEquation = getLine();
         if (this.multiLinearRegression == null && this.linearRegression != null) {
@@ -43,6 +58,10 @@ public class NHSReport {
         return String.format("You have must introduce either Multilinear / Simple Linear Regression");
     }
 
+    /**
+     * Creates a string for the second lines in the final String
+     * @return String for the second line
+     */
     private String otherStatistics() {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("%nOther statistics %n R2 = %s %n R2adjusted = %s %n R = %s %n ", this.linearRegression.R2(), this.linearRegression.R2Adjusted(), this.linearRegression.R());
@@ -52,6 +71,14 @@ public class NHSReport {
         return "123123123";
     }
 
+    /**
+     * * Creates a string for the thi lines in the final String
+     * @param aParemeterSignificance significance for the a parameter hypothesis test /B0 hypothesis test significance
+     * @param aTestParameter a parameter used for the test /B1 hypothesis test significance
+     * @param bParameterSignificance significance for the b parameter hypothesis test /B2 hypothesis test significance
+     * @param bTestParameter b parameter used for the test
+     * @return String for the third line
+     */
     private String hypothesisTests(double aParemeterSignificance, double aTestParameter, double bParameterSignificance, double bTestParameter) {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("%nHypothesis tests for regression coefficients \n" +
@@ -75,7 +102,10 @@ public class NHSReport {
         return "1231321312";
     }
 
-
+    /**
+     * Creates a string for the fourth lines in the final String
+     * @return String for the fourth lines
+     */
     private String Anova() {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("%nSignificance model with Anova \n" +
@@ -89,7 +119,11 @@ public class NHSReport {
         return "There was an error in the making of the ANOVA please try again.";
     }
 
-
+    /**
+     * Creates a string for the fifth lines in the final String
+     * @param fTestDecisionSignificance significance to be used
+     * @return String for the fifth lines
+     */
     private String decisionF(double fTestDecisionSignificance) {
         if (this.multiLinearRegression == null && this.linearRegression != null) {
             return String.format("\n Decision: f %n" +
@@ -106,11 +140,22 @@ public class NHSReport {
         return String.format("%n%4s %15d  %43.4f %45s %n", date, positiveCases, estimatedCases, intervals);
     }
 
+    /**
+     * Creates a string for the sixth lines in the final String
+     * @param confidenceIntervalSignificance significance to be used
+     * @return string for the sixth lines.
+     */
     private static String linePredictionValues(double confidenceIntervalSignificance) {
         //confidencenceLevel = getConfidenceLevel();
         return String.format("%n%n%s %40s %40s %30s", "Date", "Number of OBSERVED positive cases", "Number of ESTIMATED positive cases ", confidenceIntervalSignificance*100 + "% intervals \n");
     }
 
+    /**
+     * Checks if the A hypothesis test is rejected or not
+     * @param TestParameter chosen parameter
+     * @param TestSignificance significance to be used
+     * @return a string that tells if the test was rejected or not
+     */
     private String isARejectedOrNot(double TestParameter, double TestSignificance) {
         if (linearRegression != null && multiLinearRegression == null) {
             if (this.linearRegression.testCalculationforAparameter(TestParameter) > this.linearRegression.getTStudentFromTable(TestSignificance)) {
@@ -122,7 +167,12 @@ public class NHSReport {
             return "not rejected";
         }
     }
-
+    /**
+     * Checks if the B hypothesis test is rejected or not
+     * @param TestParameter chosen parameter
+     * @param TestSignificance significance to be used
+     * @return a string that tells if the test was rejected or not
+     */
     private String isBRejectedOrNot(double TestParameter, double TestSignificance) {
         if (linearRegression != null && multiLinearRegression == null) {
             if (this.linearRegression.testCalculationforBparameter(TestParameter) > this.linearRegression.getTStudentFromTable(TestSignificance)) {
@@ -135,6 +185,11 @@ public class NHSReport {
         }
     }
 
+    /**
+     * Checks if the F hypothesis test is rejected or not
+     * @param FTestSignificance significance to be used
+     * @return string detailing whether the regression model is significant or not
+     */
     private String isFRejectedOrNot(double FTestSignificance) {
         if (linearRegression != null && multiLinearRegression == null) {
             if (linearRegression.calculateTestF() > linearRegression.getFSnedcorFromTable(FTestSignificance)) {
@@ -147,12 +202,27 @@ public class NHSReport {
         }
         return "1t31t";
     }
+
+    /**
+     * Checks if the multi linear regression hypothesis is rejected and gives a string
+     * @param significance significance to be used
+     * @param hypothesis hypothesis test statistic to be used
+     * @return a string that tells if the test was rejected or not
+     */
     private  String isMultiLinearRegressionRejected(double significance,double hypothesis){
         if (Math.abs(hypothesis)> multiLinearRegression.getTStudentFromTable(significance)){
             return "rejected";
         }else return "not rejected";
     }
 
+    /**
+     * gives a string for the final table.
+     * @param olderDate older date to be printed
+     * @param newerDate newer date to be printed
+     * @param confidenceIntervalSignificance significance of the confidence interval
+     * @param identifier identifier to determine whether the string should be made using weeks or days
+     * @return string for the final table in the report
+     */
     public String printFinalTable(Calendar olderDate, Calendar newerDate, double confidenceIntervalSignificance, String identifier) {
         if (identifier.equalsIgnoreCase("days")) {
             int i = 1;
@@ -215,6 +285,7 @@ public class NHSReport {
         } else return null;
     }
 
+
     private void showDateWeeks(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {
         if (this.linearRegression==null&& this.multiLinearRegression!=null) {
             resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]), multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
@@ -227,10 +298,19 @@ public class NHSReport {
         }else resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1],linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i-1]) - linearRegression.delta(confidenceIntervalSignificance,receivedX1Data[i-1]),linearRegression.predict(receivedX1Data[i-1])+linearRegression.delta(confidenceIntervalSignificance,receivedX1Data[i-1])));
     }
 
-
-    private LocalDate getLocalDate(Calendar calendar) {
-        return LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId()).toLocalDate();
-    }
+    /**
+     * returns the final string
+     * @param olderDate older date to be printed
+     * @param newerDate newer date to be printed
+     * @param aParameterSignificance a parameter hypothe
+     * @param aTestParameter a parameter used for the test /B1 hypothesis test significance
+     * @param bTestSignificance b tests significance
+     * @param bTestParameter b parameter used for the test
+     * @param fTestSignificance f test significance
+     * @param confidenceIntervalSignificance confidence interval significance value
+     * @param identifier identifier to determine whether the string should be made using weeks or days
+     * @return the final string
+     */
 
     public String getReportString(Calendar olderDate, Calendar newerDate, double aParameterSignificance, double aTestParameter, double bTestSignificance, double bTestParameter, double fTestSignificance, double confidenceIntervalSignificance, String identifier) {
 

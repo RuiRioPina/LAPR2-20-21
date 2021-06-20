@@ -569,6 +569,13 @@ public class TestStore implements Serializable {
         }
         return arrDouble;
     };
+
+    /**
+     * returns an array with doubles corresponding to the tests performed in the weeks of the interval
+     * @param olderDate-starting date.
+     * @param newerDate-ending date.
+     * @return- array with the number of tests per week in a certain interval.
+     */
         public double[] getTestsPerformedPerWeek(Calendar olderDate,Calendar newerDate){
             int cont=0;
             Calendar olderDateUsed=(Calendar)olderDate.clone();
@@ -591,6 +598,13 @@ public class TestStore implements Serializable {
             }
             return arrDouble;
    }
+
+    /**
+     * returns an array with doubles corresponding to the positive covid tests performed in the weeks of the interval
+     * @param olderDate-starting date.
+     * @param newerDate-ending date.
+     * @return- array with the number of positive covidtests per week in a certain interval.
+     */
     public double[] getTestsPositivePerWeek(Calendar olderDate,Calendar newerDate){
         int cont=0;
         Calendar olderDateUsed=(Calendar)olderDate.clone();
@@ -614,6 +628,13 @@ public class TestStore implements Serializable {
         return arrDouble;
 
     }
+
+    /**
+     * returns an array with doubles corresponding to the mean age tests performed in the weeks of the interval
+     * @param olderDate-starting date.
+     * @param newerDate-ending date.
+     * @return- array with the number of the mean age per week in a certain interval.
+     */
     public double[] getMeanAgePerWeek(Calendar olderDate,Calendar newerDate){
         double total=0;
         int cont=0;
@@ -644,7 +665,12 @@ if (cont==0){
     }
 
 
-
+    /**
+     * returns an array with doubles corresponding to the positive covid tests performed in the day of the interval
+     * @param olderDate-starting date.
+     * @param newerDate-ending date.
+     * @return- array with the number of positive tests per day in a certain interval(except sundays).
+     */
     public double[] getPositiveCovidTestsPerformedOnDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
         Calendar olderDateUsed=(Calendar)olderDate.clone();
@@ -667,6 +693,12 @@ if (cont==0){
         }
         return arrDouble;
     }
+    /**
+     * returns an array with doubles corresponding to the mean age of thetests performed in the day of the interval
+     * @param olderDate-starting date.
+     * @param newerDate-ending date.
+     * @return- array with the number of the mean age of the tests per day in a certain interval(except sundays).
+     */
     public double[] getMeanAgeOfTestsPerformedPerDay(Calendar olderDate,Calendar newerDate){
         int cont=0;
         double totalAge=0;
