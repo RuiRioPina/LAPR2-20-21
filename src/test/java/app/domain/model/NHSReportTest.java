@@ -28,7 +28,7 @@ public class NHSReportTest {
         int actual2 = nhsReport.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").length();
         int actual3 = nhsReportMultilinear.getReportString(data1,data2,0.95,0,0.95,0,0.95,0.95,"weeks").length();
         int expected = 1739;
-        int expected1 = 1841;
+        int expected1 = 1848;
         int expected2 = 1089;
         int expected3 = 1191;
 

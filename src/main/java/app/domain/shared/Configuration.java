@@ -82,15 +82,11 @@ public class Configuration {
         return props.getProperty("Automatic.Report.TypeOfLinearRegression");
     }
 
-    public static String getIndependentVariable() {
-        return props.getProperty("Automatic.Report.IndependentVariable");
-    }
-
     public static String getSignificanceValue() {
         return props.getProperty("Automatic.Report.SignificanceValue");
     }
 
-    public static String[] getDate(String date) {
+    private static String[] getDate(String date) {
         String[] arrString = null;
 
         if (date.contains("-")) {
@@ -108,16 +104,13 @@ public class Configuration {
 
     public static String[] getDateIntervalLower() {
         String date = props.getProperty("Automatic.Report.DateInterval");
-        String[][] days = new String[2][3];
         String[] intervalDates = date.split(" ");
-        String[] upperInterval =getDate(intervalDates[0]);
-        return upperInterval;
+        return getDate(intervalDates[0]);
     }
     public static String[] getDateIntervalUpper() {
         String date = props.getProperty("Automatic.Report.DateInterval");
         String[] intervalDates = date.split(" ");
-        String[] upperInterval =getDate(intervalDates[1]);
-        return upperInterval;
+        return getDate(intervalDates[1]);
     }
 
 

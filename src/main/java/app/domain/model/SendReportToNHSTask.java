@@ -71,7 +71,7 @@ public class SendReportToNHSTask extends TimerTask {
                 }
             }
             Report2NHS.writeUsingFileWriter(report);
-        } catch (NotStrictlyPositiveException exception) {
+        } catch (NotStrictlyPositiveException | ArrayIndexOutOfBoundsException exception) {
             System.out.println("You must insert an interval of dates superior than 2 days/weeks.");
         }
 
