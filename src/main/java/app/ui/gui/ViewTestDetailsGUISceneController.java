@@ -168,5 +168,6 @@ public class ViewTestDetailsGUISceneController implements Initializable {
 		public double getMaxValue() {
 			return maxValue;
 		}
+		
 	}
 }
