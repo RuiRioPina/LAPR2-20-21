@@ -1,93 +1,187 @@
 package app.ui.gui;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 import app.controller.App;
+import app.controller.IntervalController;
 import app.domain.model.Test;
-import app.domain.store.LabCoordinatorStore;
+import com.isep.mdis.Sum;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 
+
 public class MaxSum {
 
-    private TwoDatesInterval twoDatesInterval;
+    private Calendar dStart;
+
+    private Calendar dEnd;
+
     @FXML
     private Label lblTestView;
     @FXML
-    private TextField txtStart;
+    private TextField txtBrute;
     @FXML
-    private TextField txtEnd;
+    private TextField txtBench;
+
+    @FXML
+    private CategoryAxis xAxis;
+    @FXML
+    private NumberAxis yAxis;
+
+    @FXML
+    private LineChart<?, ?> lineChart;
+
 
     private App app;
-    private List<Test> tests;
-    /*
-    private LabCoordinatorStore labCoordinatorStore;
 
+    List<Test> tests = App.getInstance().getCompany().getAllTest();
 
-    @FXML
-    private Calendar sDate;
-    @FXML
-    private Calendar eDate;
-    @FXML
-    private int[] sum;
-    @FXML
-    private TextField finalSum;
+    private final IntervalController intervalController;
 
-
-    public TudoJunto() {
-        this.app = App.getInstance();
+    public MaxSum() {
+        this.intervalController = new IntervalController();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb){
+    public void loadGraphDataYear() {
+        if (this.dStart != null && this.dEnd != null) {
+            this.lineChart.getData().clear();
+            Map<String, Integer> testsReady = this.intervalController.getReadyTestsByYear(dStart, dEnd);
+            Map<String, Integer> testsDiagnosis = this.intervalController.getDiagnosisTestsByYear(dStart, dEnd);
+            Map<String, Integer> testsMissingResults = this.intervalController.getMissingResultsTestsByYear(dStart, dEnd);
+            Map<String, Integer> testsClients = this.intervalController.getClientsByYear(dStart, dEnd);
 
-    }
-*/
-    public void associarParentUI(TwoDatesInterval twoDatesInterval) {
-        this.twoDatesInterval = twoDatesInterval;
-
-
-    }
-
-    public void showInformation(String start, String end) {
-        Calendar sDate = LabCoordinatorStore.tStringToCalendar(start);
-        Calendar eDate = LabCoordinatorStore.tStringToCalendar(end);
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        if (sDate == null) {
-            txtStart.setText("Start Date invalid");
-        }
-        if (eDate == null) {
-            txtStart.setText("Ending Date invalid");
-        }
-        if (sDate == null && eDate == null) {
-            txtStart.setText("Both dates are invalid");
-        }
-        if (sDate != null && eDate != null) {
-            txtStart.setText(dateFormat.format(sDate.getTime()) + " - " + dateFormat.format(eDate.getTime()));
+            this.xAxis.setLabel("Years");
+            this.fillLineChart(testsReady, testsDiagnosis, testsMissingResults, testsClients);
         }
 
     }
 
+    public void loadGraphDataMonth() {
+        if (this.dStart != null && this.dEnd != null) {
+            this.lineChart.getData().clear();
+            Map<String, Integer> testsReady = this.intervalController.getReadyTestsByMonth(dStart, dEnd);
+            Map<String, Integer> testsDiagnosis = this.intervalController.getDiagnosisTestsByMonth(dStart, dEnd);
+            Map<String, Integer> testsMissingResults = this.intervalController.getMissingResultsTestsByMonth(dStart, dEnd);
+            Map<String, Integer> testsClients = this.intervalController.getClientsByMonth(dStart, dEnd);
 
-
-
-
-    /*
-    public void setMaxSum(MaxSum maxSum) {
-        this.maxSum = maxSum;
+            this.xAxis.setLabel("Months");
+            this.fillLineChart(testsReady, testsDiagnosis, testsMissingResults, testsClients);
+        }
     }
 
-    public void showCategory() {
-        this.lblTestView.setText(LabCoordinatorStore.getMax(sDate,eDate,sum));
-        System.out.println(lblTestView);
+    public void loadGraphDataWeek() {
+        if (this.dStart != null && this.dEnd != null) {
+            this.lineChart.getData().clear();
+            Map<String, Integer> testsReady = this.intervalController.getReadyTestsByWeek(dStart, dEnd);
+            Map<String, Integer> testsDiagnosis = this.intervalController.getDiagnosisTestsByWeek(dStart, dEnd);
+            Map<String, Integer> testsMissingResults = this.intervalController.getMissingResultsTestsByWeek(dStart, dEnd);
+            Map<String, Integer> testsClients = this.intervalController.getClientsByWeek(dStart, dEnd);
+
+            this.xAxis.setLabel("Weeks");
+            this.fillLineChart(testsReady, testsDiagnosis, testsMissingResults, testsClients);
+        }
     }
-     */
+
+    public void loadGraphDataDay() {
+        if (this.dStart != null && this.dEnd != null) {
+            this.lineChart.getData().clear();
+            Map<String, Integer> testsReady = this.intervalController.getReadyTestsByDay(dStart, dEnd);
+            Map<String, Integer> testsDiagnosis = this.intervalController.getDiagnosisTestsByDay(dStart, dEnd);
+            Map<String, Integer> testsMissingResults = this.intervalController.getMissingResultsTestsByDay(dStart, dEnd);
+            Map<String, Integer> testsClients = this.intervalController.getClientsByDay(dStart, dEnd);
+
+            this.xAxis.setLabel("Days");
+            this.fillLineChart(testsReady, testsDiagnosis, testsMissingResults, testsClients);
+        }
+    }
+
+    public void fillLineChart(Map<String, Integer> testsReady, Map<String, Integer> testsDiagnosis, Map<String, Integer> testsMissingResults, Map<String, Integer> lstClients) {
+        var seriesReady = new XYChart.Series();
+        seriesReady.setName("Number of Ready Tests");
+
+        SortedSet<String> keys = new TreeSet<>(testsReady.keySet());
+        for (String key : keys) {
+            seriesReady.getData().add(new XYChart.Data(key, testsReady.get(key)));
+            // do something
+        }
+
+        var seriesDiagnosis = new XYChart.Series();
+        seriesDiagnosis.setName("Number of Diagnosis Tests");
+
+        keys = new TreeSet<>(testsDiagnosis.keySet());
+        for (String key : keys) {
+            seriesDiagnosis.getData().add(new XYChart.Data(key, testsDiagnosis.get(key)));
+            // do something
+        }
+
+        var seriesMissingResults = new XYChart.Series();
+        seriesMissingResults.setName("Number of Missing Results Tests");
+
+        keys = new TreeSet<>(testsMissingResults.keySet());
+        for (String key : keys) {
+            seriesMissingResults.getData().add(new XYChart.Data(key, testsMissingResults.get(key)));
+            // do something
+        }
+
+        var seriesNumberClients = new XYChart.Series();
+        seriesNumberClients.setName("Number of Clients");
+
+        keys = new TreeSet<>(lstClients.keySet());
+        for (String key : keys) {
+            seriesNumberClients.getData().add(new XYChart.Data(key, lstClients.get(key)));
+            // do something
+        }
+
+        this.yAxis.setLabel("Number of Tests/Clients");
+        lineChart.getData().add(seriesReady);
+        lineChart.getData().add(seriesDiagnosis);
+        lineChart.getData().add(seriesMissingResults);
+        lineChart.getData().add(seriesNumberClients);
+    }
+
+
+    public void associarParentUI(TwoDatesInterval twoDatesInterval, String dStart, String dEnd) {
+        // this.twoDatesInterval = twoDatesInterval;
+        this.dStart = IntervalController.tStringToCalendar(dStart);
+        this.dEnd = IntervalController.tStringToCalendar(dEnd);
+
+        if (dStart == null) {
+            txtBrute.setText("Starting Date invalid");
+            txtBench.setText("Starting Date invalid");
+        }
+        if (dEnd == null) {
+            txtBrute.setText("Ending Date invalid");
+            txtBench.setText("Ending Date invalid");
+        }
+        if (dStart == null && dEnd == null) {
+            txtBrute.setText("Both dates are invalid");
+            txtBench.setText("Both dates are invalid");
+        }
+        if (dStart != null && dEnd != null) {
+            int[] arrayMax = this.intervalController.getArrayBeforeMax(dStart, dEnd);
+            if (arrayMax == null) {
+                txtBrute.setText("Both dates are invalid");
+            } else {
+                int[] list1 = this.intervalController.getArrayMax(arrayMax);
+                int[] list2 = Sum.Max(arrayMax);
+                txtBrute.setText(Arrays.toString(list1));
+                txtBench.setText(Arrays.toString(list2));
+            }
+        }
+    }
+
+    public IntervalController getController() {
+        return this.intervalController;
+    }
+
+
     @FXML
     private void menuExitAction(ActionEvent event) {
         Window window = lblTestView.getScene().getWindow();
@@ -96,3 +190,4 @@ public class MaxSum {
 
 
 }
+

@@ -2,8 +2,11 @@ package app.ui.gui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 import app.controller.App;
 import app.controller.IntervalController;
@@ -15,10 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -43,7 +43,10 @@ public class TwoDatesInterval implements Initializable {
     private TextField txtEnd;
     @FXML
     private Button cancel;
-
+    @FXML
+    private DatePicker startDate;
+    @FXML
+    private DatePicker endDate;
 
 
     /**
@@ -51,7 +54,7 @@ public class TwoDatesInterval implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
- //       lblTest.setText(String.format("Introduce two dates"));
+        //       lblTest.setText(String.format("Introduce two dates"));
 
 
     }
@@ -65,8 +68,7 @@ public class TwoDatesInterval implements Initializable {
     }
 
 
-
-    private Stage loadMaxSumUi(String s, String e) {
+    private Stage loadMaxSumUi(String ldStart, String ldEnd) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MaxSum.fxml"));
             Parent root = loader.load();
@@ -74,12 +76,11 @@ public class TwoDatesInterval implements Initializable {
             Stage novoViewTestDetailsStage = new Stage();
             novoViewTestDetailsStage.initModality(Modality.APPLICATION_MODAL);
             novoViewTestDetailsStage.setTitle("Max Sum");
-            novoViewTestDetailsStage.setMaximized(true);
+            novoViewTestDetailsStage.setMaximized(false);
             novoViewTestDetailsStage.setScene(scene);
 
             MaxSum maxSum = loader.getController();
-            maxSum.associarParentUI(this);
-            maxSum.showInformation(txtStart.getText(),txtEnd.getText());
+            maxSum.associarParentUI(this, ldStart, ldEnd);
             return novoViewTestDetailsStage;
         } catch (IOException ex) {
             Utils.createAlert(Alert.AlertType.ERROR, "Erro", ex.getMessage());
@@ -88,22 +89,33 @@ public class TwoDatesInterval implements Initializable {
     }
 
     @FXML
-    private void menuView(ActionEvent event) {
-        String s=txtStart.getText();
-        String e=txtEnd.getText();
-        if(s == null || e == null) {
-            return;
-        }
-        Stage stage1 = loadMaxSumUi(s, e);
-        if(stage1 == null) {
-            return;
-        }
+    private void menuView(ActionEvent event) throws ParseException {
+        String dateBegin = null, dateEnd = null;
+        LocalDate sDate = startDate.getValue();
+        LocalDate eDate = endDate.getValue();
 
+        // Note, MM is months, not mm
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+
+
+        if (sDate != null) {
+            Date beginDate = inputFormat.parse(sDate.toString());
+            dateBegin = outputFormat.format(beginDate);
+        }
+        if (eDate != null) {
+            Date endDate = inputFormat.parse(eDate.toString());
+            dateEnd = outputFormat.format(endDate);
+        }
+        Stage stage1 = loadMaxSumUi(dateBegin, dateEnd);
+        if (stage1 == null) {
+
+            return;
+        }
         stage1.showAndWait();
     }
 
     @FXML
-
     private void menuExitAction(ActionEvent event) {
         Window window = lblTest.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));

@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class LabCoordinatorStoreTest {
-
+/*
     @Test
     public void getNnr() {
         Client c = new Client(1234567890123456L, 1234567890, "22-01-2002", "jorge@gmail.com", 1111111111L, 22222222222L, "Jorge Ferreira");
@@ -43,11 +43,9 @@ public class LabCoordinatorStoreTest {
     }
 
 
-    @Test (expected = NullPointerException.class)
-    public void getTestsWithoutResults() {
-        LabCoordinatorStore lc = new LabCoordinatorStore();
-        lc.getTestsWithoutResults();
-    }
+ */
+
+
 
     @Test
     public void setInterval() {
@@ -63,12 +61,6 @@ public class LabCoordinatorStoreTest {
         assertNotEquals(lc.maxSubArraySum(list),lc.maxSubArraySum(list));
     }
 
-    @Test
-    public void listMax() {
-        Calendar a = Calendar.getInstance();
-        LabCoordinatorStore lc = new LabCoordinatorStore();
-        assertNotEquals(lc.listMax(a,a),lc.listMax(a,a));
-    }
 
     @Test
     public void isTestInInterval() {
