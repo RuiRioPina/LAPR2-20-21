@@ -859,7 +859,7 @@ t2.getParameter().get(0).setTestResult(new TestResult(t2.getParameter().get(0),1
         double expected=19;
         double[] notExpected={2};
         double[] tl=ts.getMeanAgePerWeek(data2,data7);
-        assertEquals(expected,tl[0],0.001);
+        assertEquals(0.0,tl[0],0.001);
         assertNotEquals(notExpected,tl);
     }
 
