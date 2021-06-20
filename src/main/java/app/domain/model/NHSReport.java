@@ -63,14 +63,14 @@ public class NHSReport {
 
         } else if (this.multiLinearRegression != null && this.linearRegression == null) {
             return String.format("%nHypothesis tests for regression coefficients \n" +
-                            "H0: b2=%s (b2=%s) H1: b2<>%s (b2<>%s) %n " +
+                            "H0: b0=0 (x1=0) (x2=0) H1: b0<>0 (x1<>0) (x2<>0) %n " +
                             "tobs(b0)=%.4f tobs(b1)=%.4f tobs(b2)=%.4f  %n" +
                             "Decision:%n" +
                             "Regarding the test for the b0 parameter h0 is %s %n" +
                             "Regarding the test for the b1 parameter h0 is %s %n" +
-                            "Regarding the test for the b2 parameter h0 is %s %n", aTestParameter, bTestParameter, aTestParameter, bTestParameter, this.multiLinearRegression.hypothesisB0()
-                    , this.multiLinearRegression.hypothesisB1(), this.multiLinearRegression.hypothesisB2(), isARejectedOrNot(this.multiLinearRegression.hypothesisB0(), aParemeterSignificance), isBRejectedOrNot(this.multiLinearRegression.hypothesisB0(), bParameterSignificance), isARejectedOrNot(this.multiLinearRegression.hypothesisB1(), bParameterSignificance), isARejectedOrNot(this.multiLinearRegression.hypothesisB2(), bParameterSignificance))
-                    ;
+                            "Regarding the test for the b2 parameter h0 is %s %n", this.multiLinearRegression.hypothesisB0()
+                    , this.multiLinearRegression.hypothesisB1(), this.multiLinearRegression.hypothesisB2(), isMultiLinearRegressionRejected(multiLinearRegression.getTStudentFromTable(aParemeterSignificance),multiLinearRegression.hypothesisB0()), isMultiLinearRegressionRejected(bParameterSignificance,multiLinearRegression.hypothesisB1()), isMultiLinearRegressionRejected(aTestParameter, multiLinearRegression.hypothesisB2()));
+
         }
         return "1231321312";
     }
@@ -147,6 +147,11 @@ public class NHSReport {
         }
         return "1t31t";
     }
+    private  String isMultiLinearRegressionRejected(double significance,double hypothesis){
+        if (Math.abs(hypothesis)> multiLinearRegression.getTStudentFromTable(significance)){
+            return "rejected";
+        }else return "not rejected";
+    }
 
     public String printFinalTable(Calendar olderDate, Calendar newerDate, double confidenceIntervalSignificance, String identifier) {
         if (identifier.equalsIgnoreCase("days")) {
@@ -213,7 +218,7 @@ public class NHSReport {
     private void showDateWeeks(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {
         if (this.linearRegression==null&& this.multiLinearRegression!=null) {
             resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]), multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]) - multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1]), multiLinearRegression.predict(receivedX1Data[i - 1],receivedX2Data[i-1]) + multiLinearRegression.expectedValueTestConfidenceIntervalAuxiliaryCalculus(confidenceIntervalSignificance, receivedX1Data[i - 1], receivedX2Data[i - 1])));
-        }else  resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance,linearRegression.predict(receivedX1Data[i-1]))+linearRegression.delta(confidenceIntervalSignificance,linearRegression.predict(receivedX1Data[i-1]))));
+        }else  resultString.append(String.format("%d/%d/%d %30.2f %30.2f %30.2f-%.2f %n", olderDateUsed.get(Calendar.DAY_OF_MONTH), olderDateUsed.get(Calendar.MONTH) + 1, olderDateUsed.get(Calendar.YEAR), receivedYData[i - 1], linearRegression.predict(receivedX1Data[i - 1]), linearRegression.predict(receivedX1Data[i - 1]) - linearRegression.delta(confidenceIntervalSignificance,linearRegression.predict(receivedX1Data[i-1])),linearRegression.predict(receivedX1Data[i-1])+linearRegression.delta(confidenceIntervalSignificance,linearRegression.predict(receivedX1Data[i-1]))));
     }
 
     private void showDate(double confidenceIntervalSignificance, int i, StringBuilder resultString, Calendar olderDateUsed) {

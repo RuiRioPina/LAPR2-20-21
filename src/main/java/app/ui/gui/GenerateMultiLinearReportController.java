@@ -97,6 +97,8 @@ public class GenerateMultiLinearReportController implements Initializable {
         cboxHistoricalPointType.getItems().add("Days");
         cboxHistoricalPointType.getItems().add("Weeks");
         cboxHistoricalPointType.getSelectionModel().selectFirst();
+        lblSendReportM.setVisible(false);
+        btnYesM.setVisible(false);
     }
     public void associarParentUI(ChooseLinearRegressionController chooseLinearRegressionController) {
         this.chooseLinearRegressionController = chooseLinearRegressionController;

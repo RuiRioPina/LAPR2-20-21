@@ -56,9 +56,9 @@ public class RegisterEmployeeUI implements Runnable {
         }
         Employee e = registerEmployeeController.createEmployee(name, adress, soc, phoneNumber, email, userName, nEmployees, role,specialistDoctorIndexNumber);
         Utils.log(e.toString());
-        Utils.log("Do you wish to add the Employee you've registered? (S/N)");
+        Utils.log("Do you wish to add the Employee you've registered? (Y/N)");
         String confirmation=sc.nextLine();
-if (confirmation.equals("S")||confirmation.equals("s")){
+if (confirmation.equals("Y")||confirmation.equals("y")){
     try {
         registerEmployeeController.saveEmployee(e);
     }catch (IllegalArgumentException exc){

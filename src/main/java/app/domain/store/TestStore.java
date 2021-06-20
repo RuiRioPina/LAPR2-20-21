@@ -485,7 +485,7 @@ public class TestStore implements Serializable {
      */
     private List<Test> getTestsInWeekListInterval(Calendar olderDate,Calendar newerDate) {
         if (olderDate.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY || olderDate.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
-            throw new IllegalArgumentException("o dia da semana so pode ser segunda feira");
+            throw new IllegalArgumentException("The week day can only be monday.");
         }
         List<Test> lTestsInInterval = new ArrayList<>();
         Calendar olderDateUsed = (Calendar) olderDate.clone();
@@ -506,7 +506,7 @@ public class TestStore implements Serializable {
      * @param newerDate-newer date to be used for the interval
      * @return a List with all the dates
      */
-   public  List<Calendar> getTotalDateList(Calendar olderDate,Calendar newerDate){
+   private List<Calendar> getTotalDateList(Calendar olderDate,Calendar newerDate){
        Calendar olderDateUsed=(Calendar)olderDate.clone();
        Calendar newerDateUsed=(Calendar)newerDate.clone();
        List<Calendar> totalDates = new ArrayList<>();
@@ -527,7 +527,7 @@ public class TestStore implements Serializable {
      * @param newerDate-finishing monday
      * @return- a list with dates( only mondays)
      */
-    public  List<Calendar> getTotalWeekList(Calendar olderDate,Calendar newerDate){
+    private   List<Calendar> getTotalWeekList(Calendar olderDate,Calendar newerDate){
         Calendar olderDateUsed=(Calendar)olderDate.clone();
         Calendar newerDateUsed=(Calendar)newerDate.clone();
         List<Calendar> totalDates = new ArrayList<>();

@@ -63,6 +63,7 @@ public class MenuLabCooGUISceneController {
             App.getInstance().getCompany().setImportedTests(newImpTests);
         }
     }
+
     private Stage loadTestsUi() {
         try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShowImpTestsScene.fxml"));

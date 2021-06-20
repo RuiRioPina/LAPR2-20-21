@@ -1,31 +1,57 @@
 The regression model fitted using data from the interval 
- ^y=9,2184+ -0,2635x + 1,3505x
+ ^y=1,2853x+-24,8487
 
 Other statistics 
- R2 = 0.9783504321283326 
- R2adjusted = 0.9756442361443742 
- R = 0.9891159851748088 
+ R2 = 0.8144008749110484 
+ R2adjusted = 0.8034832793175807 
+ R = 0.9024416185610282 
  
 Hypothesis tests for regression coefficients 
-H0: b2=0.0 (b2=0.0) H1: b2<>0.0 (b2<>0.0) 
- tobs(b0)=2,8523 tobs(b1)=-1,9015 tobs(b2)=13,7786  
+H0: a=0.0 (b=0.0) H1: a<>0.0 (b<>0.0) 
+ tobs(a)=4,7317 tobs(b)=8,6369 
 Decision:
-Regarding the test for the b0 parameter h0 is rejected 
-Regarding the test for the b1 parameter h0 is rejected 
-Regarding the test for the b2 parameter h0 is not rejected 
+Regarding the test for the a parameter h0 is rejected 
+Regarding the test for the b parameter h0 is rejected 
 
 Significance model with Anova 
 H0: b=0  H1:b<>0 
               df           SS           MS            F 
-Regression   2,0000    1484,9300     742,4650	    361,5224 
-Residual    16,0000      32,8595       2,0537 
- Total      18,0000    1517,7895Decision: f 
-0 > f0,95,(2.16)=0,0515
+Regression   1,0000     871,4089     871,4089	     74,5953 
+Residual    17,0000     198,5911      11,6818 
+ Total      18,0000    1070,0000
+ Decision: f 
+0 > f0,95,(1.17)=0,0040
 Reject H0 
  The regression model is significant 
 
 
-Date        Number of OBSERVED positive cases      Number of ESTIMATED positive cases                 95% intervals 
-3/5/2021                          41,00                          53,07                          53,03-53,11 
-10/5/2021                          43,00                          48,83                          48,77-48,89 
-17/5/2021                          40,00                          54,60                          54,56-54,64 
+Date        Number of OBSERVED positive cases      Number of ESTIMATED positive cases               95.0% intervals 
+27/4/2021                          43,00                          36,41                          36,28-36,54 
+28/4/2021                          40,00                          36,05                          35,92-36,18 
+29/4/2021                          39,00                          35,13                          35,01-35,25 
+30/4/2021                          35,00                          29,87                          29,78-29,96 
+1/5/2021                          37,00                          34,36                          34,24-34,47 
+3/5/2021                          31,00                          27,00                          26,93-27,07 
+4/5/2021                          31,00                          21,99                          21,94-22,04 
+5/5/2021                          32,00                          28,85                          28,77-28,93 
+6/5/2021                          29,00                          24,89                          24,83-24,96 
+7/5/2021                          27,00                          31,06                          30,97-31,16 
+8/5/2021                          25,00                          27,77                          27,70-27,85 
+10/5/2021                          24,00                          25,45                          25,38-25,51 
+11/5/2021                          20,00                          23,01                          22,95-23,06 
+12/5/2021                          22,00                          24,92                          24,86-24,98 
+13/5/2021                          18,00                          18,80                          18,75-18,85 
+14/5/2021                          18,00                          17,51                          17,46-17,56 
+15/5/2021                          16,00                          14,55                          14,48-14,61 
+17/5/2021                          16,00                          16,46                          16,40-16,51 
+18/5/2021                          18,00                          20,99                          20,94-21,04 
+19/5/2021                          14,00                          17,05                          17,00-17,11 
+20/5/2021                           9,00                           8,31                           8,21-8,41 
+21/5/2021                          10,00                          11,40                          11,32-11,48 
+22/5/2021                          12,00                          10,14                          10,05-10,23 
+24/5/2021                           8,00                           9,85                           9,76-9,94 
+25/5/2021                           8,00                           9,96                           9,87-10,05 
+26/5/2021                           5,00                          14,44                          14,38-14,51 
+27/5/2021                           2,00                           6,64                           6,53-6,75 
+28/5/2021                           3,00                           7,07                           6,96-7,18 
+29/5/2021                           1,00                           3,00                           2,86-3,13 
