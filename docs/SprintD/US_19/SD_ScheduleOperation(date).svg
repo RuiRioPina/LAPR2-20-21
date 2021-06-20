@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="370px" preserveAspectRatio="none" style="width:679px;height:370px;background:#FFFFFF;" version="1.1" viewBox="0 0 679 370" width="679px" zoomAndPan="magnify"><defs><filter height="300%" id="f1xqd11gpoojpy" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="265" x="207" y="28.708">SD_ScheduleOperation(date)</text><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="104.4297" style="stroke:#A80036;stroke-width:1.0;" width="10" x="248" y="106.3828"/><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="429" y="279.0781"/><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="584" y="180.8125"/><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="584" y="279.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="252.5" x2="252.5" y1="75.25" y2="327.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="433.5" x2="433.5" y1="75.25" y2="327.0781"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="588.5" x2="588.5" y1="147.0313" y2="327.0781"/><rect fill="#FEFECE" filter="url(#f1xqd11gpoojpy)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="153" x="174.5" y="39.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="181.5" y="59.9482">company:Company</text><rect fill="#FEFECE" filter="url(#f1xqd11gpoojpy)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="153" x="174.5" y="326.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="181.5" y="346.0732">company:Company</text><rect fill="#FEFECE" filter="url(#f1xqd11gpoojpy)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="181" x="341.5" y="39.9531"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167" x="348.5" y="59.9482">SendReportToNHSTask</text><rect fill="#FEFECE" filter="url(#f1xqd11gpoojpy)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="181" x="341.5" y="326.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167" x="348.5" y="346.0732">SendReportToNHSTask</text><rect fill="#FEFECE" filter="url(#f1xqd11gpoojpy)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="101" x="536.5" y="326.0781"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="543.5" y="346.0732">timer:Timer</text><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="104.4297" style="stroke:#A80036;stroke-width:1.0;" width="10" x="248" y="106.3828"/><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="429" y="279.0781"/><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="584" y="180.8125"/><rect fill="#FFFFFF" filter="url(#f1xqd11gpoojpy)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="584" y="279.0781"/><ellipse cx="7.5" cy="105.6328" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.5;fill:none;"/><polygon fill="#A80036" points="236,102.3828,246,106.3828,236,110.3828,240,106.3828" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="12" x2="242" y1="106.3828" y2="106.3828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="15" y="101.3169">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="208" x="28" y="101.3169">scheduleOperationReport(delay)</text><polygon fill="#A80036" points="524.5,131.5156,534.5,135.5156,524.5,139.5156,528.5,135.5156" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="258" x2="530.5" y1="135.5156" y2="135.5156"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="265" y="130.4497">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="51" x="278" y="130.4497">create()</text><rect fill="#FEFECE" filter="url(#f1xqd11gpoojpy)" height="30.2969" style="stroke:#A80036;stroke-width:1.5;" width="101" x="536.5" y="114.3828"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="543.5" y="134.3779">timer:Timer</text><polygon fill="#A80036" points="572,176.8125,582,180.8125,572,184.8125,576,180.8125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="258" x2="578" y1="180.8125" y2="180.8125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="8" x="265" y="175.7466">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="137" x="277" y="175.7466">schedule(task, delay)</text><path d="M348,223.8125 L348,248.8125 L670,248.8125 L670,233.8125 L660,223.8125 L348,223.8125 " fill="#FBFB77" filter="url(#f1xqd11gpoojpy)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M660,223.8125 L660,233.8125 L670,233.8125 L660,223.8125 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="301" x="354" y="240.8794">After the time specified by "delay" has elapsed</text><polygon fill="#A80036" points="450,275.0781,440,279.0781,450,283.0781,446,279.0781" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="444" x2="583" y1="279.0781" y2="279.0781"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="9" x="456" y="274.0122">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="31" x="469" y="274.0122">run()</text><!--MD5=[b899f08bc83ddf89787e8e2442468de1]
+@startuml
+title SD_ScheduleOperation(date)
+
+autonumber
+
+participant "company:Company" as CMP
+participant "SendReportToNHSTask" as TASK
+participant "timer:Timer" as TIM
+
+
+[o-> CMP: scheduleOperationReport(delay)
+activate CMP
+
+
+
+CMP- ->TIM**: create()
+
+
+CMP- ->TIM : schedule(task, delay)
+activate TIM
+deactivate TIM
+
+deactivate CMP
+
+note over TIM,TASK: After the time specified by "delay" has elapsed
+
+TIM - -> TASK:run()
+activate TIM
+deactivate TIM
+activate TASK
+deactivate TASK
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 12:40:07 UTC 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
