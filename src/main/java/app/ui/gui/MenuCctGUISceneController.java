@@ -19,31 +19,64 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class is the controller of the CCT menu in which you select the option of the US to see.It implements the Initializable class so that it is initializes the overridden method whenever it this class is instantiated.
+ */
 public class MenuCctGUISceneController implements Initializable {
-
+    /**
+     * The parent UI of this controller
+     */
     private MainMenuGUISceneController menuUI;
+    /**
+     * Declaration of the App class
+     */
     private App app;
+    /**
+     * label containg the name of the client
+     */
     @FXML
     private Label lblNameClient;
-
+    /**
+     * button containg the tests results
+     */
     @FXML
     private Button btnTestResults;
 
 
-
+    /**
+     * Default constructor which instanciates app
+     */
     public MenuCctGUISceneController() {
         this.app = App.getInstance();
     }
-
+    /**
+     * Whenever this is instanciates it
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb){
     }
+
+    /**
+     * Lable saying Clinical Chemistry Technologist
+     */
     @FXML
     private Label lblCct;
+
+    /**
+     * Associates this class with its parent UI
+     * @param mainMenuGUISceneController
+     */
 
     public void associarParentUI(MainMenuGUISceneController mainMenuGUISceneController) {
         this.menuUI = mainMenuGUISceneController;
     }
+
+    /**
+     * Load the ShowClientsUI
+     * @return stage with the next UI to be shown
+     */
 
     private Stage loadShowClientsUi() {
         try {
@@ -69,6 +102,10 @@ public class MenuCctGUISceneController implements Initializable {
         }
     }
 
+    /**
+     * Whenever this button is pressed the next stage is loaded
+     * @param event the button being selected
+     */
     @FXML
     void menuViewTestsAction(ActionEvent event) {
         Stage stage = loadShowClientsUi();
@@ -79,6 +116,10 @@ public class MenuCctGUISceneController implements Initializable {
         stage.showAndWait();
     }
 
+    /**
+     * Whenever this button is pressed the next us is run in the console
+     * @param event the button being selected
+     */
     @FXML
     void menuRecordTestsAction(ActionEvent event) {
         RecordTestResultsUI recordTestResultsUI = new RecordTestResultsUI();

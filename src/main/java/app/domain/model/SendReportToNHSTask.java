@@ -4,21 +4,32 @@ import java.util.Calendar;
 import java.util.TimerTask;
 
 import app.controller.App;
-import app.domain.model.matcp.LinearRegression;
 import app.domain.model.matcp.MultiLinearRegression;
 import app.domain.shared.Configuration;
 import com.nhs.report.Report2NHS;
 import org.apache.commons.math3.exception.NotStrictlyPositiveException;
 
+/**
+ * This class instanciates an object from the NHSReport class passing through all the parameters defined by configuration file and which is to be used to schedule the sending of the Report to the NHS
+ */
 public class SendReportToNHSTask extends TimerTask {
 
-    Report2NHS report2NHS = new Report2NHS();
 
+    /**
+     * Default constructor of the SendReportToNHSTask
+     */
     public SendReportToNHSTask() {
-
+        //there is no need to initialize anything in the default constructor
     }
 
+    /**
+     * The string containing the report
+     */
     private String report;
+
+    /**
+     * run method which is used to schedule the sending of the report to the NHS. This gets the properties defined in the configuration file and allocates to construct the respective report.
+     */
 
     @Override
     public void run() {
