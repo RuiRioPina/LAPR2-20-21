@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class LabCoordinatorStoreTest {
-
+/*
     @Test
     public void maxSubArraySum() {
         int [] list = new int [10];
@@ -24,7 +24,7 @@ public class LabCoordinatorStoreTest {
         LabCoordinatorStore lc = new LabCoordinatorStore();
         assertNotEquals(LabCoordinatorStore.maxSubArraySum(list), LabCoordinatorStore.maxSubArraySum(list));
     }
-
+*/
     @Test
     public void maxSubArray() {
         int [] list = new int [10];
