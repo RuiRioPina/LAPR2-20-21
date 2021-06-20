@@ -41,7 +41,7 @@ none.
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![UC2_SSD.svg](UC5_SSD.svg)
+![UC2_SSD.svg](UC2_SSD.svg)
 
 
 ### 1.7 Other Relevant Remarks
@@ -53,7 +53,7 @@ none.
 
 ### 2.1. Relevant Domain Model Excerpt 
 
-![UC2_MD.svg](UC5_MD.svg)
+![UC2_MD.svg](UC2_MD.svg)
 
 ### 2.2. Other Remarks
 
