@@ -433,7 +433,7 @@ public class TestStore implements Serializable {
     private List<Test> getValidatedTests(){
         List<Test> resultList=new ArrayList<>();
         for (int i=0;i<tests.size();i++){
-            if (tests.get(i).getValidationDate()!=null){
+            if (tests.get(i).getValidationDate()!=null&&tests.get(i).getTestType().getDescription().equals("Covid")){
                 resultList.add(tests.get(i));
             }
         }
@@ -632,7 +632,9 @@ public class TestStore implements Serializable {
                     total+=test.calculateAge();
                 }
             }
-
+if (cont==0){
+    cont=1;
+}
                 arrDouble[i] = total / cont;
                 cont = 0;
                 total=0;
@@ -682,7 +684,11 @@ public class TestStore implements Serializable {
                 if (testDate.get(Calendar.YEAR)==dayDate.get(Calendar.YEAR)&&testDate.get(Calendar.MONTH)==dayDate.get(Calendar.MONTH)&&testDate.get(Calendar.DAY_OF_MONTH)==dayDate.get(Calendar.DAY_OF_MONTH)){
                     totalAge+=test.calculateAge();
                     cont++;
+
                 }
+            }
+            if (cont==0){
+                cont=1;
             }
             arrDouble[i]=totalAge/cont;
             cont=0;

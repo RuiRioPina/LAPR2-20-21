@@ -126,13 +126,19 @@ public class GenerateMultiLinearReportController implements Initializable {
                 setBtnYesMVisible();
             }
             if (historicalPointType.equals("Weeks")) {
-                resultString = company.generateMultilinearNHSReportWeeks(currentDate, historicalPoints, newerDate, olderDate, B0TestSignificance, x1TestSignificance, x2TestSignificance, fTestSignificance, confidenceIntervalSignificance);
-                txaShowReportM.setText(resultString);
-                setLblSendReportMVisible();
-                setBtnYesMVisible();
+                try {
+
+
+                    resultString = company.generateMultilinearNHSReportWeeks(currentDate, historicalPoints, newerDate, olderDate, B0TestSignificance, x1TestSignificance, x2TestSignificance, fTestSignificance, confidenceIntervalSignificance);
+                    txaShowReportM.setText(resultString);
+                    setLblSendReportMVisible();
+                    setBtnYesMVisible();
+                }catch (IllegalArgumentException e){
+                    Utils.createAlert(Alert.AlertType.ERROR,"Mondays","Due to programmer limitations you may only use mondays to define weeks or you did not type numbers where you should have");
+                }
             }
         }
-        else Utils.createAlert(Alert.AlertType.ERROR,"Dados Inválidos","Os numeros de significancia não podem ser maior que um ou zero.");
+        else Utils.createAlert(Alert.AlertType.ERROR,"Invalid data","The significance numbers cant be bigger than 1 or smaller than 0");
     }
 
 

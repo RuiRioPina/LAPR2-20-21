@@ -140,25 +140,36 @@ private Company company;
                 }
             }
             if (historicalPointType.equals("Weeks")) {
-                if (independentVariableSelected.equals("Total tests Performed")) {
-                    resultString = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-                    System.out.println(resultString);
-                    txaShowReport.setText(resultString);
-                    setLblSendReportVisible();
-                    setBtnYesVisible();
 
-                }
-                if (independentVariableSelected.equals("Mean Age of Clients")) {
-                    resultString = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
-                    System.out.println(resultString);
-                    txaShowReport.setText(resultString);
-                    setLblSendReportVisible();
-                    setBtnYesVisible();
+                    if (independentVariableSelected.equals("Total tests Performed")) {
+                        try {
 
-                }
+                            resultString = company.generateSimpleNHSReportTestsPerformedWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+
+                            txaShowReport.setText(resultString);
+                            setLblSendReportVisible();
+                            setBtnYesVisible();
+                        }catch (IllegalArgumentException e){
+                            Utils.createAlert(Alert.AlertType.ERROR,"Mondays","Due to programmer limitations you may only use mondays to define weeks or you did not type numbers where you should have");
+                        }
+
+                    }
+                    if (independentVariableSelected.equals("Mean Age of Clients")) {
+                        try {
+
+                            resultString = company.generateSimpleNHSReportMeanAgeWeeks(currentDate, historicalPoints, newerDate, olderDate, aTestSignificance, bTestSignificance, bTestParameter, bTestParameter, fTestSignificance, confidenceIntervalSignificance);
+
+                            txaShowReport.setText(resultString);
+                            setLblSendReportVisible();
+                            setBtnYesVisible();
+                        }catch (IllegalArgumentException e){
+                            Utils.createAlert(Alert.AlertType.ERROR,"Mondays","Due to programmer limitations you may only use mondays to define weeks or you did not type numbers where you should have");
+                        }
+
+                    }
 
             }
-        }else Utils.createAlert(Alert.AlertType.ERROR,"Dados Inválidos","Os numeros de significancia não podem ser maior que um ou zero.");
+        }else Utils.createAlert(Alert.AlertType.ERROR,"Invalid data","The significance numbers cant be bigger than 1 or smaller than 0");
 
     }
     @FXML
