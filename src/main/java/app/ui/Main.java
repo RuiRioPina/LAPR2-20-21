@@ -47,6 +47,7 @@ public class Main extends Application{
 		aviso.setHeaderText("Confirma��o da a��o");
 		aviso.showAndWait();
 		ButtonType resultado = aviso.getResult();
+		
 		if(resultado == ButtonType.NO) {
 			event.consume();
 		}
