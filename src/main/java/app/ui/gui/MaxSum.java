@@ -26,7 +26,7 @@ public class MaxSum {
     private Calendar dEnd;
 
     @FXML
-    private Label lblTestView;
+    private Label lblChart;
     @FXML
     private TextField txtBrute;
     @FXML
@@ -211,7 +211,7 @@ public class MaxSum {
 
     @FXML
     private void menuExitAction(ActionEvent event) {
-        Window window = lblTestView.getScene().getWindow();
+        Window window = lblChart.getScene().getWindow();
         window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
