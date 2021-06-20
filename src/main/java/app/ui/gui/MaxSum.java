@@ -115,7 +115,7 @@ public class MaxSum {
 
     public void fillLineChart(Map<String, Integer> testsReady, Map<String, Integer> testsDiagnosis, Map<String, Integer> testsMissingResults, Map<String, Integer> lstClients) {
         XYChart.Series seriesReady = new XYChart.Series();
-        seriesReady.setName("Number of Ready Tests");
+        seriesReady.setName("Number of Tests Validated");
 
         SortedSet<String> keys = new TreeSet<>(testsReady.keySet());
         for (String key : keys) {
@@ -124,7 +124,7 @@ public class MaxSum {
         }
 
         XYChart.Series seriesDiagnosis = new XYChart.Series();
-        seriesDiagnosis.setName("Number of Diagnosis Tests");
+        seriesDiagnosis.setName("Number of Tests without diagnosis");
 
         keys = new TreeSet<>(testsDiagnosis.keySet());
         for (String key : keys) {
@@ -133,7 +133,7 @@ public class MaxSum {
         }
 
         XYChart.Series seriesMissingResults = new XYChart.Series();
-        seriesMissingResults.setName("Number of Missing Results Tests");
+        seriesMissingResults.setName("Number of Tests without results");
 
         keys = new TreeSet<>(testsMissingResults.keySet());
         for (String key : keys) {

@@ -109,9 +109,13 @@ public class IntervalController {
     }
 
     public String getTimeInterval(Calendar start, Calendar end,int dif) {
-        int [] listMax = lcs.listMax(start,end,this.tests);
+
+        Calendar startClone = (Calendar) start.clone();
+        Calendar endClone = (Calendar) end.clone();
+
+        int [] listMax = lcs.listMax(startClone,endClone,this.tests);
         int [] sum = this.lcs.maxSubArraySum(listMax);
-        List<LocalDateTime> lstTimeInterval = this.lcs.getMax(start,end,sum,dif);
+        List<LocalDateTime> lstTimeInterval = this.lcs.getMax(startClone,endClone,sum,dif);
         // Note, MM is months, not mm
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
         DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.ENGLISH);
