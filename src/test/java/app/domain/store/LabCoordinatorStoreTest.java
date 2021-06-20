@@ -113,5 +113,10 @@ public class LabCoordinatorStoreTest {
         assertNotEquals(D, LabCoordinatorStore.tCalendarToLDT(data));
         assertEquals(1,LabCoordinatorStore.countNumber(2));
     }
+
+    @Test (expected = NullPointerException.class)
+    public void Null(){
+        LabCoordinatorStore.getTestsWithResults();
+    }
     }
 
