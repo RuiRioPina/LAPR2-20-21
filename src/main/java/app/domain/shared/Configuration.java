@@ -83,7 +83,7 @@ public class Configuration {
     }
 
     public static String getSignificanceValue() {
-        return props.getProperty("Automatic.Report.SignificanceValue");
+        return props.getProperty("Automatic.Report.ConfidenceValue");
     }
 
     private static String[] getDate(String date) {
