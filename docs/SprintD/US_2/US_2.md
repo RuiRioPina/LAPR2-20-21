@@ -99,8 +99,6 @@ Other software classes (i.e. Pure Fabrication) identified:
 
 ![UC2_SD](UC2_SD.svg)
 
-#### Create Sample
-![UC2_SD_CreatingSamples](UC5_SD_CreatingSamples.svg)
 
 ## 3.3. Class Diagram (CD)
 
