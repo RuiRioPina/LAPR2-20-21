@@ -256,6 +256,26 @@ public class LabCoordinatorStore implements Serializable {
         return listTests;
     }
 
+    public long getNumberClients(List<Test> tests) {
+        List<Client> lstClients = new ArrayList<>();
+        for (Test t : tests) {
+            if(!containsClient(lstClients, t.getClient().getNhsNumber())){
+                lstClients.add(t.getClient());
+            }
+        }
+        return lstClients.size();
+    }
+
+    public long getNumberTestsValidated(List<Test> tests){
+        long numberOfValidatedTests=0;
+        for (Test t : tests) {
+            if(t.getValidationDate()!=null){
+                numberOfValidatedTests++;
+            }
+        }
+        return numberOfValidatedTests;
+    }
+
     public boolean containsClient(final List<Client> list, long nhs) {
         return list.stream().anyMatch(o -> o.getNhsNumber() == nhs);
     }
@@ -316,7 +336,7 @@ public class LabCoordinatorStore implements Serializable {
     }
 
 
-    public static int[] maxSubArraySum(int[] list) {
+    public int[] maxSubArraySum(int[] list) {
         int size = list.length;
         int max_so_far = Integer.MIN_VALUE,
                 max_ending_here = 0, start = 0,
@@ -345,7 +365,7 @@ public class LabCoordinatorStore implements Serializable {
         return places;
     }
 
-    public static int[] listMax(Calendar start, Calendar end, List<Test> tests) {
+    public int[] listMax(Calendar start, Calendar end, List<Test> tests) {
 
         String message = "There is no tests registered";
 
@@ -391,18 +411,13 @@ public class LabCoordinatorStore implements Serializable {
                         if (tCalendarToLDT(test).isAfter(local) && tCalendarToLDT(test).isBefore(local1)) {
                             dif[count]++;
                         }
-                    }
 
-/*
-                        for (Test t:testsVal) {
-                            Calendar test=t.getValidationDate();
+                        Calendar testValidationDate=t.getValidationDate();
 
-                            if (tCalendarToLDT(test).isAfter(local) && tCalendarToLDT(test).isBefore(local1)) {
-                                dif[count]--;
-                            }
+                        if (testValidationDate!=null && tCalendarToLDT(testValidationDate).isAfter(local) && tCalendarToLDT(testValidationDate).isBefore(local1)) {
+                            dif[count]--;
                         }
-*/
-
+                    }
 
                     time = time.plusMinutes(gapInMinutes);
                     timef = timef.plusMinutes(gapInMinutes);
@@ -425,7 +440,7 @@ public class LabCoordinatorStore implements Serializable {
     }
 
 
-    public static List<LocalDateTime> getMax(Calendar start, Calendar end, int[] sum, int dif) {
+    public List<LocalDateTime> getMax(Calendar start, Calendar end, int[] sum, int dif) {
         String message = "There is no tests registered";
 
         StringBuilder max = new StringBuilder();

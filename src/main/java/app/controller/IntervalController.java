@@ -4,11 +4,12 @@ import app.domain.model.Company;
 import app.domain.model.Test;
 import app.domain.store.LabCoordinatorStore;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
 
 public class IntervalController {
 
@@ -27,8 +28,7 @@ public class IntervalController {
     public int[] getArrayBeforeMax(String dStart, String dEnd){
         Calendar sDate = tStringToCalendar(dStart);
         Calendar eDate = tStringToCalendar(dEnd);
-        int dif = eDate.get(Calendar.DAY_OF_MONTH) - sDate.get(Calendar.DAY_OF_MONTH);
-        int[] list = LabCoordinatorStore.listMax(sDate, eDate, tests);
+        int[] list = this.lcs.listMax(sDate, eDate, tests);
         return list;
     }
 
@@ -98,6 +98,44 @@ public class IntervalController {
 
     public Map<String,Integer> getClientsByYear(Calendar dStart,Calendar eStart){
         return this.lcs.getNumberTestsByYear(this.tests,dStart, eStart,"clients");
+    }
+
+    public long getNumberClients(){
+        return this.lcs.getNumberClients(this.tests);
+    }
+
+    public long getNumberTestsValidated(){
+        return this.lcs.getNumberTestsValidated(this.tests);
+    }
+
+    public String getTimeInterval(Calendar start, Calendar end,int dif) {
+        int [] listMax = lcs.listMax(start,end,this.tests);
+        int [] sum = this.lcs.maxSubArraySum(listMax);
+        List<LocalDateTime> lstTimeInterval = this.lcs.getMax(start,end,sum,dif);
+        // Note, MM is months, not mm
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
+        DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.ENGLISH);
+
+        String dateBegin="", dateEnd="";
+        if (lstTimeInterval.get(0) != null) {
+            Date beginDate = null;
+            try {
+                beginDate = inputFormat.parse(lstTimeInterval.get(0).toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            dateBegin = outputFormat.format(beginDate);
+        }
+        if (lstTimeInterval.get(1) != null) {
+            Date endDate = null;
+            try {
+                endDate = inputFormat.parse(lstTimeInterval.get(1).toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            dateEnd = outputFormat.format(endDate);
+        }
+        return dateBegin + " - " + dateEnd;
     }
 
     public static Calendar tStringToCalendar(String txt) {

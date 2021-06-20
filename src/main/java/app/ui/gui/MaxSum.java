@@ -1,5 +1,6 @@
 package app.ui.gui;
 
+import java.text.ParseException;
 import java.util.*;
 
 import app.controller.App;
@@ -15,6 +16,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
+import org.w3c.dom.Text;
 
 
 public class MaxSum {
@@ -29,6 +31,15 @@ public class MaxSum {
     private TextField txtBrute;
     @FXML
     private TextField txtBench;
+
+    @FXML
+    private TextField txtNumberClients;
+
+    @FXML
+    private TextField txtNumberTestsValidated;
+
+    @FXML
+    private TextField txtInterval;
 
     @FXML
     private CategoryAxis xAxis;
@@ -103,7 +114,7 @@ public class MaxSum {
     }
 
     public void fillLineChart(Map<String, Integer> testsReady, Map<String, Integer> testsDiagnosis, Map<String, Integer> testsMissingResults, Map<String, Integer> lstClients) {
-        var seriesReady = new XYChart.Series();
+        XYChart.Series seriesReady = new XYChart.Series();
         seriesReady.setName("Number of Ready Tests");
 
         SortedSet<String> keys = new TreeSet<>(testsReady.keySet());
@@ -112,7 +123,7 @@ public class MaxSum {
             // do something
         }
 
-        var seriesDiagnosis = new XYChart.Series();
+        XYChart.Series seriesDiagnosis = new XYChart.Series();
         seriesDiagnosis.setName("Number of Diagnosis Tests");
 
         keys = new TreeSet<>(testsDiagnosis.keySet());
@@ -121,7 +132,7 @@ public class MaxSum {
             // do something
         }
 
-        var seriesMissingResults = new XYChart.Series();
+        XYChart.Series seriesMissingResults = new XYChart.Series();
         seriesMissingResults.setName("Number of Missing Results Tests");
 
         keys = new TreeSet<>(testsMissingResults.keySet());
@@ -130,7 +141,7 @@ public class MaxSum {
             // do something
         }
 
-        var seriesNumberClients = new XYChart.Series();
+        XYChart.Series seriesNumberClients = new XYChart.Series();
         seriesNumberClients.setName("Number of Clients");
 
         keys = new TreeSet<>(lstClients.keySet());
@@ -173,8 +184,24 @@ public class MaxSum {
                 int[] list2 = Sum.Max(arrayMax);
                 txtBrute.setText(Arrays.toString(list1));
                 txtBench.setText(Arrays.toString(list2));
+                txtNumberClients.setText(String.valueOf(getNumberClients()));
+                txtNumberTestsValidated.setText(String.valueOf(getNumberTestsValidated()));
+                int dif = this.dEnd.get(Calendar.DAY_OF_MONTH) - this.dStart.get(Calendar.DAY_OF_MONTH);
+                txtInterval.setText(getTimeInterval(this.dStart,this.dEnd,dif));
             }
         }
+    }
+
+    private long getNumberClients(){
+       return this.intervalController.getNumberClients();
+    }
+
+    private long getNumberTestsValidated(){
+        return this.intervalController.getNumberTestsValidated();
+    }
+
+    private String getTimeInterval(Calendar start, Calendar end, int dif) {
+        return this.intervalController.getTimeInterval(start,end,dif);
     }
 
     public IntervalController getController() {

@@ -29,26 +29,35 @@
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <TextField fx:id="txtBrute" layoutX="225.0" layoutY="168.0" prefHeight="38.0" prefWidth="204.0" />
+                        <TextField fx:id="txtBrute" layoutX="225.0" layoutY="168.0" prefHeight="38.0" prefWidth="204.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></TextField>
                         <Label layoutX="172.0" layoutY="14.0" prefHeight="91.0" prefWidth="530.0" />
                         <Text layoutX="39.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benchmark algorithm:" wrappingWidth="182.13671875">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtBench" layoutX="227.0" layoutY="265.0" prefHeight="36.0" prefWidth="202.0" />
+                        <TextField fx:id="txtBench" layoutX="227.0" layoutY="265.0" prefHeight="36.0" prefWidth="202.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></TextField>
                         <Text layoutX="39.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time interval:" wrappingWidth="172.13671875">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField layoutX="226.0" layoutY="359.0" prefHeight="36.0" prefWidth="201.0" />
+                        <TextField fx:id="txtInterval" layoutX="226.0" layoutY="359.0" prefHeight="36.0" prefWidth="201.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></TextField>
                         <Label layoutX="143.0" layoutY="16.0" prefHeight="44.0" prefWidth="589.0" text="Informations about the maximun subsequence &amp; more">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="226.0" layoutY="447.0" prefHeight="39.0" prefWidth="202.0">
+                        <TextField fx:id="txtNumberClients" layoutX="226.0" layoutY="447.0" prefHeight="39.0" prefWidth="202.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -63,7 +72,10 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField layoutX="226.0" layoutY="535.0" prefHeight="38.0" prefWidth="201.0" />
+                        <TextField fx:id="txtNumberTestsValidated" layoutX="226.0" layoutY="535.0" prefHeight="38.0" prefWidth="201.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></TextField>
                      </children>
                   </AnchorPane>
                </content>
@@ -113,4 +125,3 @@
       </TabPane>
    </children>
 </AnchorPane>
-
